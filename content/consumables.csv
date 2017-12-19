@@ -1,0 +1,4 @@
+ID,Name,Cost,Effects,Properties,Rarity,Description
+c1,imbued bandages,Gold (5),"Duration (8), Healing Bonus (10)",Single-use,0,these magically imbued bandages improve your natural Healing rate by 7.5% hp/h.
+c2,elixir,Gold (5),Healing (5),Single-use,0,this small elixir will instantly close most wounds.
+c3,Recuperation balm,Gold (15),"Duration (8), Healing Bonus (10)","Single-use, Recuperation",0,this balm can regenerate even the ugliest old scars over time. +7.5% hp/h and unlocks the Recuperation trait while it lasts.

@@ -1,0 +1,196 @@
+<!doctype html>
+<html>
+<head>
+
+  <!--<link rel="prefetch" href="game.html">-->
+  <meta charset="utf-8">
+  <title>Hello World</title>
+  <link rel="stylesheet" href="/client/style.css">
+
+</head>
+
+<body oncontextmenu="return false;">  <!--Prevents context menu to open on right clicking onsubmit="return false;"-->
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/client/dependencies/jquery-3.2.1.min.js"></script>
+  <script id="Helper" src="/client/js/HelperFunctions.js"></script>
+  <script id="Request" src="/client/js/ServerRequests.js"></script>
+  <script id="Login" src="/client/js/Login.js"></script>
+  <script id="Players" src="/client/js/Players.js"></script>
+  <script id="CharCreation" src="/client/js/CharacterCreation.js"></script>
+  <script id="Chat" src="/client/js/Chat.js"></script>
+  <script id="Game" src="/client/js/Game.js"></script>
+  <script id="Input" src="/client/js/Input.js"></script>
+
+
+  <!--***********************************GLOBAL DATA*************************************-->
+
+  <script type="text/javascript">
+    var socket = io();
+    window.socket = socket;
+
+    socket.on("connected", function(data)
+    {
+      if (data == null || data.length == null || data.length <= 0)
+      {
+        console.log("No data received from the server for the character creation!");
+      }
+
+      $.getJSON("/shared/keyIndex.json", function(json)
+      {
+        window.KeyIndex = json;
+      });
+
+      //Request.initialize();
+      Login.initialize();
+      CharCreation.initialize(data.forms);
+      Players.initialize(data.players)
+      Chat.initialize();
+      Game.initialize();
+      Input.initialize();
+    });
+
+  </script>
+
+  <!--*************************************WEBSITE-WHOLE WRAPPER*************************-->
+
+  <div id="big-wrapper" class="container container--align-center">
+
+    <!--*************************************LOGIN DIV************************************-->
+
+    <div id="login-screen" class="container container--column">
+
+      <img src="/client/img/Clockwork Doge by Kuznetsowski.png" alt="Avatar" class="avatar">
+
+      <div id="login-form" class="container container--column">
+        <input id="login-form__username" type="text" placeholder="Enter Username" required>
+        <input id="login-form__password" type="password" placeholder="Enter Password" required>
+
+        <button id="login-form__sign-in" class="menu">Login</button>
+        <button id="login-form__sign-up" class="menu">Sign Up</button>
+        <!--<input type="checkbox" checked="checked"> Remember me-->
+      </div>
+
+      <!--<div class="container">
+        <button type="button" class="cancelbtn">Cancel</button>
+        <span class="psw">Forgot <a href="#">password?</a></span>
+      </div>-->
+
+    </div>
+
+    <!--*********************************CREATE CHAR DIV************************************-->
+
+    <div id="char-creation-screen" style="display:none;">
+
+      <form id="char-creation-form">
+        <span class="char-creation">Name: </span><input id="char-creation__name" class="char-creation" type="text" required><br>
+        <span class="char-creation">Race: </span><select id="char-creation__race" class="char-creation">
+              </select>
+
+        <span class="char-creation">Points left: </span><span id="char-creation__attr-points" class="char-creation">0</span><br><br>
+
+        <div class="container">
+
+          <div id="char-creation__attr-div" class="container container--column">
+
+            <!--Created Programmatically in the CharacterCreation file-->
+
+          </div>
+
+
+          <div id="char-creation__send-btn-div" class="container">
+
+            <button id="char-creation__send-btn" type="button" class="char-creation" onclick="CharCreation.sendCharacter();">Create Character!</button>
+
+          </div>
+
+
+        </div>
+
+      </form>
+    </div>
+
+
+    <!--*************************************GAME DIV************************************-->
+
+    <div id="game-screen" class="container container--column" style="display:none;">
+
+      <!--<canvas id="canvas" width="1024" height="1024" style="border:1px solid #000000;"></canvas>-->
+
+      <nav id="game-nav" class="container container--row">
+
+        <button id="game-nav__battle-btn" class="nav" onclick="Game.changeScreen('battle-display');">Battle</button>
+        <button id="game-nav__equipment-btn" class="nav" onclick="Game.changeScreen('equipment-display');">Equipment</button>
+        <button id="game-nav__character-btn" class="nav" onclick="Game.changeScreen('character-display');">Character</button>
+        <button id="game-nav__jobs-btn" class="nav" onclick="Game.changeScreen('jobs-display');">Jobs</button>
+        <button id="game-nav__shop-btn" class="nav" onclick="Game.changeScreen('shop-display');">Shop</button>
+        <button id="game-nav__encyclopaedia-btn" class="nav" onclick="Game.changeScreen('encyclopaedia-display');">Encyclopaedia</button>
+
+      </nav>
+
+      <div id="game-screen-display" class="container container--row">
+
+        <div id="battle-display" class="container">
+
+          <div id="battle-display__info-div" class="container --scroll-y">
+            info div
+          </div>
+
+          <div id="battle-display__players-div" class="container --scroll-y">
+            players div
+          </div>
+
+        </div>
+
+        <div id="equipment-display" class="container" style="display: none;">
+
+          equipment screen
+
+        </div>
+
+        <div id="character-display" class="container" style="display: none;">
+
+          character screen
+
+        </div>
+
+        <div id="jobs-display" class="container" style="display: none;">
+
+          jobs screen
+
+        </div>
+
+        <div id="shop-display" class="container" style="display: none;">
+
+          shop screen
+
+        </div>
+
+        <div id="encyclopaedia-display" class="container" style="display: none;">
+
+          encyclopaedia screen
+
+        </div>
+
+        <!--Further divs here could be displayed on and off to change the layout of the info screen,
+            for switching between battles, quests, economy screens, whatever-->
+
+      </div>
+
+      <div id="chat-display" class="container container--column container--space-between chat">
+
+        <div id="chat-text" class="chat">
+          <div>Hello!</div>
+        </div>
+
+        <form id="chat-form" class="chat">
+          <input id="chat-input" class="chat" type ="text">
+        </form>
+
+      </div>
+
+    </div>
+
+  </div>
+</body>
+</html>

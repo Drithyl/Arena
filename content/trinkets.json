@@ -1,0 +1,200 @@
+[
+  {
+    "ID": "t1",
+    "Name": "ironfang",
+    "Cost": {
+      "Gold": 5
+    },
+    "Encumbrance": 0,
+    "Slot Type": "Miscellaneous",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": null,
+    "Rarity": 0,
+    "Categories": [
+      "Miscellaneous"
+    ],
+    "Description": "This trinket will make even the most docile dog appear ferocious. the basic bite -e322- of Animals becomes piercing."
+  },
+  {
+    "ID": "t2",
+    "Name": "ring of Cold Resistance",
+    "Cost": {
+      "Gold": 10,
+      "Sapphires": 3
+    },
+    "Encumbrance": 0,
+    "Slot Type": "Miscellaneous",
+    "Required Slots": 1,
+    "Effects": {
+      "Cold Resistance": 5
+    },
+    "Properties": null,
+    "Rarity": 0,
+    "Categories": [
+      "Miscellaneous"
+    ],
+    "Description": "A crucial piece of equipment for anyone insane enough to explore the highest peaks of this world."
+  },
+  {
+    "ID": "t3",
+    "Name": "ring of Fire Resistance",
+    "Cost": {
+      "Gold": 10,
+      "Rubies": 3
+    },
+    "Encumbrance": 0,
+    "Slot Type": "Miscellaneous",
+    "Required Slots": 1,
+    "Effects": {
+      "Fire Resistance": 5
+    },
+    "Properties": null,
+    "Rarity": 0,
+    "Categories": [
+      "Miscellaneous"
+    ],
+    "Description": "A crucial piece of equipment for anyone insane enough to explore the scorching deserts of this world."
+  },
+  {
+    "ID": "t4",
+    "Name": "ring of Poison Resistance",
+    "Cost": {
+      "Gold": 10,
+      "Emeralds": 3
+    },
+    "Encumbrance": 0,
+    "Slot Type": "Miscellaneous",
+    "Required Slots": 1,
+    "Effects": {
+      "Poison Resistance": 5
+    },
+    "Properties": null,
+    "Rarity": 0,
+    "Categories": [
+      "Miscellaneous"
+    ],
+    "Description": "A crucial piece of equipment for anyone insane enough to explore the noxious swamps of this world."
+  },
+  {
+    "ID": "t5",
+    "Name": "ring of Shock Resistance",
+    "Cost": {
+      "Gold": 10,
+      "Diamonds": 3
+    },
+    "Encumbrance": 0,
+    "Slot Type": "Miscellaneous",
+    "Required Slots": 1,
+    "Effects": {
+      "Shock Resistance": 5
+    },
+    "Properties": null,
+    "Rarity": 0,
+    "Categories": [
+      "Miscellaneous"
+    ],
+    "Description": "A crucial piece of equipment for anyone insane enough to explore the lightning storms of this world."
+  },
+  {
+    "ID": "t6",
+    "Name": "crystalized warrior's Blood",
+    "Cost": {
+      "Gold": 18,
+      "Bloodstones": 4
+    },
+    "Encumbrance": 0,
+    "Slot Type": "Miscellaneous",
+    "Required Slots": 1,
+    "Effects": {
+      "Strength Bonus": 1,
+      "Attack Bonus": 1
+    },
+    "Properties": null,
+    "Rarity": 0,
+    "Categories": [
+      "Miscellaneous"
+    ],
+    "Description": "You've been told that this gem is the crystalized Blood of a great warrior of times past. as you hold it in your hand the thought itself seems to fill you with Strength: +1 str and +1 Attack."
+  },
+  {
+    "ID": "t7",
+    "Name": "Barkskin amulet",
+    "Cost": {
+      "Gold": 15,
+      "Emeralds": 4
+    },
+    "Encumbrance": 0,
+    "Slot Type": "Miscellaneous",
+    "Required Slots": 1,
+    "Effects": {
+      "Fire Resistance": -5
+    },
+    "Properties": [
+      "Barkskin"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Miscellaneous"
+    ],
+    "Description": "This Magical amulet turns your flesh rough and barklike... which makes you a great target practice for those Fireballs (natural prot is set to 10 or +1 if already >= that, -5 Fire Resistance)"
+  },
+  {
+    "ID": "t8",
+    "Name": "champion's skull",
+    "Cost": {
+      "Gold": 15,
+      "Onyxes": 4
+    },
+    "Encumbrance": 0,
+    "Slot Type": "Miscellaneous",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": null,
+    "Rarity": 0,
+    "Categories": [
+      "Miscellaneous"
+    ],
+    "Description": "Apparently this is the skull of a Legendary general. it is said that carrying it through training helps to gain insight and skill faster: +5% on each minute tick for task completion."
+  },
+  {
+    "ID": "t9",
+    "Name": "pendant of fate",
+    "Cost": {
+      "Gold": 15,
+      "Pearls": 4
+    },
+    "Encumbrance": 0,
+    "Slot Type": "Miscellaneous",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": [
+      "Twist Fate"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Miscellaneous"
+    ],
+    "Description": "This pendant will Magically prevent some catastrophes from striking the wearer. not that its effectiveness could ever be verified."
+  },
+  {
+    "ID": "t10",
+    "Name": "vigorous belt",
+    "Cost": {
+      "Gold": 20,
+      "Topazes": 5
+    },
+    "Encumbrance": 0,
+    "Slot Type": "Miscellaneous",
+    "Required Slots": 1,
+    "Effects": {
+      "Reinvigoration": 2
+    },
+    "Properties": null,
+    "Rarity": 0,
+    "Categories": [
+      "Miscellaneous"
+    ],
+    "Description": "This belt is highly sought after by those who wear heavier Armor. It will constantly reinvigorate the wearer, decreasing their fatigue."
+  }
+]

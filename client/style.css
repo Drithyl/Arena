@@ -1,0 +1,222 @@
+
+body {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 3px solid #000000;
+}
+
+#big-wrapper {
+  max-width: 1000px;
+  margin: 20px 0px;
+  justify-content: center;
+  border: 3px solid #333333;
+}
+
+/* Bordered form */
+#login-screen {
+   border: 3px solid #f1f1f1;
+   display: flex;
+}
+
+#char-creation-screen {
+  border: 3px solid #f1f1f1;
+  display: flex;
+}
+
+#char-creation__attr-div {
+  align-items: flex-start;
+}
+
+#game-screen-display {
+  max-width: 750px;
+  min-width: 400px;
+  min-height: 200px;
+}
+
+#game-nav {
+  max-width: 750px;
+  min-width: 400px;
+  max-height: 25px;
+  min-height: 25px;
+}
+
+#chat-display {
+  max-height: 200px;
+  min-height: 100px;
+}
+
+#chat-text {
+  overflow-y: scroll;
+  max-height: inherit;
+}
+
+#chat-form {
+  max-height: 50px;
+}
+
+#chat-input {
+  max-height: 50px;
+}
+
+.chat {
+  max-width: 750px;
+  min-width: 400px;
+  min-height: 25px;
+}
+
+.--scroll-y {
+  overflow-y: scroll;
+}
+
+.--padless {
+  padding: 0px;
+  margin: 0px 0px 0px 0px;
+}
+
+.--margin-right {
+  margin-right: 10px;
+}
+
+.--margin-top {
+  margin-top: 10px;
+}
+
+.--padding {
+  padding: 15px;
+}
+
+div.container {
+  display: flex;
+  flex: 1;
+  border: 3px solid #f1f1f1;
+}
+
+.container--align-center {
+  align-items: center;
+}
+
+.container--space-between {
+  justify-content: space-between;
+}
+
+.container--column {
+  flex-direction: column;
+  align-items: center;
+  border: 3px solid #f1f1f1;
+}
+
+.container--row {
+  flex-direction: row;
+  border: 3px solid #f1f1f1;
+}
+
+.container--img {
+  align-items: center;
+  margin: 24px 0 12px 0;
+}
+
+/* Tooltip container */
+.tooltip {
+   position: relative;
+   display: inline-block;
+   border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+}
+
+/* Tooltip text */
+.tooltip .tooltip__text {
+   visibility: hidden;
+   width: 120px;
+   background-color: #555;
+   color: #fff;
+   text-align: center;
+   padding: 5px 0;
+   border-radius: 6px;
+
+   /* Position the tooltip text */
+   position: absolute;
+   z-index: 1;
+   bottom: 125%;
+   left: 50%;
+   margin-left: -60px;
+
+   /* Fade in tooltip */
+   opacity: 0;
+   transition: opacity 1s;
+}
+
+/* Tooltip arrow */
+.tooltip .tool__tiptext::after {
+   content: "";
+   position: absolute;
+   top: 100%;
+   left: 50%;
+   margin-left: -5px;
+   border-width: 5px;
+   border-style: solid;
+   border-color: #555 transparent transparent transparent;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltip__text {
+   visibility: visible;
+   opacity: 1;
+}
+
+/* Avatar image */
+img.avatar {
+  padding: 20px;
+  width: 25%;
+  border-radius: 50%;
+}
+
+span.createChar {
+  font-size: 20px;
+}
+
+/*Must remain 5px or so smaller than the other createChar font sizes for buttons to be the right size*/
+button.createChar {
+  font-size: 15px;
+}
+
+/* Full-width inputs */
+input[type=text], input[type=password] {
+   padding: 2px 2px;
+   display: inline-block;
+   border: 1px solid #ccc;
+   box-sizing: border-box;
+}
+
+/* Set a style for all buttons */
+button.menu {
+   background-color: #4CAF50;
+   color: white;
+   padding: 14px 20px;
+   margin: 8px 0;
+   border: none;
+   cursor: pointer;
+   width: 100px;
+}
+
+/* Add a hover effect for buttons */
+button:hover {
+   opacity: 0.8;
+}
+
+/* The "Forgot password" text */
+span.psw {
+   float: right;
+   padding-top: 16px;
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+   span.psw {
+       display: block;
+       float: none;
+   }
+   .cancelbtn {
+       width: 100%;
+   }
+}

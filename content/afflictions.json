@@ -1,0 +1,120 @@
+[
+  {
+    "Name": "Battle Fright",
+    "Part Affected": "Body",
+    "Is Healable": true,
+    "Effects": {
+      "Morale Bonus": -5
+    },
+    "Properties": null
+  },
+  {
+    "Name": "Chest Wound",
+    "Part Affected": "Body",
+    "Is Healable": true,
+    "Effects": {
+      "Encumbrance": 5,
+      "Strength Bonus": -1
+    },
+    "Properties": null
+  },
+  {
+    "Name": "Diseased",
+    "Part Affected": "Body",
+    "Is Healable": true,
+    "Effects": {
+      "Will not Heal Naturally": 0
+    },
+    "Properties": [
+      "Priority"
+    ]
+  },
+  {
+    "Name": "Never Healing Wound",
+    "Part Affected": "Body",
+    "Is Healable": false,
+    "Effects": {
+      "Max HP Percentage": -20
+    },
+    "Properties": null
+  },
+  {
+    "Name": "Damaged arm",
+    "Part Affected": "Arm",
+    "Is Healable": true,
+    "Effects": {
+      "Hands Slot": -1
+    },
+    "Properties": null
+  },
+  {
+    "Name": "Lost arm",
+    "Part Affected": "Arm",
+    "Is Healable": false,
+    "Effects": {
+      "Hands Slot": -1
+    },
+    "Properties": null
+  },
+  {
+    "Name": "Weakened",
+    "Part Affected": "Arm",
+    "Is Healable": true,
+    "Effects": {
+      "Strength Bonus": -4
+    },
+    "Properties": null
+  },
+  {
+    "Name": "Limp",
+    "Part Affected": "Leg",
+    "Is Healable": true,
+    "Effects": {
+      "Attack Bonus": -1,
+      "Defence Bonus": -1
+    },
+    "Properties": null
+  },
+  {
+    "Name": "Crippled",
+    "Part Affected": "Leg",
+    "Is Healable": false,
+    "Effects": {
+      "Attack Bonus": -4,
+      "Defence Bonus": -4
+    },
+    "Properties": null
+  },
+  {
+    "Name": "Damaged eye",
+    "Part Affected": "Eye",
+    "Is Healable": true,
+    "Effects": {
+      "Attack Bonus": -2,
+      "Defence Bonus": -2
+    },
+    "Properties": null
+  },
+  {
+    "Name": "Lost eye",
+    "Part Affected": "Eye",
+    "Is Healable": false,
+    "Effects": {
+      "Attack Bonus": -2,
+      "Defence Bonus": -2,
+      "Precision Bonus": -3
+    },
+    "Properties": null
+  },
+  {
+    "Name": "Blind",
+    "Part Affected": "Eye",
+    "Is Healable": false,
+    "Effects": {
+      "Attack Bonus": -9,
+      "Defence Bonus": -9,
+      "Precision Bonus": -9
+    },
+    "Properties": null
+  }
+]

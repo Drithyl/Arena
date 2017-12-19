@@ -1,0 +1,6682 @@
+[
+  {
+    "ID": "w1",
+    "Name": "spear",
+    "Cost": {
+      "Gold": 1
+    },
+    "Damage": 3,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 4,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Pierce"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": null,
+    "Rarity": 0,
+    "Categories": [
+      "Polearms"
+    ]
+  },
+  {
+    "ID": "w2",
+    "Name": "pike",
+    "Cost": {
+      "Gold": 2
+    },
+    "Damage": 5,
+    "Attack": 0,
+    "Defence": -1,
+    "Length": 6,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Pierce"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 2,
+    "Effects": null,
+    "Properties": null,
+    "Rarity": 0,
+    "Categories": [
+      "Polearms"
+    ]
+  },
+  {
+    "ID": "w3",
+    "Name": "trident",
+    "Cost": {
+      "Gold": 3
+    },
+    "Damage": 7,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 4,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Pierce"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": null,
+    "Rarity": 0,
+    "Categories": [
+      "Polearms"
+    ]
+  },
+  {
+    "ID": "w5",
+    "Name": "halberd",
+    "Cost": {
+      "Gold": 4
+    },
+    "Damage": 10,
+    "Attack": -1,
+    "Defence": 1,
+    "Length": 4,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Pierce",
+      "Slash"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 2,
+    "Effects": null,
+    "Properties": null,
+    "Rarity": 0,
+    "Categories": [
+      "Polearms"
+    ]
+  },
+  {
+    "ID": "w6",
+    "Name": "short sword",
+    "Cost": {
+      "Gold": 2
+    },
+    "Damage": 5,
+    "Attack": 0,
+    "Defence": 2,
+    "Length": 1,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Pierce",
+      "Slash"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": null,
+    "Rarity": 0,
+    "Categories": [
+      "Swords"
+    ]
+  },
+  {
+    "ID": "w7",
+    "Name": "quarterstaff",
+    "Cost": {
+      "Gold": 2
+    },
+    "Damage": 3,
+    "Attack": 1,
+    "Defence": 3,
+    "Length": 4,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Blunt"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 2,
+    "Effects": null,
+    "Properties": null,
+    "Rarity": 0,
+    "Categories": [
+      "Staves"
+    ]
+  },
+  {
+    "ID": "w8",
+    "Name": "broad sword",
+    "Cost": {
+      "Gold": 3
+    },
+    "Damage": 6,
+    "Attack": 0,
+    "Defence": 1,
+    "Length": 2,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Slash"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": null,
+    "Rarity": 0,
+    "Categories": [
+      "Swords"
+    ]
+  },
+  {
+    "ID": "w9",
+    "Name": "Dagger",
+    "Cost": {
+      "Gold": 1
+    },
+    "Damage": 2,
+    "Attack": 1,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Pierce"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": null,
+    "Rarity": 0,
+    "Categories": [
+      "Daggers"
+    ]
+  },
+  {
+    "ID": "w10",
+    "Name": "falchion",
+    "Cost": {
+      "Gold": 4
+    },
+    "Damage": 7,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 2,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Slash"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": null,
+    "Rarity": 0,
+    "Categories": [
+      "Swords"
+    ]
+  },
+  {
+    "ID": "w11",
+    "Name": "great sword",
+    "Cost": {
+      "Gold": 5
+    },
+    "Damage": 9,
+    "Attack": 1,
+    "Defence": 2,
+    "Length": 3,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Slash"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 2,
+    "Effects": null,
+    "Properties": null,
+    "Rarity": 0,
+    "Categories": [
+      "Swords"
+    ]
+  },
+  {
+    "ID": "w12",
+    "Name": "mace",
+    "Cost": {
+      "Gold": 1
+    },
+    "Damage": 5,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 1,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Blunt"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": null,
+    "Rarity": 0,
+    "Categories": [
+      "Maces"
+    ]
+  },
+  {
+    "ID": "w13",
+    "Name": "hammer",
+    "Cost": {
+      "Gold": 2
+    },
+    "Damage": 7,
+    "Attack": 0,
+    "Defence": -1,
+    "Length": 1,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Blunt",
+      "Pierce"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": null,
+    "Rarity": 0,
+    "Categories": [
+      "Maces"
+    ]
+  },
+  {
+    "ID": "w14",
+    "Name": "maul",
+    "Cost": {
+      "Gold": 2
+    },
+    "Damage": 9,
+    "Attack": 0,
+    "Defence": -1,
+    "Length": 3,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Blunt"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 2,
+    "Effects": null,
+    "Properties": null,
+    "Rarity": 0,
+    "Categories": [
+      "Maces"
+    ]
+  },
+  {
+    "ID": "w15",
+    "Name": "Flail",
+    "Cost": {
+      "Gold": 2
+    },
+    "Damage": 6,
+    "Attack": 1,
+    "Defence": -2,
+    "Length": 2,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Blunt",
+      "Pierce"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": [
+      "Flail"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Maces"
+    ]
+  },
+  {
+    "ID": "w16",
+    "Name": "long Flail",
+    "Cost": {
+      "Gold": 3
+    },
+    "Damage": 3,
+    "Attack": 1,
+    "Defence": -2,
+    "Length": 3,
+    "Number of Attacks": 2,
+    "Damage Type": [
+      "Blunt"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 2,
+    "Effects": null,
+    "Properties": [
+      "Flail"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Maces"
+    ]
+  },
+  {
+    "ID": "w17",
+    "Name": "axe",
+    "Cost": {
+      "Gold": 1
+    },
+    "Damage": 7,
+    "Attack": 0,
+    "Defence": -1,
+    "Length": 1,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Slash"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": null,
+    "Rarity": 0,
+    "Categories": [
+      "Axes"
+    ]
+  },
+  {
+    "ID": "w18",
+    "Name": "battleaxe",
+    "Cost": {
+      "Gold": 3
+    },
+    "Damage": 9,
+    "Attack": 1,
+    "Defence": 0,
+    "Length": 3,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Slash"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 2,
+    "Effects": null,
+    "Properties": null,
+    "Rarity": 0,
+    "Categories": [
+      "Axes"
+    ]
+  },
+  {
+    "ID": "w28",
+    "Name": "long spear",
+    "Cost": {
+      "Gold": 2
+    },
+    "Damage": 3,
+    "Attack": 0,
+    "Defence": -1,
+    "Length": 5,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Pierce"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": null,
+    "Rarity": 0,
+    "Categories": [
+      "Polearms"
+    ]
+  },
+  {
+    "ID": "w31",
+    "Name": "coral spear",
+    "Cost": {
+      "Gold": 4
+    },
+    "Damage": 2,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 4,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Pierce"
+    ],
+    "On Hit": null,
+    "On Damage": [
+      "e50"
+    ],
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": null,
+    "Rarity": 0,
+    "Categories": [
+      "Polearms"
+    ]
+  },
+  {
+    "ID": "w32",
+    "Name": "coral knife",
+    "Cost": {
+      "Gold": 3
+    },
+    "Damage": 1,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Pierce"
+    ],
+    "On Hit": null,
+    "On Damage": [
+      "e50"
+    ],
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": null,
+    "Rarity": 0,
+    "Categories": [
+      "Daggers"
+    ]
+  },
+  {
+    "ID": "w35",
+    "Name": "ice knife",
+    "Cost": {
+      "Gold": 2
+    },
+    "Damage": 1,
+    "Attack": 2,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Pierce"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": [
+      "Magical",
+      "No Fire"
+    ],
+    "Rarity": 1,
+    "Categories": [
+      "Daggers"
+    ]
+  },
+  {
+    "ID": "w36",
+    "Name": "ice lance",
+    "Cost": {
+      "Gold": 2
+    },
+    "Damage": 3,
+    "Attack": 1,
+    "Defence": 0,
+    "Length": 4,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Pierce"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": [
+      "Charge Bonus",
+      "Magical",
+      "No Fire"
+    ],
+    "Rarity": 1,
+    "Categories": [
+      "Polearms"
+    ]
+  },
+  {
+    "ID": "w37",
+    "Name": "ice blade",
+    "Cost": {
+      "Gold": 4
+    },
+    "Damage": 5,
+    "Attack": 1,
+    "Defence": 1,
+    "Length": 2,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Slash"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": [
+      "Magical",
+      "No Fire"
+    ],
+    "Rarity": 1,
+    "Categories": [
+      "Swords"
+    ]
+  },
+  {
+    "ID": "w40",
+    "Name": "whip",
+    "Cost": {
+      "Gold": 0.5
+    },
+    "Damage": -1,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 5,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Slash"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": [
+      "Capped Damage"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Whips"
+    ]
+  },
+  {
+    "ID": "w44",
+    "Name": "ice mace",
+    "Cost": {
+      "Gold": 7
+    },
+    "Damage": 5,
+    "Attack": 2,
+    "Defence": 0,
+    "Length": 1,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Blunt"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": [
+      "Magical",
+      "No Fire"
+    ],
+    "Rarity": 1,
+    "Categories": [
+      "Maces"
+    ]
+  },
+  {
+    "ID": "w45",
+    "Name": "coral club",
+    "Cost": {
+      "Gold": 4
+    },
+    "Damage": 4,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 1,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Blunt"
+    ],
+    "On Hit": null,
+    "On Damage": [
+      "e50"
+    ],
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": null,
+    "Rarity": 0,
+    "Categories": [
+      "Maces"
+    ]
+  },
+  {
+    "ID": "w46",
+    "Name": "coral glaive",
+    "Cost": {
+      "Gold": 5
+    },
+    "Damage": 9,
+    "Attack": -1,
+    "Defence": 1,
+    "Length": 4,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Slash",
+      "Pierce"
+    ],
+    "On Hit": null,
+    "On Damage": [
+      "e50"
+    ],
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 2,
+    "Effects": null,
+    "Properties": null,
+    "Rarity": 0,
+    "Categories": [
+      "Polearms"
+    ]
+  },
+  {
+    "ID": "w49",
+    "Name": "iron prod",
+    "Cost": {
+      "Gold": 3
+    },
+    "Damage": 8,
+    "Attack": -2,
+    "Defence": -1,
+    "Length": 3,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Pierce"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": null,
+    "Rarity": 0,
+    "Categories": [
+      "Polearms"
+    ]
+  },
+  {
+    "ID": "w57",
+    "Name": "sickle",
+    "Cost": {
+      "Gold": 2
+    },
+    "Damage": 5,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 1,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Slash"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": null,
+    "Rarity": 0,
+    "Categories": [
+      "Miscellaneous"
+    ]
+  },
+  {
+    "ID": "w66",
+    "Name": "jotun axe",
+    "Cost": {
+      "Gold": 2
+    },
+    "Damage": 7,
+    "Attack": 0,
+    "Defence": -1,
+    "Length": 3,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Slash"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": null,
+    "Rarity": 1,
+    "Categories": [
+      "Axes"
+    ]
+  },
+  {
+    "ID": "w89",
+    "Name": "snake staff",
+    "Cost": {
+      "Gold": 10
+    },
+    "Damage": 5,
+    "Attack": 3,
+    "Defence": 5,
+    "Length": 4,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Pierce",
+      "Blunt"
+    ],
+    "On Hit": null,
+    "On Damage": [
+      "e50"
+    ],
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 2,
+    "Effects": null,
+    "Properties": [
+      "Magical"
+    ],
+    "Rarity": 1,
+    "Categories": [
+      "Staves"
+    ]
+  },
+  {
+    "ID": "w126",
+    "Name": "Poison Dagger",
+    "Cost": {
+      "Gold": 5
+    },
+    "Damage": 2,
+    "Attack": 1,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Pierce"
+    ],
+    "On Hit": null,
+    "On Damage": [
+      "e51"
+    ],
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": null,
+    "Rarity": 1,
+    "Categories": [
+      "Daggers"
+    ]
+  },
+  {
+    "ID": "w153",
+    "Name": "stick",
+    "Cost": {
+      "Gold": 0.5
+    },
+    "Damage": 2,
+    "Attack": 0,
+    "Defence": 1,
+    "Length": 1,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Blunt"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 2,
+    "Effects": null,
+    "Properties": null,
+    "Rarity": 0,
+    "Categories": [
+      "Miscellaneous"
+    ]
+  },
+  {
+    "ID": "w165",
+    "Name": "great club",
+    "Cost": {
+      "Gold": 2
+    },
+    "Damage": 7,
+    "Attack": 0,
+    "Defence": 1,
+    "Length": 3,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Blunt"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 2,
+    "Effects": null,
+    "Properties": null,
+    "Rarity": 0,
+    "Categories": [
+      "Maces"
+    ]
+  },
+  {
+    "ID": "w234",
+    "Name": "jotun spear",
+    "Cost": {
+      "Gold": 1
+    },
+    "Damage": 3,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 5,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Pierce"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": null,
+    "Rarity": 1,
+    "Categories": [
+      "Polearms"
+    ]
+  },
+  {
+    "ID": "w252",
+    "Name": "club",
+    "Cost": {
+      "Gold": 0.5
+    },
+    "Damage": 3,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 1,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Blunt"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": null,
+    "Rarity": 0,
+    "Categories": [
+      "Maces"
+    ]
+  },
+  {
+    "ID": "w253",
+    "Name": "hatchet",
+    "Cost": {
+      "Gold": 1.5
+    },
+    "Damage": 5,
+    "Attack": 1,
+    "Defence": 0,
+    "Length": 1,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Slash"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": null,
+    "Rarity": 0,
+    "Categories": [
+      "Axes"
+    ]
+  },
+  {
+    "ID": "w256",
+    "Name": "kryss",
+    "Cost": {
+      "Gold": 1
+    },
+    "Damage": 3,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 1,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Pierce"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": null,
+    "Rarity": 0,
+    "Categories": [
+      "Daggers"
+    ]
+  },
+  {
+    "ID": "w257",
+    "Name": "bardiche",
+    "Cost": {
+      "Gold": 3
+    },
+    "Damage": 6,
+    "Attack": 0,
+    "Defence": -1,
+    "Length": 5,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Slash"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 2,
+    "Effects": null,
+    "Properties": null,
+    "Rarity": 0,
+    "Categories": [
+      "Polearms"
+    ]
+  },
+  {
+    "ID": "w258",
+    "Name": "claymore",
+    "Cost": {
+      "Gold": 5
+    },
+    "Damage": 10,
+    "Attack": 1,
+    "Defence": 1,
+    "Length": 3,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Slash"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 2,
+    "Effects": null,
+    "Properties": null,
+    "Rarity": 0,
+    "Categories": [
+      "Swords"
+    ]
+  },
+  {
+    "ID": "w259",
+    "Name": "executioner's axe",
+    "Cost": {
+      "Gold": 4
+    },
+    "Damage": 10,
+    "Attack": 1,
+    "Defence": -1,
+    "Length": 3,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Slash"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 2,
+    "Effects": null,
+    "Properties": null,
+    "Rarity": 0,
+    "Categories": [
+      "Axes"
+    ]
+  },
+  {
+    "ID": "w263",
+    "Name": "net",
+    "Cost": {
+      "Gold": 4
+    },
+    "Damage": 0,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 4,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Web"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": false,
+    "Slot Type": "Hands",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": [
+      "Extra",
+      "Single-use",
+      "Size Resist",
+      "Strength not Added"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Miscellaneous"
+    ]
+  },
+  {
+    "ID": "w265",
+    "Name": "spiked club",
+    "Cost": {
+      "Gold": 1
+    },
+    "Damage": 4,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 1,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Blunt",
+      "Pierce"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": null,
+    "Rarity": 0,
+    "Categories": [
+      "Maces"
+    ]
+  },
+  {
+    "ID": "w267",
+    "Name": "pick axe",
+    "Cost": {
+      "Gold": 3
+    },
+    "Damage": 8,
+    "Attack": -2,
+    "Defence": -2,
+    "Length": 2,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Pierce"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 2,
+    "Effects": {
+      "Siege Bonus": 5
+    },
+    "Properties": null,
+    "Rarity": 0,
+    "Categories": [
+      "Axes"
+    ]
+  },
+  {
+    "ID": "w268",
+    "Name": "jotun longsword",
+    "Cost": {
+      "Gold": 3
+    },
+    "Damage": 9,
+    "Attack": 0,
+    "Defence": 1,
+    "Length": 3,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Slash"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": null,
+    "Rarity": 1,
+    "Categories": [
+      "Swords"
+    ]
+  },
+  {
+    "ID": "w288",
+    "Name": "obsidian club sword",
+    "Cost": {
+      "Gold": 2
+    },
+    "Damage": 7,
+    "Attack": 0,
+    "Defence": 1,
+    "Length": 3,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Slash",
+      "Blunt"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 2,
+    "Effects": null,
+    "Properties": null,
+    "Rarity": 0,
+    "Categories": [
+      "Maces",
+      "Swords"
+    ]
+  },
+  {
+    "ID": "w307",
+    "Name": "jotun battleaxe",
+    "Cost": {
+      "Gold": 3
+    },
+    "Damage": 9,
+    "Attack": 1,
+    "Defence": 0,
+    "Length": 4,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Slash"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 2,
+    "Effects": null,
+    "Properties": null,
+    "Rarity": 1,
+    "Categories": [
+      "Axes"
+    ]
+  },
+  {
+    "ID": "w308",
+    "Name": "glaive",
+    "Cost": {
+      "Gold": 4
+    },
+    "Damage": 10,
+    "Attack": -1,
+    "Defence": 1,
+    "Length": 4,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Slash",
+      "Pierce"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 2,
+    "Effects": null,
+    "Properties": null,
+    "Rarity": 0,
+    "Categories": [
+      "Polearms"
+    ]
+  },
+  {
+    "ID": "w315",
+    "Name": "machaka spear",
+    "Cost": {
+      "Gold": 3
+    },
+    "Damage": 5,
+    "Attack": -1,
+    "Defence": -1,
+    "Length": 5,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Pierce"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": null,
+    "Rarity": 0,
+    "Categories": [
+      "Polearms"
+    ]
+  },
+  {
+    "ID": "w318",
+    "Name": "serpent staff",
+    "Cost": {
+      "Gold": 5
+    },
+    "Damage": 3,
+    "Attack": 1,
+    "Defence": 3,
+    "Length": 4,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Pierce",
+      "Blunt"
+    ],
+    "On Hit": null,
+    "On Damage": [
+      "e50"
+    ],
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 2,
+    "Effects": null,
+    "Properties": [
+      "Magical"
+    ],
+    "Rarity": 1,
+    "Categories": [
+      "Staves"
+    ]
+  },
+  {
+    "ID": "w357",
+    "Name": "light lance",
+    "Cost": {
+      "Gold": 2
+    },
+    "Damage": 3,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 4,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Pierce"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": [
+      "Charge Bonus"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Polearms"
+    ]
+  },
+  {
+    "ID": "w363",
+    "Name": "iron cudgel",
+    "Cost": {
+      "Gold": 2
+    },
+    "Damage": 8,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 3,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Blunt"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 2,
+    "Effects": null,
+    "Properties": null,
+    "Rarity": 0,
+    "Categories": [
+      "Maces"
+    ]
+  },
+  {
+    "ID": "w373",
+    "Name": "stone spear",
+    "Cost": {
+      "Gold": 0.5
+    },
+    "Damage": 2,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 4,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Pierce"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": null,
+    "Rarity": 0,
+    "Categories": [
+      "Polearms"
+    ]
+  },
+  {
+    "ID": "w376",
+    "Name": "yari",
+    "Cost": {
+      "Gold": 1.5
+    },
+    "Damage": 4,
+    "Attack": 1,
+    "Defence": 0,
+    "Length": 5,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Pierce"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 2,
+    "Effects": null,
+    "Properties": null,
+    "Rarity": 0,
+    "Categories": [
+      "Polearms"
+    ]
+  },
+  {
+    "ID": "w377",
+    "Name": "wakizashi",
+    "Cost": {
+      "Gold": 4
+    },
+    "Damage": 5,
+    "Attack": 2,
+    "Defence": 1,
+    "Length": 1,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Slash",
+      "Pierce"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": null,
+    "Rarity": 0,
+    "Categories": [
+      "Swords"
+    ]
+  },
+  {
+    "ID": "w378",
+    "Name": "katana",
+    "Cost": {
+      "Gold": 7
+    },
+    "Damage": 6,
+    "Attack": 3,
+    "Defence": 2,
+    "Length": 2,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Slash",
+      "Pierce"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 2,
+    "Effects": null,
+    "Properties": null,
+    "Rarity": 0,
+    "Categories": [
+      "Swords"
+    ]
+  },
+  {
+    "ID": "w379",
+    "Name": "no-dachi",
+    "Cost": {
+      "Gold": 6
+    },
+    "Damage": 8,
+    "Attack": 2,
+    "Defence": 2,
+    "Length": 3,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Slash"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 2,
+    "Effects": null,
+    "Properties": null,
+    "Rarity": 0,
+    "Categories": [
+      "Swords"
+    ]
+  },
+  {
+    "ID": "w380",
+    "Name": "naginata",
+    "Cost": {
+      "Gold": 4
+    },
+    "Damage": 10,
+    "Attack": -1,
+    "Defence": 1,
+    "Length": 4,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Slash"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 2,
+    "Effects": null,
+    "Properties": null,
+    "Rarity": 0,
+    "Categories": [
+      "Polearms"
+    ]
+  },
+  {
+    "ID": "w381",
+    "Name": "ninjato",
+    "Cost": {
+      "Gold": 3
+    },
+    "Damage": 5,
+    "Attack": 2,
+    "Defence": 0,
+    "Length": 1,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Slash"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": null,
+    "Rarity": 0,
+    "Categories": [
+      "Daggers"
+    ]
+  },
+  {
+    "ID": "w388",
+    "Name": "pearl spear",
+    "Cost": {
+      "Gold": 2
+    },
+    "Damage": 3,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 4,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Pierce"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": [
+      "Magical"
+    ],
+    "Rarity": 1,
+    "Categories": [
+      "Polearms"
+    ]
+  },
+  {
+    "ID": "w389",
+    "Name": "pearl trident",
+    "Cost": {
+      "Gold": 4
+    },
+    "Damage": 7,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 4,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Pierce"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": [
+      "Magical"
+    ],
+    "Rarity": 1,
+    "Categories": [
+      "Polearms"
+    ]
+  },
+  {
+    "ID": "w426",
+    "Name": "obsidian glaive",
+    "Cost": {
+      "Gold": 8
+    },
+    "Damage": 11,
+    "Attack": 1,
+    "Defence": 1,
+    "Length": 4,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Slash"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 2,
+    "Effects": null,
+    "Properties": [
+      "Magical"
+    ],
+    "Rarity": 1,
+    "Categories": [
+      "Polearms"
+    ]
+  },
+  {
+    "ID": "w446",
+    "Name": "sceptre",
+    "Cost": {
+      "Gold": 1
+    },
+    "Damage": 2,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 1,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Blunt"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": null,
+    "Rarity": 0,
+    "Categories": [
+      "Maces"
+    ]
+  },
+  {
+    "ID": "w451",
+    "Name": "obsidian club sword",
+    "Cost": {
+      "Gold": 2
+    },
+    "Damage": 4,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 2,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Slash",
+      "Blunt"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": null,
+    "Rarity": 0,
+    "Categories": [
+      "Maces"
+    ]
+  },
+  {
+    "ID": "w454",
+    "Name": "ice glaive",
+    "Cost": {
+      "Gold": 6
+    },
+    "Damage": 9,
+    "Attack": 0,
+    "Defence": -1,
+    "Length": 4,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Slash",
+      "Pierce"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 2,
+    "Effects": null,
+    "Properties": [
+      "Magical",
+      "No Fire"
+    ],
+    "Rarity": 1,
+    "Categories": [
+      "Polearms"
+    ]
+  },
+  {
+    "ID": "w455",
+    "Name": "bone glaive",
+    "Cost": {
+      "Gold": 5
+    },
+    "Damage": 10,
+    "Attack": 0,
+    "Defence": -1,
+    "Length": 4,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Slash",
+      "Pierce"
+    ],
+    "On Hit": null,
+    "On Damage": [
+      "e285"
+    ],
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 2,
+    "Effects": null,
+    "Properties": [
+      "Magical",
+      "No Fire"
+    ],
+    "Rarity": 1,
+    "Categories": [
+      "Polearms"
+    ]
+  },
+  {
+    "ID": "w464",
+    "Name": "basalt spear",
+    "Cost": {
+      "Gold": 6
+    },
+    "Damage": 4,
+    "Attack": 1,
+    "Defence": -1,
+    "Length": 4,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Pierce"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 2,
+    "Effects": null,
+    "Properties": [
+      "Magical"
+    ],
+    "Rarity": 1,
+    "Categories": [
+      "Polearms"
+    ]
+  },
+  {
+    "ID": "w465",
+    "Name": "basalt club",
+    "Cost": {
+      "Gold": 6
+    },
+    "Damage": 9,
+    "Attack": -1,
+    "Defence": -1,
+    "Length": 3,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Blunt"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 2,
+    "Effects": null,
+    "Properties": [
+      "Magical"
+    ],
+    "Rarity": 1,
+    "Categories": [
+      "Maces"
+    ]
+  },
+  {
+    "ID": "w473",
+    "Name": "Golden spear",
+    "Cost": {
+      "Gold": 6
+    },
+    "Damage": 5,
+    "Attack": 1,
+    "Defence": 0,
+    "Length": 4,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Pierce"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": [
+      "Magical"
+    ],
+    "Rarity": 1,
+    "Categories": [
+      "Polearms"
+    ]
+  },
+  {
+    "ID": "w474",
+    "Name": "Golden sword",
+    "Cost": {
+      "Gold": 8
+    },
+    "Damage": 7,
+    "Attack": 1,
+    "Defence": 1,
+    "Length": 1,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Slash"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": [
+      "Magical"
+    ],
+    "Rarity": 1,
+    "Categories": [
+      "Swords"
+    ]
+  },
+  {
+    "ID": "w475",
+    "Name": "Golden lance",
+    "Cost": {
+      "Gold": 7
+    },
+    "Damage": 5,
+    "Attack": 1,
+    "Defence": 0,
+    "Length": 4,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Pierce"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": [
+      "Charge Bonus",
+      "Magical"
+    ],
+    "Rarity": 1,
+    "Categories": [
+      "Polearms"
+    ]
+  },
+  {
+    "ID": "w485",
+    "Name": "fomorian bronze spear",
+    "Cost": {
+      "Gold": 1
+    },
+    "Damage": 3,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 5,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Pierce"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": null,
+    "Rarity": 1,
+    "Categories": [
+      "Polearms"
+    ]
+  },
+  {
+    "ID": "w498",
+    "Name": "twig",
+    "Cost": {
+      "Gold": 0.5
+    },
+    "Damage": -3,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 1,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Blunt"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": [
+      "Capped Damage"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Miscellaneous"
+    ]
+  },
+  {
+    "ID": "w499",
+    "Name": "pestle",
+    "Cost": {
+      "Gold": 0.5
+    },
+    "Damage": 1,
+    "Attack": -1,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Blunt"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": null,
+    "Rarity": 0,
+    "Categories": [
+      "Miscellaneous"
+    ]
+  },
+  {
+    "ID": "w501",
+    "Name": "bamboo rod",
+    "Cost": {
+      "Gold": 1.5
+    },
+    "Damage": 1,
+    "Attack": 1,
+    "Defence": 2,
+    "Length": 2,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Blunt"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": null,
+    "Rarity": 0,
+    "Categories": [
+      "Miscellaneous"
+    ]
+  },
+  {
+    "ID": "w502",
+    "Name": "yak tail fly whisk",
+    "Cost": {
+      "Gold": 0.5
+    },
+    "Damage": -2,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 1,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Blunt"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": [
+      "Capped Damage"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Miscellaneous"
+    ]
+  },
+  {
+    "ID": "w508",
+    "Name": "black halberd",
+    "Cost": {
+      "Gold": 9
+    },
+    "Damage": 11,
+    "Attack": 0,
+    "Defence": -1,
+    "Length": 4,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Pierce",
+      "Slash"
+    ],
+    "On Hit": null,
+    "On Damage": [
+      "e509"
+    ],
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 2,
+    "Effects": null,
+    "Properties": [
+      "Magical"
+    ],
+    "Rarity": 1,
+    "Categories": [
+      "Polearms"
+    ]
+  },
+  {
+    "ID": "w516",
+    "Name": "censer",
+    "Cost": {
+      "Gold": 3
+    },
+    "Damage": 1,
+    "Attack": -1,
+    "Defence": -1,
+    "Length": 2,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Blunt"
+    ],
+    "On Hit": [
+      "e517"
+    ],
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": [
+      "Flail"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Miscellaneous"
+    ]
+  },
+  {
+    "ID": "w518",
+    "Name": "anakite sword",
+    "Cost": {
+      "Gold": 6
+    },
+    "Damage": 8,
+    "Attack": 1,
+    "Defence": 2,
+    "Length": 3,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Slash"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": [
+      "Magical"
+    ],
+    "Rarity": 1,
+    "Categories": [
+      "Swords"
+    ]
+  },
+  {
+    "ID": "w519",
+    "Name": "Poison tipped spear",
+    "Cost": {
+      "Gold": 6
+    },
+    "Damage": 3,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 4,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Pierce"
+    ],
+    "On Hit": null,
+    "On Damage": [
+      "e51"
+    ],
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": null,
+    "Rarity": 1,
+    "Categories": [
+      "Polearms"
+    ]
+  },
+  {
+    "ID": "w520",
+    "Name": "dawn blade",
+    "Cost": {
+      "Gold": 8
+    },
+    "Damage": 9,
+    "Attack": 2,
+    "Defence": 2,
+    "Length": 3,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Slash"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": [
+      "Magical"
+    ],
+    "Rarity": 1,
+    "Categories": [
+      "Swords"
+    ]
+  },
+  {
+    "ID": "w554",
+    "Name": "lictor axe",
+    "Cost": {
+      "Gold": 10
+    },
+    "Damage": 10,
+    "Attack": 2,
+    "Defence": 0,
+    "Length": 2,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Slash"
+    ],
+    "On Hit": null,
+    "On Damage": [
+      "e460"
+    ],
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 2,
+    "Effects": null,
+    "Properties": [
+      "Magical"
+    ],
+    "Rarity": 1,
+    "Categories": [
+      "Axes"
+    ]
+  },
+  {
+    "ID": "w563",
+    "Name": "spirit club",
+    "Cost": {
+      "Gold": 7
+    },
+    "Damage": 9,
+    "Attack": 1,
+    "Defence": 0,
+    "Length": 3,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Blunt"
+    ],
+    "On Hit": null,
+    "On Damage": [
+      "e564"
+    ],
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 2,
+    "Effects": null,
+    "Properties": [
+      "Magical"
+    ],
+    "Rarity": 1,
+    "Categories": [
+      "Maces"
+    ]
+  },
+  {
+    "ID": "w577",
+    "Name": "coral lance",
+    "Cost": {
+      "Gold": 5
+    },
+    "Damage": 2,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 4,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Pierce"
+    ],
+    "On Hit": null,
+    "On Damage": [
+      "e50"
+    ],
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": [
+      "Charge Bonus"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Polearms"
+    ]
+  },
+  {
+    "ID": "w579",
+    "Name": "skull club",
+    "Cost": {
+      "Gold": 5
+    },
+    "Damage": 6,
+    "Attack": 1,
+    "Defence": 0,
+    "Length": 2,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Blunt"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": [
+      "Magical"
+    ],
+    "Rarity": 1,
+    "Categories": [
+      "Maces"
+    ]
+  },
+  {
+    "ID": "w580",
+    "Name": "coral long spear",
+    "Cost": {
+      "Gold": 5
+    },
+    "Damage": 2,
+    "Attack": 0,
+    "Defence": -1,
+    "Length": 5,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Pierce"
+    ],
+    "On Hit": null,
+    "On Damage": [
+      "e50"
+    ],
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": null,
+    "Rarity": 0,
+    "Categories": [
+      "Polearms"
+    ]
+  },
+  {
+    "ID": "w590",
+    "Name": "short pike",
+    "Cost": {
+      "Gold": 1.5
+    },
+    "Damage": 5,
+    "Attack": 0,
+    "Defence": -1,
+    "Length": 5,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Pierce"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 2,
+    "Effects": null,
+    "Properties": null,
+    "Rarity": 0,
+    "Categories": [
+      "Polearms"
+    ]
+  },
+  {
+    "ID": "w591",
+    "Name": "cod",
+    "Cost": {
+      "Gold": 0.5
+    },
+    "Damage": -3,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 1,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Blunt"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": [
+      "Capped Damage"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Miscellaneous"
+    ]
+  },
+  {
+    "ID": "w598",
+    "Name": "shard glaive",
+    "Cost": {
+      "Gold": 8
+    },
+    "Damage": 10,
+    "Attack": 1,
+    "Defence": 0,
+    "Length": 4,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Slash"
+    ],
+    "On Hit": null,
+    "On Damage": [
+      "e118"
+    ],
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 2,
+    "Effects": null,
+    "Properties": [
+      "Magical"
+    ],
+    "Rarity": 1,
+    "Categories": [
+      "Polearms"
+    ]
+  },
+  {
+    "ID": "w611",
+    "Name": "ice spear",
+    "Cost": {
+      "Gold": 2
+    },
+    "Damage": 3,
+    "Attack": 1,
+    "Defence": 0,
+    "Length": 4,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Pierce"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": [
+      "Magical",
+      "No Fire"
+    ],
+    "Rarity": 1,
+    "Categories": [
+      "Polearms"
+    ]
+  },
+  {
+    "ID": "w617",
+    "Name": "sun mace",
+    "Cost": {
+      "Gold": 7
+    },
+    "Damage": 7,
+    "Attack": 1,
+    "Defence": 0,
+    "Length": 1,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Blunt"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 1,
+    "Effects": {
+      "Demonbane": 3,
+      "Undeadbane": 3
+    },
+    "Properties": [
+      "Magical"
+    ],
+    "Rarity": 1,
+    "Categories": [
+      "Maces"
+    ]
+  },
+  {
+    "ID": "w618",
+    "Name": "sun spear",
+    "Cost": {
+      "Gold": 7
+    },
+    "Damage": 11,
+    "Attack": 2,
+    "Defence": 0,
+    "Length": 4,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Slash",
+      "Pierce"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 2,
+    "Effects": {
+      "Demonbane": 3,
+      "Undeadbane": 3
+    },
+    "Properties": [
+      "Magical"
+    ],
+    "Rarity": 1,
+    "Categories": [
+      "Polearms"
+    ]
+  },
+  {
+    "ID": "w621",
+    "Name": "obsidian shard blade",
+    "Cost": {
+      "Gold": 9
+    },
+    "Damage": 9,
+    "Attack": 2,
+    "Defence": 1,
+    "Length": 3,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Slash"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 2,
+    "Effects": null,
+    "Properties": null,
+    "Rarity": 0,
+    "Categories": [
+      "Swords"
+    ]
+  },
+  {
+    "ID": "w623",
+    "Name": "Poisoned obsidian blade",
+    "Cost": {
+      "Gold": 8
+    },
+    "Damage": 7,
+    "Attack": 1,
+    "Defence": 0,
+    "Length": 2,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Slash"
+    ],
+    "On Hit": null,
+    "On Damage": [
+      "e624"
+    ],
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": null,
+    "Rarity": 1,
+    "Categories": [
+      "Swords"
+    ]
+  },
+  {
+    "ID": "w625",
+    "Name": "obsidian blade",
+    "Cost": {
+      "Gold": 7
+    },
+    "Damage": 7,
+    "Attack": 1,
+    "Defence": 0,
+    "Length": 2,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Slash"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": null,
+    "Rarity": 0,
+    "Categories": [
+      "Swords"
+    ]
+  },
+  {
+    "ID": "w637",
+    "Name": "tool",
+    "Cost": {
+      "Gold": 0.5
+    },
+    "Damage": 2,
+    "Attack": -1,
+    "Defence": 0,
+    "Length": 1,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Blunt",
+      "Pierce"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": null,
+    "Rarity": 0,
+    "Categories": [
+      "Miscellaneous"
+    ]
+  },
+  {
+    "ID": "w638",
+    "Name": "instrument",
+    "Cost": {
+      "Gold": 0.5
+    },
+    "Damage": 1,
+    "Attack": -1,
+    "Defence": 0,
+    "Length": 1,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Pierce"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": null,
+    "Rarity": 0,
+    "Categories": [
+      "Miscellaneous"
+    ]
+  },
+  {
+    "ID": "w639",
+    "Name": "spetum",
+    "Cost": {
+      "Gold": 3
+    },
+    "Damage": 7,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 4,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Pierce"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": null,
+    "Rarity": 0,
+    "Categories": [
+      "Polearms"
+    ]
+  },
+  {
+    "ID": "w641",
+    "Name": "bronze trident",
+    "Cost": {
+      "Gold": 3
+    },
+    "Damage": 7,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 4,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Pierce"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": null,
+    "Rarity": 0,
+    "Categories": [
+      "Polearms"
+    ]
+  },
+  {
+    "ID": "w642",
+    "Name": "meteorite trident",
+    "Cost": {
+      "Gold": 5
+    },
+    "Damage": 7,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 4,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Pierce"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": [
+      "Magical"
+    ],
+    "Rarity": 1,
+    "Categories": [
+      "Polearms"
+    ]
+  },
+  {
+    "ID": "w643",
+    "Name": "bronze spear",
+    "Cost": {
+      "Gold": 1
+    },
+    "Damage": 3,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 4,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Pierce"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": null,
+    "Rarity": 0,
+    "Categories": [
+      "Polearms"
+    ]
+  },
+  {
+    "ID": "w644",
+    "Name": "bronze long spear",
+    "Cost": {
+      "Gold": 2
+    },
+    "Damage": 3,
+    "Attack": 0,
+    "Defence": -1,
+    "Length": 5,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Pierce"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": null,
+    "Rarity": 0,
+    "Categories": [
+      "Polearms"
+    ]
+  },
+  {
+    "ID": "w645",
+    "Name": "bronze sword",
+    "Cost": {
+      "Gold": 2
+    },
+    "Damage": 4,
+    "Attack": 0,
+    "Defence": 2,
+    "Length": 1,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Pierce",
+      "Slash"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": null,
+    "Rarity": 0,
+    "Categories": [
+      "Swords"
+    ]
+  },
+  {
+    "ID": "w646",
+    "Name": "bronze hatchet",
+    "Cost": {
+      "Gold": 1.5
+    },
+    "Damage": 5,
+    "Attack": 1,
+    "Defence": 0,
+    "Length": 1,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Slash"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": null,
+    "Rarity": 0,
+    "Categories": [
+      "Axes"
+    ]
+  },
+  {
+    "ID": "w648",
+    "Name": "enchanted hammer",
+    "Cost": {
+      "Gold": 5
+    },
+    "Damage": 8,
+    "Attack": 1,
+    "Defence": -1,
+    "Length": 1,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Blunt",
+      "Pierce"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": [
+      "Magical"
+    ],
+    "Rarity": 1,
+    "Categories": [
+      "Maces"
+    ]
+  },
+  {
+    "ID": "w651",
+    "Name": "bronze lance",
+    "Cost": {
+      "Gold": 2
+    },
+    "Damage": 3,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 4,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Pierce"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": [
+      "Charge Bonus"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Polearms"
+    ]
+  },
+  {
+    "ID": "w665",
+    "Name": "pearl blade",
+    "Cost": {
+      "Gold": 4
+    },
+    "Damage": 5,
+    "Attack": 0,
+    "Defence": 2,
+    "Length": 1,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Slash",
+      "Pierce"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": [
+      "Magical"
+    ],
+    "Rarity": 1,
+    "Categories": [
+      "Swords"
+    ]
+  },
+  {
+    "ID": "w666",
+    "Name": "torch",
+    "Cost": {
+      "Gold": 3
+    },
+    "Damage": 3,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 1,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Blunt"
+    ],
+    "On Hit": null,
+    "On Damage": [
+      "e216"
+    ],
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": null,
+    "Rarity": 0,
+    "Categories": [
+      "Miscellaneous"
+    ]
+  },
+  {
+    "ID": "w668",
+    "Name": "metal glaive",
+    "Cost": {
+      "Gold": 4
+    },
+    "Damage": 10,
+    "Attack": -1,
+    "Defence": 1,
+    "Length": 4,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Slash",
+      "Pierce"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 2,
+    "Effects": null,
+    "Properties": null,
+    "Rarity": 0,
+    "Categories": [
+      "Polearms"
+    ]
+  },
+  {
+    "ID": "w669",
+    "Name": "metal yari",
+    "Cost": {
+      "Gold": 1.5
+    },
+    "Damage": 4,
+    "Attack": 1,
+    "Defence": 0,
+    "Length": 5,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Pierce"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 2,
+    "Effects": null,
+    "Properties": null,
+    "Rarity": 0,
+    "Categories": [
+      "Polearms"
+    ]
+  },
+  {
+    "ID": "w670",
+    "Name": "bone trident",
+    "Cost": {
+      "Gold": 2
+    },
+    "Damage": 5,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 4,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Pierce"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": null,
+    "Rarity": 0,
+    "Categories": [
+      "Polearms"
+    ]
+  },
+  {
+    "ID": "w671",
+    "Name": "stone Dagger",
+    "Cost": {
+      "Gold": 0.5
+    },
+    "Damage": 1,
+    "Attack": 1,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Pierce"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": null,
+    "Rarity": 0,
+    "Categories": [
+      "Daggers"
+    ]
+  },
+  {
+    "ID": "w673",
+    "Name": "bronze glaive",
+    "Cost": {
+      "Gold": 3.5
+    },
+    "Damage": 9,
+    "Attack": -1,
+    "Defence": 1,
+    "Length": 4,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Slash",
+      "Pierce"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 2,
+    "Effects": null,
+    "Properties": null,
+    "Rarity": 0,
+    "Categories": [
+      "Polearms"
+    ]
+  },
+  {
+    "ID": "w674",
+    "Name": "bronze Dagger",
+    "Cost": {
+      "Gold": 1
+    },
+    "Damage": 2,
+    "Attack": 1,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Pierce"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": null,
+    "Rarity": 0,
+    "Categories": [
+      "Daggers"
+    ]
+  },
+  {
+    "ID": "w675",
+    "Name": "bronze axe",
+    "Cost": {
+      "Gold": 2
+    },
+    "Damage": 6,
+    "Attack": 0,
+    "Defence": -1,
+    "Length": 1,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Slash"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": null,
+    "Rarity": 0,
+    "Categories": [
+      "Axes"
+    ]
+  },
+  {
+    "ID": "e20",
+    "Name": "bite",
+    "Cost": {
+      "Gold": 10.5
+    },
+    "Damage": 2,
+    "Attack": 0,
+    "Defence": -1,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Slash"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": null,
+    "Required Slots": 0,
+    "Effects": null,
+    "Properties": [
+      "Extra"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Intrinsic"
+    ]
+  },
+  {
+    "ID": "e29",
+    "Name": "claw",
+    "Cost": {
+      "Gold": 2
+    },
+    "Damage": 0,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Slash"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": null,
+    "Rarity": 0,
+    "Categories": [
+      "Intrinsic"
+    ]
+  },
+  {
+    "ID": "e30",
+    "Name": "triple venomous bite",
+    "Cost": {
+      "Gold": 30
+    },
+    "Damage": 2,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 3,
+    "Damage Type": [
+      "Pierce"
+    ],
+    "On Hit": null,
+    "On Damage": [
+      "e51"
+    ],
+    "Can Repel": true,
+    "Slot Type": null,
+    "Required Slots": 0,
+    "Effects": null,
+    "Properties": [
+      "Extra"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Intrinsic"
+    ]
+  },
+  {
+    "ID": "e38",
+    "Name": "snake hAir",
+    "Cost": {
+      "Gold": 0.5
+    },
+    "Damage": -4,
+    "Attack": -2,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 5,
+    "Damage Type": [
+      "Pierce"
+    ],
+    "On Hit": null,
+    "On Damage": [
+      "e50"
+    ],
+    "Can Repel": true,
+    "Slot Type": null,
+    "Required Slots": 0,
+    "Effects": null,
+    "Properties": [
+      "Extra",
+      "Magical"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Intrinsic"
+    ]
+  },
+  {
+    "ID": "e43",
+    "Name": "Poisoned claw",
+    "Cost": {
+      "Gold": 1
+    },
+    "Damage": 0,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Slash"
+    ],
+    "On Hit": null,
+    "On Damage": [
+      "e54"
+    ],
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": null,
+    "Rarity": 0,
+    "Categories": [
+      "Intrinsic"
+    ]
+  },
+  {
+    "ID": "e47",
+    "Name": "lobster claw",
+    "Cost": {
+      "Gold": 20
+    },
+    "Damage": 20,
+    "Attack": -4,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Slash"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": null,
+    "Required Slots": 0,
+    "Effects": null,
+    "Properties": [
+      "Extra",
+      "Strength not Added"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Intrinsic"
+    ]
+  },
+  {
+    "ID": "e48",
+    "Name": "Fire flare",
+    "Cost": {
+      "Gold": 25
+    },
+    "Damage": 20,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 3,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Fire"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": null,
+    "Required Slots": 0,
+    "Effects": null,
+    "Properties": [
+      "Armor Piercing",
+      "Extra",
+      "Magical",
+      "Strength not Added"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Intrinsic"
+    ]
+  },
+  {
+    "ID": "e50",
+    "Name": "weak Poison",
+    "Cost": {
+      "Gold": 4
+    },
+    "Damage": 5,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Poison"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": null,
+    "Required Slots": 0,
+    "Effects": null,
+    "Properties": [
+      "Armor Negating",
+      "Magical",
+      "Strength not Added"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Effects"
+    ]
+  },
+  {
+    "ID": "e51",
+    "Name": "strong Poison",
+    "Cost": {
+      "Gold": 8
+    },
+    "Damage": 10,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Poison"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": null,
+    "Required Slots": 0,
+    "Effects": null,
+    "Properties": [
+      "Armor Negating",
+      "Magical",
+      "Strength not Added"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Effects"
+    ]
+  },
+  {
+    "ID": "e52",
+    "Name": "Death Poison",
+    "Cost": {
+      "Gold": 16
+    },
+    "Damage": 20,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Poison"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": null,
+    "Required Slots": 0,
+    "Effects": null,
+    "Properties": [
+      "Armor Negating",
+      "Magical",
+      "Strength not Added"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Effects"
+    ]
+  },
+  {
+    "ID": "e53",
+    "Name": "debilitative Poison",
+    "Cost": {
+      "Gold": 10
+    },
+    "Damage": 20,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Poison"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": null,
+    "Required Slots": 0,
+    "Effects": null,
+    "Properties": [
+      "Armor Negating",
+      "Magical",
+      "MR Negates",
+      "Strength not Added"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Effects"
+    ]
+  },
+  {
+    "ID": "e54",
+    "Name": "paralyzing Poison",
+    "Cost": {
+      "Gold": 22
+    },
+    "Damage": 50,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Poison"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": null,
+    "Required Slots": 0,
+    "Effects": null,
+    "Properties": [
+      "Armor Negating",
+      "Magical",
+      "MR Negates",
+      "Strength not Added",
+      "Stun"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Effects"
+    ]
+  },
+  {
+    "ID": "e55",
+    "Name": "hoof",
+    "Cost": {
+      "Gold": 11
+    },
+    "Damage": 0,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Blunt"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": null,
+    "Required Slots": 0,
+    "Effects": null,
+    "Properties": [
+      "Extra"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Intrinsic"
+    ]
+  },
+  {
+    "ID": "e56",
+    "Name": "hoof (unused)",
+    "Cost": {
+      "Gold": 14
+    },
+    "Damage": 13,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Blunt"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": null,
+    "Required Slots": 0,
+    "Effects": null,
+    "Properties": [
+      "Extra",
+      "Strength not Added"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Intrinsic"
+    ]
+  },
+  {
+    "ID": "e58",
+    "Name": "wail",
+    "Cost": {
+      "Gold": 100
+    },
+    "Damage": 999,
+    "Attack": 10,
+    "Defence": 0,
+    "Length": 6,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Untyped"
+    ],
+    "On Hit": [
+      "e60"
+    ],
+    "On Damage": null,
+    "Can Repel": false,
+    "Slot Type": null,
+    "Required Slots": 0,
+    "Effects": {
+      "Area of Effect": 1
+    },
+    "Properties": [
+      "Extra",
+      "Magical",
+      "MR Negates",
+      "Strength not Added"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Intrinsic"
+    ]
+  },
+  {
+    "ID": "e60",
+    "Name": "Fear",
+    "Cost": {
+      "Gold": 8
+    },
+    "Damage": 2,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Fear"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": false,
+    "Slot Type": null,
+    "Required Slots": 0,
+    "Effects": {
+      "Area of Effect": 5
+    },
+    "Properties": [
+      "Magical",
+      "Strength not Added"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Effects"
+    ]
+  },
+  {
+    "ID": "e63",
+    "Name": "life Drain",
+    "Cost": {
+      "Gold": 30
+    },
+    "Damage": 0,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Drain Life"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": [
+      "Armor Piercing",
+      "Magical"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Effects",
+      "Intrinsic"
+    ]
+  },
+  {
+    "ID": "e64",
+    "Name": "Decay",
+    "Cost": {
+      "Gold": 16
+    },
+    "Damage": 1,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Decay"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": false,
+    "Slot Type": null,
+    "Required Slots": 0,
+    "Effects": null,
+    "Properties": [
+      "Magical",
+      "MR Negates",
+      "Ignores Shields",
+      "Strength not Added"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Effects"
+    ]
+  },
+  {
+    "ID": "e65",
+    "Name": "deadly venomous fangs",
+    "Cost": {
+      "Gold": 10
+    },
+    "Damage": 2,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Pierce"
+    ],
+    "On Hit": null,
+    "On Damage": [
+      "e52"
+    ],
+    "Can Repel": true,
+    "Slot Type": null,
+    "Required Slots": 0,
+    "Effects": null,
+    "Properties": [
+      "Extra"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Intrinsic"
+    ]
+  },
+  {
+    "ID": "e67",
+    "Name": "phantasmal weapon",
+    "Cost": {
+      "Gold": 0.5
+    },
+    "Damage": 0,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Magic"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": [
+      "Magical",
+      "MR Negates"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Intrinsic"
+    ]
+  },
+  {
+    "ID": "e68",
+    "Name": "barbed tail",
+    "Cost": {
+      "Gold": 11
+    },
+    "Damage": -2,
+    "Attack": -1,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Pierce"
+    ],
+    "On Hit": null,
+    "On Damage": [
+      "e54"
+    ],
+    "Can Repel": true,
+    "Slot Type": null,
+    "Required Slots": 0,
+    "Effects": null,
+    "Properties": [
+      "Extra",
+      "Magical"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Intrinsic"
+    ]
+  },
+  {
+    "ID": "e70",
+    "Name": "Astral claw",
+    "Cost": {
+      "Gold": 1
+    },
+    "Damage": 0,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Slash"
+    ],
+    "On Hit": null,
+    "On Damage": [
+      "e367"
+    ],
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": [
+      "Armor Negating",
+      "Magical"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Intrinsic"
+    ]
+  },
+  {
+    "ID": "e71",
+    "Name": "sleep vines",
+    "Cost": {
+      "Gold": 50
+    },
+    "Damage": 33,
+    "Attack": -1,
+    "Defence": 0,
+    "Length": 4,
+    "Number of Attacks": 3,
+    "Damage Type": [
+      "Stun"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": null,
+    "Required Slots": 0,
+    "Effects": null,
+    "Properties": [
+      "Extra",
+      "Requires Life",
+      "Magical",
+      "MR Negates",
+      "Strength not Added"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Intrinsic"
+    ]
+  },
+  {
+    "ID": "e85",
+    "Name": "tentacle",
+    "Cost": {
+      "Gold": 16
+    },
+    "Damage": -5,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Untyped"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": null,
+    "Required Slots": 0,
+    "Effects": null,
+    "Properties": [
+      "Armor Piercing",
+      "Extra"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Intrinsic"
+    ]
+  },
+  {
+    "ID": "e90",
+    "Name": "crush",
+    "Cost": {
+      "Gold": 11
+    },
+    "Damage": 0,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Blunt"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": null,
+    "Required Slots": 0,
+    "Effects": null,
+    "Properties": [
+      "Armor Piercing"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Effects",
+      "Intrinsic"
+    ]
+  },
+  {
+    "ID": "e91",
+    "Name": "Stun",
+    "Cost": {
+      "Gold": 8
+    },
+    "Damage": 0,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Stun"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": null,
+    "Required Slots": 0,
+    "Effects": null,
+    "Properties": [
+      "Armor Piercing",
+      "Magical"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Effects"
+    ]
+  },
+  {
+    "ID": "e92",
+    "Name": "fist",
+    "Cost": {
+      "Gold": 0
+    },
+    "Damage": -2,
+    "Attack": -1,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Blunt"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": false,
+    "Slot Type": null,
+    "Required Slots": 0,
+    "Effects": null,
+    "Properties": null,
+    "Rarity": 0,
+    "Categories": [
+      "Intrinsic"
+    ]
+  },
+  {
+    "ID": "e116",
+    "Name": "strangulation",
+    "Cost": {
+      "Gold": 0.5
+    },
+    "Damage": -2,
+    "Attack": 0,
+    "Defence": -1,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Blunt"
+    ],
+    "On Hit": null,
+    "On Damage": [
+      "e91"
+    ],
+    "Can Repel": true,
+    "Slot Type": null,
+    "Required Slots": 0,
+    "Effects": null,
+    "Properties": [
+      "Armor Piercing"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Intrinsic"
+    ]
+  },
+  {
+    "ID": "e127",
+    "Name": "Magical venomous bite",
+    "Cost": {
+      "Gold": 10
+    },
+    "Damage": 2,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Pierce"
+    ],
+    "On Hit": null,
+    "On Damage": [
+      "e50"
+    ],
+    "Can Repel": true,
+    "Slot Type": null,
+    "Required Slots": 0,
+    "Effects": null,
+    "Properties": [
+      "Extra",
+      "Magical"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Intrinsic"
+    ]
+  },
+  {
+    "ID": "e142",
+    "Name": "touch of leprosy",
+    "Cost": {
+      "Gold": 1
+    },
+    "Damage": 0,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Untyped"
+    ],
+    "On Hit": null,
+    "On Damage": [
+      "e143"
+    ],
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": null,
+    "Rarity": 0,
+    "Categories": [
+      "Intrinsic"
+    ]
+  },
+  {
+    "ID": "e143",
+    "Name": "Disease",
+    "Cost": {
+      "Gold": 20
+    },
+    "Damage": 1,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Disease"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": false,
+    "Slot Type": null,
+    "Required Slots": 0,
+    "Effects": null,
+    "Properties": [
+      "Magical",
+      "Requires Life",
+      "Strength not Added"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Effects"
+    ]
+  },
+  {
+    "ID": "e144",
+    "Name": "stinger",
+    "Cost": {
+      "Gold": 12
+    },
+    "Damage": 0,
+    "Attack": 5,
+    "Defence": 0,
+    "Length": 3,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Pierce"
+    ],
+    "On Hit": null,
+    "On Damage": [
+      "e52"
+    ],
+    "Can Repel": true,
+    "Slot Type": null,
+    "Required Slots": 0,
+    "Effects": null,
+    "Properties": [
+      "Extra"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Intrinsic"
+    ]
+  },
+  {
+    "ID": "e146",
+    "Name": "venomous claw",
+    "Cost": {
+      "Gold": 1
+    },
+    "Damage": 0,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Slash"
+    ],
+    "On Hit": null,
+    "On Damage": [
+      "e52"
+    ],
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": null,
+    "Rarity": 0,
+    "Categories": [
+      "Intrinsic"
+    ]
+  },
+  {
+    "ID": "e148",
+    "Name": "spider claw",
+    "Cost": {
+      "Gold": 1
+    },
+    "Damage": 0,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 3,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Slash"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": null,
+    "Required Slots": 0,
+    "Effects": null,
+    "Properties": null,
+    "Rarity": 0,
+    "Categories": [
+      "Intrinsic"
+    ]
+  },
+  {
+    "ID": "e156",
+    "Name": "feeblemind",
+    "Cost": {
+      "Gold": 25
+    },
+    "Damage": 1,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Enfeeble Mind"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": false,
+    "Slot Type": null,
+    "Required Slots": 0,
+    "Effects": null,
+    "Properties": [
+      "Magical",
+      "Requires Mind",
+      "Strength not Added"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Effects"
+    ]
+  },
+  {
+    "ID": "e160",
+    "Name": "Cold",
+    "Cost": {
+      "Gold": 20
+    },
+    "Damage": 20,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Cold"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": null,
+    "Required Slots": 0,
+    "Effects": null,
+    "Properties": [
+      "Armor Piercing",
+      "Extra",
+      "Magical",
+      "Strength not Added",
+      "Stun"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Effects",
+      "Intrinsic"
+    ]
+  },
+  {
+    "ID": "e182",
+    "Name": "trunk",
+    "Cost": {
+      "Gold": 0.5
+    },
+    "Damage": 3,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Blunt"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": null,
+    "Required Slots": 0,
+    "Effects": null,
+    "Properties": [
+      "Extra"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Intrinsic"
+    ]
+  },
+  {
+    "ID": "e185",
+    "Name": "lightning swArm",
+    "Cost": {
+      "Gold": 29
+    },
+    "Damage": 6,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 3,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Shock"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": null,
+    "Required Slots": 0,
+    "Effects": null,
+    "Properties": [
+      "Armor Negating",
+      "Extra",
+      "Magical",
+      "Strength not Added"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Intrinsic"
+    ]
+  },
+  {
+    "ID": "e190",
+    "Name": "phantasmal claw",
+    "Cost": {
+      "Gold": 0.5
+    },
+    "Damage": 0,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Slash"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": [
+      "Magical",
+      "MR Negates"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Intrinsic"
+    ]
+  },
+  {
+    "ID": "e198",
+    "Name": "flame burst",
+    "Cost": {
+      "Gold": 15
+    },
+    "Damage": 10,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 1,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Fire"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": null,
+    "Required Slots": 0,
+    "Effects": null,
+    "Properties": [
+      "Armor Piercing",
+      "Magical",
+      "Strength not Added"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Intrinsic"
+    ]
+  },
+  {
+    "ID": "e200",
+    "Name": "bane burst",
+    "Cost": {
+      "Gold": 16
+    },
+    "Damage": 1,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 1,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Decay"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": null,
+    "Required Slots": 0,
+    "Effects": null,
+    "Properties": [
+      "Magical",
+      "MR Negates",
+      "Strength not Added"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Intrinsic"
+    ]
+  },
+  {
+    "ID": "e203",
+    "Name": "wyvern's tail",
+    "Cost": {
+      "Gold": 10.5
+    },
+    "Damage": -2,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Pierce"
+    ],
+    "On Hit": null,
+    "On Damage": [
+      "e54"
+    ],
+    "Can Repel": true,
+    "Slot Type": null,
+    "Required Slots": 0,
+    "Effects": null,
+    "Properties": [
+      "Extra",
+      "Magical"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Intrinsic"
+    ]
+  },
+  {
+    "ID": "e207",
+    "Name": "venomous claw",
+    "Cost": {
+      "Gold": 15
+    },
+    "Damage": 0,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Slash"
+    ],
+    "On Hit": null,
+    "On Damage": [
+      "e50"
+    ],
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": [
+      "Extra",
+      "Magical"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Intrinsic"
+    ]
+  },
+  {
+    "ID": "e216",
+    "Name": "Fire",
+    "Cost": {
+      "Gold": 18
+    },
+    "Damage": 8,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Fire"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": null,
+    "Required Slots": 0,
+    "Effects": null,
+    "Properties": [
+      "Armor Piercing",
+      "Magical",
+      "Strength not Added"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Effects"
+    ]
+  },
+  {
+    "ID": "e221",
+    "Name": "greater Fire",
+    "Cost": {
+      "Gold": 20
+    },
+    "Damage": 12,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Fire"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": null,
+    "Required Slots": 0,
+    "Effects": null,
+    "Properties": [
+      "Armor Piercing",
+      "Magical",
+      "Strength not Added"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Effects"
+    ]
+  },
+  {
+    "ID": "e222",
+    "Name": "Cold",
+    "Cost": {
+      "Gold": 18
+    },
+    "Damage": 12,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Cold"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": null,
+    "Required Slots": 0,
+    "Effects": null,
+    "Properties": [
+      "Armor Piercing",
+      "Magical",
+      "Strength not Added",
+      "Stun"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Effects"
+    ]
+  },
+  {
+    "ID": "e223",
+    "Name": "venomous bite",
+    "Cost": {
+      "Gold": 10.5
+    },
+    "Damage": 2,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Slash"
+    ],
+    "On Hit": null,
+    "On Damage": [
+      "e50"
+    ],
+    "Can Repel": true,
+    "Slot Type": null,
+    "Required Slots": 0,
+    "Effects": null,
+    "Properties": [
+      "Extra"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Intrinsic"
+    ]
+  },
+  {
+    "ID": "e229",
+    "Name": "flame strike",
+    "Cost": {
+      "Gold": 26
+    },
+    "Damage": 0,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 1,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Fire"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": false,
+    "Slot Type": null,
+    "Required Slots": 0,
+    "Effects": {
+      "Area of Effect": 1
+    },
+    "Properties": [
+      "Armor Piercing",
+      "Extra",
+      "Magical"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Intrinsic"
+    ]
+  },
+  {
+    "ID": "e231",
+    "Name": "thunder fist",
+    "Cost": {
+      "Gold": 0.5
+    },
+    "Damage": -2,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Blunt"
+    ],
+    "On Hit": [
+      "e232"
+    ],
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": [
+      "Magical"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Intrinsic"
+    ]
+  },
+  {
+    "ID": "e232",
+    "Name": "Shock",
+    "Cost": {
+      "Gold": 30
+    },
+    "Damage": 10,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Shock"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": null,
+    "Required Slots": 0,
+    "Effects": null,
+    "Properties": [
+      "Armor Negating",
+      "Magical",
+      "Strength not Added"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Effects"
+    ]
+  },
+  {
+    "ID": "e235",
+    "Name": "pincer",
+    "Cost": {
+      "Gold": 0.5
+    },
+    "Damage": 1,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Untyped"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": null,
+    "Required Slots": 0,
+    "Effects": null,
+    "Properties": null,
+    "Rarity": 0,
+    "Categories": [
+      "Intrinsic"
+    ]
+  },
+  {
+    "ID": "e239",
+    "Name": "venomous fangs",
+    "Cost": {
+      "Gold": 10.5
+    },
+    "Damage": 2,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Pierce"
+    ],
+    "On Hit": null,
+    "On Damage": [
+      "e51"
+    ],
+    "Can Repel": true,
+    "Slot Type": null,
+    "Required Slots": 0,
+    "Effects": null,
+    "Properties": [
+      "Extra"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Intrinsic"
+    ]
+  },
+  {
+    "ID": "e248",
+    "Name": "venomous claw",
+    "Cost": {
+      "Gold": 11
+    },
+    "Damage": 0,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Slash"
+    ],
+    "On Hit": null,
+    "On Damage": [
+      "e50"
+    ],
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": [
+      "Extra"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Intrinsic"
+    ]
+  },
+  {
+    "ID": "e249",
+    "Name": "strong venomous claw",
+    "Cost": {
+      "Gold": 11
+    },
+    "Damage": 0,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Slash"
+    ],
+    "On Hit": null,
+    "On Damage": [
+      "e51"
+    ],
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": [
+      "Extra"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Intrinsic"
+    ]
+  },
+  {
+    "ID": "e250",
+    "Name": "Poisoned claw",
+    "Cost": {
+      "Gold": 11
+    },
+    "Damage": 0,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Slash"
+    ],
+    "On Hit": null,
+    "On Damage": [
+      "e53"
+    ],
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": [
+      "Extra"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Intrinsic"
+    ]
+  },
+  {
+    "ID": "e251",
+    "Name": "paralyzing venomous fangs",
+    "Cost": {
+      "Gold": 10.5
+    },
+    "Damage": 2,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Pierce"
+    ],
+    "On Hit": null,
+    "On Damage": [
+      "e54"
+    ],
+    "Can Repel": true,
+    "Slot Type": null,
+    "Required Slots": 0,
+    "Effects": null,
+    "Properties": [
+      "Extra"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Intrinsic"
+    ]
+  },
+  {
+    "ID": "e261",
+    "Name": "Web",
+    "Cost": {
+      "Gold": 21
+    },
+    "Damage": 0,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Web"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": false,
+    "Slot Type": null,
+    "Required Slots": 0,
+    "Effects": {
+      "Reload": 2
+    },
+    "Properties": [
+      "Extra",
+      "Size Resist",
+      "Strength not Added"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Intrinsic"
+    ]
+  },
+  {
+    "ID": "e269",
+    "Name": "soul leech",
+    "Cost": {
+      "Gold": 50
+    },
+    "Damage": 0,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Drain Life"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": false,
+    "Slot Type": null,
+    "Required Slots": 0,
+    "Effects": {
+      "Area of Effect": 1
+    },
+    "Properties": [
+      "Armor Negating",
+      "Magical",
+      "MR Negates",
+      "Requires Life",
+      "Requires Mind"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Intrinsic"
+    ]
+  },
+  {
+    "ID": "e269",
+    "Name": "life Drain tentacle",
+    "Cost": {
+      "Gold": 50
+    },
+    "Damage": 10,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Drain Life"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": null,
+    "Required Slots": 0,
+    "Effects": null,
+    "Properties": [
+      "Armor Piercing",
+      "Extra",
+      "Magical",
+      "Strength not Added"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Intrinsic"
+    ]
+  },
+  {
+    "ID": "e273",
+    "Name": "piercing pincer",
+    "Cost": {
+      "Gold": 21
+    },
+    "Damage": 1,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Untyped"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": null,
+    "Required Slots": 0,
+    "Effects": null,
+    "Properties": [
+      "Armor Piercing",
+      "Extra"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Intrinsic"
+    ]
+  },
+  {
+    "ID": "e282",
+    "Name": "Paralysis",
+    "Cost": {
+      "Gold": 8
+    },
+    "Damage": 5,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Paralysis"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": [
+      "Armor Negating",
+      "Magical",
+      "MR Negates",
+      "Strength not Added"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Intrinsic"
+    ]
+  },
+  {
+    "ID": "e283",
+    "Name": "strong Paralysis",
+    "Cost": {
+      "Gold": 16
+    },
+    "Damage": 10,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Paralysis"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": [
+      "Armor Negating",
+      "Magical",
+      "MR Negates",
+      "Strength not Added"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Intrinsic"
+    ]
+  },
+  {
+    "ID": "e284",
+    "Name": "steal Strength",
+    "Cost": {
+      "Gold": 14
+    },
+    "Damage": 0,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Untyped"
+    ],
+    "On Hit": null,
+    "On Damage": [
+      "e285"
+    ],
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": [
+      "Armor Negating",
+      "Magical",
+      "MR Negates"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Intrinsic"
+    ]
+  },
+  {
+    "ID": "e285",
+    "Name": "additional weakness",
+    "Cost": {
+      "Gold": 20
+    },
+    "Damage": 2,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Weaken"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": null,
+    "Required Slots": 0,
+    "Effects": null,
+    "Properties": [
+      "Armor Negating",
+      "Magical",
+      "MR Negates",
+      "Strength not Added"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Effects"
+    ]
+  },
+  {
+    "ID": "e286",
+    "Name": "Magical touch of leprosy",
+    "Cost": {
+      "Gold": 6
+    },
+    "Damage": 0,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Untyped"
+    ],
+    "On Hit": null,
+    "On Damage": [
+      "e143"
+    ],
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": [
+      "Magical"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Intrinsic"
+    ]
+  },
+  {
+    "ID": "e293",
+    "Name": "psychic damage",
+    "Cost": {
+      "Gold": 20
+    },
+    "Damage": 1,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Untyped"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": false,
+    "Slot Type": null,
+    "Required Slots": 0,
+    "Effects": null,
+    "Properties": [
+      "Armor Negating",
+      "Ignores Shields",
+      "Magical",
+      "MR Negates",
+      "Requires Mind",
+      "Strength not Added"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Effects"
+    ]
+  },
+  {
+    "ID": "e300",
+    "Name": "Head butt",
+    "Cost": {
+      "Gold": 10.5
+    },
+    "Damage": 0,
+    "Attack": 1,
+    "Defence": -1,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Blunt"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": null,
+    "Required Slots": 0,
+    "Effects": null,
+    "Properties": [
+      "Extra"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Intrinsic"
+    ]
+  },
+  {
+    "ID": "e319",
+    "Name": "bite",
+    "Cost": {
+      "Gold": 22
+    },
+    "Damage": 2,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Slash"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": null,
+    "Required Slots": 0,
+    "Effects": null,
+    "Properties": [
+      "Armor Piercing",
+      "Extra"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Intrinsic"
+    ]
+  },
+  {
+    "ID": "e320",
+    "Name": "flaming fist",
+    "Cost": {
+      "Gold": 5.5
+    },
+    "Damage": -2,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Blunt"
+    ],
+    "On Hit": [
+      "e221"
+    ],
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": [
+      "Magical"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Intrinsic"
+    ]
+  },
+  {
+    "ID": "e322",
+    "Name": "beast bite",
+    "Cost": {
+      "Gold": 12
+    },
+    "Damage": 4,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Slash"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": null,
+    "Required Slots": 0,
+    "Effects": null,
+    "Properties": [
+      "Extra"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Intrinsic"
+    ]
+  },
+  {
+    "ID": "e323",
+    "Name": "beast venomous bite",
+    "Cost": {
+      "Gold": 11.5
+    },
+    "Damage": 2,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Slash"
+    ],
+    "On Hit": null,
+    "On Damage": [
+      "e50"
+    ],
+    "Can Repel": true,
+    "Slot Type": null,
+    "Required Slots": 0,
+    "Effects": null,
+    "Properties": [
+      "Extra"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Intrinsic"
+    ]
+  },
+  {
+    "ID": "e325",
+    "Name": "serpent's fangs",
+    "Cost": {
+      "Gold": 10.5
+    },
+    "Damage": 2,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Pierce"
+    ],
+    "On Hit": null,
+    "On Damage": [
+      "e51"
+    ],
+    "Can Repel": true,
+    "Slot Type": null,
+    "Required Slots": 0,
+    "Effects": null,
+    "Properties": [
+      "Extra"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Intrinsic"
+    ]
+  },
+  {
+    "ID": "e331",
+    "Name": "gore",
+    "Cost": {
+      "Gold": 10.5
+    },
+    "Damage": 0,
+    "Attack": -1,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Slash"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": null,
+    "Required Slots": 0,
+    "Effects": null,
+    "Properties": [
+      "Extra"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Intrinsic"
+    ]
+  },
+  {
+    "ID": "e343",
+    "Name": "blade hand",
+    "Cost": {
+      "Gold": 2.5
+    },
+    "Damage": 4,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 1,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Slash"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": null,
+    "Rarity": 0,
+    "Categories": [
+      "Intrinsic"
+    ]
+  },
+  {
+    "ID": "e346",
+    "Name": "useless kick",
+    "Cost": {
+      "Gold": 0
+    },
+    "Damage": -5,
+    "Attack": -4,
+    "Defence": -2,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Blunt"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": null,
+    "Required Slots": 0,
+    "Effects": null,
+    "Properties": null,
+    "Rarity": 0,
+    "Categories": [
+      "Intrinsic"
+    ]
+  },
+  {
+    "ID": "e350",
+    "Name": "snake's Fire flare",
+    "Cost": {
+      "Gold": 31
+    },
+    "Damage": 12,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 3,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Fire"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": null,
+    "Required Slots": 0,
+    "Effects": {
+      "Area of Effect": 1
+    },
+    "Properties": [
+      "Armor Piercing",
+      "Extra",
+      "Magical",
+      "Strength not Added"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Intrinsic"
+    ]
+  },
+  {
+    "ID": "e354",
+    "Name": "antlers",
+    "Cost": {
+      "Gold": 12
+    },
+    "Damage": 16,
+    "Attack": -1,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Slash"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": null,
+    "Required Slots": 0,
+    "Effects": null,
+    "Properties": [
+      "Extra",
+      "Strength not Added"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Intrinsic"
+    ]
+  },
+  {
+    "ID": "e355",
+    "Name": "sting",
+    "Cost": {
+      "Gold": 20.5
+    },
+    "Damage": 0,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Pierce"
+    ],
+    "On Hit": null,
+    "On Damage": [
+      "e50"
+    ],
+    "Can Repel": true,
+    "Slot Type": null,
+    "Required Slots": 0,
+    "Effects": null,
+    "Properties": [
+      "Armor Piercing",
+      "Extra"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Intrinsic"
+    ]
+  },
+  {
+    "ID": "e367",
+    "Name": "horror mark",
+    "Cost": {
+      "Gold": 15
+    },
+    "Damage": 1,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Horrormark"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": false,
+    "Slot Type": null,
+    "Required Slots": 0,
+    "Effects": null,
+    "Properties": [
+      "Magical",
+      "Strength not Added"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Effects"
+    ]
+  },
+  {
+    "ID": "e387",
+    "Name": "sleep touch",
+    "Cost": {
+      "Gold": 10
+    },
+    "Damage": 30,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Stun"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": [
+      "Magical",
+      "MR Negates",
+      "Strength not Added"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Intrinsic"
+    ]
+  },
+  {
+    "ID": "e397",
+    "Name": "kick",
+    "Cost": {
+      "Gold": 10.5
+    },
+    "Damage": 0,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Blunt"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": null,
+    "Required Slots": 0,
+    "Effects": null,
+    "Properties": [
+      "Extra"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Intrinsic"
+    ]
+  },
+  {
+    "ID": "e398",
+    "Name": "sirrush' venomous fangs",
+    "Cost": {
+      "Gold": 10.5
+    },
+    "Damage": -4,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Pierce"
+    ],
+    "On Hit": null,
+    "On Damage": [
+      "e52"
+    ],
+    "Can Repel": true,
+    "Slot Type": null,
+    "Required Slots": 0,
+    "Effects": null,
+    "Properties": [
+      "Extra"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Intrinsic"
+    ]
+  },
+  {
+    "ID": "e399",
+    "Name": "sirrush' gore",
+    "Cost": {
+      "Gold": 11
+    },
+    "Damage": 2,
+    "Attack": 1,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Slash"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": null,
+    "Required Slots": 0,
+    "Effects": null,
+    "Properties": [
+      "Extra"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Intrinsic"
+    ]
+  },
+  {
+    "ID": "e400",
+    "Name": "soul devouring bite",
+    "Cost": {
+      "Gold": 21
+    },
+    "Damage": 4,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Slash"
+    ],
+    "On Hit": [
+      "e401"
+    ],
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": null,
+    "Required Slots": 0,
+    "Effects": null,
+    "Properties": [
+      "Extra",
+      "Magical"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Intrinsic"
+    ]
+  },
+  {
+    "ID": "e401",
+    "Name": "soul Death",
+    "Cost": {
+      "Gold": 100
+    },
+    "Damage": 999,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Untyped"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": null,
+    "Required Slots": 0,
+    "Effects": null,
+    "Properties": [
+      "Magical",
+      "Strength not Added",
+      "Armor Negating",
+      "Requires Mind"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Effects"
+    ]
+  },
+  {
+    "ID": "e404",
+    "Name": "beak",
+    "Cost": {
+      "Gold": 10.5
+    },
+    "Damage": 4,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Slash"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": null,
+    "Required Slots": 0,
+    "Effects": null,
+    "Properties": [
+      "Extra"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Intrinsic"
+    ]
+  },
+  {
+    "ID": "e408",
+    "Name": "talons",
+    "Cost": {
+      "Gold": 10.5
+    },
+    "Damage": 0,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Slash"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": null,
+    "Required Slots": 0,
+    "Effects": null,
+    "Properties": [
+      "Extra"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Intrinsic"
+    ]
+  },
+  {
+    "ID": "e420",
+    "Name": "koppo",
+    "Cost": {
+      "Gold": 8
+    },
+    "Damage": -3,
+    "Attack": -3,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Blunt"
+    ],
+    "On Hit": null,
+    "On Damage": [
+      "e421"
+    ],
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": [
+      "Armor Piercing"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Intrinsic"
+    ]
+  },
+  {
+    "ID": "e421",
+    "Name": "limp",
+    "Cost": {
+      "Gold": 25
+    },
+    "Damage": 1,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Untyped"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": false,
+    "Slot Type": null,
+    "Required Slots": 0,
+    "Effects": null,
+    "Properties": [
+      "Limp",
+      "Magical",
+      "Strength not Added"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Effects"
+    ]
+  },
+  {
+    "ID": "e423",
+    "Name": "scorpion tail",
+    "Cost": {
+      "Gold": 11
+    },
+    "Damage": 0,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 3,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Pierce"
+    ],
+    "On Hit": null,
+    "On Damage": [
+      "e52"
+    ],
+    "Can Repel": true,
+    "Slot Type": null,
+    "Required Slots": 0,
+    "Effects": null,
+    "Properties": [
+      "Extra"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Intrinsic"
+    ]
+  },
+  {
+    "ID": "e460",
+    "Name": "stop the dead",
+    "Cost": {
+      "Gold": 14
+    },
+    "Damage": 5,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Paralysis"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": null,
+    "Required Slots": 0,
+    "Effects": null,
+    "Properties": [
+      "Armor Negating",
+      "Magical",
+      "MR Negates",
+      "Strength not Added",
+      "Requires Undead"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Intrinsic"
+    ]
+  },
+  {
+    "ID": "e481",
+    "Name": "touch of madness",
+    "Cost": {
+      "Gold": 4
+    },
+    "Damage": -3,
+    "Attack": -3,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Untyped"
+    ],
+    "On Hit": null,
+    "On Damage": [
+      "e156"
+    ],
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": [
+      "Magical",
+      "MR Negates"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Intrinsic"
+    ]
+  },
+  {
+    "ID": "e488",
+    "Name": "great Head",
+    "Cost": {
+      "Gold": 11
+    },
+    "Damage": 0,
+    "Attack": 1,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Pierce"
+    ],
+    "On Hit": null,
+    "On Damage": [
+      "e51"
+    ],
+    "Can Repel": true,
+    "Slot Type": null,
+    "Required Slots": 0,
+    "Effects": null,
+    "Properties": [
+      "Extra"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Intrinsic"
+    ]
+  },
+  {
+    "ID": "e489",
+    "Name": "Immortal Head",
+    "Cost": {
+      "Gold": 12
+    },
+    "Damage": 3,
+    "Attack": 1,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Pierce"
+    ],
+    "On Hit": null,
+    "On Damage": [
+      "e52"
+    ],
+    "Can Repel": true,
+    "Slot Type": null,
+    "Required Slots": 0,
+    "Effects": null,
+    "Properties": [
+      "Extra"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Intrinsic"
+    ]
+  },
+  {
+    "ID": "e490",
+    "Name": "lesser Head",
+    "Cost": {
+      "Gold": 10.5
+    },
+    "Damage": -3,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Pierce"
+    ],
+    "On Hit": null,
+    "On Damage": [
+      "e50"
+    ],
+    "Can Repel": true,
+    "Slot Type": null,
+    "Required Slots": 0,
+    "Effects": null,
+    "Properties": [
+      "Extra"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Intrinsic"
+    ]
+  },
+  {
+    "ID": "e491",
+    "Name": "lesser Heads",
+    "Cost": {
+      "Gold": 21
+    },
+    "Damage": -3,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 2,
+    "Damage Type": [
+      "Pierce"
+    ],
+    "On Hit": null,
+    "On Damage": [
+      "e50"
+    ],
+    "Can Repel": true,
+    "Slot Type": null,
+    "Required Slots": 0,
+    "Effects": null,
+    "Properties": [
+      "Extra"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Intrinsic"
+    ]
+  },
+  {
+    "ID": "e495",
+    "Name": "serpent's bite",
+    "Cost": {
+      "Gold": 12
+    },
+    "Damage": 2,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 3,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Slash"
+    ],
+    "On Hit": null,
+    "On Damage": [
+      "e53"
+    ],
+    "Can Repel": true,
+    "Slot Type": null,
+    "Required Slots": 0,
+    "Effects": null,
+    "Properties": [
+      "Extra"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Intrinsic"
+    ]
+  },
+  {
+    "ID": "e509",
+    "Name": "bane of heresy",
+    "Cost": {
+      "Gold": 10
+    },
+    "Damage": 15,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Stun"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": null,
+    "Required Slots": 0,
+    "Effects": {
+      "Area of Effect": 1
+    },
+    "Properties": [
+      "Armor Piercing",
+      "Magical",
+      "Requires Sacred",
+      "Strength not Added",
+      "Stun"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Effects"
+    ]
+  },
+  {
+    "ID": "e511",
+    "Name": "stump",
+    "Cost": {
+      "Gold": 0
+    },
+    "Damage": -3,
+    "Attack": -2,
+    "Defence": -1,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Blunt"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": null,
+    "Required Slots": 0,
+    "Effects": null,
+    "Properties": [
+      "Extra"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Intrinsic"
+    ]
+  },
+  {
+    "ID": "e517",
+    "Name": "incense",
+    "Cost": {
+      "Gold": 3
+    },
+    "Damage": 10,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Poison"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": null,
+    "Required Slots": 0,
+    "Effects": {
+      "Area of Effect": 1
+    },
+    "Properties": [
+      "Armor Negating",
+      "Magical",
+      "Strength not Added",
+      "Stun"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Effects"
+    ]
+  },
+  {
+    "ID": "e529",
+    "Name": "ghost rending claw",
+    "Cost": {
+      "Gold": 5
+    },
+    "Damage": 0,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Slash"
+    ],
+    "On Hit": null,
+    "On Damage": [
+      "e460"
+    ],
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": [
+      "Magical"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Intrinsic"
+    ]
+  },
+  {
+    "ID": "e543",
+    "Name": "slap",
+    "Cost": {
+      "Gold": 0.5
+    },
+    "Damage": 1,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Blunt"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 1,
+    "Effects": {
+      "Area of Effect": 1
+    },
+    "Properties": [
+      "Armor Negating",
+      "Capped Damage",
+      "Magical",
+      "Strength not Added",
+      "Stun"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Intrinsic"
+    ]
+  },
+  {
+    "ID": "e549",
+    "Name": "mantis claw",
+    "Cost": {
+      "Gold": 10.5
+    },
+    "Damage": 0,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Pierce"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": "Hands",
+    "Required Slots": 1,
+    "Effects": null,
+    "Properties": [
+      "Magical"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Intrinsic"
+    ]
+  },
+  {
+    "ID": "e564",
+    "Name": "Stunning blow",
+    "Cost": {
+      "Gold": 25
+    },
+    "Damage": 20,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Poison"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": null,
+    "Required Slots": 0,
+    "Effects": null,
+    "Properties": [
+      "Armor Negating",
+      "Magical",
+      "Stun"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Effects"
+    ]
+  },
+  {
+    "ID": "e572",
+    "Name": "Poisonous gore",
+    "Cost": {
+      "Gold": 10.5
+    },
+    "Damage": 2,
+    "Attack": -1,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Slash"
+    ],
+    "On Hit": null,
+    "On Damage": [
+      "e51"
+    ],
+    "Can Repel": true,
+    "Slot Type": null,
+    "Required Slots": 0,
+    "Effects": null,
+    "Properties": [
+      "Extra"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Intrinsic"
+    ]
+  },
+  {
+    "ID": "e592",
+    "Name": "cockatrice stinger",
+    "Cost": {
+      "Gold": 10.5
+    },
+    "Damage": 2,
+    "Attack": 2,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Pierce"
+    ],
+    "On Hit": null,
+    "On Damage": [
+      "e51"
+    ],
+    "Can Repel": true,
+    "Slot Type": null,
+    "Required Slots": 0,
+    "Effects": null,
+    "Properties": [
+      "Extra"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Intrinsic"
+    ]
+  },
+  {
+    "ID": "e614",
+    "Name": "elephant tusk",
+    "Cost": {
+      "Gold": 12
+    },
+    "Damage": 2,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 2,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Pierce"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": null,
+    "Required Slots": 0,
+    "Effects": null,
+    "Properties": [
+      "Extra"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Intrinsic"
+    ]
+  },
+  {
+    "ID": "e624",
+    "Name": "paralyzing Poison",
+    "Cost": {
+      "Gold": 15
+    },
+    "Damage": 25,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Poison"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": null,
+    "Required Slots": 0,
+    "Effects": null,
+    "Properties": [
+      "Armor Negating",
+      "Strength not Added",
+      "Stun"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Effects"
+    ]
+  },
+  {
+    "ID": "e629",
+    "Name": "myrmecoleon sting",
+    "Cost": {
+      "Gold": 15.5
+    },
+    "Damage": 0,
+    "Attack": -3,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Pierce"
+    ],
+    "On Hit": null,
+    "On Damage": [
+      "e51"
+    ],
+    "Can Repel": true,
+    "Slot Type": null,
+    "Required Slots": 0,
+    "Effects": null,
+    "Properties": [
+      "Armor Piercing",
+      "Extra"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Intrinsic"
+    ]
+  },
+  {
+    "ID": "e630",
+    "Name": "ghost rending bite",
+    "Cost": {
+      "Gold": 21
+    },
+    "Damage": 3,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Slash"
+    ],
+    "On Hit": null,
+    "On Damage": [
+      "e460"
+    ],
+    "Can Repel": true,
+    "Slot Type": null,
+    "Required Slots": 0,
+    "Effects": null,
+    "Properties": [
+      "Magical",
+      "Extra"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Intrinsic"
+    ]
+  },
+  {
+    "ID": "e631",
+    "Name": "serpent tail",
+    "Cost": {
+      "Gold": 17
+    },
+    "Damage": 15,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Pierce"
+    ],
+    "On Hit": null,
+    "On Damage": [
+      "e51"
+    ],
+    "Can Repel": true,
+    "Slot Type": null,
+    "Required Slots": 0,
+    "Effects": null,
+    "Properties": [
+      "Extra",
+      "Strength not Added"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Intrinsic"
+    ]
+  },
+  {
+    "ID": "e632",
+    "Name": "serpent mane",
+    "Cost": {
+      "Gold": 75
+    },
+    "Damage": 10,
+    "Attack": -2,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 5,
+    "Damage Type": [
+      "Pierce"
+    ],
+    "On Hit": null,
+    "On Damage": [
+      "e50"
+    ],
+    "Can Repel": true,
+    "Slot Type": null,
+    "Required Slots": 0,
+    "Effects": null,
+    "Properties": [
+      "Extra",
+      "Strength not Added"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Intrinsic"
+    ]
+  },
+  {
+    "ID": "e634",
+    "Name": "moose antlers",
+    "Cost": {
+      "Gold": 11
+    },
+    "Damage": 0,
+    "Attack": -1,
+    "Defence": 0,
+    "Length": 2,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Slash"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": true,
+    "Slot Type": null,
+    "Required Slots": 0,
+    "Effects": null,
+    "Properties": [
+      "Extra"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Intrinsic"
+    ]
+  },
+  {
+    "ID": "e700",
+    "Name": "phase spider fangs",
+    "Cost": {
+      "Gold": 14
+    },
+    "Damage": 2,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Pierce"
+    ],
+    "On Hit": null,
+    "On Damage": [
+      "e52"
+    ],
+    "Can Repel": false,
+    "Slot Type": null,
+    "Required Slots": 0,
+    "Effects": null,
+    "Properties": [
+      "Extra",
+      "Cannot-be-repelled"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Intrinsic"
+    ]
+  },
+  {
+    "ID": "e701",
+    "Name": "phase Web",
+    "Cost": {
+      "Gold": 31
+    },
+    "Damage": 0,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Web"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": false,
+    "Slot Type": null,
+    "Required Slots": 0,
+    "Effects": {
+      "Reload": 2
+    },
+    "Properties": [
+      "Extra",
+      "Magical",
+      "Size Resist",
+      "Strength not Added"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Intrinsic"
+    ]
+  },
+  {
+    "ID": "e1000",
+    "Name": "Fire Shield",
+    "Cost": {
+      "None": ""
+    },
+    "Damage": 0,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Fire"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": false,
+    "Slot Type": null,
+    "Required Slots": 0,
+    "Effects": null,
+    "Properties": [
+      "Magical"
+    ],
+    "Rarity": 0,
+    "Categories": [
+      "Effects"
+    ]
+  },
+  {
+    "ID": "e1001",
+    "Name": "Poison Skin",
+    "Cost": {
+      "None": ""
+    },
+    "Damage": 20,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Poison"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": false,
+    "Slot Type": null,
+    "Required Slots": 0,
+    "Effects": null,
+    "Properties": null,
+    "Rarity": 0,
+    "Categories": [
+      "Effects"
+    ]
+  },
+  {
+    "ID": "e1002",
+    "Name": "Poison Barbs",
+    "Cost": {
+      "None": ""
+    },
+    "Damage": 10,
+    "Attack": 0,
+    "Defence": 0,
+    "Length": 0,
+    "Number of Attacks": 1,
+    "Damage Type": [
+      "Poison"
+    ],
+    "On Hit": null,
+    "On Damage": null,
+    "Can Repel": false,
+    "Slot Type": null,
+    "Required Slots": 0,
+    "Effects": null,
+    "Properties": null,
+    "Rarity": 0,
+    "Categories": [
+      "Effects"
+    ]
+  }
+]

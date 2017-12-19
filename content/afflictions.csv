@@ -1,0 +1,13 @@
+Name,Part Affected,Is Healable,Effects,Properties
+Battle Fright,Body,Yes,Morale Bonus (-5),
+Chest Wound,Body,Yes,"Encumbrance (5), Strength Bonus (-1)",
+Diseased,Body,Yes,Will not Heal Naturally (0),Priority
+Never Healing Wound,Body,No,Max HP Percentage (-20),
+Damaged arm,Arm,Yes,Hands Slot (-1),
+Lost arm,Arm,No,Hands Slot (-1),
+Weakened,Arm,Yes,Strength Bonus (-4),
+Limp,Leg,Yes,"Attack Bonus (-1), Defence Bonus (-1)",
+Crippled,Leg,No,"Attack Bonus (-4), Defence Bonus (-4)",
+Damaged eye,Eye,Yes,"Attack Bonus (-2), Defence Bonus (-2)",
+Lost eye,Eye,No,"Attack Bonus (-2), Defence Bonus (-2), Precision Bonus (-3)",
+Blind,Eye,No,"Attack Bonus (-9), Defence Bonus (-9), Precision Bonus (-9)",

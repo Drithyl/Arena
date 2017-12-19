@@ -1,0 +1,14 @@
+{
+  "name": "browser_game",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Drithyl",
+  "license": "ISC",
+  "dependencies": {
+    "mongodb": "^3.0.0-rc0"
+  }
+}

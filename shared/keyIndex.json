@@ -1,0 +1,417 @@
+{
+  "ID": "ID",
+  "NAME": "Name",
+  "START_GOLD": "Starting Gold",
+  "START_POINTS": "Starting Points",
+  "TRANS_POINTS": "Transition Points",
+  "SIZE": "Size",
+  "MAX_HP": "Maximum HP",
+  "PRT": "Protection",
+  "MR": "Magic Resistance",
+  "MRL": "Morale",
+  "STR": "Strength",
+  "ATK": "Attack",
+  "DEF": "Defence",
+  "PRC": "Precision",
+  "ENC": "Encumbrance",
+  "AP": "Action Points",
+  "ATKS": "Attacks",
+  "PATH_LIST": "Paths",
+  "COST_LIST": "Cost",
+  "CAT_LIST": "Categories",
+  "PROP_LIST": "Properties",
+  "AB_LIST": "Abilities",
+  "SLOT_LIST": "Slots",
+  "PART_LIST": "Parts",
+  "EFF_LIST": "Effects",
+  "DMG_TYPE_LIST": "Damage Type",
+  "TRANS_LIST": "Transitions",
+  "DMG": "Damage",
+  "LEN": "Length",
+  "NBR_ATKS": "Number of Attacks",
+  "ON_HIT": "On Hit",
+  "ON_DMG": "On Damage",
+  "CAN_RPL": "Can Repel",
+  "SLOT_TYPE": "Slot Type",
+  "REQ_SLOTS": "Required Slots",
+  "RAR": "Rarity",
+  "DESC": "Description",
+  "SHLD_PRT": "Shield Protection",
+  "PARRY": "Parry",
+  "AFF_PART": "Part Affected",
+  "CAN_HEAL": "Is Healable",
+  "DESCR": "Description",
+  "NONE": "None",
+
+  "ABS":
+  {
+    "STEALTH": "Stealthy",
+    "ASSASSIN": "Assassin",
+    "DARKVISION": "Darkvision",
+    "DURATION": "Duration",
+    "DISPLACEMENT": "Displacement",
+    "BERSERK": "Berserk",
+    "HEALER": "Healer",
+    "CASTLE_DEF": "Castle Defence",
+    "VOID_SAN": "Void Sanity",
+    "POISON_SKIN": "Poison Skin",
+    "REGEN": "Regeneration",
+    "REINC": "Reincarnation",
+    "POISON_BARBS": "Poison Barbs",
+    "DMG_REVERSE": "Damage Reversal",
+    "FEAR": "Fear",
+    "AWE": "Awe",
+    "ANIMAL_AWE": "Animal Awe",
+    "INVUL": "Invulnerability",
+    "FORTUNE_TELLER": "Fortune Teller",
+    "REINVIG": "Reinvigoration",
+    "INSPIRATION": "Inspirational",
+    "ICE_PRT": "Ice Protection",
+    "AMBIDEXTROUS": "Ambidextrous",
+    "ALL_WATERBREATHING": "Grants Waterbreathing",
+    "DREAM_SEDUCTION": "Dream Seduction",
+    "CORPSE_EATER": "Corpse Eater",
+    "KILLS_POP": "Kills Population",
+    "BEASTMASTER": "Beastmaster",
+
+    "AURA":
+    {
+      "COLD": "Cold Aura",
+      "HEAT": "Heat Aura",
+      "POISON": "Poison Cloud"
+    },
+
+    "BONUS":
+    {
+      "FORGE": "Forge Bonus",
+      "PATROL": "Patrol Bonus",
+      "SIEGE": "Siege Bonus",
+      "PILLAGE": "Pillage Bonus",
+      "RESOURCE": "Resource Bonus",
+      "SUPPLY": "Supply Bonus"
+    },
+
+    "POWER":
+    {
+      "CHAOS": "Chaos Power",
+      "DARK": "Dark Power",
+      "SLOTH": "Sloth Power",
+      "FIRE": "Fire Power",
+      "COLD": "Cold Power",
+      "MAGIC": "Magic Power",
+      "SUMMER": "Summer Power",
+      "SPRING": "Spring Power",
+      "FALL": "Fall Power",
+      "WINTER": "Winter Power"
+    },
+
+    "RES":
+    {
+      "BLUNT": "Blunt Resistance",
+      "PIERCE": "Pierce Resistance",
+      "SLASH": "Slash Resistance",
+      "FIRE": "Fire Resistance",
+      "COLD": "Cold Resistance",
+      "POISON": "Poison Resistance",
+      "SHOCK": "Shock Resistance"
+    },
+
+    "SHAPE":
+    {
+      "1ST": "First Shape",
+      "2ND": "Second Shape",
+      "CHANGE": "Shapechange"
+    },
+
+    "SHIELD":
+    {
+      "FIRE": "Fire Shield",
+      "ASTRAL": "Astral Shield",
+      "BANEFIRE": "Banefire Shield"
+    },
+
+    "SPREAD":
+    {
+      "DEATH": "Spreads Death"
+    }
+  },
+
+  "AFFL":
+  {
+    "BATTLE_FRIGHT": "Battle Fright",
+    "CHEST_WOUND": "Chest Wound",
+    "DISEASED": "Diseased",
+    "NO_HEAL_WOUND": "Never Healing Wound",
+    "WEAKENED": "Weakened",
+    "LIMP": "Limp",
+    "CRIPPLED": "Crippled",
+
+    "DMGED":
+    {
+      "ARM": "Damaged Arm",
+      "EYE": "Damaged Eye",
+      "WING": "Damaged Wing",
+      "LEG": "Damaged Leg"
+    },
+
+    "LOST":
+    {
+      "ARM": "Lost Arm",
+      "EYE": "Lost Eye",
+      "WING": "Lost Wing",
+      "LEG": "Lost Leg"
+    }
+  },
+
+  "ATTR":
+  {
+    "MAX_HP": "Maximum HP",
+    "MR": "Magic Resistance",
+    "MRL": "Morale",
+    "STR": "Strength"
+  },
+
+  "CHAR":
+  {
+    "START_GOLD": "Starting Gold",
+    "START_POINTS": "Starting Points",
+    "SIZE": "Size",
+    "MAX_HP": "Maximum HP",
+    "PRT": "Protection",
+    "MR": "Magic Resistance",
+    "MRL": "Morale",
+    "STR": "Strength",
+    "ATK": "Attack",
+    "DEF": "Defence",
+    "PRC": "Precision",
+    "ENC": "Encumbrance",
+    "AP": "Action Points",
+    "ATKS": "Attacks",
+    "SLOT_LIST": "Slots",
+    "PART_LIST": "Parts",
+    "AB_LIST": "Abilities",
+    "PROP_LIST": "Properties",
+    "CAT_LIST": "Categories"
+  },
+
+  "CAT":
+  {
+    "EFFECT": "Effects",
+    "SHIELD": "Shields",
+    "LIGHT_ARMOR": "Light Armors",
+    "MID_ARMOR": "Medium Armors",
+    "HEAVY_ARMOR": "Heavy Armors",
+    "HELMET": "Helmets",
+    "ANIMAL": "Animal",
+    "COLD_BLOOD": "Cold-blooded",
+    "DEMON": "Demon",
+    "UNDEAD": "Undead",
+    "MAGIC_BEING": "Magic Being",
+    "TAGLESS": "Tagless",
+    "START": "Starting Form",
+    "MISC": "Miscellaneous",
+    "POLEARM": "Polearms",
+    "SWORD": "Swords",
+    "STAFF": "Staves",
+    "DAGGER": "Daggers",
+    "MACE": "Maces",
+    "AXE": "Axes",
+    "WHIP": "Whips",
+    "INTRINSIC": "Intrinsic"
+  },
+
+  "COST":
+  {
+    "GOLD": "Gold",
+    "AIR": "Diamonds",
+    "ASTRAL": "Pearls",
+    "BLOOD": "Bloodstones",
+    "DEATH": "Onyxes",
+    "EARTH": "Topazes",
+    "FIRE": "Rubies",
+    "NATURE": "Emeralds",
+    "WATER": "Sapphires",
+    "HOLY": "Piety"
+  },
+
+  "DMG_TYPE":
+  {
+    "DRAIN": "Drain Life",
+    "FEEBLE": "Enfeeble Mind",
+    "WEAKEN": "Weaken",
+    "DISEASE": "Disease",
+    "DECAY": "Decay",
+    "HORROR": "Horrormark",
+    "BLUNT": "Blunt",
+    "PIERCE": "Pierce",
+    "FEAR": "Fear",
+    "SLASH": "Slash",
+    "STUN": "Stun",
+    "SHOCK": "Shock",
+    "FIRE": "Fire",
+    "MAGIC": "Magic",
+    "COLD": "Cold",
+    "PARALYSIS": "Paralysis",
+    "POISON": "Poison",
+    "UNTYPED": "Untyped",
+    "WEB": "Web"
+  },
+
+  "EFF":
+  {
+    "AOE": "Area of Effect",
+    "RELOAD": "Reload",
+    "ALL_WATERBREATHING": "Grants Waterbreathing",
+    "REINVIG": "Reinvigoration",
+    "INSPIRATION": "Inspirational",
+    "ICE_PRT": "Ice Protection",
+    "FEAR": "Fear",
+    "AWE": "Awe",
+    "ANIMAL_AWE": "Animal Awe",
+    "INVUL": "Invulnerability",
+    "HEAL": "Healing",
+    "UP_HEAL": "Enhanced Healing",
+    "POISON_BARBS": "Poison Barbs",
+    "RECUP": "Recuperation",
+    "ENC": "Encumbrance",
+    "STR": "Strength",
+    "MR": "Magic Resistance",
+    "NO_NAT_HEAL": "Will not Heal Naturally",
+    "HP_PERCENT": "Max HP Percentage",
+    "HANDS_SLOT": "Hands Slot",
+    "ATK": "Attack",
+    "DEF": "Defence",
+    "PRC": "Precision",
+    "PRIORITY": "Priority",
+
+    "BANE":
+    {
+      "DEMON": "Demonbane",
+      "UNDEAD": "Undeadbane"
+    },
+
+    "BONUS":
+    {
+      "SIEGE": "Siege Bonus",
+      "FORGE": "Forge Bonus",
+      "CHARGE": "Charge Bonus",
+      "STR": "Strength Bonus",
+      "ATK": "Attack Bonus",
+      "HEAL": "Healing Bonus",
+      "MRL": "Morale Bonus",
+      "MR": "Magic Resistance Bonus",
+      "DEF": "Defence Bonus",
+      "PRC": "Precision Bonus",
+      "SUPPLY": "Supply Bonus"
+    },
+
+    "RES":
+    {
+      "FIRE": "Fire Resistance",
+      "COLD": "Cold Resistance",
+      "POISON": "Poison Resistance",
+      "SHOCK": "Shock Resistance"
+    }
+  },
+
+  "PARTS":
+  {
+    "EYE": "Eye",
+    "HEAD": "Head",
+    "BODY": "Body",
+    "ARM": "Arm",
+    "LEG": "Leg",
+    "WING": "Wing"
+  },
+
+  "PATHS":
+  {
+    "AIR": "Air",
+    "ASTRAL": "Astral",
+    "BLOOD": "Blood",
+    "DEATH": "Death",
+    "EARTH": "Earth",
+    "FIRE": "Fire",
+    "HOLY": "Holy",
+    "NATURE": "Nature",
+    "WATER": "Water"
+  },
+
+  "PROPS":
+  {
+    "FEMALE": "Female",
+    "ANIMAL": "Animal",
+    "BLIND": "Blind",
+    "COLD_BLOOD": "Cold-blooded",
+    "ETHEREAL": "Ethereal",
+    "NO_EAT": "Need-not-eat",
+    "UNDEAD": "Undead",
+    "RECUP": "Recuperation",
+    "DEMON": "Demon",
+    "AMPHIBIAN": "Amphibian",
+    "POOR_AMPH": "Poor Amphibian",
+    "TRAMPLE": "Trample",
+    "NO_HEAL": "Does-not-heal",
+    "LIFELESS": "Lifeless",
+    "MINDLESS": "Mindless",
+    "GLAMOUR": "Glamour",
+    "MAGIC_BEING": "Magic Being",
+    "FLY": "Flying",
+    "DRAKE": "Drake",
+    "STONE": "Stone Being",
+    "BLINDFIGHTER": "Blindfighter",
+    "SACRED": "Sacred",
+    "IMMORTAL": "Immortal",
+    "UNDISCIPLINED": "Undisciplined",
+    "STORM_FLY": "Flies in Storms",
+    "TELEPORT": "Teleporter",
+    "TWIST_FATE": "Twist Fate",
+    "MAGICAL": "Magical",
+    "NO_FIRE": "No Fire",
+    "FLAIL": "Flail",
+    "CAPPED": "Capped Damage",
+    "EXTRA": "Extra",
+    "SINGLE_USE": "Single-use",
+    "SIZE_RESIST": "Size Resist",
+    "NO_STR": "Strength not Added",
+    "A_PIERCE": "Armor Piercing",
+    "A_NEGATE": "Armor Negating",
+    "MR_NEGATE": "MR Negates",
+    "STUN": "Stun",
+    "IGNORES_SHIELD": "Ignores Shields",
+    "UNREPEL": "Cannot-be-repelled",
+
+    "REQ":
+    {
+      "LIFE": "Requires Life",
+      "MIND": "Requires Mind",
+      "SACRED": "Requires Sacred",
+      "UNDEAD": "Requires Undead"
+    },
+
+    "SKIN":
+    {
+      "BARK": "Barkskin",
+      "STONE": "Stoneskin",
+      "IRON": "Ironskin"
+    },
+
+    "SURV":
+    {
+      "FOREST": "Forest Survival",
+      "MOUNTAIN": "Mountain Survival",
+      "WASTE": "Wasteland Survival",
+      "SWAMP": "Swamp Survival"
+    }
+  },
+
+  "SLOTS":
+  {
+    "HANDS": "Hands",
+    "HEAD": "Head",
+    "BODY": "Body",
+    "FEET": "Feet",
+    "MISC": "Misc",
+    "NONE": "None"
+  }
+}
