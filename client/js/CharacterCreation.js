@@ -14,7 +14,7 @@
     {
       CharCreation.forms = data;
 
-      socket.on("createCharacter", function()
+      socket.on("createCharacters", function()
       {
         $(document).ready(function()
         {

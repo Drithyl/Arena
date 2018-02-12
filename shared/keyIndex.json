@@ -15,7 +15,11 @@
   "PRC": "Precision",
   "ENC": "Encumbrance",
   "AP": "Action Points",
+  "MP": "Movement Points",
+  "SPEED": "Speed",
+  "CURR_SPEED": "Current Speed",
   "ATKS": "Attacks",
+  "AFFL_LIST": "Afflictions",
   "PATH_LIST": "Paths",
   "COST_LIST": "Cost",
   "CAT_LIST": "Categories",
@@ -28,6 +32,7 @@
   "TRANS_LIST": "Transitions",
   "DMG": "Damage",
   "LEN": "Length",
+  "RANGE": "Range",
   "NBR_ATKS": "Number of Attacks",
   "ON_HIT": "On Hit",
   "ON_DMG": "On Damage",
@@ -41,6 +46,8 @@
   "AFF_PART": "Part Affected",
   "CAN_HEAL": "Is Healable",
   "DESCR": "Description",
+  "EQUIPPED": "Equipped",
+  "FREE": "Free",
   "NONE": "None",
 
   "ABS":
@@ -50,6 +57,7 @@
     "DARKVISION": "Darkvision",
     "DURATION": "Duration",
     "DISPLACEMENT": "Displacement",
+    "DRAIN": "Drain",
     "BERSERK": "Berserk",
     "HEALER": "Healer",
     "CASTLE_DEF": "Castle Defence",
@@ -118,8 +126,8 @@
 
     "SHAPE":
     {
-      "1ST": "First Shape",
-      "2ND": "Second Shape",
+      "FIRST": "First Shape",
+      "SECOND": "Second Shape",
       "CHANGE": "Shapechange"
     },
 
@@ -209,8 +217,10 @@
     "MAGIC_BEING": "Magic Being",
     "TAGLESS": "Tagless",
     "START": "Starting Form",
+    "MELEE": "Melee",
     "MISC": "Miscellaneous",
     "POLEARM": "Polearms",
+    "RANGED": "Ranged",
     "SWORD": "Swords",
     "STAFF": "Staves",
     "DAGGER": "Daggers",
@@ -261,6 +271,7 @@
   {
     "AOE": "Area of Effect",
     "RELOAD": "Reload",
+    "DRAIN": "Drain",
     "ALL_WATERBREATHING": "Grants Waterbreathing",
     "REINVIG": "Reinvigoration",
     "INSPIRATION": "Inspirational",
@@ -413,5 +424,18 @@
     "FEET": "Feet",
     "MISC": "Misc",
     "NONE": "None"
+  },
+
+  "STATUS":
+  {
+    "BERSERK": "Berserk",
+    "UNCONSCIOUS": "Unconscious",
+  },
+
+  "TRIGGERS":
+  {
+    "MELEE": "Melee",
+    "RANGED": "Ranged",
+    "SPELL": "Spell"
   }
 }

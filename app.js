@@ -4,12 +4,10 @@ var app = express();
 var serv = require("http").Server(app);
 var io = require("socket.io")(serv, {});
 var pf = require("./server/prototype_functions.js");
-var keyIndex = require("./shared/keyIndex.json");
-keyIndex.arr = keyIndex.toFlatArr();
-keyIndex.lowerCaseArr = keyIndex.arr.toLowerCase();
-var rw = require("./server/reader_writer.js").init(keyIndex);
-var charCreation;
-var characters;
+var keys = require("./shared/keyIndex.json");
+var rw;
+var characterModule;
+var playersModule;
 var content;
 var port = 3000;
 var SOCKET_LIST = {};
@@ -17,46 +15,7 @@ var spawn = require('child_process').spawn;
 //var dbProcess = spawn("C:/Program Files/MongoDB/Server/3.4/bin/mongod.exe");
 var mongo = require("mongodb");
 var db;
-
-mongo.MongoClient.connect("mongodb://localhost:27017", function(err, client)
-{
-	if (err)
-	{
-		rw.log("Something went wrong when connecting to mongo:\n\n" + err);
-		return;
-	}
-
-	db = client.db("arena");
-	init();
-});
-
-function init()
-{
-	content = require("./server/content.js").init(rw.readContent(), keyIndex);
-	charCreation = require("./server/character_creation.js").init(db, content, keyIndex);
-
-	db.collection("characters").find({}).toArray(function(err, result)
-	{
-		if (err)
-		{
-			rw.log("An error occurred when grabbing the characters from the db: " + err);
-			return;
-		}
-
-		characters = require("./server/characters.js").init(db, result, keyIndex);
-	});
-}
-
-function getInitPack()
-{
-	var obj =
-	{
-		forms: content.getForms(keyIndex.CAT_LIST, keyIndex.CAT.START),
-		players: characters.online
-	}
-
-	return obj;
-}
+var wasLaunchedCorrectly = false;
 
 app.get("/", function (req, res)
 {
@@ -66,172 +25,212 @@ app.get("/", function (req, res)
 app.use("/client", express.static(__dirname + "/client"));
 app.use("/shared", express.static(__dirname + "/shared"));
 
-serv.listen(port);
-rw.log("Server started.");
+mongo.MongoClient.connect("mongodb://localhost:27017", function(err, client)
+{
+	if (err)
+	{
+		throw err.name + ": in mongo.MongoClient.connect(): " + err.message;
+	}
+
+	db = require("./server/database.js").init(client.db("arena"));
+
+	initializeServer(function(err)
+	{
+		if (err) throw err;
+	});
+});
 
 io.sockets.on("connection", function(socket)
 {
+	if (wasLaunchedCorrectly === false)
+	{
+		throw new Error("Server was not launched correctly. Ignoring connection from socket " + socket.id);
+	}
+
   SOCKET_LIST[socket.id] = socket;
 	rw.log(socket.id + " connected.");
 	socket.emit("connected", getInitPack());
 
 	socket.on("signIn", function(data)
 	{
-		isValidPassword(data, function(res)
-		{
-			if (res !== true)
-			{
-				socket.emit("signInRejected");
-				return;
-			}
-
-			socket.emit("SignInAccepted");
-			socket.username = data.username;
-
-			socket.on("sendMsgToServer", function(data)
-	    {
-	      var msg = {name: socket.id, message: data};
-				io.emit("addToChat", msg);
-	    });
-
-	    socket.on("evalServer", function(data)
-	    {
-	      if (DEBUG === false)
-	      {
-	        return;
-	      }
-
-	      var res = eval(data);
-	      socket.emit("evalAnswer", res);
-	    });
-
-			isCharacterCreated(data.username, function(res)
-			{
-				if (res != null)
-				{
-					//starting point for a client
-					characters.addOnline(socket.id, res);
-					socket.emit("startGame");
-					socket.broadcast.emit("playerJoined", res)
-				}
-
-				else socket.emit("createCharacter");
-			});
-		});
+		signIn(data, socket);
 	});
 
 	socket.on("signUp", function(data)
 	{
-		isUsernameTaken(data, function(res)
-		{
-			if (res === false)
-			{
-				addUser(data, function()
-				{
-					socket.emit("signUpResponse", {success: true});
-				});
-			}
-
-			else socket.emit("signUpResponse", {success: false});
-		});
+		signUp(data, socket);
 	});
 
 	socket.on("sendCharacter", function(data)
 	{
-		try
-		{
-			charCreation.storeChar(data, socket, function(char)
-			{
-				characters.addOnline(socket.id, char);
-			});
-		}
-
-		catch (err)
-		{
-			socket.emit("characterFail", err.toString());
-		}
+		verifyCharacters(data, socket);
 	});
 
   socket.on("disconnect", function()
   {
-    //player.onDisconnect(socket);
 		delete SOCKET_LIST[socket.id];
   });
 });
 
-var isValidPassword = function(data, cb)
+/*
+* Initialize all the relevant components that make the server-side work.  Arguments:
+*
+*    cb        			A callback that will be passed an error if something
+*										critical happens that corrupts the initialization process.
+*
+* This function may fail for several reasons:
+*
+*    Error          The database module returns an error in the callback when
+*										trying to fetch all existing characters.
+*
+*    Error          The database module returns an error in the callback when
+*										trying to fetch all existing players.
+*
+*    Error          The playersModule throws an error when initializing,
+*										particularly when trying to revive the player objects.
+
+*	Any error here will cause the function to exit and the boolean
+* wasLaunchedCorrectly to remain as false, which will make the server ignore any
+* incoming connections, since there are issues to be resolved.
+*/
+
+function initializeServer(cb)
 {
-	db.collection("accounts").findOne({username:data.username, password:data.password}, function(err, res)
-	{
-		if (res != null)
-		{
-			cb(true);
-		}
+	keys.arr = keys.toFlatArr();
+	keys.lowerCaseArr = keys.arr.toLowerCase();
+	rw = require("./server/reader_writer.js").init(db, keys);
+	content = require("./server/content.js").init(rw.readContent(), keys);
 
-		else cb(false);
-	});
-}
-
-var isUsernameTaken = function(data, cb)
-{
-	db.collection("accounts").find({username:data.username}, function(err, res)
-	{
-		if (res.length > 0)
-		{
-			cb(true);
-		}
-
-		else cb(false);
-	});
-}
-
-var isCharacterCreated = function(username, cb)
-{
-	db.collection("characters").findOne({username: username}, function(err, res)
-	{
-		if (err)
-		{
-			rw.log("Something went wrong when trying to find whether a character was created:\n\n" + err);
-			throw err;
-		}
-
-		if (res == null)
-		{
-			rw.log("No character created for username " + username + ".");
-			cb(null);
-		}
-
-		else cb(res);
-	});
-}
-
-var createCharacter = function(id, name, race)
-{
-	db.collection("characters").insert({})
-}
-
-var addUser = function(data, cb)
-{
-	db.collection("accounts").insertOne({username:data.username, password:data.password}, function(err)
+	db.find("characters", {}, function(err, charsFetched)
 	{
 		if (err)
 		{
-			rw.log("An error occurred when inserting user " + data.username + ":\n\n" + err);
+			cb("CRITICAL ERROR, server launch corrupted: " + err.name + ": in initializeServer(): " + err.message);
 			return;
 		}
 
-		cb();
+		characterModule = require("./server/character.js").init(db, content, keys, charsFetched);
+
+		db.find("players", {}, function(err, playersFetched)
+		{
+			if (err)
+			{
+				cb("CRITICAL ERROR, server launch corrupted: " + err.name + ": in initializeServer(): " + err.message);
+				return;
+			}
+
+			try
+			{
+				playersModule = require("./server/players.js").init(db, playersFetched, characterModule, keys);
+			}
+
+			catch(err)
+			{
+				cb("CRITICAL ERROR, server launch corrupted: " + err.name + ": in playersModule.initializeServer(): " + err.message);
+				return;
+			}
+
+			serv.listen(port);
+			wasLaunchedCorrectly = true;
+			rw.log("Server started.");
+		});
 	});
 }
 
-setInterval(function()
+function getInitPack()
 {
-  var pack;
+	var obj =
+	{
+		forms: content.getForms(keys.CAT_LIST, keys.CAT.START),
+		players: playersModule.getClientPack()
+	}
 
-  for (var id in SOCKET_LIST)
-  {
-    var socket = SOCKET_LIST[id];
-    socket.emit("update", pack);
-  }
+	return obj;
+}
 
-}, 1000/25);
+function signIn(data, socket)
+{
+	db.isValidPassword(data, function(res)
+	{
+		if (res !== true)
+		{
+			socket.emit("signInRejected");
+			return;
+		}
+
+		socket.emit("SignInAccepted");
+		socket.username = data.username;
+		attachChat(socket);
+		emitCharacters(data, socket);
+	});
+}
+
+function signUp(data, socket)
+{
+	db.isUsernameTaken(data, function(res)
+	{
+		if (res === false)
+		{
+			db.addUser(data, function()
+			{
+				socket.emit("signUpResponse", {success: true});
+			});
+		}
+
+		else socket.emit("signUpResponse", {success: false});
+	});
+}
+
+function emitCharacters(data, socket)
+{
+	if (playersModule.areCharactersCreated(data.username) === false)
+	{
+		socket.emit("createCharacters");
+		return;
+	}
+
+	//starting point for a client
+	var player = playersModule.list[data.username];
+	playersModule.addOnline(socket.id, player.username);
+	socket.emit("startGame");
+	socket.broadcast.emit("playerJoined", player.functionless());
+}
+
+function verifyCharacters(data, socket)
+{
+	var player = playersModule.create(socket);
+
+	characterModule.registerCharacters(data, player, function(err, verifiedCharacters)
+	{
+		if (err)
+		{
+			socket.emit("characterFail", err.name + ": in verifyCharacters(): " + err.message);
+			return;
+		}
+
+		playersModule.revive(player);
+		playersModule.addOnline(socket.id, player.username);
+		socket.emit("characterSuccess");
+		socket.broadcast.emit("playerJoined", player.functionless());
+	});
+}
+
+function attachChat(socket)
+{
+	socket.on("sendMsgToServer", function(data)
+	{
+		var msg = {name: socket.id, message: data};
+		io.emit("addToChat", msg);
+	});
+
+	socket.on("evalServer", function(data)
+	{
+		if (DEBUG === false)
+		{
+			return;
+		}
+
+		var res = eval(data);
+		socket.emit("evalAnswer", res);
+	});
+}

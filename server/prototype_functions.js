@@ -34,6 +34,65 @@ Object.defineProperty(Object.prototype, "toFlatArr",
   }
 });
 
+/*
+* Returns a cloned object without any function inside it.  Object prototype
+* function, so there are no arguments, it is simply called on the object in
+* question directly: objectToClone.functionless();
+*
+* WARNING:
+*
+*   Array properties with functions in them will either get cloned as an empty
+*   array if every item in them is a function, or they will get cloned containing
+*   only the items that are not functions, meaning that their index order will
+*   be altered!
+*/
+
+Object.defineProperty(Object.prototype, "functionless",
+{
+  value: function()
+  {
+    var clone = Object.assign({}, this);
+
+    (function loop(obj)
+    {
+      if (Array.isArray(obj) === true)
+      {
+      	var arrClone = [];
+
+        for (var i = 0; i < obj.length; i++)
+        {
+        	var result = loop(obj[i]);
+          if (result != null) arrClone.push(result);
+        }
+
+        return arrClone;
+      }
+
+      else if (typeof obj == "object")
+      {
+        for (var key in obj)
+        {
+          obj[key] = loop(obj[key]);
+          if (obj[key] == null) delete obj[key];
+        }
+
+        return obj;
+      }
+
+      else if (typeof obj != "function")
+      {
+      	console.log("Returning '" + obj + "'!");
+        return obj;
+      }
+
+      else return null;
+
+    })(clone);
+
+    return clone;
+  }
+});
+
 Array.prototype.toLowerCase = function()
 {
 	var lowerCaseArr = [];

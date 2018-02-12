@@ -1,5 +1,9 @@
 *.ini
 *.bat
+*.txt
+testapp.js
+module1.js
+module2.js
 /backups/*
 /games/*
 /bot.log.report

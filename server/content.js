@@ -1,5 +1,5 @@
 
-var keyIndex = null;
+var keys = null;
 
 module.exports =
 {
@@ -16,7 +16,7 @@ module.exports =
     this.forms = data.forms;
     this.trinkets = data.trinkets;
     this.weapons = data.weapons;
-    keyIndex = index;
+    keys = index;
     return this;
   },
 
@@ -53,5 +53,5 @@ function grab(type, key, value)
     return null;
   }
 
-  return module.exports[type].filter(function (form){ return form[key].includes(value); });
+  return module.exports[type].filter(function (item){ return item[key].includes(value); });
 }

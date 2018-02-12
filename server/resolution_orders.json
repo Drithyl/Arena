@@ -1,0 +1,39 @@
+
+{
+  "attack":
+  [
+    "awe",
+    "attackCheck",
+    "glamour",
+    "displacement",
+    "fireShield",
+    "ethereal",
+    "mrNegates",
+    "poisonBarbs",
+    "poisonSkin",
+    "damageCheck",
+    "twistFate",
+    "berserk",
+    "drain"
+  ],
+
+  "movement":
+  [
+
+  ],
+
+  "preTurn":
+  [
+    "regeneration",
+    "reinvigoration",
+    "heatAura",
+    "coldAura",
+    "poisonCloud",
+    "poisoned",
+    "onFire",
+    "freezing",
+    "unconscious",
+    "paralyzed",
+    "webbed"
+  ]
+}

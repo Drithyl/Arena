@@ -1,12 +1,14 @@
 const fs = require("fs");
 const event = require("../server/emitter.js");
-var keyIndex;
+var keys;
+var db;
 
 module.exports =
 {
-	init: function(index)
+	init: function(database, index)
 	{
-		keyIndex = index;
+		db = database;
+		keys = index;
 		return this;
 	},
 
@@ -52,7 +54,7 @@ module.exports =
 		return content;
 	},
 
-	importCSV: function(db, path, collectionName, cb = null)
+	importCSV: function(path, collectionName, cb = null)
 	{
 		var rawData = this.readFile(path);
 		var csvData;
@@ -64,57 +66,31 @@ module.exports =
 		}
 
 		csvData = this.parseCSV(rawData, CSVCellToVal);
-		saveCSV(db, csvData, collectionName, cb);
+		saveCSV(csvData, collectionName, cb);
 	},
 
-	dropAndImportCSV: function(db, path, collectionName, cb = null)
+	dropAndImportCSV: function(path, collection, cb = null)
 	{
 		var rawData = this.readFile(path);
 		var csvData;
 
 		if (rawData == null)
 		{
-			this.log("Failed to read raw CSV data from " + path);
+			cb(new Error("Failed to read raw CSV data from " + path), null);
 			return;
 		}
 
 		csvData = this.parseCSV(rawData, CSVCellToVal);
 
-		this.dropCSV(db, collectionName, function()
+		db.dropCSV(collection, function(err, res)
 		{
-			saveCSV(db, csvData, collectionName, cb);
-		});
-	},
-
-	dropCSV: function(db, collectionName, cb = null)
-	{
-		db.listCollections({name: collectionName}).toArray(function(err, arr)
-		{
-			if (arr.length > 0)
+			if (err)
 			{
-				db.collection(collectionName).drop(function(err, delOK)
-				{
-			    if (err)
-					{
-						throw err;
-					}
-
-			    if (delOK)
-					{
-						module.exports.log("Collection " + collectionName + " deleted");
-
-						if (cb != null)
-						{
-							cb();
-						}
-					}
-			  });
+				cb(err.name + ": in dropAndImportCSV(): " + err.message, null);
+				return;
 			}
 
-			else if (cb != null)
-			{
-				cb();
-			}
+			db.save(collection, csvData, cb);
 		});
 	},
 
@@ -408,7 +384,7 @@ function findMismatches(data)
 				chkArr.push("Data Index " + i + ": " + valChk);
 			}
 
-			if (isNaN(data[i][key]) === false || key == keyIndex.ID || key == keyIndex.NAME  || key == keyIndex.DESCR)
+			if (isNaN(data[i][key]) === false || key == keys.ID || key == keys.NAME  || key == keys.DESCR)
 			{
 				continue;
 			}
@@ -456,7 +432,7 @@ function findMismatches(data)
 
 function verifyKey(key)
 {
-	if (keyIndex.arr.includes(key) === true)
+	if (keys.arr.includes(key) === true)
 	{
 		return true;
 	}
@@ -466,14 +442,14 @@ function verifyKey(key)
 		return true;
 	}
 
-	else if (keyIndex.arr.includes(key) === false && keyIndex.lowerCaseArr.includes(key.toLowerCase()) === false)
+	else if (keys.arr.includes(key) === false && keys.lowerCaseArr.includes(key.toLowerCase()) === false)
 	{
 		return "The key " + key + " does not exist.";
 	}
 
-	else if (keyIndex.lowerCaseArr.includes(key.toLowerCase()) === true)
+	else if (keys.lowerCaseArr.includes(key.toLowerCase()) === true)
 	{
-		return "The key " + key + " exists but has the wrong capitalization. The proper one is " + keyIndex.arr[keyIndex.lowerCaseArr.indexOf(key.toLowerCase())];
+		return "The key " + key + " exists but has the wrong capitalization. The proper one is " + keys.arr[keys.lowerCaseArr.indexOf(key.toLowerCase())];
 	}
 
 	else
@@ -484,16 +460,16 @@ function verifyKey(key)
 
 function verifyValue(key, value)
 {
-	if (value === null && (key == keyIndex.CAT_LIST || key == keyIndex.TRANS_LIST || key == keyIndex.ON_HIT ||
-			key == keyIndex.ON_DMG || key == keyIndex.SLOT_TYPE || key == keyIndex.DESCR || key == keyIndex.AB_LIST ||
-			key == keyIndex.EFF_LIST || key == keyIndex.PATH_LIST || key == keyIndex.PROP_LIST || key == keyIndex.ATKS))
+	if (value === null && (key == keys.CAT_LIST || key == keys.TRANS_LIST || key == keys.ON_HIT ||
+			key == keys.ON_DMG || key == keys.SLOT_TYPE || key == keys.DESCR || key == keys.AB_LIST ||
+			key == keys.EFF_LIST || key == keys.PATH_LIST || key == keys.PROP_LIST || key == keys.ATKS))
 	{
 		//These fields can be left empty, which will yield a null value, without causing issues
 		return true;
 	}
 
-	else if (key == keyIndex.ID || key == keyIndex.NAME || key == keyIndex.SLOT_TYPE ||
-		  key == keyIndex.DESCR || key == keyIndex.AFF_PART)
+	else if (key == keys.ID || key == keys.NAME || key == keys.SLOT_TYPE ||
+		  key == keys.DESCR || key == keys.AFF_PART)
 	{
 		if (typeof value == "string")
 		{
@@ -503,13 +479,13 @@ function verifyValue(key, value)
 		else return "The value of key " + key + " is " + (typeof value) + ". Expected a string.";
 	}
 
-	else if (key == keyIndex.SHLD_PRT || key == keyIndex.DEF || key == keyIndex.PARRY ||
-					 key == keyIndex.ENC || key == keyIndex.REQ_SLOTS || key == keyIndex.RAR ||
-					 key == keyIndex.START_GOLD || key == keyIndex.START_POINTS ||
-					 key == keyIndex.TRANS_POINTS || key == keyIndex.SIZE || key == keyIndex.MAX_HP ||
-					 key == keyIndex.MR || key == keyIndex.MRL || key == keyIndex.STR ||
-					 key == keyIndex.ATK || key == keyIndex.PRC || key == keyIndex.AP ||
-				 	 key == keyIndex.DMG || key == keyIndex.LEN || key == keyIndex.NBR_ATKS)
+	else if (key == keys.SHLD_PRT || key == keys.DEF || key == keys.PARRY ||
+					 key == keys.ENC || key == keys.REQ_SLOTS || key == keys.RAR ||
+					 key == keys.START_GOLD || key == keys.START_POINTS ||
+					 key == keys.TRANS_POINTS || key == keys.SIZE || key == keys.MAX_HP ||
+					 key == keys.MR || key == keys.MRL || key == keys.STR ||
+					 key == keys.ATK || key == keys.PRC || key == keys.AP ||
+				 	 key == keys.DMG || key == keys.LEN || key == keys.NBR_ATKS)
 	{
 		if (isNaN(value) === false)
 		{
@@ -519,7 +495,7 @@ function verifyValue(key, value)
 		else return "The value of key " + key + " is " + (typeof value) + ". Expected a Number.";
 	}
 
-	else if (key == keyIndex.CAN_HEAL || key == keyIndex.CAN_RPL)
+	else if (key == keys.CAN_HEAL || key == keys.CAN_RPL)
 	{
 		if (value === true || value === false)
 		{
@@ -529,8 +505,8 @@ function verifyValue(key, value)
 		else return "The value of key " + key + " is " + (typeof value) + ". Expected a boolean.";
 	}
 
-	else if (key == keyIndex.CAT_LIST || key == keyIndex.TRANS_LIST || key == keyIndex.DMG_TYPE_LIST ||
-					 key == keyIndex.ON_HIT || key == keyIndex.PROP_LIST || key == keyIndex.ON_DMG)
+	else if (key == keys.CAT_LIST || key == keys.TRANS_LIST || key == keys.DMG_TYPE_LIST ||
+					 key == keys.ON_HIT || key == keys.PROP_LIST || key == keys.ON_DMG)
 	{
 		if (Array.isArray(value) === true)
 		{
@@ -548,9 +524,9 @@ function verifyValue(key, value)
 		else return "The value of key " + key + " is " + (typeof value) + ". Expected an Array.";
 	}
 
-	else if (key == keyIndex.ATKS || key == keyIndex.EFF_LIST || key == keyIndex.COST_LIST ||
-					 key == keyIndex.PRT || key == keyIndex.AB_LIST || key == keyIndex.PATH_LIST ||
-					 key == keyIndex.SLOT_LIST || key == keyIndex.PART_LIST)
+	else if (key == keys.ATKS || key == keys.EFF_LIST || key == keys.COST_LIST ||
+					 key == keys.PRT || key == keys.AB_LIST || key == keys.PATH_LIST ||
+					 key == keys.SLOT_LIST || key == keys.PART_LIST)
 	{
 		if (typeof value == "object" && Array.isArray(value) === false)
 		{
@@ -640,40 +616,20 @@ function CSVCellToVal(cell, header)
 
 	cell = cell.replace(/"/g, "");
 
-	if (header == keyIndex.CAT_LIST || header == keyIndex.TRANS_LIST || header == keyIndex.DMG_TYPE_LIST ||
-			header == keyIndex.ON_HIT || header == keyIndex.PROP_LIST || header == keyIndex.ON_DMG)
+	if (header == keys.CAT_LIST || header == keys.TRANS_LIST || header == keys.DMG_TYPE_LIST ||
+			header == keys.ON_HIT || header == keys.PROP_LIST || header == keys.ON_DMG)
 	{
 		return evalArray(cell.split(","));
 	}
 
-	else if (header == keyIndex.ATKS || header == keyIndex.EFF_LIST || header == keyIndex.COST_LIST ||
-					 header == keyIndex.PRT || header == keyIndex.AB_LIST || header == keyIndex.PATH_LIST ||
-					 header == keyIndex.SLOT_LIST || header == keyIndex.PART_LIST)
+	else if (header == keys.ATKS || header == keys.EFF_LIST || header == keys.COST_LIST ||
+					 header == keys.PRT || header == keys.AB_LIST || header == keys.PATH_LIST ||
+					 header == keys.SLOT_LIST || header == keys.PART_LIST)
 	{
 		return evalObj(cell.split(","));
 	}
 
 	else return evalPrimitive(cell);
-}
-
-function saveCSV(db, csvData, collectionName, cb = null)
-{
-	csvData.forEach(function(doc, index)
-	{
-		db.collection(collectionName).save(doc, {}, function(err, res)
-		{
-			if (err)
-			{
-				module.exports.log("An error occurred when saving csv document. The doc was:\n\n" + JSON.stringify(doc) + "\n\n. The error is:\n\n" + err);
-				return;
-			}
-
-			if (cb != null && index == csvData.length - 1)
-			{
-				cb();
-			}
-		});
-	});
 }
 
 /*******************READING SAVED DATA**********************/
