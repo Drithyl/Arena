@@ -31,7 +31,7 @@
 
     socket.on("connected", function(data)
     {
-      if (data == null || data.length == null || data.length <= 0)
+      if (data == null && data.length == null && data.length <= 0)
       {
         console.log("No data received from the server for the character creation!");
       }
