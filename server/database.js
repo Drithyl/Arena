@@ -160,7 +160,7 @@ module.exports =
 
   isUsernameTaken: function(data, cb)
   {
-  	db.collection("accounts").find({username:data.username}, function(err, res)
+  	db.collection("accounts").findOne({username:data.username}, function(err, res)
   	{
       if (err)
       {
@@ -168,12 +168,12 @@ module.exports =
         return;
       }
 
-  		if (res.length > 0)
+  		if (res == null)
   		{
-  			cb(null, true);
+        cb(null, false);
   		}
 
-  		else cb(null, false);
+  		else cb(null, true);
   	});
   },
 

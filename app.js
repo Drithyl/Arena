@@ -150,8 +150,14 @@ function getInitPack()
 
 function signIn(data, socket)
 {
-	db.isValidPassword(data, function(res)
+	db.isValidPassword(data, function(err, res)
 	{
+    if (err)
+    {
+      throw new Error("signIn() error: " + err.message);
+      return;
+    }
+
 		if (res !== true)
 		{
 			socket.emit("signInRejected");
@@ -167,8 +173,14 @@ function signIn(data, socket)
 
 function signUp(data, socket)
 {
-	db.isUsernameTaken(data, function(res)
+	db.isUsernameTaken(data, function(err, res)
 	{
+    if (err)
+    {
+      throw new Error("signIn() error: " + err.message);
+      return;
+    }
+
 		if (res === false)
 		{
 			db.addUser(data, function()
