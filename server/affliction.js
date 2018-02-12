@@ -4,9 +4,6 @@ var chanceMultiplier = 25;
 var chanceCap = 33;
 var severChance = chanceMultiplier * 0.75;
 var recuperationChance = 25;
-var healableAffl = {[ids.BATTLE_FRIGHT]: 1, [ids.CHEST_WOUND]: 1, [ids.DISEASED]: 1, [ids.DMGD_ARM()]: 1,
-										[ids.DMGD_EYE()]: 1, [ids.DMGD_HEAD()]: 1, [ids.DMGD_WING()]: 1,
-										[ids.LIMP]: 1, [ids.WEAKENED]: 1, [ids.TORN_WING()]: 1};
 
 module.exports =
 {
@@ -23,7 +20,7 @@ module.exports =
       return;
     }
 
-    var chance = Math.floor((pack.data.damage / Math.floor(t[ids.MAX_HP])) * chanceMultiplier).cap(chanceCap);
+    var chance = Math.floor((pack.data.damage / Math.floor(t[keys.MAX_HP])) * chanceMultiplier).cap(chanceCap);
   	var roll = Math.floor((Math.random() * 100)) + 1;
 
   	/*if (hitLoc.includes(ids.HEAD))

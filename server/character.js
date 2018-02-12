@@ -1,7 +1,8 @@
 
-const dice = require("./server/dice.js");
-const affliction = require("./server/affliction.js");
-const ruleset = require("./server/ruleset.js")
+const dice = require("./dice.js");
+//const affliction = require("./affliction.js");
+const ruleset = require("./ruleset.js");
+var keys;
 
 module.exports =
 {
@@ -13,9 +14,9 @@ module.exports =
 
   init: function(database, contentModule, index, charsFetched)
   {
+    keys = index;
     this.db = database;
     this.content = contentModule;
-    this.keys = index;
     this.list = charsFetched;
 
     for (var i = 0; i < this.list.length; i++)
@@ -381,7 +382,7 @@ function attachFunctions(character)
 function battleReady(t = this)
 {
   t.battle = {};
-  t.battle.position: [];
+  t.battle.position = [];
   t.battle[keys.FAT] = 0;
   t.battle.status = {};
   t.battle.equippedWpns = t[keys.SLOTS.HANDS].equipped.slice(0);

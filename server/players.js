@@ -1,17 +1,17 @@
 
 var characterModule;
+var keys;
+var db;
 
 module.exports =
 {
   online: {},
   list: {}, //populated by revivePlayers() (and revive() when a new player is created)
-  db: null,
-  keys: null,
 
   init: function(database, playersFetched, characterMod, index)
   {
-    this.db = database;
-    this.keys = index;
+    keys = index;
+    db = database;
     characterModule = characterMod;
 
     try
@@ -19,7 +19,10 @@ module.exports =
       revivePlayers(playersFetched);
     }
 
-    catch(err) throw err;
+    catch(err)
+    {
+      throw err;
+    }
 
     return this;
   },
@@ -27,7 +30,7 @@ module.exports =
   create: function(socket)
   {
     return {username: socket.username, socket: socket, characterKeys: []};
-  }
+  },
 
   areCharactersCreated: function(username)
   {
@@ -78,7 +81,11 @@ module.exports =
       player.characters = characterModule.reviveCharacters(player.username);
     }
 
-    catch(err) throw err;
+    catch(err)
+    {
+      throw err;
+    }
+
     this.list[player.username] = player;
   },
 
@@ -146,6 +153,11 @@ module.exports =
 
 function revivePlayers(players)
 {
+  if (players == null)
+  {
+    return;
+  }
+
   for (var i = 0; i < players.length; i++)
   {
     try
@@ -153,6 +165,9 @@ function revivePlayers(players)
       players[i] = module.exports.revive(players[i]);
     }
 
-    catch(err) throw err;
+    catch(err)
+    {
+      throw err;
+    }
   }
 }

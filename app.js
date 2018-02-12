@@ -121,12 +121,12 @@ function initializeServer(cb)
 
 			try
 			{
-				playersModule = require("./server/players.js").init(db, playersFetched, characterModule, keys);
+        playersModule = require("./server/players.js").init(db, playersFetched, characterModule, keys);
 			}
 
 			catch(err)
 			{
-				cb("CRITICAL ERROR, server launch corrupted: " + err.name + ": in playersModule.initializeServer(): " + err.message);
+				cb("CRITICAL ERROR, server launch corrupted: " + err.name + ": in playersModule.init(): " + err.message, null);
 				return;
 			}
 

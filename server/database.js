@@ -111,7 +111,7 @@ module.exports =
 		{
       if (err)
       {
-        cb(err.name + ": could not list collection: " collection + ". " + err.message, null);
+        cb(err.name + ": could not list collection: " + collection + ". " + err.message, null);
         return;
       }
 

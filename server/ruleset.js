@@ -1,7 +1,7 @@
 
 const fs = require('fs');
-const dice = require("./server/dice.js");
-const order = require("./server/resolution_order.json");
+const dice = require("./dice.js");
+const order = require("./resolution_orders.json");
 var strategies = [];
 var keys;
 
@@ -86,7 +86,7 @@ function modifyDamage(pack, result, isStun = false)
     result.damage = Math.floor(result.damage * (pack.target[keys.AB_LIST][keys.ABS.SLASH] / 100));
   }
 
-	if (result.hitLocation == keys.PARTS.ARM || result.hitLocation == keys.PARTS.LEG || result.hitLocation == keys.PARTS.WING) &&
+	if ((result.hitLocation == keys.PARTS.ARM || result.hitLocation == keys.PARTS.LEG || result.hitLocation == keys.PARTS.WING) &&
       result.damage > maxLimbDmg && isStun == false && result.damageType != keys.DMG_TYPE.STUN && result.damageType != keys.DMG_TYPE.POISON)
 	{
 		result.damage = maxLimbDmg;
