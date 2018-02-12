@@ -7,12 +7,12 @@
     attrValDiv: null,
     raceSelect: null,
     creationForm: null,
-    forms: {},
+    forms: null,
     valDivs: {},
 
-    initialize: function(data)
+    initialize: function(forms)
     {
-      CharCreation.forms = data;
+      CharCreation.forms = forms;
 
       socket.on("createCharacters", function()
       {
