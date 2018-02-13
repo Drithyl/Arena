@@ -11,7 +11,13 @@ module.exports =
 
   apply: function(pack, result)
   {
-    var fireShieldDmg;
+    var fireShieldWeapon =
+    {
+      [keys.NAME] = "Fire Shield",
+      [keys.DMG] = 0,
+      [keys.DMG_TYPE_LIST] = [[keys.DMG_TYPE.FIRE]],
+      [keys.PROP_LIST] = [[keys.PROPS.MAGICAL]]
+    }
 
     if (pack.target[keys.AB_LIST][keys.ABS.FIRE_SHLD] == null)
     {
@@ -24,7 +30,7 @@ module.exports =
       return;
     }
 
-		fireShieldDmg = pack.target[keys.AB_LIST][keys.ABS.FIRE_SHLD] - pack.data.currentWeapon[keys.LEN];
+		fireShieldWeapon[keys.DMG] = pack.target[keys.AB_LIST][keys.ABS.FIRE_SHLD] - pack.data.currentWeapon[keys.LEN];
 
     //the data passed to the damage arc has to be rebuilt with only the actor and target so that
     //data that would normally carry on won't override the data of the original attack by the actor,

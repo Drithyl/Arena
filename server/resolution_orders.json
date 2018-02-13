@@ -3,7 +3,7 @@
   "attack":
   [
     "awe",
-    "attackCheck",
+    "attack",
     "glamour",
     "displacement",
     "fireShield",
@@ -11,7 +11,7 @@
     "mrNegates",
     "poisonBarbs",
     "poisonSkin",
-    "damageCheck",
+    "damage",
     "twistFate",
     "berserk",
     "drain"

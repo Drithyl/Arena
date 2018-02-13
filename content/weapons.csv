@@ -229,6 +229,3 @@ e632,serpent mane,Gold (75),10,-2,0,0,5,Pierce,,e50,true,None,0,,"Extra, Strengt
 e634,moose antlers,Gold (11),0,-1,0,2,1,Slash,,,true,None,0,,Extra,0,Intrinsic
 e700,phase spider fangs,Gold (14),2,0,0,0,1,Pierce,,e52,false,None,0,,"Extra, Cannot-be-repelled",0,Intrinsic
 e701,phase Web,Gold (31),0,0,0,0,1,Web,,,false,None,0,Reload (2),"Extra, Magical, Size Resist, Strength not Added",0,Intrinsic
-e1000,Fire Shield,None,0,0,0,0,1,Fire,,,false,None,0,,Magical,0,Effects
-e1001,Poison Skin,None,20,0,0,0,1,Poison,,,false,None,0,,,0,Effects
-e1002,Poison Barbs,None,10,0,0,0,1,Poison,,,false,None,0,,,0,Effects

@@ -395,6 +395,15 @@ function damageArc(weapon, pack, result, t = this)
   if (result.damage < 0)
   {
     result.failed = true;
+    return;
+  }
+
+  if (pack.target.battle.status[keys.PROPS.TWIST_FATE] != null)
+  {
+    result.twistFate = true;
+    result.failed = true;
+    delete pack.target.battle.status[keys.PROPS.TWIST_FATE];
+    return;
   }
 
 	inflictDamage(pack, result, (weapon[ids.PROPS][ids.STUN]) ? true : false);

@@ -114,7 +114,12 @@ function fireShield(data, result)
 
   if (result.failed === true)
   {
-    template.string += locale.fireShield.fail + "\n";
+    if (result.twistFate === true)
+    {
+      template.string += locale.twistFate + "\n";
+    }
+
+    else template.string += locale.fireShield.fail + "\n";
   }
 
   else template.string += locale.fireShield.success + "\n";
@@ -153,5 +158,118 @@ function mrNegates(data, result)
   }
 
   else template.string += locale.meNegates.success + "\n";
+  return template;
+}
+
+function poisonBarbs(data, result)
+{
+  var template = {"string": "", "vars":
+  {
+    damageRoll: result.damageRoll,
+    protectionRoll: result.protectionRoll,
+    damageInflicted: result.damageInflicted,
+    damageType: result.damageType,
+    target: data.target[keys.NAME]
+  }};
+
+  template.string = locale.poisonBarbs.intro + "\n" + locale.poisonBarbs.check + "\n";
+
+  if (result.failed === true)
+  {
+    if (result.twistFate === true)
+    {
+      template.string += locale.twistFate + "\n";
+    }
+
+    else template.string += locale.poisonBarbs.fail + "\n";
+  }
+
+  else template.string += locale.poisonBarbs.success + "\n";
+  return template;
+}
+
+function poisonSkin(data, result)
+{
+  var template = {"string": "", "vars":
+  {
+    damageRoll: result.damageRoll,
+    protectionRoll: result.protectionRoll,
+    damageInflicted: result.damageInflicted,
+    damageType: result.damageType,
+    target: data.target[keys.NAME]
+  }};
+
+  template.string = locale.poisonSkin.intro + "\n" + locale.poisonSkin.check + "\n";
+
+  if (result.failed === true)
+  {
+    if (result.twistFate === true)
+    {
+      template.string += locale.twistFate + "\n";
+    }
+
+    else template.string += locale.poisonSkin.fail + "\n";
+  }
+
+  else template.string += locale.poisonSkin.success + "\n";
+  return template;
+}
+
+function damageCheck(data, result)
+{
+  var template = {"string": "", "vars":
+  {
+    damageRoll: result.damageRoll,
+    protectionRoll: result.protectionRoll,
+    damageInflicted: result.damageInflicted,
+    damageType: result.damageType
+  }};
+
+  template.string = locale.damage.check + "\n";
+
+  if (result.failed === true)
+  {
+    if (result.twistFate === true)
+    {
+      template.string += locale.twistFate + "\n";
+    }
+
+    else template.string += locale.damage.fail + "\n";
+  }
+
+  else template.string += locale.damage.success + "\n";
+  return template;
+}
+
+function berserk(data, result)
+{
+  var template = {"string": "", "vars":
+  {
+    moraleRoll: result.moraleRoll,
+    difficultyRoll: result.difficultyRoll,
+    actor: data.actor[keys.NAME]
+  }};
+
+  template.string = locale.berserk.check + "\n";
+
+  if (result.triggered === false)
+  {
+    template.string += locale.berserk.fail + "\n";
+  }
+
+  else template.string += locale.berserk.success + "\n";
+  return template;
+}
+
+function berserk(data, result)
+{
+  var template = {"string": "", "vars":
+  {
+    hpDrain: result.hpDrain,
+    fatigueDrain: result.fatigueDrain,
+    actor: data.actor[keys.NAME]
+  }};
+
+  template.string = locale.drain + "\n";
   return template;
 }

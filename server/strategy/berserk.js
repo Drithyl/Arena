@@ -25,9 +25,13 @@ module.exports =
 		result.moraleRoll = dice.DRN() + pack.target.getTotalMorale(true);
 		result.difficulty = dice.DRN() + 12;
 
-		if (result.moraleRoll > result.difficulty)
-		{
-			pack.target.battle.status[keys.ABS.BERSERK]] = pack.target[keys.AB_LIST][keys.ABS.BERSERK];
-		}
+    if (result.moraleRoll < result.difficulty)
+    {
+      result.triggered = false;
+      return;
+    }
+
+		pack.target.battle.status[keys.ABS.BERSERK]] = pack.target[keys.AB_LIST][keys.ABS.BERSERK];
+    result.triggered = true;
   }
 }

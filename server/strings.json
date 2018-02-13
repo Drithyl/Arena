@@ -1,0 +1,82 @@
+{
+  "awe":
+  {
+    "check": "Awe Check: Morale Roll ${this.moraleRoll} vs. ${this.aweRoll} Awe Roll.",
+    "fail": "${this.actor} failed to overcome ${this.target}'s awe-inspiring presence.",
+    "success": "${this.actor} resisted ${this.target}'s awe-inspiring presence."
+  },
+
+  "attack":
+  {
+    "check": "Attack Check: Attack Roll ${this.attackRoll} vs. ${this.defenceRoll} (${this.parry}) Defence Roll.",
+    "fail": "Attack failed.",
+    "success": "Attack landed successfully (location: ${this.hitLocation})."
+  },
+
+  "glamour":
+  {
+    "fail": "The target was an illusion. The attack has no effect.",
+    "success": "The attack bypassed glamour."
+  },
+
+  "displacement":
+  {
+    "fail": "The target was displaced. The attack has no effect.",
+    "success": "The attack bypassed displacement."
+  },
+
+  "fireShield":
+  {
+    "intro": "The attack is met with ${this.target}'s Fire Shield.",
+    "check": "Fire Shield Damage Check: Damage Roll ${this.damageRoll} vs. ${this.protectionRoll} Protection Roll.",
+    "fail": "No damage was inflicted.",
+    "success": "Inflicted ${this.damageInflicted} ${this.damageType} damage."
+  },
+
+  "ethereal":
+  {
+    "fail": "The attack goes through ${this.target}'s intangible body and has no effect.",
+    "success": "The attack bypasses ethereal."
+  },
+
+  "mrNegates":
+  {
+    "check": "MR Negates Check: Penetration Roll ${this.penetrationRoll} vs. ${mrRoll} MR Roll.",
+    "fail": "The attack is nullified and has no effect.",
+    "success": "The attack bypasses the magic resistance."
+  },
+
+  "poisonBarbs":
+  {
+    "intro": "The attacker is met with ${this.target}'s Poison Barbs.",
+    "check": "Poison Barbs Damage Check: Damage Roll ${this.damageRoll} vs. ${this.protectionRoll} Protection Roll.",
+    "fail": "No damage was inflicted.",
+    "success": "Inflicted ${this.damageInflicted} ${this.damageType} damage."
+  },
+
+  "poisonSkin":
+  {
+    "intro": "The attacker is affected by ${this.target}'s Poison Skin.",
+    "check": "Poison Skin Damage Check: Damage Roll ${this.damageRoll} vs. ${this.protectionRoll} Protection Roll.",
+    "fail": "No damage was inflicted.",
+    "success": "Inflicted ${this.damageInflicted} ${this.damageType} damage."
+  },
+
+  "damage":
+  {
+    "check": "Damage Check: Damage Roll ${this.damageRoll} vs. ${this.protectionRoll} Protection Roll.",
+    "fail": "No damage was inflicted.",
+    "success": "Inflicted ${this.damageInflicted} ${this.damageType} damage."
+  },
+
+  "twistFate": "The damage was negated by Twist Fate.",
+
+  "berserk":
+  {
+    "check": "Berserk Check: Morale Roll ${this.moraleRoll} vs. ${this.difficulty} Diffilty Roll.",
+    "fail": "${this.actor} fails to tap into his rage.",
+    "success": "${this.actor} goes berserk!"
+  },
+
+  "drain": "${this.actor} drains ${this.hpDrain} HP and restores ${this.fatigueDrain} fatigue."
+}

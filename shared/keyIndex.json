@@ -241,7 +241,8 @@
     "FIRE": "Rubies",
     "NATURE": "Emeralds",
     "WATER": "Sapphires",
-    "HOLY": "Piety"
+    "HOLY": "Piety",
+    "NONE": "None"
   },
 
   "DMG_TYPE":
