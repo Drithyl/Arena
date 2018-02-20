@@ -1,11 +1,13 @@
 
 var keys;
+var damageStrategy;
 
 module.exports =
 {
   init: function(index)
   {
     keys = index;
+    damageStrategy = require("./damage.js").init(keys);
     return this;
   },
 
@@ -35,6 +37,6 @@ module.exports =
     //data that would normally carry on won't override the data of the original attack by the actor,
     //since poison barbs resolves like a separate attack, on top of the fact that the actor and target
     //have to be swapped, since it's the original actor being targeted now
-		pack.actor.damageArc(poisonBarbsWeapon, {actor: pack.target, target: pack.actor, data: {}}, result);
+		damageStrategy.apply(poisonBarbsWeapon, {actor: pack.target, target: pack.actor, data: {}}, result);
   }
 }

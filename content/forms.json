@@ -25,7 +25,7 @@
     "Precision": 10,
     "Encumbrance": 3,
     "Action Points": 12,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": null,
     "Abilities": null,
     "Properties": null,
@@ -86,7 +86,7 @@
     "Precision": 11,
     "Encumbrance": 4,
     "Action Points": 8,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": null,
     "Abilities": {
       "Stealthy": 40
@@ -144,7 +144,7 @@
     "Precision": 8,
     "Encumbrance": 2,
     "Action Points": 12,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": null,
     "Abilities": null,
     "Properties": [
@@ -198,7 +198,7 @@
     "Precision": 10,
     "Encumbrance": 3,
     "Action Points": 10,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": null,
     "Abilities": {
       "Darkvision": 50,
@@ -258,7 +258,7 @@
     "Precision": 10,
     "Encumbrance": 4,
     "Action Points": 10,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": null,
     "Abilities": {
       "Poison Resistance": 5
@@ -318,7 +318,7 @@
     "Precision": 8,
     "Encumbrance": 3,
     "Action Points": 11,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": null,
     "Abilities": {
       "Fire Resistance": 15
@@ -375,7 +375,7 @@
     "Precision": 7,
     "Encumbrance": 2,
     "Action Points": 11,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": null,
     "Abilities": {
       "Darkvision": 50,
@@ -435,7 +435,7 @@
     "Precision": 9,
     "Encumbrance": 2,
     "Action Points": 13,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": null,
     "Abilities": {
       "Berserk": 2,
@@ -490,7 +490,7 @@
     "Precision": 7,
     "Encumbrance": 2,
     "Action Points": 12,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": null,
     "Abilities": {
       "Darkvision": 50,
@@ -546,7 +546,7 @@
     "Precision": 10,
     "Encumbrance": 2,
     "Action Points": 11,
-    "Attacks": {
+    "Natural Weapons": {
       "e320": 1
     },
     "Paths": null,
@@ -607,7 +607,7 @@
     "Precision": 7,
     "Encumbrance": 0,
     "Action Points": 12,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": null,
     "Abilities": {
       "Heat Aura": 3,
@@ -666,7 +666,7 @@
     "Precision": 10,
     "Encumbrance": 3,
     "Action Points": 14,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": null,
     "Abilities": {
       "Stealthy": 40
@@ -725,7 +725,7 @@
     "Precision": 10,
     "Encumbrance": 1,
     "Action Points": 7,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": null,
     "Abilities": {
       "Chaos Power": 1,
@@ -784,7 +784,7 @@
     "Precision": 10,
     "Encumbrance": 0,
     "Action Points": 7,
-    "Attacks": {
+    "Natural Weapons": {
       "e67": 1
     },
     "Paths": null,
@@ -844,7 +844,7 @@
     "Precision": 8,
     "Encumbrance": 1,
     "Action Points": 10,
-    "Attacks": {
+    "Natural Weapons": {
       "e160": 1
     },
     "Paths": null,
@@ -903,7 +903,7 @@
     "Precision": 8,
     "Encumbrance": 0,
     "Action Points": 10,
-    "Attacks": {
+    "Natural Weapons": {
       "e67": 1
     },
     "Paths": null,
@@ -962,7 +962,7 @@
     "Precision": 8,
     "Encumbrance": 1,
     "Action Points": 10,
-    "Attacks": {
+    "Natural Weapons": {
       "e383": 1
     },
     "Paths": null,
@@ -1021,7 +1021,7 @@
     "Precision": 8,
     "Encumbrance": 0,
     "Action Points": 10,
-    "Attacks": {
+    "Natural Weapons": {
       "e67": 1
     },
     "Paths": null,
@@ -1080,7 +1080,7 @@
     "Precision": 9,
     "Encumbrance": 1,
     "Action Points": 14,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": null,
     "Abilities": {
       "Chaos Power": 1,
@@ -1136,7 +1136,7 @@
     "Precision": 9,
     "Encumbrance": 0,
     "Action Points": 14,
-    "Attacks": {
+    "Natural Weapons": {
       "e67": 1
     },
     "Paths": null,
@@ -1195,7 +1195,7 @@
     "Precision": 9,
     "Encumbrance": 1,
     "Action Points": 14,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": null,
     "Abilities": {
       "Chaos Power": 1,
@@ -1253,7 +1253,7 @@
     "Precision": 9,
     "Encumbrance": 0,
     "Action Points": 14,
-    "Attacks": {
+    "Natural Weapons": {
       "e67": 1
     },
     "Paths": null,
@@ -1314,7 +1314,7 @@
     "Precision": 10,
     "Encumbrance": 2,
     "Action Points": 14,
-    "Attacks": {
+    "Natural Weapons": {
       "e529": 2
     },
     "Paths": null,
@@ -1373,7 +1373,7 @@
     "Precision": 10,
     "Encumbrance": 2,
     "Action Points": 14,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": null,
     "Abilities": {
       "Darkvision": 50
@@ -1426,7 +1426,7 @@
     "Precision": 8,
     "Encumbrance": 2,
     "Action Points": 14,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": null,
     "Abilities": {
       "Darkvision": 50
@@ -1479,7 +1479,7 @@
     "Precision": 8,
     "Encumbrance": 3,
     "Action Points": 12,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": null,
     "Abilities": {
       "Darkvision": 50
@@ -1538,7 +1538,7 @@
     "Precision": 7,
     "Encumbrance": 3,
     "Action Points": 9,
-    "Attacks": {
+    "Natural Weapons": {
       "e20": 1,
       "e29": 1
     },
@@ -1601,7 +1601,7 @@
     "Precision": 8,
     "Encumbrance": 3,
     "Action Points": 11,
-    "Attacks": {
+    "Natural Weapons": {
       "e29": 2
     },
     "Paths": null,
@@ -1662,7 +1662,7 @@
     "Precision": 8,
     "Encumbrance": 3,
     "Action Points": 12,
-    "Attacks": {
+    "Natural Weapons": {
       "e20": 1,
       "e29": 2
     },
@@ -1724,7 +1724,7 @@
     "Precision": 8,
     "Encumbrance": 3,
     "Action Points": 12,
-    "Attacks": {
+    "Natural Weapons": {
       "e20": 1,
       "e29": 2
     },
@@ -1782,7 +1782,7 @@
     "Precision": 10,
     "Encumbrance": 3,
     "Action Points": 10,
-    "Attacks": {
+    "Natural Weapons": {
       "e543": 1
     },
     "Paths": {
@@ -1843,7 +1843,7 @@
     "Precision": 11,
     "Encumbrance": 4,
     "Action Points": 10,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": null,
     "Abilities": {
       "Darkvision": 50,
@@ -1898,7 +1898,7 @@
     "Precision": 8,
     "Encumbrance": 4,
     "Action Points": 11,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": null,
     "Abilities": {
       "Darkvision": 100
@@ -1954,7 +1954,7 @@
     "Precision": 8,
     "Encumbrance": 4,
     "Action Points": 10,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": null,
     "Abilities": {
       "Darkvision": 100
@@ -2013,7 +2013,7 @@
     "Precision": 12,
     "Encumbrance": 3,
     "Action Points": 30,
-    "Attacks": {
+    "Natural Weapons": {
       "e55": 1
     },
     "Paths": null,
@@ -2071,7 +2071,7 @@
     "Precision": 13,
     "Encumbrance": 3,
     "Action Points": 32,
-    "Attacks": {
+    "Natural Weapons": {
       "e55": 1
     },
     "Paths": null,
@@ -2131,7 +2131,7 @@
     "Precision": 13,
     "Encumbrance": 3,
     "Action Points": 30,
-    "Attacks": {
+    "Natural Weapons": {
       "e55": 1
     },
     "Paths": null,
@@ -2187,7 +2187,7 @@
     "Precision": 13,
     "Encumbrance": 3,
     "Action Points": 32,
-    "Attacks": {
+    "Natural Weapons": {
       "e55": 1
     },
     "Paths": {
@@ -2248,7 +2248,7 @@
     "Precision": 10,
     "Encumbrance": 2,
     "Action Points": 14,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": null,
     "Abilities": {
       "Berserk": 1,
@@ -2304,7 +2304,7 @@
     "Precision": 13,
     "Encumbrance": 3,
     "Action Points": 32,
-    "Attacks": {
+    "Natural Weapons": {
       "e55": 1
     },
     "Paths": {
@@ -2366,7 +2366,7 @@
     "Precision": 8,
     "Encumbrance": 3,
     "Action Points": 15,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": null,
     "Abilities": {
       "Berserk": 4
@@ -2424,7 +2424,7 @@
     "Precision": 8,
     "Encumbrance": 3,
     "Action Points": 15,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": null,
     "Abilities": null,
     "Properties": [
@@ -2480,7 +2480,7 @@
     "Precision": 8,
     "Encumbrance": 3,
     "Action Points": 15,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": null,
     "Abilities": {
       "Berserk": 4
@@ -2537,7 +2537,7 @@
     "Precision": 10,
     "Encumbrance": 0,
     "Action Points": 11,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": null,
     "Abilities": {
       "Cold Resistance": 15,
@@ -2597,7 +2597,7 @@
     "Precision": 10,
     "Encumbrance": 0,
     "Action Points": 10,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": null,
     "Abilities": {
       "Cold Resistance": 15,
@@ -2657,7 +2657,7 @@
     "Precision": 10,
     "Encumbrance": 0,
     "Action Points": 11,
-    "Attacks": {
+    "Natural Weapons": {
       "e20": 1
     },
     "Paths": null,
@@ -2719,7 +2719,7 @@
     "Precision": 5,
     "Encumbrance": 0,
     "Action Points": 14,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": null,
     "Abilities": {
       "Cold Resistance": 15,
@@ -2779,7 +2779,7 @@
     "Precision": 5,
     "Encumbrance": 0,
     "Action Points": 12,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": null,
     "Abilities": {
       "Cold Resistance": 15,
@@ -2839,7 +2839,7 @@
     "Precision": 8,
     "Encumbrance": 0,
     "Action Points": 10,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": null,
     "Abilities": {
       "Cold Resistance": 15,
@@ -2899,7 +2899,7 @@
     "Precision": 10,
     "Encumbrance": 0,
     "Action Points": 10,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": null,
     "Abilities": {
       "Cold Resistance": 15,
@@ -2959,7 +2959,7 @@
     "Precision": 9,
     "Encumbrance": 0,
     "Action Points": 11,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": null,
     "Abilities": {
       "Cold Resistance": 15,
@@ -3020,7 +3020,7 @@
     "Precision": 12,
     "Encumbrance": 0,
     "Action Points": 13,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": null,
     "Abilities": {
       "Cold Resistance": 15,
@@ -3077,7 +3077,7 @@
     "Precision": 5,
     "Encumbrance": 2,
     "Action Points": 24,
-    "Attacks": {
+    "Natural Weapons": {
       "e322": 1
     },
     "Paths": null,
@@ -3125,7 +3125,7 @@
     "Precision": 5,
     "Encumbrance": 2,
     "Action Points": 12,
-    "Attacks": {
+    "Natural Weapons": {
       "e322": 1
     },
     "Paths": null,
@@ -3180,7 +3180,7 @@
     "Precision": 5,
     "Encumbrance": 2,
     "Action Points": 26,
-    "Attacks": {
+    "Natural Weapons": {
       "e322": 1
     },
     "Paths": null,
@@ -3232,7 +3232,7 @@
     "Precision": 5,
     "Encumbrance": 2,
     "Action Points": 24,
-    "Attacks": {
+    "Natural Weapons": {
       "e322": 1
     },
     "Paths": null,
@@ -3284,7 +3284,7 @@
     "Precision": 5,
     "Encumbrance": 2,
     "Action Points": 28,
-    "Attacks": {
+    "Natural Weapons": {
       "e322": 1
     },
     "Paths": null,
@@ -3339,7 +3339,7 @@
     "Precision": 5,
     "Encumbrance": 2,
     "Action Points": 28,
-    "Attacks": {
+    "Natural Weapons": {
       "e322": 1
     },
     "Paths": null,
@@ -3393,7 +3393,7 @@
     "Precision": 5,
     "Encumbrance": 2,
     "Action Points": 26,
-    "Attacks": {
+    "Natural Weapons": {
       "e223": 1
     },
     "Paths": null,
@@ -3450,7 +3450,7 @@
     "Precision": 5,
     "Encumbrance": 2,
     "Action Points": 28,
-    "Attacks": {
+    "Natural Weapons": {
       "e322": 1,
       "e29": 1
     },
@@ -3506,7 +3506,7 @@
     "Precision": 10,
     "Encumbrance": 2,
     "Action Points": 13,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": null,
     "Abilities": {
       "Regeneration": 2,
@@ -3560,7 +3560,7 @@
     "Precision": 5,
     "Encumbrance": 2,
     "Action Points": 14,
-    "Attacks": {
+    "Natural Weapons": {
       "e20": 1,
       "e29": 2
     },
@@ -3615,7 +3615,7 @@
     "Precision": 10,
     "Encumbrance": 3,
     "Action Points": 10,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": null,
     "Abilities": {
       "Stealthy": 40
@@ -3674,7 +3674,7 @@
     "Precision": 10,
     "Encumbrance": 4,
     "Action Points": 11,
-    "Attacks": {
+    "Natural Weapons": {
       "e20": 1
     },
     "Paths": null,
@@ -3735,7 +3735,7 @@
     "Precision": 10,
     "Encumbrance": 3,
     "Action Points": 12,
-    "Attacks": {
+    "Natural Weapons": {
       "e63": 1,
       "e29": 1
     },
@@ -3795,7 +3795,7 @@
     "Precision": 10,
     "Encumbrance": 3,
     "Action Points": 8,
-    "Attacks": {
+    "Natural Weapons": {
       "e239": 1
     },
     "Paths": null,
@@ -3849,7 +3849,7 @@
     "Precision": 10,
     "Encumbrance": 4,
     "Action Points": 10,
-    "Attacks": {
+    "Natural Weapons": {
       "e239": 1
     },
     "Paths": null,
@@ -3908,7 +3908,7 @@
     "Precision": 7,
     "Encumbrance": 3,
     "Action Points": 10,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": null,
     "Abilities": {
       "Darkvision": 100,
@@ -3971,7 +3971,7 @@
     "Precision": 8,
     "Encumbrance": 4,
     "Action Points": 12,
-    "Attacks": {
+    "Natural Weapons": {
       "e20": 1
     },
     "Paths": null,
@@ -4031,7 +4031,7 @@
     "Precision": 8,
     "Encumbrance": 4,
     "Action Points": 12,
-    "Attacks": {
+    "Natural Weapons": {
       "e20": 1
     },
     "Paths": null,
@@ -4087,7 +4087,7 @@
     "Precision": 5,
     "Encumbrance": 2,
     "Action Points": 16,
-    "Attacks": {
+    "Natural Weapons": {
       "e29": 2
     },
     "Paths": null,
@@ -4144,7 +4144,7 @@
     "Precision": 5,
     "Encumbrance": 2,
     "Action Points": 16,
-    "Attacks": {
+    "Natural Weapons": {
       "e29": 2
     },
     "Paths": null,
@@ -4199,7 +4199,7 @@
     "Precision": 5,
     "Encumbrance": 2,
     "Action Points": 14,
-    "Attacks": {
+    "Natural Weapons": {
       "e65": 1,
       "e261": 1
     },
@@ -4256,7 +4256,7 @@
     "Precision": 10,
     "Encumbrance": 2,
     "Action Points": 14,
-    "Attacks": {
+    "Natural Weapons": {
       "e65": 1,
       "e261": 1
     },
@@ -4312,7 +4312,7 @@
     "Precision": 5,
     "Encumbrance": 2,
     "Action Points": 22,
-    "Attacks": {
+    "Natural Weapons": {
       "e65": 1,
       "e261": 1
     },
@@ -4366,7 +4366,7 @@
     "Precision": 3,
     "Encumbrance": 2,
     "Action Points": 8,
-    "Attacks": {
+    "Natural Weapons": {
       "e29": 1,
       "e423": 1
     },
@@ -4425,7 +4425,7 @@
     "Precision": 3,
     "Encumbrance": 2,
     "Action Points": 8,
-    "Attacks": {
+    "Natural Weapons": {
       "e29": 1,
       "e423": 1
     },
@@ -4481,7 +4481,7 @@
     "Precision": 10,
     "Encumbrance": 3,
     "Action Points": 14,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": null,
     "Abilities": {
       "Cold Resistance": 5
@@ -4535,7 +4535,7 @@
     "Precision": 10,
     "Encumbrance": 3,
     "Action Points": 10,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": null,
     "Abilities": null,
     "Properties": [
@@ -4592,7 +4592,7 @@
     "Precision": 9,
     "Encumbrance": 3,
     "Action Points": 10,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": null,
     "Abilities": null,
     "Properties": [
@@ -4644,7 +4644,7 @@
     "Precision": 9,
     "Encumbrance": 3,
     "Action Points": 10,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": null,
     "Abilities": {
       "Darkvision": 50
@@ -4698,7 +4698,7 @@
     "Precision": 10,
     "Encumbrance": 3,
     "Action Points": 10,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": null,
     "Abilities": {
       "Reincarnation": 1
@@ -4753,7 +4753,7 @@
     "Precision": 5,
     "Encumbrance": 3,
     "Action Points": 20,
-    "Attacks": {
+    "Natural Weapons": {
       "e29": 1,
       "e322": 1
     },
@@ -4806,7 +4806,7 @@
     "Precision": 5,
     "Encumbrance": 1,
     "Action Points": 18,
-    "Attacks": {
+    "Natural Weapons": {
       "e29": 1,
       "e322": 1
     },
@@ -4865,7 +4865,7 @@
     "Precision": 12,
     "Encumbrance": 0,
     "Action Points": 18,
-    "Attacks": {
+    "Natural Weapons": {
       "e29": 1,
       "e322": 1
     },
@@ -4925,7 +4925,7 @@
     "Precision": 5,
     "Encumbrance": 0,
     "Action Points": 18,
-    "Attacks": {
+    "Natural Weapons": {
       "e29": 1,
       "e322": 1
     },
@@ -4989,7 +4989,7 @@
     "Precision": 12,
     "Encumbrance": 3,
     "Action Points": 15,
-    "Attacks": {
+    "Natural Weapons": {
       "e29": 1,
       "e322": 1
     },
@@ -5047,7 +5047,7 @@
     "Precision": 10,
     "Encumbrance": 2,
     "Action Points": 22,
-    "Attacks": {
+    "Natural Weapons": {
       "e29": 2,
       "e322": 1
     },
@@ -5103,7 +5103,7 @@
     "Precision": 5,
     "Encumbrance": 5,
     "Action Points": 7,
-    "Attacks": {
+    "Natural Weapons": {
       "e322": 1
     },
     "Paths": null,
@@ -5159,7 +5159,7 @@
     "Precision": 5,
     "Encumbrance": 5,
     "Action Points": 5,
-    "Attacks": {
+    "Natural Weapons": {
       "e603": 1
     },
     "Paths": null,
@@ -5213,7 +5213,7 @@
     "Precision": 10,
     "Encumbrance": 3,
     "Action Points": 8,
-    "Attacks": {
+    "Natural Weapons": {
       "e322": 1
     },
     "Paths": null,
@@ -5268,7 +5268,7 @@
     "Precision": 5,
     "Encumbrance": 2,
     "Action Points": 10,
-    "Attacks": {
+    "Natural Weapons": {
       "e273": 1
     },
     "Paths": null,
@@ -5323,7 +5323,7 @@
     "Precision": 8,
     "Encumbrance": 4,
     "Action Points": 8,
-    "Attacks": {
+    "Natural Weapons": {
       "e323": 1
     },
     "Paths": null,
@@ -5382,7 +5382,7 @@
     "Precision": 8,
     "Encumbrance": 4,
     "Action Points": 8,
-    "Attacks": {
+    "Natural Weapons": {
       "e322": 1
     },
     "Paths": null,
@@ -5437,7 +5437,7 @@
     "Precision": 8,
     "Encumbrance": 4,
     "Action Points": 9,
-    "Attacks": {
+    "Natural Weapons": {
       "e323": 1
     },
     "Paths": {
@@ -5500,7 +5500,7 @@
     "Precision": 10,
     "Encumbrance": 3,
     "Action Points": 7,
-    "Attacks": {
+    "Natural Weapons": {
       "e322": 1,
       "e203": 1
     },
@@ -5562,7 +5562,7 @@
     "Precision": 10,
     "Encumbrance": 3,
     "Action Points": 12,
-    "Attacks": {
+    "Natural Weapons": {
       "e511": 1
     },
     "Paths": {
@@ -5619,7 +5619,7 @@
     "Precision": 5,
     "Encumbrance": 2,
     "Action Points": 12,
-    "Attacks": {
+    "Natural Weapons": {
       "e322": 1
     },
     "Paths": null,
@@ -5683,7 +5683,7 @@
     "Precision": 8,
     "Encumbrance": 3,
     "Action Points": 10,
-    "Attacks": {
+    "Natural Weapons": {
       "e85": 1
     },
     "Paths": null,
@@ -5738,7 +5738,7 @@
     "Precision": 7,
     "Encumbrance": 3,
     "Action Points": 10,
-    "Attacks": {
+    "Natural Weapons": {
       "e63": 1
     },
     "Paths": {
@@ -5801,7 +5801,7 @@
     "Precision": 9,
     "Encumbrance": 3,
     "Action Points": 14,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": null,
     "Abilities": {
       "Darkvision": 50,
@@ -5857,7 +5857,7 @@
     "Precision": 5,
     "Encumbrance": 2,
     "Action Points": 14,
-    "Attacks": {
+    "Natural Weapons": {
       "e29": 1,
       "e322": 1
     },
@@ -5913,7 +5913,7 @@
     "Precision": 8,
     "Encumbrance": 2,
     "Action Points": 14,
-    "Attacks": {
+    "Natural Weapons": {
       "e387": 1
     },
     "Paths": {
@@ -5974,7 +5974,7 @@
     "Precision": 5,
     "Encumbrance": 0,
     "Action Points": 6,
-    "Attacks": {
+    "Natural Weapons": {
       "e29": 1,
       "e71": 1
     },
@@ -6038,7 +6038,7 @@
     "Precision": 5,
     "Encumbrance": 0,
     "Action Points": 6,
-    "Attacks": {
+    "Natural Weapons": {
       "e29": 1,
       "e71": 2
     },
@@ -6101,7 +6101,7 @@
     "Precision": 10,
     "Encumbrance": 0,
     "Action Points": 6,
-    "Attacks": {
+    "Natural Weapons": {
       "e71": 4
     },
     "Paths": {
@@ -6160,7 +6160,7 @@
     "Precision": 5,
     "Encumbrance": 0,
     "Action Points": 8,
-    "Attacks": {
+    "Natural Weapons": {
       "e29": 1,
       "e71": 1
     },
@@ -6224,7 +6224,7 @@
     "Precision": 5,
     "Encumbrance": 0,
     "Action Points": 3,
-    "Attacks": {
+    "Natural Weapons": {
       "e71": 2
     },
     "Paths": null,
@@ -6284,7 +6284,7 @@
     "Precision": 10,
     "Encumbrance": 3,
     "Action Points": 14,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": null,
     "Abilities": {
       "Stealthy": 40
@@ -6342,7 +6342,7 @@
     "Precision": 8,
     "Encumbrance": 3,
     "Action Points": 15,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": null,
     "Abilities": {
       "Berserk": 2
@@ -6398,7 +6398,7 @@
     "Precision": 12,
     "Encumbrance": 3,
     "Action Points": 30,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": null,
     "Abilities": null,
     "Properties": [
@@ -6449,7 +6449,7 @@
     "Precision": 8,
     "Encumbrance": 3,
     "Action Points": 8,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": null,
     "Abilities": null,
     "Properties": [
@@ -6504,7 +6504,7 @@
     "Precision": 10,
     "Encumbrance": 3,
     "Action Points": 14,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": null,
     "Abilities": null,
     "Properties": [
@@ -6558,7 +6558,7 @@
     "Precision": 10,
     "Encumbrance": 3,
     "Action Points": 14,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": null,
     "Abilities": null,
     "Properties": [
@@ -6613,7 +6613,7 @@
     "Precision": 10,
     "Encumbrance": 3,
     "Action Points": 14,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": null,
     "Abilities": {
       "Fire Resistance": 3
@@ -6671,7 +6671,7 @@
     "Precision": 10,
     "Encumbrance": 3,
     "Action Points": 16,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": null,
     "Abilities": {
       "Fire Resistance": 5
@@ -6731,7 +6731,7 @@
     "Precision": 10,
     "Encumbrance": 3,
     "Action Points": 16,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": null,
     "Abilities": {
       "Fire Resistance": 5
@@ -6791,7 +6791,7 @@
     "Precision": 10,
     "Encumbrance": 3,
     "Action Points": 16,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": null,
     "Abilities": {
       "Fire Resistance": 5
@@ -6851,7 +6851,7 @@
     "Precision": 10,
     "Encumbrance": 2,
     "Action Points": 16,
-    "Attacks": {
+    "Natural Weapons": {
       "e331": 1
     },
     "Paths": null,
@@ -6909,7 +6909,7 @@
     "Precision": 10,
     "Encumbrance": 2,
     "Action Points": 16,
-    "Attacks": {
+    "Natural Weapons": {
       "e331": 1
     },
     "Paths": null,
@@ -6968,7 +6968,7 @@
     "Precision": 10,
     "Encumbrance": 2,
     "Action Points": 16,
-    "Attacks": {
+    "Natural Weapons": {
       "e331": 1
     },
     "Paths": {
@@ -7032,7 +7032,7 @@
     "Precision": 10,
     "Encumbrance": 2,
     "Action Points": 16,
-    "Attacks": {
+    "Natural Weapons": {
       "e331": 1
     },
     "Paths": {
@@ -7096,7 +7096,7 @@
     "Precision": 10,
     "Encumbrance": 2,
     "Action Points": 16,
-    "Attacks": {
+    "Natural Weapons": {
       "e331": 1
     },
     "Paths": {
@@ -7160,7 +7160,7 @@
     "Precision": 10,
     "Encumbrance": 2,
     "Action Points": 16,
-    "Attacks": {
+    "Natural Weapons": {
       "e331": 1
     },
     "Paths": null,
@@ -7218,7 +7218,7 @@
     "Precision": 13,
     "Encumbrance": 1,
     "Action Points": 20,
-    "Attacks": {
+    "Natural Weapons": {
       "e522": 1
     },
     "Paths": {
@@ -7279,7 +7279,7 @@
     "Precision": 13,
     "Encumbrance": 1,
     "Action Points": 20,
-    "Attacks": {
+    "Natural Weapons": {
       "e522": 1
     },
     "Paths": {
@@ -7342,7 +7342,7 @@
     "Precision": 15,
     "Encumbrance": 1,
     "Action Points": 20,
-    "Attacks": {
+    "Natural Weapons": {
       "e522": 1
     },
     "Paths": {
@@ -7404,7 +7404,7 @@
     "Precision": 13,
     "Encumbrance": 1,
     "Action Points": 20,
-    "Attacks": {
+    "Natural Weapons": {
       "e522": 1
     },
     "Paths": {
@@ -7466,7 +7466,7 @@
     "Precision": 13,
     "Encumbrance": 1,
     "Action Points": 20,
-    "Attacks": {
+    "Natural Weapons": {
       "e522": 1
     },
     "Paths": {
@@ -7529,7 +7529,7 @@
     "Precision": 13,
     "Encumbrance": 1,
     "Action Points": 20,
-    "Attacks": {
+    "Natural Weapons": {
       "e320": 1,
       "e522": 1
     },
@@ -7592,7 +7592,7 @@
     "Precision": 7,
     "Encumbrance": 2,
     "Action Points": 8,
-    "Attacks": {
+    "Natural Weapons": {
       "e29": 2
     },
     "Paths": null,
@@ -7651,7 +7651,7 @@
     "Precision": 10,
     "Encumbrance": 3,
     "Action Points": 13,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": null,
     "Abilities": null,
     "Properties": null,
@@ -7703,7 +7703,7 @@
     "Precision": 12,
     "Encumbrance": 3,
     "Action Points": 13,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": null,
     "Abilities": {
       "Darkvision": 50,
@@ -7764,7 +7764,7 @@
     "Precision": 12,
     "Encumbrance": 3,
     "Action Points": 13,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": {
       "Air": 1.25,
       "Earth": 0.25,
@@ -7826,7 +7826,7 @@
     "Precision": 12,
     "Encumbrance": 3,
     "Action Points": 13,
-    "Attacks": {
+    "Natural Weapons": {
       "e63": 1
     },
     "Paths": {
@@ -7888,7 +7888,7 @@
     "Precision": 12,
     "Encumbrance": 3,
     "Action Points": 13,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": null,
     "Abilities": {
       "Darkvision": 50,
@@ -7944,7 +7944,7 @@
     "Precision": 12,
     "Encumbrance": 3,
     "Action Points": 13,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": null,
     "Abilities": {
       "Darkvision": 50,
@@ -8003,7 +8003,7 @@
     "Precision": 15,
     "Encumbrance": 0,
     "Action Points": 14,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": null,
     "Abilities": {
       "Fear": 5,
@@ -8062,7 +8062,7 @@
     "Precision": 12,
     "Encumbrance": 3,
     "Action Points": 13,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": null,
     "Abilities": {
       "Stealthy": 65
@@ -8118,7 +8118,7 @@
     "Precision": 13,
     "Encumbrance": 3,
     "Action Points": 13,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": null,
     "Abilities": {
       "Stealthy": 65
@@ -8175,7 +8175,7 @@
     "Precision": 12,
     "Encumbrance": 3,
     "Action Points": 13,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": null,
     "Abilities": {
       "Darkvision": 50,
@@ -8228,7 +8228,7 @@
     "Precision": 5,
     "Encumbrance": 2,
     "Action Points": 14,
-    "Attacks": {
+    "Natural Weapons": {
       "e331": 1
     },
     "Paths": null,
@@ -8278,7 +8278,7 @@
     "Precision": 8,
     "Encumbrance": 3,
     "Action Points": 4,
-    "Attacks": {
+    "Natural Weapons": {
       "e29": 2
     },
     "Paths": null,
@@ -8335,7 +8335,7 @@
     "Precision": 10,
     "Encumbrance": 1,
     "Action Points": 7,
-    "Attacks": {
+    "Natural Weapons": {
       "e29": 2
     },
     "Paths": null,
@@ -8396,7 +8396,7 @@
     "Precision": 12,
     "Encumbrance": 2,
     "Action Points": 12,
-    "Attacks": {
+    "Natural Weapons": {
       "e29": 2,
       "e68": 1
     },
@@ -8458,7 +8458,7 @@
     "Precision": 12,
     "Encumbrance": 3,
     "Action Points": 13,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": null,
     "Abilities": null,
     "Properties": [
@@ -8510,7 +8510,7 @@
     "Precision": 12,
     "Encumbrance": 3,
     "Action Points": 13,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": null,
     "Abilities": {
       "Fire Resistance": 15
@@ -8564,7 +8564,7 @@
     "Precision": 12,
     "Encumbrance": 3,
     "Action Points": 13,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": null,
     "Abilities": null,
     "Properties": [
@@ -8616,7 +8616,7 @@
     "Precision": 12,
     "Encumbrance": 3,
     "Action Points": 13,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": null,
     "Abilities": null,
     "Properties": [
@@ -8668,7 +8668,7 @@
     "Precision": 8,
     "Encumbrance": 3,
     "Action Points": 11,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": null,
     "Abilities": {
       "Darkvision": 50
@@ -8725,7 +8725,7 @@
     "Precision": 10,
     "Encumbrance": 3,
     "Action Points": 14,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": null,
     "Abilities": null,
     "Properties": [
@@ -8779,7 +8779,7 @@
     "Precision": 12,
     "Encumbrance": 2,
     "Action Points": 14,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": null,
     "Abilities": null,
     "Properties": [
@@ -8836,7 +8836,7 @@
     "Precision": 10,
     "Encumbrance": 2,
     "Action Points": 12,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": {
       "Holy": 1
     },
@@ -8899,7 +8899,7 @@
     "Precision": 11,
     "Encumbrance": 2,
     "Action Points": 12,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": {
       "Air": 0.333,
       "Earth": 0.333,
@@ -8966,7 +8966,7 @@
     "Precision": 15,
     "Encumbrance": 1,
     "Action Points": 16,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": {
       "Blood": 3,
       "Death": 3,
@@ -9029,7 +9029,7 @@
     "Precision": 14,
     "Encumbrance": 1,
     "Action Points": 10,
-    "Attacks": {
+    "Natural Weapons": {
       "e228": 1
     },
     "Paths": null,
@@ -9089,7 +9089,7 @@
     "Precision": 5,
     "Encumbrance": 2,
     "Action Points": 15,
-    "Attacks": {
+    "Natural Weapons": {
       "e207": 2
     },
     "Paths": null,
@@ -9144,7 +9144,7 @@
     "Precision": 7,
     "Encumbrance": 4,
     "Action Points": 14,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": null,
     "Abilities": {
       "Darkvision": 100,
@@ -9202,7 +9202,7 @@
     "Precision": 9,
     "Encumbrance": 3,
     "Action Points": 7,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": null,
     "Abilities": {
       "Darkvision": 100,
@@ -9256,7 +9256,7 @@
     "Precision": 9,
     "Encumbrance": 3,
     "Action Points": 6,
-    "Attacks": {
+    "Natural Weapons": {
       "e543": 1
     },
     "Paths": {
@@ -9314,7 +9314,7 @@
     "Precision": 5,
     "Encumbrance": 3,
     "Action Points": 20,
-    "Attacks": {
+    "Natural Weapons": {
       "e29": 1,
       "e322": 1
     },
@@ -9367,7 +9367,7 @@
     "Precision": 5,
     "Encumbrance": 2,
     "Action Points": 16,
-    "Attacks": {
+    "Natural Weapons": {
       "e331": 1
     },
     "Paths": null,
@@ -9419,7 +9419,7 @@
     "Precision": 5,
     "Encumbrance": 3,
     "Action Points": 20,
-    "Attacks": {
+    "Natural Weapons": {
       "e29": 1,
       "e322": 1
     },
@@ -9473,7 +9473,7 @@
     "Precision": 8,
     "Encumbrance": 3,
     "Action Points": 4,
-    "Attacks": {
+    "Natural Weapons": {
       "e29": 2
     },
     "Paths": null,
@@ -9527,7 +9527,7 @@
     "Precision": 8,
     "Encumbrance": 3,
     "Action Points": 6,
-    "Attacks": {
+    "Natural Weapons": {
       "e29": 2,
       "e404": 1
     },
@@ -9584,7 +9584,7 @@
     "Precision": 5,
     "Encumbrance": 0,
     "Action Points": 26,
-    "Attacks": {
+    "Natural Weapons": {
       "e322": 1
     },
     "Paths": null,
@@ -9645,7 +9645,7 @@
     "Precision": 10,
     "Encumbrance": 1,
     "Action Points": 7,
-    "Attacks": {
+    "Natural Weapons": {
       "e29": 2
     },
     "Paths": null,
@@ -9707,7 +9707,7 @@
     "Precision": 8,
     "Encumbrance": 5,
     "Action Points": 8,
-    "Attacks": {
+    "Natural Weapons": {
       "e29": 1,
       "e420": 1
     },
@@ -9766,7 +9766,7 @@
     "Precision": 10,
     "Encumbrance": 3,
     "Action Points": 10,
-    "Attacks": {
+    "Natural Weapons": {
       "e85": 1
     },
     "Paths": null,
@@ -9819,7 +9819,7 @@
     "Precision": 11,
     "Encumbrance": 3,
     "Action Points": 10,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": null,
     "Abilities": null,
     "Properties": [
@@ -9871,7 +9871,7 @@
     "Precision": 5,
     "Encumbrance": 0,
     "Action Points": 8,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": null,
     "Abilities": {
       "Darkvision": 100,
@@ -9937,7 +9937,7 @@
     "Precision": 5,
     "Encumbrance": 0,
     "Action Points": 8,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": null,
     "Abilities": {
       "Darkvision": 100,
@@ -10003,7 +10003,7 @@
     "Precision": 5,
     "Encumbrance": 0,
     "Action Points": 8,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": {
       "Holy": 2
     },
@@ -10070,7 +10070,7 @@
     "Precision": 12,
     "Encumbrance": 4,
     "Action Points": 7,
-    "Attacks": {
+    "Natural Weapons": {
       "e63": 1
     },
     "Paths": null,
@@ -10126,7 +10126,7 @@
     "Precision": 13,
     "Encumbrance": 4,
     "Action Points": 7,
-    "Attacks": {
+    "Natural Weapons": {
       "e63": 1
     },
     "Paths": {
@@ -10183,7 +10183,7 @@
     "Precision": 5,
     "Encumbrance": 8,
     "Action Points": 12,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": {
       "Death": 4,
       "Earth": 3
@@ -10250,7 +10250,7 @@
     "Precision": 7,
     "Encumbrance": 2,
     "Action Points": 16,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": {
       "Earth": 3,
       "Water": 1
@@ -10313,7 +10313,7 @@
     "Precision": 12,
     "Encumbrance": 4,
     "Action Points": 7,
-    "Attacks": {
+    "Natural Weapons": {
       "e63": 1
     },
     "Paths": {
@@ -10373,7 +10373,7 @@
     "Precision": 8,
     "Encumbrance": 2,
     "Action Points": 16,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": null,
     "Abilities": null,
     "Properties": [
@@ -10426,7 +10426,7 @@
     "Precision": 8,
     "Encumbrance": 2,
     "Action Points": 18,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": null,
     "Abilities": null,
     "Properties": [
@@ -10479,7 +10479,7 @@
     "Precision": 7,
     "Encumbrance": 0,
     "Action Points": 10,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": null,
     "Abilities": {
       "Cold Aura": 3,
@@ -10540,7 +10540,7 @@
     "Precision": 7,
     "Encumbrance": 0,
     "Action Points": 10,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": {
       "Earth": 1,
       "Death": 1
@@ -10605,7 +10605,7 @@
     "Precision": 8,
     "Encumbrance": 0,
     "Action Points": 12,
-    "Attacks": {
+    "Natural Weapons": {
       "e63": 1
     },
     "Paths": null,
@@ -10669,7 +10669,7 @@
     "Precision": 8,
     "Encumbrance": 0,
     "Action Points": 14,
-    "Attacks": {
+    "Natural Weapons": {
       "e63": 1
     },
     "Paths": null,
@@ -10730,7 +10730,7 @@
     "Precision": 10,
     "Encumbrance": 4,
     "Action Points": 16,
-    "Attacks": {
+    "Natural Weapons": {
       "e20": 1
     },
     "Paths": null,
@@ -10787,7 +10787,7 @@
     "Precision": 4,
     "Encumbrance": 4,
     "Action Points": 16,
-    "Attacks": {
+    "Natural Weapons": {
       "e322": 1
     },
     "Paths": null,
@@ -10840,7 +10840,7 @@
     "Precision": 8,
     "Encumbrance": 3,
     "Action Points": 12,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": {
       "Water": 3.275,
       "Earth": 2.275,
@@ -10902,7 +10902,7 @@
     "Precision": 8,
     "Encumbrance": 3,
     "Action Points": 12,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": {
       "Holy": 3
     },
@@ -10961,7 +10961,7 @@
     "Precision": 8,
     "Encumbrance": 3,
     "Action Points": 12,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": {
       "Astral": 0.525,
       "Earth": 0.525,
@@ -11024,7 +11024,7 @@
     "Precision": 8,
     "Encumbrance": 3,
     "Action Points": 12,
-    "Attacks": {
+    "Natural Weapons": {
       "e20": 1
     },
     "Paths": {
@@ -11088,7 +11088,7 @@
     "Precision": 8,
     "Encumbrance": 3,
     "Action Points": 12,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": {
       "Earth": 3.366,
       "Fire": 1.366,
@@ -11152,7 +11152,7 @@
     "Precision": 8,
     "Encumbrance": 3,
     "Action Points": 12,
-    "Attacks": {
+    "Natural Weapons": {
       "e20": 1
     },
     "Paths": null,
@@ -11212,7 +11212,7 @@
     "Precision": 8,
     "Encumbrance": 3,
     "Action Points": 14,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": null,
     "Abilities": null,
     "Properties": null,
@@ -11266,7 +11266,7 @@
     "Precision": 8,
     "Encumbrance": 3,
     "Action Points": 14,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": null,
     "Abilities": null,
     "Properties": null,
@@ -11318,7 +11318,7 @@
     "Precision": 8,
     "Encumbrance": 2,
     "Action Points": 14,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": null,
     "Abilities": {
       "Cold Resistance": 5
@@ -11373,7 +11373,7 @@
     "Precision": 10,
     "Encumbrance": 2,
     "Action Points": 8,
-    "Attacks": {
+    "Natural Weapons": {
       "e65": 1
     },
     "Paths": {
@@ -11432,7 +11432,7 @@
     "Precision": 12,
     "Encumbrance": 4,
     "Action Points": 8,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": {
       "Fire": 2,
       "Death": 2,
@@ -11495,7 +11495,7 @@
     "Precision": 10,
     "Encumbrance": 3,
     "Action Points": 10,
-    "Attacks": {
+    "Natural Weapons": {
       "e30": 1
     },
     "Paths": null,
@@ -11552,7 +11552,7 @@
     "Precision": 5,
     "Encumbrance": 2,
     "Action Points": 20,
-    "Attacks": {
+    "Natural Weapons": {
       "e29": 1,
       "e322": 1,
       "e85": 1
@@ -11609,7 +11609,7 @@
     "Precision": 10,
     "Encumbrance": 2,
     "Action Points": 6,
-    "Attacks": {
+    "Natural Weapons": {
       "e239": 1
     },
     "Paths": null,
@@ -11671,7 +11671,7 @@
     "Precision": 8,
     "Encumbrance": 3,
     "Action Points": 6,
-    "Attacks": {
+    "Natural Weapons": {
       "e146": 1,
       "e592": 1
     },
@@ -11729,7 +11729,7 @@
     "Precision": 5,
     "Encumbrance": 3,
     "Action Points": 6,
-    "Attacks": {
+    "Natural Weapons": {
       "e29": 1
     },
     "Paths": null,
@@ -11785,7 +11785,7 @@
     "Precision": 5,
     "Encumbrance": 3,
     "Action Points": 7,
-    "Attacks": {
+    "Natural Weapons": {
       "e322": 1
     },
     "Paths": null,
@@ -11845,7 +11845,7 @@
     "Precision": 13,
     "Encumbrance": 2,
     "Action Points": 12,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": {
       "Water": 3,
       "Earth": 1,
@@ -11907,7 +11907,7 @@
     "Precision": 8,
     "Encumbrance": 3,
     "Action Points": 12,
-    "Attacks": {
+    "Natural Weapons": {
       "e20": 1
     },
     "Paths": null,
@@ -11962,7 +11962,7 @@
     "Precision": 7,
     "Encumbrance": 3,
     "Action Points": 10,
-    "Attacks": {
+    "Natural Weapons": {
       "e273": 1
     },
     "Paths": null,
@@ -12019,7 +12019,7 @@
     "Precision": 11,
     "Encumbrance": 2,
     "Action Points": 14,
-    "Attacks": {
+    "Natural Weapons": {
       "e397": 1
     },
     "Paths": null,
@@ -12079,7 +12079,7 @@
     "Precision": 11,
     "Encumbrance": 1,
     "Action Points": 14,
-    "Attacks": {
+    "Natural Weapons": {
       "e397": 1
     },
     "Paths": null,
@@ -12139,7 +12139,7 @@
     "Precision": 11,
     "Encumbrance": 1,
     "Action Points": 14,
-    "Attacks": {
+    "Natural Weapons": {
       "e397": 1
     },
     "Paths": null,
@@ -12199,7 +12199,7 @@
     "Precision": 8,
     "Encumbrance": 2,
     "Action Points": 14,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": null,
     "Abilities": {
       "Cold Aura": 3,
@@ -12256,7 +12256,7 @@
     "Precision": 10,
     "Encumbrance": 3,
     "Action Points": 15,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": null,
     "Abilities": {
       "Cold Resistance": 15
@@ -12311,7 +12311,7 @@
     "Precision": 10,
     "Encumbrance": 2,
     "Action Points": 16,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": null,
     "Abilities": {
       "Cold Aura": 10,
@@ -12369,7 +12369,7 @@
     "Precision": 8,
     "Encumbrance": 2,
     "Action Points": 14,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": null,
     "Abilities": {
       "Darkvision": 50,
@@ -12427,7 +12427,7 @@
     "Precision": 7,
     "Encumbrance": 2,
     "Action Points": 14,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": {
       "Earth": 3
     },
@@ -12484,7 +12484,7 @@
     "Precision": 12,
     "Encumbrance": 4,
     "Action Points": 10,
-    "Attacks": {
+    "Natural Weapons": {
       "e239": 1
     },
     "Paths": {
@@ -12547,7 +12547,7 @@
     "Precision": 13,
     "Encumbrance": 1,
     "Action Points": 12,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": null,
     "Abilities": {
       "Awe": 2
@@ -12604,7 +12604,7 @@
     "Precision": 12,
     "Encumbrance": 3,
     "Action Points": 7,
-    "Attacks": {
+    "Natural Weapons": {
       "e322": 3
     },
     "Paths": null,
@@ -12662,7 +12662,7 @@
     "Precision": 10,
     "Encumbrance": 5,
     "Action Points": 6,
-    "Attacks": {
+    "Natural Weapons": {
       "e350": 1,
       "e239": 1
     },
@@ -12720,7 +12720,7 @@
     "Precision": 11,
     "Encumbrance": 3,
     "Action Points": 16,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": null,
     "Abilities": {
       "Ambidextrous": 3
@@ -12777,7 +12777,7 @@
     "Precision": 11,
     "Encumbrance": 3,
     "Action Points": 16,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": null,
     "Abilities": {
       "Ambidextrous": 6
@@ -12833,7 +12833,7 @@
     "Precision": 8,
     "Encumbrance": 2,
     "Action Points": 14,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": null,
     "Abilities": {
       "Regeneration": 3.5,
@@ -12892,7 +12892,7 @@
     "Precision": 8,
     "Encumbrance": 2,
     "Action Points": 14,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": {
       "Earth": 3
     },
@@ -12951,7 +12951,7 @@
     "Precision": 8,
     "Encumbrance": 2,
     "Action Points": 14,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": {
       "Water": 3
     },
@@ -13010,7 +13010,7 @@
     "Precision": 15,
     "Encumbrance": 2,
     "Action Points": 15,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": null,
     "Abilities": {
       "Magic Power": 1
@@ -13066,7 +13066,7 @@
     "Precision": 8,
     "Encumbrance": 2,
     "Action Points": 14,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": null,
     "Abilities": {
       "Darkvision": 50,
@@ -13123,7 +13123,7 @@
     "Precision": 12,
     "Encumbrance": 1,
     "Action Points": 13,
-    "Attacks": {
+    "Natural Weapons": {
       "e63": 1
     },
     "Paths": null,
@@ -13185,7 +13185,7 @@
     "Precision": 10,
     "Encumbrance": 4,
     "Action Points": 8,
-    "Attacks": {
+    "Natural Weapons": {
       "e322": 1,
       "e29": 1
     },
@@ -13242,7 +13242,7 @@
     "Precision": 10,
     "Encumbrance": 2,
     "Action Points": 12,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": {
       "Air": 0.275,
       "Earth": 275,
@@ -13305,7 +13305,7 @@
     "Precision": 5,
     "Encumbrance": 3,
     "Action Points": 18,
-    "Attacks": {
+    "Natural Weapons": {
       "e614": 1
     },
     "Paths": null,
@@ -13358,7 +13358,7 @@
     "Precision": 10,
     "Encumbrance": 3,
     "Action Points": 12,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": {
       "Holy": 1
     },
@@ -13418,7 +13418,7 @@
     "Precision": 11,
     "Encumbrance": 1,
     "Action Points": 16,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": null,
     "Abilities": {
       "Awe": 3,
@@ -13483,7 +13483,7 @@
     "Precision": 13,
     "Encumbrance": 1,
     "Action Points": 16,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": {
       "Holy": 2
     },
@@ -13550,7 +13550,7 @@
     "Precision": 15,
     "Encumbrance": 1,
     "Action Points": 16,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": null,
     "Abilities": {
       "Awe": 5,
@@ -13612,7 +13612,7 @@
     "Precision": 9,
     "Encumbrance": 1,
     "Action Points": 14,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": {
       "Death": 2,
       "Fire": 0.333,
@@ -13676,7 +13676,7 @@
     "Precision": 9,
     "Encumbrance": 0,
     "Action Points": 14,
-    "Attacks": {
+    "Natural Weapons": {
       "e67": 1
     },
     "Paths": {
@@ -13739,7 +13739,7 @@
     "Precision": 9,
     "Encumbrance": 1,
     "Action Points": 16,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": {
       "Fire": 2.275,
       "Earth": 2.275,
@@ -13802,7 +13802,7 @@
     "Precision": 9,
     "Encumbrance": 0,
     "Action Points": 16,
-    "Attacks": {
+    "Natural Weapons": {
       "e67": 1
     },
     "Paths": {
@@ -13862,7 +13862,7 @@
     "Precision": 8,
     "Encumbrance": 3,
     "Action Points": 4,
-    "Attacks": {
+    "Natural Weapons": {
       "e29": 1
     },
     "Paths": null,
@@ -13920,7 +13920,7 @@
     "Precision": 5,
     "Encumbrance": 3,
     "Action Points": 16,
-    "Attacks": {
+    "Natural Weapons": {
       "e614": 1
     },
     "Paths": null,
@@ -13974,7 +13974,7 @@
     "Precision": 5,
     "Encumbrance": 0,
     "Action Points": 12,
-    "Attacks": {
+    "Natural Weapons": {
       "e614": 1
     },
     "Paths": null,
@@ -14031,7 +14031,7 @@
     "Precision": 12,
     "Encumbrance": 3,
     "Action Points": 10,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": null,
     "Abilities": null,
     "Properties": [
@@ -14088,7 +14088,7 @@
     "Precision": 13,
     "Encumbrance": 3,
     "Action Points": 14,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": null,
     "Abilities": null,
     "Properties": [
@@ -14144,7 +14144,7 @@
     "Precision": 5,
     "Encumbrance": 2,
     "Action Points": 20,
-    "Attacks": {
+    "Natural Weapons": {
       "e331": 1
     },
     "Paths": null,
@@ -14196,7 +14196,7 @@
     "Precision": 12,
     "Encumbrance": 2,
     "Action Points": 18,
-    "Attacks": {
+    "Natural Weapons": {
       "e331": 1
     },
     "Paths": {
@@ -14258,7 +14258,7 @@
     "Precision": 11,
     "Encumbrance": 2,
     "Action Points": 16,
-    "Attacks": {
+    "Natural Weapons": {
       "e331": 1
     },
     "Paths": {
@@ -14320,7 +14320,7 @@
     "Precision": 10,
     "Encumbrance": 2,
     "Action Points": 14,
-    "Attacks": {
+    "Natural Weapons": {
       "e700": 1,
       "e701": 1
     },
@@ -14374,7 +14374,7 @@
     "Precision": 5,
     "Encumbrance": 2,
     "Action Points": 14,
-    "Attacks": {
+    "Natural Weapons": {
       "e331": 1
     },
     "Paths": null,
@@ -14428,7 +14428,7 @@
     "Precision": 5,
     "Encumbrance": 2,
     "Action Points": 18,
-    "Attacks": {
+    "Natural Weapons": {
       "e572": 1
     },
     "Paths": null,
@@ -14487,7 +14487,7 @@
     "Precision": 5,
     "Encumbrance": 3,
     "Action Points": 24,
-    "Attacks": {
+    "Natural Weapons": {
       "e397": 1
     },
     "Paths": null,
@@ -14543,7 +14543,7 @@
     "Precision": 5,
     "Encumbrance": 2,
     "Action Points": 20,
-    "Attacks": {
+    "Natural Weapons": {
       "e331": 1
     },
     "Paths": null,
@@ -14599,7 +14599,7 @@
     "Precision": 8,
     "Encumbrance": 2,
     "Action Points": 20,
-    "Attacks": {
+    "Natural Weapons": {
       "e55": 1,
       "e331": 1
     },
@@ -14658,7 +14658,7 @@
     "Precision": 5,
     "Encumbrance": 0,
     "Action Points": 14,
-    "Attacks": {
+    "Natural Weapons": {
       "e29": 1
     },
     "Paths": null,
@@ -14716,7 +14716,7 @@
     "Precision": 8,
     "Encumbrance": 2,
     "Action Points": 24,
-    "Attacks": {
+    "Natural Weapons": {
       "e630": 3,
       "e631": 1,
       "e632": 1
@@ -14773,7 +14773,7 @@
     "Precision": 8,
     "Encumbrance": 2,
     "Action Points": 26,
-    "Attacks": {
+    "Natural Weapons": {
       "e322": 1
     },
     "Paths": {
@@ -14833,7 +14833,7 @@
     "Precision": 8,
     "Encumbrance": 2,
     "Action Points": 30,
-    "Attacks": {
+    "Natural Weapons": {
       "e322": 1
     },
     "Paths": {
@@ -14891,7 +14891,7 @@
     "Precision": 5,
     "Encumbrance": 1,
     "Action Points": 20,
-    "Attacks": {
+    "Natural Weapons": {
       "e322": 1,
       "e29": 1
     },
@@ -14949,7 +14949,7 @@
     "Precision": 8,
     "Encumbrance": 3,
     "Action Points": 22,
-    "Attacks": {
+    "Natural Weapons": {
       "e322": 1,
       "e29": 1
     },
@@ -15002,7 +15002,7 @@
     "Precision": 8,
     "Encumbrance": 4,
     "Action Points": 15,
-    "Attacks": {
+    "Natural Weapons": {
       "e322": 1,
       "e408": 1
     },
@@ -15060,7 +15060,7 @@
     "Precision": 12,
     "Encumbrance": 2,
     "Action Points": 18,
-    "Attacks": {
+    "Natural Weapons": {
       "e144": 1,
       "e29": 1
     },
@@ -15124,7 +15124,7 @@
     "Precision": 12,
     "Encumbrance": 2,
     "Action Points": 20,
-    "Attacks": {
+    "Natural Weapons": {
       "e29": 2
     },
     "Paths": {
@@ -15180,7 +15180,7 @@
     "Precision": 12,
     "Encumbrance": 2,
     "Action Points": 18,
-    "Attacks": {
+    "Natural Weapons": {
       "e144": 1,
       "e29": 2
     },
@@ -15238,7 +15238,7 @@
     "Precision": 12,
     "Encumbrance": 2,
     "Action Points": 22,
-    "Attacks": {
+    "Natural Weapons": {
       "e404": 1,
       "e29": 2
     },
@@ -15294,7 +15294,7 @@
     "Precision": 12,
     "Encumbrance": 2,
     "Action Points": 22,
-    "Attacks": {
+    "Natural Weapons": {
       "e404": 1,
       "e29": 2
     },
@@ -15352,7 +15352,7 @@
     "Precision": 12,
     "Encumbrance": 2,
     "Action Points": 22,
-    "Attacks": {
+    "Natural Weapons": {
       "e29": 2
     },
     "Paths": {
@@ -15409,7 +15409,7 @@
     "Precision": 12,
     "Encumbrance": 2,
     "Action Points": 22,
-    "Attacks": {
+    "Natural Weapons": {
       "e404": 1,
       "e29": 2
     },
@@ -15466,7 +15466,7 @@
     "Precision": 14,
     "Encumbrance": 2,
     "Action Points": 6,
-    "Attacks": {
+    "Natural Weapons": {
       "e408": 1,
       "e404": 1
     },
@@ -15528,7 +15528,7 @@
     "Precision": 5,
     "Encumbrance": 0,
     "Action Points": 2,
-    "Attacks": {
+    "Natural Weapons": {
       "e185": 1
     },
     "Paths": null,
@@ -15589,7 +15589,7 @@
     "Precision": 14,
     "Encumbrance": 3,
     "Action Points": 8,
-    "Attacks": {
+    "Natural Weapons": {
       "e408": 1,
       "e404": 1
     },
@@ -15653,7 +15653,7 @@
     "Precision": 14,
     "Encumbrance": 2,
     "Action Points": 8,
-    "Attacks": {
+    "Natural Weapons": {
       "e408": 1,
       "e404": 1
     },
@@ -15717,7 +15717,7 @@
     "Precision": 15,
     "Encumbrance": 2,
     "Action Points": 8,
-    "Attacks": {
+    "Natural Weapons": {
       "e408": 1,
       "e404": 1
     },
@@ -15779,7 +15779,7 @@
     "Precision": 15,
     "Encumbrance": 2,
     "Action Points": 8,
-    "Attacks": {
+    "Natural Weapons": {
       "e408": 1,
       "e404": 1
     },
@@ -15839,7 +15839,7 @@
     "Precision": 15,
     "Encumbrance": 2,
     "Action Points": 8,
-    "Attacks": {
+    "Natural Weapons": {
       "e408": 1,
       "e404": 1
     },
@@ -15901,7 +15901,7 @@
     "Precision": 4,
     "Encumbrance": 2,
     "Action Points": 16,
-    "Attacks": {
+    "Natural Weapons": {
       "e549": 2
     },
     "Paths": null,
@@ -15962,7 +15962,7 @@
     "Precision": 4,
     "Encumbrance": 2,
     "Action Points": 14,
-    "Attacks": {
+    "Natural Weapons": {
       "e355": 1
     },
     "Paths": null,
@@ -16025,7 +16025,7 @@
     "Precision": 3,
     "Encumbrance": 2,
     "Action Points": 8,
-    "Attacks": {
+    "Natural Weapons": {
       "e29": 1,
       "e423": 1
     },
@@ -16082,7 +16082,7 @@
     "Precision": 10,
     "Encumbrance": 2,
     "Action Points": 18,
-    "Attacks": {
+    "Natural Weapons": {
       "e322": 1,
       "e29": 2,
       "e629": 1
@@ -16141,7 +16141,7 @@
     "Precision": 10,
     "Encumbrance": 20,
     "Action Points": 12,
-    "Attacks": {
+    "Natural Weapons": {
       "e48": 1,
       "e322": 1
     },
@@ -16203,7 +16203,7 @@
     "Precision": 5,
     "Encumbrance": 3,
     "Action Points": 7,
-    "Attacks": {
+    "Natural Weapons": {
       "e490": 2,
       "e488": 1
     },
@@ -16266,7 +16266,7 @@
     "Precision": 5,
     "Encumbrance": 3,
     "Action Points": 7,
-    "Attacks": {
+    "Natural Weapons": {
       "e490": 3,
       "e488": 1
     },
@@ -16329,7 +16329,7 @@
     "Precision": 5,
     "Encumbrance": 3,
     "Action Points": 7,
-    "Attacks": {
+    "Natural Weapons": {
       "e490": 4,
       "e488": 1
     },
@@ -16393,7 +16393,7 @@
     "Precision": 5,
     "Encumbrance": 3,
     "Action Points": 10,
-    "Attacks": {
+    "Natural Weapons": {
       "e490": 4,
       "e488": 1
     },
@@ -16455,7 +16455,7 @@
     "Precision": 10,
     "Encumbrance": 3,
     "Action Points": 8,
-    "Attacks": {
+    "Natural Weapons": {
       "e239": 1
     },
     "Paths": null,
@@ -16511,7 +16511,7 @@
     "Precision": 10,
     "Encumbrance": 3,
     "Action Points": 8,
-    "Attacks": {
+    "Natural Weapons": {
       "e127": 1
     },
     "Paths": null,
@@ -16567,7 +16567,7 @@
     "Precision": 5,
     "Encumbrance": 3,
     "Action Points": 20,
-    "Attacks": {
+    "Natural Weapons": {
       "e495": 1
     },
     "Paths": {
@@ -16623,7 +16623,7 @@
     "Precision": 10,
     "Encumbrance": 3,
     "Action Points": 10,
-    "Attacks": {
+    "Natural Weapons": {
       "e65": 1
     },
     "Paths": null,
@@ -16686,7 +16686,7 @@
     "Precision": 10,
     "Encumbrance": 2,
     "Action Points": 10,
-    "Attacks": {
+    "Natural Weapons": {
       "e65": 2
     },
     "Paths": {
@@ -16745,7 +16745,7 @@
     "Precision": 10,
     "Encumbrance": 2,
     "Action Points": 10,
-    "Attacks": {
+    "Natural Weapons": {
       "e65": 1
     },
     "Paths": {
@@ -16804,7 +16804,7 @@
     "Precision": 10,
     "Encumbrance": 2,
     "Action Points": 10,
-    "Attacks": {
+    "Natural Weapons": {
       "e300": 1
     },
     "Paths": {
@@ -16860,7 +16860,7 @@
     "Precision": 12,
     "Encumbrance": 2,
     "Action Points": 15,
-    "Attacks": {
+    "Natural Weapons": {
       "e322": 1,
       "e29": 1,
       "e239": 1
@@ -16920,7 +16920,7 @@
     "Precision": 10,
     "Encumbrance": 2,
     "Action Points": 10,
-    "Attacks": {
+    "Natural Weapons": {
       "e65": 1,
       "e29": 1
     },
@@ -16983,7 +16983,7 @@
     "Precision": 12,
     "Encumbrance": 2,
     "Action Points": 10,
-    "Attacks": {
+    "Natural Weapons": {
       "e322": 3,
       "e29": 1
     },
@@ -17044,7 +17044,7 @@
     "Precision": 10,
     "Encumbrance": 3,
     "Action Points": 10,
-    "Attacks": {
+    "Natural Weapons": {
       "e65": 1
     },
     "Paths": {
@@ -17104,7 +17104,7 @@
     "Precision": 10,
     "Encumbrance": 3,
     "Action Points": 16,
-    "Attacks": {
+    "Natural Weapons": {
       "e399": 1,
       "e29": 1,
       "e398": 1
@@ -17163,7 +17163,7 @@
     "Precision": 12,
     "Encumbrance": 2,
     "Action Points": 10,
-    "Attacks": {
+    "Natural Weapons": {
       "e322": 1,
       "e29": 1
     },
@@ -17219,7 +17219,7 @@
     "Precision": 10,
     "Encumbrance": 3,
     "Action Points": 8,
-    "Attacks": {
+    "Natural Weapons": {
       "e323": 1
     },
     "Paths": {
@@ -17279,7 +17279,7 @@
     "Precision": 5,
     "Encumbrance": 3,
     "Action Points": 6,
-    "Attacks": {
+    "Natural Weapons": {
       "e55": 1,
       "e331": 1
     },
@@ -17340,7 +17340,7 @@
     "Precision": 5,
     "Encumbrance": 3,
     "Action Points": 7,
-    "Attacks": {
+    "Natural Weapons": {
       "e29": 1
     },
     "Paths": null,
@@ -17399,7 +17399,7 @@
     "Precision": 8,
     "Encumbrance": 2,
     "Action Points": 20,
-    "Attacks": {
+    "Natural Weapons": {
       "e55": 1,
       "e331": 1
     },
@@ -17457,7 +17457,7 @@
     "Precision": 8,
     "Encumbrance": 2,
     "Action Points": 20,
-    "Attacks": {
+    "Natural Weapons": {
       "e55": 1,
       "e331": 1
     },
@@ -17516,7 +17516,7 @@
     "Precision": 8,
     "Encumbrance": 2,
     "Action Points": 14,
-    "Attacks": {
+    "Natural Weapons": {
       "e55": 1
     },
     "Paths": {
@@ -17573,7 +17573,7 @@
     "Precision": 8,
     "Encumbrance": 2,
     "Action Points": 14,
-    "Attacks": {
+    "Natural Weapons": {
       "e55": 1
     },
     "Paths": {
@@ -17631,7 +17631,7 @@
     "Precision": 5,
     "Encumbrance": 3,
     "Action Points": 7,
-    "Attacks": {
+    "Natural Weapons": {
       "e322": 1
     },
     "Paths": null,
@@ -17687,7 +17687,7 @@
     "Precision": 10,
     "Encumbrance": 3,
     "Action Points": 8,
-    "Attacks": {
+    "Natural Weapons": {
       "e400": 1
     },
     "Paths": {
@@ -17743,7 +17743,7 @@
     "Precision": 12,
     "Encumbrance": 2,
     "Action Points": 10,
-    "Attacks": {
+    "Natural Weapons": {
       "e322": 3,
       "e29": 1
     },
@@ -17802,7 +17802,7 @@
     "Precision": 12,
     "Encumbrance": 2,
     "Action Points": 10,
-    "Attacks": {
+    "Natural Weapons": {
       "e322": 1,
       "e29": 1
     },
@@ -17859,7 +17859,7 @@
     "Precision": 12,
     "Encumbrance": 2,
     "Action Points": 10,
-    "Attacks": {
+    "Natural Weapons": {
       "e322": 1,
       "e29": 1
     },
@@ -17915,7 +17915,7 @@
     "Precision": 8,
     "Encumbrance": 2,
     "Action Points": 28,
-    "Attacks": {
+    "Natural Weapons": {
       "e322": 1,
       "e29": 2
     },
@@ -17972,7 +17972,7 @@
     "Precision": 10,
     "Encumbrance": 2,
     "Action Points": 8,
-    "Attacks": {
+    "Natural Weapons": {
       "e29": 2
     },
     "Paths": null,
@@ -18030,7 +18030,7 @@
     "Precision": 11,
     "Encumbrance": 1,
     "Action Points": 14,
-    "Attacks": {
+    "Natural Weapons": {
       "e397": 1
     },
     "Paths": {
@@ -18092,7 +18092,7 @@
     "Precision": 11,
     "Encumbrance": 2,
     "Action Points": 14,
-    "Attacks": {
+    "Natural Weapons": {
       "e397": 1
     },
     "Paths": {
@@ -18157,7 +18157,7 @@
     "Precision": 12,
     "Encumbrance": 2,
     "Action Points": 12,
-    "Attacks": {
+    "Natural Weapons": {
       "e65": 1,
       "e29": 1
     },
@@ -18229,7 +18229,7 @@
     "Precision": 12,
     "Encumbrance": 2,
     "Action Points": 14,
-    "Attacks": {
+    "Natural Weapons": {
       "e65": 1,
       "e29": 1
     },
@@ -18296,7 +18296,7 @@
     "Precision": 13,
     "Encumbrance": 2,
     "Action Points": 16,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": {
       "Air": 2,
       "Nature": 1
@@ -18356,7 +18356,7 @@
     "Precision": 13,
     "Encumbrance": 2,
     "Action Points": 12,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": {
       "Holy": 2
     },
@@ -18417,7 +18417,7 @@
     "Precision": 10,
     "Encumbrance": 1,
     "Action Points": 7,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": null,
     "Abilities": {
       "Dark Power": 2,
@@ -18472,7 +18472,7 @@
     "Precision": 11,
     "Encumbrance": 1,
     "Action Points": 7,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": null,
     "Abilities": {
       "Fire Shield": 6,
@@ -18531,7 +18531,7 @@
     "Precision": 11,
     "Encumbrance": 4,
     "Action Points": 9,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": null,
     "Abilities": {
       "Cold Resistance": 15
@@ -18587,7 +18587,7 @@
     "Precision": 10,
     "Encumbrance": 4,
     "Action Points": 9,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": null,
     "Abilities": null,
     "Properties": [
@@ -18643,7 +18643,7 @@
     "Precision": 11,
     "Encumbrance": 4,
     "Action Points": 9,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": null,
     "Abilities": {
       "Cold Resistance": 5,
@@ -18703,7 +18703,7 @@
     "Precision": 12,
     "Encumbrance": 1,
     "Action Points": 14,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": null,
     "Abilities": {
       "Awe": 2,
@@ -18767,7 +18767,7 @@
     "Precision": 12,
     "Encumbrance": 1,
     "Action Points": 14,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": null,
     "Abilities": {
       "Chaos Power": 1,
@@ -18831,7 +18831,7 @@
     "Precision": 13,
     "Encumbrance": 1,
     "Action Points": 4,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": {
       "Air": 1,
       "Astral": 1
@@ -18900,7 +18900,7 @@
     "Precision": 13,
     "Encumbrance": 1,
     "Action Points": 4,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": {
       "Air": 3,
       "Astral": 2,
@@ -18964,7 +18964,7 @@
     "Precision": 9,
     "Encumbrance": 2,
     "Action Points": 16,
-    "Attacks": {
+    "Natural Weapons": {
       "e29": 2,
       "e331": 1
     },
@@ -19025,7 +19025,7 @@
     "Precision": 11,
     "Encumbrance": 2,
     "Action Points": 12,
-    "Attacks": {
+    "Natural Weapons": {
       "e231": 1
     },
     "Paths": null,
@@ -19085,7 +19085,7 @@
     "Precision": 13,
     "Encumbrance": 1,
     "Action Points": 14,
-    "Attacks": {
+    "Natural Weapons": {
       "e29": 2,
       "e68": 1
     },
@@ -19151,7 +19151,7 @@
     "Precision": 12,
     "Encumbrance": 1,
     "Action Points": 16,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": {
       "Air": 3,
       "Holy": 2
@@ -19219,7 +19219,7 @@
     "Precision": 15,
     "Encumbrance": 1,
     "Action Points": 16,
-    "Attacks": null,
+    "Natural Weapons": null,
     "Paths": {
       "Fire": 4,
       "Holy": 3

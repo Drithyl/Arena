@@ -1,12 +1,15 @@
 {
   "ID": "ID",
   "NAME": "Name",
+  "PLAYER": "Player",
   "START_GOLD": "Starting Gold",
   "START_POINTS": "Starting Points",
   "TRANS_POINTS": "Transition Points",
+  "FORM": "Form",
+  "CURR_FORM": "Current Form Index",
+  "ALL_FORMS": "All Forms",
   "SIZE": "Size",
   "MAX_HP": "Maximum HP",
-  "PRT": "Protection",
   "MR": "Magic Resistance",
   "MRL": "Morale",
   "STR": "Strength",
@@ -15,10 +18,12 @@
   "PRC": "Precision",
   "ENC": "Encumbrance",
   "AP": "Action Points",
+  "AP_COST": "AP Cost",
   "MP": "Movement Points",
   "SPEED": "Speed",
   "CURR_SPEED": "Current Speed",
-  "ATKS": "Attacks",
+  "NAT_WPN_LIST": "Natural Weapons",
+  "PRT_LIST": "Protection",
   "AFFL_LIST": "Afflictions",
   "PATH_LIST": "Paths",
   "COST_LIST": "Cost",
@@ -49,6 +54,7 @@
   "EQUIPPED": "Equipped",
   "FREE": "Free",
   "NONE": "None",
+  "TOTAL": "Total",
 
   "ABS":
   {
@@ -326,6 +332,14 @@
     }
   },
 
+  "ITEMS":
+  {
+    "ARMORS": "Armors",
+    "CONSUMABLES": "Consumables",
+    "TRINKETS": "Trinkets",
+    "WEAPONS": "Weapons"
+  },
+
   "PARTS":
   {
     "EYE": "Eye",
@@ -417,14 +431,20 @@
     }
   },
 
+  "PRT":
+  {
+    "ARMOR": "Armor",
+    "NATURAL": "Natural",
+    "INVUL": "Invulnerability"
+  },
+
   "SLOTS":
   {
     "HANDS": "Hands",
     "HEAD": "Head",
     "BODY": "Body",
     "FEET": "Feet",
-    "MISC": "Misc",
-    "NONE": "None"
+    "MISC": "Misc"
   },
 
   "STATUS":

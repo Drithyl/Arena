@@ -16,98 +16,61 @@ module.exports =
 
     for (var i = 0; i < order.attack.length; i++)
     {
+      if (fs.existsSync("./server/strategies/" + order.attack[i] + ".js") === false)
+      {
+        continue;
+      }
+
       strategies.push(require("./server/strategies/" + order.attack[i] + ".js").init(keys));
     }
   },
 
-  melee: function(pack)
+  resolveAttack: function(pack)
   {
-    var results = [];
-    pack.data.nbrAttacks = 0;
-
-    for (var i = 0; i < pack.weapons.length; i++)
+    if (pack.type === keys.TRIGGERS.MELEE)
     {
-      results.push({});
-      pack.data.nbrAttacks++;
-      pack.data.currentWeapon = data.weapons[i];
+      return melee(pack);
+    }
 
-      for (var j = 0; j < order.attack.length; j++)
+    else if (pack.type === keys.TRIGGERS.RANGED)
+    {
+      return ranged(pack);
+    }
+
+    else if (pack.type === keys.TRIGGERS.SPELL)
+    {
+      return spell(pack);
+    }
+
+    else throw new Error("This attack seems to be neither melee, ranged nor a spell. This should have been verified by the previous function, check the code.");
+  }
+}
+
+function melee(pack)
+{
+  var results = [];
+  pack.data.nbrAttacks = 0;
+
+  for (var i = 0; i < pack.weapons.accepted.length; i++)
+  {
+    results.push({});
+    pack.data.nbrAttacks++;
+    pack.data.currentWeapon = data.weapons.accepted[i];
+
+    for (var j = 0; j < order.attack.length; j++)
+    {
+      strategies[j].apply(pack, results[i]);
+
+      if (results[i].failed === true)
       {
-        strategies[j].apply(pack, results[i]);
-
-        if (results[i].failed === true)
-        {
-          break;
-        }
+        break;
       }
-
-      var encumbrance = pack.data.actor.getTotalEncumbrance();
-      pack.data.actor.addFatigue(encumbrance);
-      results.push({fatigue: encumbrance});
     }
 
-    return results;
-  }
-}
-
-function modifyDamage(pack, result, isStun = false)
-{
-	var maxLimbDmg = Math.floor(pack.target[keys.MAX_HP] * 0.5).lowerCap(1);
-  result.damage = result.difference.lowerCap(0);
-
-  if (result.damage <= 0)
-  {
-    pack.data.damage = 0;
-    return;
+    var encumbrance = pack.data.actor.getTotalEncumbrance();
+    pack.data.actor.addFatigue(encumbrance);
+    results.push({fatigue: encumbrance});
   }
 
-	if (result.damageType == keys.DMG_TYPE.BLUNT && (result.hitLocation == keys.PARTS.HEAD || result.hitLocation == keys.PARTS.EYE))
-	{
-		result.damage = Math.floor(result.damage * 1.5);
-	}
-
-	else if (result.damageType == keys.DMG_TYPE.SLASH)
-	{
-    result.damage = Math.floor(result.damage * 1.25);
-	}
-
-  if (result.damageType == keys.DMG_TYPE.BLUNT && pack.target[keys.AB_LIST][keys.ABS.BLUNT] != null)
-  {
-    result.damage = Math.floor(result.damage * (pack.target[keys.AB_LIST][keys.ABS.BLUNT] / 100));
-  }
-
-  else if (result.damageType == keys.DMG_TYPE.PIERCE && pack.target[keys.AB_LIST][keys.ABS.PIERCE] != null)
-  {
-    result.damage = Math.floor(result.damage * (pack.target[keys.AB_LIST][keys.ABS.PIERCE] / 100));
-  }
-
-  else if (result.damageType == keys.DMG_TYPE.SLASH && pack.target[keys.AB_LIST][keys.ABS.SLASH] != null)
-  {
-    result.damage = Math.floor(result.damage * (pack.target[keys.AB_LIST][keys.ABS.SLASH] / 100));
-  }
-
-	if ((result.hitLocation == keys.PARTS.ARM || result.hitLocation == keys.PARTS.LEG || result.hitLocation == keys.PARTS.WING) &&
-      result.damage > maxLimbDmg && isStun == false && result.damageType != keys.DMG_TYPE.STUN && result.damageType != keys.DMG_TYPE.POISON)
-	{
-		result.damage = maxLimbDmg;
-	}
-
-  pack.data.damage = result.damage;
-}
-
-function calculateParalysis(damage, target)
-{
-  var ttl = Math.floor((damage - target[keys.SIZE]) * 0.5);
-
-  if (target.battle.status[keys.DMG_TYPE.PARALYSIS] != null)
-  {
-    if (target.battle.status[keys.DMG_TYPE.PARALYSIS] > ttl)
-    {
-      ttl = Math.floor(target[ids.STATUS][ids.PARALYZED] * 0.5).cap(5);
-    }
-
-    else Math.floor(ttl * 0.5).cap(5);
-  }
-
-  return ttl;
+  return results;
 }

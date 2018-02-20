@@ -29,8 +29,6 @@
   {
     "intro": "The attack is met with ${this.target}'s Fire Shield.",
     "check": "Fire Shield Damage Check: Damage Roll ${this.damageRoll} vs. ${this.protectionRoll} Protection Roll.",
-    "fail": "No damage was inflicted.",
-    "success": "Inflicted ${this.damageInflicted} ${this.damageType} damage."
   },
 
   "ethereal":
@@ -49,24 +47,22 @@
   "poisonBarbs":
   {
     "intro": "The attacker is met with ${this.target}'s Poison Barbs.",
-    "check": "Poison Barbs Damage Check: Damage Roll ${this.damageRoll} vs. ${this.protectionRoll} Protection Roll.",
-    "fail": "No damage was inflicted.",
-    "success": "Inflicted ${this.damageInflicted} ${this.damageType} damage."
+    "check": "Poison Barbs Damage Check: Damage Roll ${this.damageRoll} vs. ${this.protectionRoll} Protection Roll."
   },
 
   "poisonSkin":
   {
     "intro": "The attacker is affected by ${this.target}'s Poison Skin.",
-    "check": "Poison Skin Damage Check: Damage Roll ${this.damageRoll} vs. ${this.protectionRoll} Protection Roll.",
-    "fail": "No damage was inflicted.",
-    "success": "Inflicted ${this.damageInflicted} ${this.damageType} damage."
+    "check": "Poison Skin Damage Check: Damage Roll ${this.damageRoll} vs. ${this.protectionRoll} Protection Roll."
   },
 
   "damage":
   {
     "check": "Damage Check: Damage Roll ${this.damageRoll} vs. ${this.protectionRoll} Protection Roll.",
     "fail": "No damage was inflicted.",
-    "success": "Inflicted ${this.damageInflicted} ${this.damageType} damage."
+    "success": "Inflicted ${this.damageInflicted} ${this.damageType} damage.",
+    "shapeshift": "${this.target} shapeshifted into a ${this.shiftedShapeName}!",
+    "droppedItems": "${this.target} had to drop the following item(s): ${this.droppedItems}!"
   },
 
   "twistFate": "The damage was negated by Twist Fate.",

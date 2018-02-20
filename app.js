@@ -141,7 +141,7 @@ function getInitPack()
 {
 	var obj =
 	{
-		forms: content.getForms(keys.CAT_LIST, keys.CAT.START),
+		forms: content.getForms({key: keys.CAT_LIST, value: keys.CAT.START}),
 		players: playersModule.getClientPack()
 	}
 

@@ -3,6 +3,7 @@ var keys = null;
 
 module.exports =
 {
+  items: null,
   armors: null,
   consumables: null,
   forms: null,
@@ -11,6 +12,7 @@ module.exports =
 
   init: function(data, index)
   {
+    this.items = Object.assign({}, data.armors, data.consumables, data.trinkets, data.weapons);
     this.armors = data.armors;
     this.consumables = data.consumables;
     this.forms = data.forms;
@@ -18,6 +20,11 @@ module.exports =
     this.weapons = data.weapons;
     keys = index;
     return this;
+  },
+
+  getItems: function(key, value)
+  {
+    return grabItems(key, value);
   },
 
   getArmors: function(key, value)
@@ -46,12 +53,58 @@ module.exports =
   }
 }
 
-function grab(type, key, value)
+function grabItems(filters)
 {
-  if (module.exports.forms == null)
+  if (Array.isArray(filters) === false)
   {
-    return null;
+    filters = [filters];
   }
 
-  return module.exports[type].filter(function (item){ return item[key].includes(value); });
+  return module.exports.items.filter(function (item){ return filterFn(item, filters); });
+}
+
+function grab(type, filters)
+{
+  if (Array.isArray(filters) === false)
+  {
+    filters = [filters];
+  }
+
+  return module.exports[type].filter(function (item){ return filterFn(item, filters); });
+}
+
+function filterFn(item, filters)
+{
+  var validFilters = 0;
+
+  for (var i = 0; i < filters.length; i++)
+  {
+    var key = filters[i].key;
+    var value = filters[i].value;
+
+    if (Array.isArray(item[key]) === true && item[key].includes(value) === true)
+    {
+      validFilters++;
+    }
+
+    else (typeof item[key] === "string" && item[key] === value)
+    {
+      validFilters++;
+    }
+
+    else if (isNaN(item[key]) === false && item[key] === value)
+    {
+      validFilters++;
+    }
+
+    else if (typeof item[key] === "object" && item[key][value] != null)
+    {
+      validFilters++;
+    }
+
+    if (validFilters === filters.length)
+    {
+      return true;
+    }
+  }
 }

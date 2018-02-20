@@ -13,7 +13,7 @@ module.exports =
 
   translateResults: function(data, results)
   {
-    var strings = [];
+    var templates = [];
 
     for (var i = 0; i < order.attack.length; i++)
     {
@@ -24,10 +24,62 @@ module.exports =
         continue;
       }
 
-      var str = "";
+      var tmplt = translate(order.attack[i], data, results[i]);
 
+      if (tmplt == null)
+      {
+        throw new Error("The strategy " + order.attack[i] + " could not be found in translate().");
+      }
 
+      templates.push(tmplt);
     }
+
+    return templates;
+  }
+}
+
+function translate(strategy, data, result)
+{
+  switch(strategy)
+  {
+    case "awe":
+      return awe(data, result);
+
+    case "attack":
+      return attack(data, result);
+
+    case "glamour":
+      return glamour(data, result);
+
+    case "displacement":
+      return displacement(data, result);
+
+    case "fireShield":
+      return fireShield(data, result);
+
+    case "ethereal":
+      return ethereal(data, result);
+
+    case "mrNegates":
+      return mrNegates(data, result);
+
+    case "poisonBarbs":
+      return poisonBarbs(data, result);
+
+    case "poisonSkin":
+      return poisonSkin(data, result);
+
+    case "damage":
+      return damage(data, result);
+
+    case "berserk":
+      return berserk(data, result);
+
+    case "drain":
+      return drain(data, result);
+
+    default:
+      return null;
   }
 }
 
@@ -52,7 +104,7 @@ function awe(data, result)
   return template;
 }
 
-function attackCheck(data, result)
+function attack(data, result)
 {
   var template = {"string": "", "vars":
   {
@@ -107,7 +159,9 @@ function fireShield(data, result)
     protectionRoll: result.protectionRoll,
     damageInflicted: result.damageInflicted,
     damageType: result.damageType,
-    target: data.target[keys.NAME]
+    target: data.target[keys.NAME],
+    shiftedShapeName: data.shiftedShapeName,
+    droppedItems: data.droppedItems
   }};
 
   template.string = locale.fireShield.intro + "\n" + locale.fireShield.check + "\n";
@@ -119,10 +173,16 @@ function fireShield(data, result)
       template.string += locale.twistFate + "\n";
     }
 
-    else template.string += locale.fireShield.fail + "\n";
+    else template.string += locale.damage.fail + "\n";
   }
 
-  else template.string += locale.fireShield.success + "\n";
+  else template.string += locale.damage.success + "\n";
+
+  if (result.shiftedShapeName != null)
+  {
+    template.string += locale.damage.shapeshift + "\n";
+  }
+
   return template;
 }
 
@@ -169,7 +229,9 @@ function poisonBarbs(data, result)
     protectionRoll: result.protectionRoll,
     damageInflicted: result.damageInflicted,
     damageType: result.damageType,
-    target: data.target[keys.NAME]
+    target: data.target[keys.NAME],
+    shiftedShapeName: data.shiftedShapeName,
+    droppedItems: data.droppedItems
   }};
 
   template.string = locale.poisonBarbs.intro + "\n" + locale.poisonBarbs.check + "\n";
@@ -181,10 +243,21 @@ function poisonBarbs(data, result)
       template.string += locale.twistFate + "\n";
     }
 
-    else template.string += locale.poisonBarbs.fail + "\n";
+    else template.string += locale.damage.fail + "\n";
   }
 
-  else template.string += locale.poisonBarbs.success + "\n";
+  else template.string += locale.damage.success + "\n";
+
+  if (result.shiftedShapeName != null)
+  {
+    template.string += locale.damage.shapeshift + "\n";
+
+    if (result.droppedItems.length > 0)
+    {
+      template.string += locale.damage.droppedItems + "\n";
+    }
+  }
+
   return template;
 }
 
@@ -196,7 +269,9 @@ function poisonSkin(data, result)
     protectionRoll: result.protectionRoll,
     damageInflicted: result.damageInflicted,
     damageType: result.damageType,
-    target: data.target[keys.NAME]
+    target: data.target[keys.NAME],
+    shiftedShapeName: data.shiftedShapeName,
+    droppedItems: data.droppedItems
   }};
 
   template.string = locale.poisonSkin.intro + "\n" + locale.poisonSkin.check + "\n";
@@ -208,21 +283,35 @@ function poisonSkin(data, result)
       template.string += locale.twistFate + "\n";
     }
 
-    else template.string += locale.poisonSkin.fail + "\n";
+    else template.string += locale.damage.fail + "\n";
   }
 
-  else template.string += locale.poisonSkin.success + "\n";
+  else template.string += locale.damage.success + "\n";
+
+  if (result.shiftedShapeName != null)
+  {
+    template.string += locale.damage.shapeshift + "\n";
+
+    if (result.droppedItems.length > 0)
+    {
+      template.string += locale.damage.droppedItems + "\n";
+    }
+  }
+
   return template;
 }
 
-function damageCheck(data, result)
+function damage(data, result)
 {
   var template = {"string": "", "vars":
   {
     damageRoll: result.damageRoll,
     protectionRoll: result.protectionRoll,
     damageInflicted: result.damageInflicted,
-    damageType: result.damageType
+    damageType: result.damageType,
+    target: data.target[keys.NAME],
+    shiftedShapeName: data.shiftedShapeName,
+    droppedItems: data.droppedItems
   }};
 
   template.string = locale.damage.check + "\n";
@@ -238,6 +327,17 @@ function damageCheck(data, result)
   }
 
   else template.string += locale.damage.success + "\n";
+
+  if (result.shiftedShapeName != null)
+  {
+    template.string += locale.damage.shapeshift + "\n";
+
+    if (result.droppedItems.length > 0)
+    {
+      template.string += locale.damage.droppedItems + "\n";
+    }
+  }
+
   return template;
 }
 
@@ -261,7 +361,7 @@ function berserk(data, result)
   return template;
 }
 
-function berserk(data, result)
+function drain(data, result)
 {
   var template = {"string": "", "vars":
   {

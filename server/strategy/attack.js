@@ -21,7 +21,7 @@ module.exports =
 
   apply: function(pack, result)
   {
-    result.parry = pack.target.getTotalParry();
+    result.parry = pack.target.getTotalAttribute(keys.PARRY);
     result.dualPenalty = pack.actor.getDualPenalty();
   	result.harassmentPenalty = (pack.data.nbrAttacks - 1) * 2;
   	result.attackRoll = pack.actor.getTotalAttack(pack.data.currentWeapon) - result.dualPenalty + dice.DRN();
@@ -30,21 +30,28 @@ module.exports =
     result.hitLocation = getHitLocation(weapon[keys.LEN], pack.actor[keys.SIZE], pack.target[keys.PART_LIST]);
     pack.data.hitLocation = result.hitLocation;
 
-  	if (result.parry > 0 && pack.data.currentWeapon[keys.PROP_LIST].includes(keys.PROPS.FLAIL) === true && (result.difference + 2) - result.parry > 0)
-  	{
-  		result.difference += 2;
-  	}
+		if (result.parry > 0 && pack.data.currentWeapon[keys.PROP_LIST].includes(keys.PROPS.FLAIL) === true)
+		{
+			result.difference += 2;
+		}
 
-  	else if (result.difference > 0)
-  	{
-  		result.isShieldHit = true;
+		if (result.difference < 0)
+		{
+			result.failed = true;
+			return;
+		}
+
+		else if (result.difference > 0 && result.difference - result.parry < 0)
+		{
+			result.isShieldHit = true;
       pack.data.isShieldHit = true;
-  	}
+		}
 
-  	else
-  	{
-  		result.failed = true;
-  	}
+  	//TODO On Hit effect happens here
+		if (pack.data.currentWeapon[keys.ON_HIT] != null && pack.data.currentWeapon[keys.ON_HIT].length > 0)
+		{
+
+		}
   }
 }
 

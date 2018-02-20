@@ -39,6 +39,13 @@ module.exports =
 
     //FUNCTIONS
     b.verifyDeployment = verifyDeployment;
+    b.verifyOwner = verifyOwner;
+    b.verifyMovement = verifyMovement;
+    b.verifyAttack = verifyAttack;
+    b.verifyMeleeAction = verifyMeleeAction;
+    b.verifyRangedAction = verifyRangedAction;
+    b.verifySpellAction = verifySpellAction;
+    b.resolveAttack = resolveAttack;
     b.startPack = startPack;
     b.emitAll = emitAll;
     b.generateMap = generateMap;
@@ -71,6 +78,26 @@ module.exports =
       b.players[i].socket.on("deploymentScheme", function(data)
       {
         b.verifyDeployment(b.players[i], data);
+
+        if (b.deployedPlayers >= b.players.length)
+        {
+          //battle start!
+          b.emitAll("battleStart", {order: b.order, positions: b.positions});
+          b.listenAll("movement", function(data, socket)
+          {
+            b.resolveMovement(data, socket);
+          });
+
+          b.listenAll("attack", function(data, socket)
+          {
+            b.resolveAttack(data, socket);
+          });
+
+          b.listenAll("endTurn", function(data, socket)
+          {
+            b.endTurn(data, socket);
+          });
+        }
       });
     }
 
@@ -105,66 +132,7 @@ function verifyDeployment(player, characters)
   }
 
   this.deployedPlayers++;
-
-  if (this.deployedPlayers >= this.players.length)
-  {
-    //battle start!
-    this.emitAll("battleStart", {order: this.order, positions: this.positions});
-    this.listenAll("movement", function(data, socket)
-    {
-      verifyMovement(data, socket);
-    });
-
-    this.listenAll("attack", function(data, socket)
-    {
-      verifyAttack(data, socket);
-    });
-  }
 };
-
-function verifyMovement(data, socket)
-{
-  var serverChar;
-
-  if (data.character.id != this.order[0].actor.id)
-  {
-    //wrong turn
-    socket.emit("InvalidCharacter", "It is not this character's turn to act.");
-    return;
-  }
-
-  if (data.username == null || this.players[data.username] == null)
-  {
-    //wrong username
-    socket.emit("InvalidPlayer", "This isn't a valid player for you to control.");
-    return;
-  }
-
-  if (this.players[data.username].characters[data.character.id] == null)
-  {
-    //wrong character
-    socket.emit("InvalidCharacter", "This isn't a valid character for you to control.");
-    return;
-  }
-
-  serverChar = this.players[data.username].characters[data.character.id];
-
-  if (data.character.position.x > b.width || data.character.position.x > b.height)
-  {
-    //moved out of bounds
-    socket.emit("InvalidMovement", "A character cannot move outside the battle space.");
-    return;
-  }
-
-  if (distance(serverChar.battle.position, data.character.position) > serverChar[keys.MP])
-  {
-    //too much movement
-    socket.emit("InvalidMovement", "This character cannot move this far.");
-    return;
-  }
-
-  serverChar.battle.position = data.character.position;
-}
 
 function distance(pos1, pos2)
 {
@@ -179,61 +147,127 @@ function distance(pos1, pos2)
   else return dist2;
 }
 
-function verifyAttack(data, socket)
+function verifyOwner(data, socket)
 {
-  var actionFunctions = {};
-
   if (data.character.id != this.order[0].actor.id)
   {
     //wrong turn
-    socket.emit("InvalidCharacter", "It is not this character's turn to act.");
-    return;
+    throw new Error("It is not this character's turn to act.");
   }
 
   if (data.username == null || this.players[data.username] == null)
   {
     //wrong username
-    socket.emit("InvalidPlayer", "This isn't a valid player for you to control.");
-    return;
+    throw new Error("This isn't a valid player for you to control.");
   }
 
-  if (this.players[data.username].characters[data.character] == null)
+  if (this.players[data.username].characters[data.character.id] == null)
   {
     //wrong character
-    socket.emit("InvalidCharacter", "This isn't a valid character for you to control.");
-    return;
+    throw new Error("This isn't a valid character for you to control.");
   }
+}
 
-  if (this.actors.filter(function(char) {  return char.id == data.target.id;  }).length <= 0)
+function resolveMovement(data, socket)
+{
+  try
   {
-    //wrong target
-    socket.emit("InvalidTarget", "The target does not exist.");
-    return;
+    this.verifyMovement(data, socket);
+    this.players[data.username].characters[data.character.id] = data.character.position;
+    socket.emit("ResolvedMovement", {character: data.character.id, position: data.character.position});
   }
 
-  if (this.order[0].actor.player == data.target.player)
+  catch(err)
   {
-    //wrong target (friendly)
-    socket.emit("InvalidTarget", "You cannot target one of your own characters.");
-    return;
+    socket.emit("InvalidMovement", err);
   }
+}
 
-  if (data.action === keys.TRIGGERS.MELEE)
+function verifyMovement(data, socket)
+{
+  var serverChar;
+
+  try
   {
-    verifyMeleeAction(data, socket);
+    this.verifyOwner(data, socket);
+
+    if (data.character.position.x > b.width || data.character.position.x > b.height)
+    {
+      //moved out of bounds
+      throw new Error("A character cannot move outside the battle space.");
+    }
+
+    if (distance(serverChar.battle.position, data.character.position) > serverChar[keys.MP])
+    {
+      //too much movement
+      throw new Error("This character cannot move this far.");
+    }
   }
 
-  else if (data.action === keys.TRIGGERS.RANGED)
+  catch(err)
   {
-    verifyRangedAction(data, socket);
+    throw err;
   }
+}
 
-  else if (data.action === keys.TRIGGERS.SPELL)
+function resolveAttack(data, socket)
+{
+  try
   {
-    verifySpellAction(data, socket);
+    var verifiedPack = this.verifyAttack(data, socket);
+    var resolvedPack = ruleset.resolveAttack(verifiedPack);
+    var translatedPack = interpreter.translateResults(resolvedPack);
+    socket.emit("ResolvedAttack", translatePack);
   }
 
-  else socket.emit("InvalidAction", "The action selected does not exist.");
+  catch(err)
+  {
+    socket.emit("InvalidAttack", err);
+  }
+}
+
+function verifyAttack(data, socket)
+{
+  var actionFunctions = {};
+
+  try
+  {
+    this.verifyOwner(data, socket);
+
+    if (this.actors.filter(function(char) {  return char.id == data.target.id;  }).length <= 0)
+    {
+      //wrong target
+      throw new Error("The target does not exist.");
+    }
+
+    if (this.order[0].actor[keys.PLAYER] == data.target.player)
+    {
+      //wrong target (friendly)
+      throw new Error("You cannot target one of your own characters.");
+    }
+
+    if (data.action === keys.TRIGGERS.MELEE)
+    {
+      return this.verifyMeleeAction(data, socket);
+    }
+
+    else if (data.action === keys.TRIGGERS.RANGED)
+    {
+      return this.verifyRangedAction(data, socket);
+    }
+
+    else if (data.action === keys.TRIGGERS.SPELL)
+    {
+      return this.verifySpellAction(data, socket);
+    }
+
+    else throw new Error("The attack does not seem to be a melee, ranged or spell one.");
+  }
+
+  catch(err)
+  {
+    throw err;
+  }
 }
 
 function verifyMeleeAction(data, socket)
@@ -241,12 +275,22 @@ function verifyMeleeAction(data, socket)
   var actor = this.players[data.username].characters[data.character.id];
   var target = this.players[data.target.player].characters[data.target.id];
   var distance = distance(serverChar.battle.position, data.character.position);
-  var filter = filterWeapons(actor.battle.equippedWpns, target, distance);
-  var pack = {"actor": actor, "target": target, "distance": distance, weapons: filter.accepted, data: {}};
+  var filter = filterWeapons(data.weapons, actor, target, distance);
+  var reqAPs;
 
-  //resolve attack here calling upon the ruleset
-  var resultPack = ruleset.melee(pack);
+  if (filter.accepted.length <= 0)
+  {
+    throw new Error("None of the weapons can reach, affect or harm this target.");
+  }
 
+  reqAPs = requiredAPs(filter.accepted, actor);
+
+  if (actor.battle[keys.AP] < reqAPs)
+  {
+    throw new Error("Not enough APs to make these attacks. The total AP cost is " + reqAPs + ", but this character only has " + actor.battle[keys.AP] + " left.");
+  }
+
+  return {"type": keys.TRIGGERS.MELEE, "actor": actor, "target": target, "distance": distance, weapons: filter, data: {}};
 }
 
 function verifyRangedAction(data)
@@ -283,10 +327,57 @@ function verifyRangedAction(data)
   ruleset.ranged(data.character, data.target, weapons);
 }
 
-function filterWeapons(weapons, target, distance)
+function endTurn(data, socket)
 {
+  var actor = this.players[data.username].characters[data.character.id];
+
+  
+}
+
+function requiredAPs(weapons, actor)
+{
+  var apCost = 0;
+  var weaponIDs = [];
+
+  for (var i = 0; i < weapons.length; i++)
+  {
+    var timesAvailable = actor.getAttacks(weapons[i][keys.ID]).length;
+    var timesUsed = weaponIDs.filter(function(id) { return id === weapons[i][keys.ID]; }).length;
+    apCost += weapons[i][keys.AP_COST];
+
+    if (weaponIDs.length > 0 && timesUsed > 1 && timesUsed < timesAvailable)
+    {
+      //combos, each *new* *unique* attack in the same sequence reduces its cost by 1
+      //check the number of this attack available in the character and compare
+      //it to the number of times it's been already used in the weaponIDs
+      apCost--;
+    }
+
+    weaponIDs.push(weapons[i][keys.ID]);
+  }
+
+  return apCost;
+}
+
+function filterWeapons(weapons, actor, target, distance)
+{
+  var verified = [];
   var rejected = [];
-  weapons = weapons.filter(function(wpn)
+
+  for (var i = 0; i < weapons.length; i++)
+  {
+    var attacks = actor.getAttacks(weapons[i]);
+
+    if (attacks == null || attacks.length < 1)
+    {
+      rejected.push({weapon: weapons[i], reason: "This weapon id is not valid."});
+      continue;
+    }
+
+    verified.push(attacks[0]);
+  }
+
+  verified = verified.filter(function(wpn)
   {
     if (wpn[keys.RANGE] < distance)
     {
@@ -296,7 +387,7 @@ function filterWeapons(weapons, target, distance)
     else return wpn;
   });
 
-  weapons = weapons.filter(function(wpn)
+  verified = verified.filter(function(wpn)
   {
     if (wpn[keys.CAT_LIST].includes(keys.CAT.MELEE) === false)
     {
@@ -306,7 +397,7 @@ function filterWeapons(weapons, target, distance)
     else return wpn;
   });
 
-  weapons = weapons.filter(function(wpn)
+  verified = verified.filter(function(wpn)
   {
     if (wpn[keys.PROP_LIST].includes([keys.PROPS.REQ.LIFE]) === true && target[keys.PROP_LIST].includes([keys.PROPS.LIFELESS]) === true)
     {
@@ -316,7 +407,7 @@ function filterWeapons(weapons, target, distance)
     else return wpn;
   });
 
-  weapons = weapons.filter(function(wpn)
+  verified = verified.filter(function(wpn)
   {
     if (wpn[keys.PROP_LIST].includes([keys.PROPS.REQ.MIND]) === true && target[keys.PROP_LIST].includes([keys.PROPS.MINDLESS]) === true)
     {
@@ -326,7 +417,7 @@ function filterWeapons(weapons, target, distance)
     else return wpn;
   });
 
-  return {rejected: rejected, accepted: weapons};
+  return {rejected: rejected, accepted: verified};
 }
 
 //TODO

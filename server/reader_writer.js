@@ -462,7 +462,7 @@ function verifyValue(key, value)
 {
 	if (value === null && (key == keys.CAT_LIST || key == keys.TRANS_LIST || key == keys.ON_HIT ||
 			key == keys.ON_DMG || key == keys.SLOT_TYPE || key == keys.DESCR || key == keys.AB_LIST ||
-			key == keys.EFF_LIST || key == keys.PATH_LIST || key == keys.PROP_LIST || key == keys.ATKS))
+			key == keys.EFF_LIST || key == keys.PATH_LIST || key == keys.PROP_LIST || key == keys.NAT_WPN_LIST))
 	{
 		//These fields can be left empty, which will yield a null value, without causing issues
 		return true;
@@ -524,7 +524,7 @@ function verifyValue(key, value)
 		else return "The value of key " + key + " is " + (typeof value) + ". Expected an Array.";
 	}
 
-	else if (key == keys.ATKS || key == keys.EFF_LIST || key == keys.COST_LIST ||
+	else if (key == keys.NAT_WPN_LIST || key == keys.EFF_LIST || key == keys.COST_LIST ||
 					 key == keys.PRT || key == keys.AB_LIST || key == keys.PATH_LIST ||
 					 key == keys.SLOT_LIST || key == keys.PART_LIST)
 	{

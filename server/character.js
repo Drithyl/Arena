@@ -3,6 +3,55 @@ const dice = require("./dice.js");
 //const affliction = require("./affliction.js");
 const ruleset = require("./ruleset.js");
 var keys;
+var forms;
+
+var itemEffectsOnCharacter =
+[
+  keys.EFF.ALL_WATERBREATHING,
+  keys.EFF.REINVIG,
+  keys.EFF.INSPIRATION,
+  keys.EFF.FEAR,
+  keys.EFF.AWE,
+  keys.EFF.ANIMAL_AWE,
+  keys.EFF.UP_HEAL,
+  keys.EFF.POISON_BARBS,
+  keys.EFF.RECUP,
+  keys.EFF.BONUS.SIEGE,
+  keys.EFF.BONUS.FORGE,
+  keys.EFF.BONUS.HEAL,
+  keys.EFF.BONUS.SUPPLY,
+  keys.EFF.RES.FIRE,
+  keys.EFF.RES.COLD,
+  keys.EFF.RES.POISON,
+  keys.EFF.RES.SHOCK
+];
+
+var itemPropsOnCharacter =
+[
+  keys.PROPS.BLIND,
+  keys.PROPS.ETHEREAL,
+  keys.PROPS.NO_EAT,
+  keys.PROPS.RECUP,
+  keys.PROPS.AMPHIBIAN,
+  keys.PROPS.POOR_AMPH,
+  keys.PROPS.TRAMPLE,
+  keys.PROPS.NO_HEAL,
+  keys.PROPS.GLAMOUR,
+  keys.PROPS.FLY,
+  keys.PROPS.BLINDFIGHTER,
+  keys.PROPS.SACRED,
+  keys.PROPS.IMMORTAL,
+  keys.PROPS.STORM_FLY,
+  keys.PROPS.TELEPORT,
+  keys.PROPS.TWIST_FATE,
+  keys.PROPS.SKIN.BARK,
+  keys.PROPS.SKIN.STONE,
+  keys.PROPS.SKIN.IRON,
+  keys.PROPS.SURV.FOREST,
+  keys.PROPS.SURV.MOUNTAIN,
+  keys.PROPS.SURV.WASTE,
+  keys.PROPS.SURV.SWAMP
+];
 
 module.exports =
 {
@@ -18,11 +67,14 @@ module.exports =
     this.db = database;
     this.content = contentModule;
     this.list = charsFetched;
+    forms = require("./forms.js").init(contentModule, index);
 
     for (var i = 0; i < this.list.length; i++)
     {
       this.namesTaken.push(this.list[i][keys.NAME]);
     }
+
+    return this;
   },
 
   addCharacter: function(characters, cb)
@@ -49,21 +101,20 @@ module.exports =
     });
   },
 
-  registerCharacters: function(chars, player, cb)
+  registerCharacters: function(charactersData, player, cb)
   {
     var verifiedArr = [];
     player.characters = {};
 
-    for (var i = 0; i < chars.length; i++)
+    for (var i = 0; i < charactersData.length; i++)
     {
       try
       {
-        var verifiedChar = verifyChar(chars[i]);
-        this.namesTaken.push(verifiedChar[keys.NAME]);
-        verifiedChar.id = generateID();
-        verifiedChar.player = player.username;
-        verifiedArr.push(verifiedChar);
-        player.characterKeys.push(verifiedChar.id);
+        verifyCharacterData(charactersData[i]);
+        var character = buildCharacter(charactersData[i], player.username);
+        this.namesTaken.push(character[keys.NAME]);
+        verifiedArr.push(character);
+        player.characterKeys.push(character.id);
       }
 
       catch (err)
@@ -113,7 +164,7 @@ module.exports =
 
     var characters = this.list.filter(function(char)
     {
-      return char.player == username;
+      return char[keys.PLAYER] == username;
     });
 
     if (characters == null || characters.length == null || characters.length <= 0)
@@ -157,14 +208,9 @@ module.exports =
 
     for (var id in characters)
     {
-      var alias = characters[id];
-      alias[keys.FORM] = alias[keys.FORM][keys.ID];
-      alias[keys.SLOT_LIST][keys.SLOTS.HANDS][keys.EQUIPPED] = alias[keys.SLOT_LIST][keys.SLOTS.HANDS][keys.EQUIPPED][keys.ID];
-      alias[keys.SLOT_LIST][keys.SLOTS.HEAD][keys.EQUIPPED] = alias[keys.SLOT_LIST][keys.SLOTS.HEAD][keys.EQUIPPED][keys.ID];
-      alias[keys.SLOT_LIST][keys.SLOTS.BODY][keys.EQUIPPED] = alias[keys.SLOT_LIST][keys.SLOTS.BODY][keys.EQUIPPED][keys.ID];
-      alias[keys.SLOT_LIST][keys.SLOTS.FEET][keys.EQUIPPED] = alias[keys.SLOT_LIST][keys.SLOTS.FEET][keys.EQUIPPED][keys.ID];
-      alias[keys.SLOT_LIST][keys.SLOTS.MISC][keys.EQUIPPED] = alias[keys.SLOT_LIST][keys.SLOTS.MISC][keys.EQUIPPED][keys.ID];
-      arr.push(alias);
+      var clone = characters[id].functionless();
+      lullContent(clone);
+      arr.push(clone);
     }
 
     db.save("characters", arr, function(err, res)
@@ -180,19 +226,294 @@ module.exports =
   }
 }
 
-function reviveContent(char)
+function buildCharacter(verifiedData, player)
 {
-  char[keys.FORM] = content.getForms(keys.ID, char[keys.FORM])[0];
-  char[keys.SLOT_LIST][keys.SLOTS.HANDS][keys.EQUIPPED] = content.getWeapons(keys.ID, char[keys.SLOT_LIST][keys.SLOTS.HANDS][keys.EQUIPPED])[0];
-  char[keys.SLOT_LIST][keys.SLOTS.HEAD][keys.EQUIPPED] = content.getArmors(keys.ID, char[keys.SLOT_LIST][keys.SLOTS.HEAD][keys.EQUIPPED])[0];
-  char[keys.SLOT_LIST][keys.SLOTS.BODY][keys.EQUIPPED] = content.getArmors(keys.ID, char[keys.SLOT_LIST][keys.SLOTS.BODY][keys.EQUIPPED])[0];
-  char[keys.SLOT_LIST][keys.SLOTS.FEET][keys.EQUIPPED] = content.getTrinkets(keys.ID, char[keys.SLOT_LIST][keys.SLOTS.FEET][keys.EQUIPPED])[0];
-  char[keys.SLOT_LIST][keys.SLOTS.MISC][keys.EQUIPPED] = content.getTrinkets(keys.ID, char[keys.SLOT_LIST][keys.SLOTS.MISC][keys.EQUIPPED])[0];
+  var obj = {};
+  var race = content.getForms({key: keys.NAME, value: verifiedData.race});
+
+  obj[keys.NAME] = verifiedData.name;
+  obj[keys.ID] = generateID();
+  obj[keys.PLAYER] = player;
+  obj[keys.TRANS_POINTS] = 0;
+  obj[keys.FORM] = race[keys.ID];
+  obj[keys.CURR_FORM] = race[keys.ID];
+  obj[keys.ALL_FORMS] = race[keys.ALL_FORMS];
+  obj[keys.MAX_HP] = verifiedData[keys.MAX_HP];
+  obj[keys.CURR_HP] = obj[keys.MAX_HP] + race[keys.MAX_HP];
+  obj[keys.MR] = verifiedData[keys.MR];
+  obj[keys.MRL] = verifiedData[keys.MRL];
+  obj[keys.STR] = verifiedData[keys.STR];
+  obj[keys.ATK] = 0;
+  obj[keys.DEF] = 0;
+  obj[keys.PRC] = 0;
+  obj[keys.AP] = 0;
+  obj[keys.MP] = 0;
+  obj[keys.SPEED] = 0;
+  obj[keys.AFFL_LIST] = {};
+  obj[keys.PATH_LIST] = {};
+  obj[keys.PROP_LIST] = [];
+  obj[keys.AB_LIST] = {};
+  obj[keys.PART_LIST] = race[keys.PART_LIST];
+
+  for (var key in keys.SLOT_LIST)
+  {
+    obj[keys.SLOT_LIST[key]] = {};
+    obj[keys.SLOT_LIST[key]][keys.EQUIPPED] = [];
+    obj[keys.SLOT_LIST[key]][keys.FREE] = race[keys.SLOT_LIST][keys.SLOT_LIST[key]];
+    obj[keys.SLOT_LIST[key]][keys.TOTAL] = race[keys.SLOT_LIST][keys.SLOT_LIST[key]];
+  }
+
+  return obj;
 }
 
-function verifyChar(char)
+/*
+* Puts some of the character object's content to sleep, as in replacing it for
+* its IDs (in the case of equipped items and forms) or base values (for protection),
+* so as to save the character into the database. These content objects will be
+* revived again on server launch (see reviveContent()). Arguments:
+*
+*   char           The character object that must be lulled.
+*/
+
+function lullContent(char)
 {
-  var chosenRace = content.getForms(keys.NAME, char.race);
+  char.lullItemEffects(itemEffectsOnCharacter, itemPropsOnCharacter);
+  char.lullProtection();
+  char.lullSlots();
+  char.lullForms();
+}
+
+function lullProtection(t = this)
+{
+  for (var part in keys.PARTS)
+  {
+    t[keys.PRT_LIST][keys.PARTS[part]] = t[keys.FORM][keys.PRT_LIST][keys.PARTS[part]];
+  }
+}
+
+function lullSlots(t = this)
+{
+  for (var slot in keys.SLOTS)
+  {
+    var equipped = char[keys.SLOT_LIST][keys.SLOTS[slot]][keys.EQUIPPED];
+
+    for (var i = 0; i < equipped.length; i++)
+    {
+      equipped[i] = equipped[i][keys.ID];
+    }
+  }
+}
+
+function lullForms(t = this)
+{
+  t[keys.FORM] = t[keys.FORM][keys.ID];
+
+  for (var i = 0; i < t[keys.ALL_FORMS].length; i++)
+  {
+    t[keys.ALL_FORMS][i] = t[keys.ALL_FORMS][i][keys.ID];
+  }
+}
+
+/*
+* Unloads the effects and properties that equipped items are transferring to
+* the character, usually for the purpose of saving the character in the database.
+* To determine which effects and properties might have been loaded, the function
+* uses the array Arguments:
+*
+*   effectsFilter An array listing the keys of effects to be removed.
+*
+*   propsFilter   An array listing the keys of properties to be removed.
+*
+*   t             The character object that must be lulled, just a shorthand for the
+*                 default 'this', since it will mostly be called like so:
+*                 character.lullItemEffects()
+*/
+
+function lullItemEffects(effectsFilter, propsFilter, t = this)
+{
+  for (var slot in keys.SLOTS)
+  {
+    for (var id in t[keys.SLOTS[slot]][keys.EQUIPPED])
+    {
+      var item = t[keys.SLOTS[slot]][keys.EQUIPPED][id];
+      removeItemEffects(item, itemEffectsOnCharacter, itemPropsOnCharacter, t);
+    }
+  }
+}
+
+/*
+* Revives the relevant properties of a character for ease of access during runtime,
+* such as grabbing the item objects that the character has equipped, or calculating
+* the different total protection values of each bodypart. Arguments:
+*
+*   char           The character object that must be lulled.
+*/
+
+function reviveContent(char)
+{
+  char.reviveSlots();
+  char.reviveForms();
+  char.reviveProtection();  //must go last
+  char.reviveItemEffects(itemEffectsOnCharacter, itemPropsOnCharacter);
+}
+
+function reviveSlots(t = this)
+{
+  for (var slot in keys.SLOTS)
+  {
+    var equipped = char[keys.SLOT_LIST][keys.SLOTS[slot]][keys.EQUIPPED];
+
+    for (var i = 0; i < equipped.length; i++)
+    {
+      equipped[i] = content.getItems({key: keys.ID, value: equipped[i][keys.ID])[0];
+    }
+  }
+}
+
+function reviveForms(t = this)
+{
+  t[keys.FORM] = forms.create(t[keys.FORM]);
+
+  for (var i = 0; i < t[keys.ALL_FORMS].length; i++)
+  {
+    t[keys.ALL_FORMS][i] = forms.create(t[keys.ALL_FORMS][i]);
+  }
+}
+
+/*
+* Transfers the effects and properties of equipped items to the character for ease
+* of use during runtime (rather than having to search for them in both characters
+* and items). Arguments:
+*
+*   effectsFilter An array listing the keys of effects to be applied.
+*
+*   propsFilter   An array listing the keys of properties to be applied.
+*
+*   t             The character object that must be lulled, just a shorthand for the
+*                 default 'this', since it will mostly be called like so:
+*                 character.lullItemEffects()
+*/
+
+function reviveItemEffects(effectsFilter, propsFilter, t = this)
+{
+  for (var slot in keys.SLOTS)
+  {
+    for (var id in t[keys.SLOTS[slot]][keys.EQUIPPED])
+    {
+      var item = t[keys.SLOTS[slot]][keys.EQUIPPED][id];
+      applyItemEffects(item, itemEffectsOnCharacter, itemPropsOnCharacter, t);
+    }
+  }
+}
+
+/*
+* Transfers to the character the effects and properties of a single equipped
+* item. Arguments:
+*
+*   item          The item that contains the effects to apply.
+*
+*   effectsFilter An array listing the keys of effects to be applied.
+*
+*   propsFilter   An array listing the keys of properties to be applied.
+*
+*   char          The character object from which to remove the effects.
+*/
+
+function applyItemEffects(item, effectsFilter, propsFilter, char)
+{
+  for (eff in item[keys.EFF_LIST])
+  {
+    if (itemEffectsOnCharacter.includes(eff) === false)
+    {
+      continue;
+    }
+
+    if (char[keys.AB_LIST][eff] == null)
+    {
+      char[keys.AB_LIST][eff] = item[keys.EFF_LIST][eff];
+    }
+
+    else char[keys.AB_LIST][eff] += item[keys.EFF_LIST][eff];
+  }
+
+  for (prop in item[keys.PROP_LIST])
+  {
+    if (itemPropsOnCharacter.includes(prop) === false)
+    {
+      continue;
+    }
+
+    if (char[keys.PROP_LIST].includes(prop) === false)
+    {
+      char[keys.PROP_LIST].push(item[keys.PROP_LIST][prop]);
+    }
+  }
+}
+
+/*
+* Removes the effects and properties of an item applied to a character. Arguments:
+*
+*   item          The item that contains the effects to remove.
+*
+*   effectsFilter An array listing the keys of effects to be removed.
+*
+*   propsFilter   An array listing the keys of properties to be removed.
+*
+*   char          The character object from which to remove the effects.
+*/
+
+function removeItemEffects(item, effectsFilter, propsFilter, char)
+{
+  for (eff in item[keys.EFF_LIST])
+  {
+    if (itemEffectsOnCharacter.includes(eff) === false)
+    {
+      continue;
+    }
+
+    char[keys.AB_LIST][eff] -= item[keys.EFF_LIST][eff];
+
+    if (char[keys.AB_LIST][eff] === 0)
+    {
+      delete char[keys.AB_LIST][eff];
+    }
+  }
+
+  for (prop in item[keys.PROP_LIST])
+  {
+    if (itemPropsOnCharacter.includes(prop) === false)
+    {
+      continue;
+    }
+
+    char[keys.PROP_LIST].splice(char[keys.PROP_LIST].indexOf(item[keys.PROP_LIST][prop]), 1);
+  }
+}
+
+/*
+* Verify the data of a single character sent by a client on character creation
+* to make sure that it is valid. Arguments:
+*
+*   data            The character data. It is supposed to contain a string .name
+*                   property, a string .race property, and a subObject
+*                   .attributes, with a collection of the attribute keys and
+*                   integer values that the client invested.
+*
+* This function may fail for several reasons:
+*
+*   RaceError       The race in .race could not be found within the content.
+*
+*   NameError       The character name is incorrect. It might not be a string,
+*                   contain invalid characters, be too short or too long.
+*
+*   AttributesError One or more of the attributes either does not exist, or
+*                   is not a number, or the client somehow invested more points
+*                   than his chosen race allows.
+*/
+
+function verifyCharacterData(data)
+{
+  var chosenRace = content.getForms({key: keys.NAME, value: char.race});
 
   if (chosenRace === null || chosenRace.length <= 0)
   {
@@ -201,19 +522,17 @@ function verifyChar(char)
 
   try
   {
-    verifyCharName(data.name);
-    verifyScores(chosenRace, data.attributes);
+    verifyName(data.name);
+    verifyAttributes(chosenRace, data.attributes);
   }
 
   catch (err)
   {
     throw err;
   }
-
-  return char;
 }
 
-function verifyCharName(name)
+function verifyName(name)
 {
 	if (typeof name !== "string")
 	{
@@ -241,41 +560,30 @@ function verifyCharName(name)
   }
 }
 
-function verifyScores(race, scores)
+function verifyAttributes(race, attributes)
 {
-  var points = race[keys.START_POINTS];
+  var maxPoints = race[keys.START_POINTS];
+  var pointsUsed = 0;
 
-  for (var key in keys.CHAR)
+  for (var key in attributes)
   {
-    if (isNaN(race[key]) === false && isNaN(scores[key]) === false &&
-        scores[key] < race[key])
+    if (race[key] == null)
     {
-      throw "The " + key + " score is too low. It cannot go under the race's minimum.";
+      throw "The attribute " + key + " is invalid. It does not exist.";
     }
 
-    if (keys.ATTR[key] == null)
+    if (isNaN(attributes[key]) === true)
     {
-      if (scores[key] !== race[key])
-      {
-        throw "The " + key + " value cannot be different from that of the race.";
-      }
-
-      else continue;
+      throw "The attribute " + key + " must be an integer.";
     }
 
-    if (scores[key] > race[key])
-    {
-      var diff = scores[key] - race[key];
-      points -= diff;
+    pointsUsed += attributes[key];
 
-      if (points < 0)
-      {
-        return false;
-      }
+    if (pointsUsed > maxPoints)
+    {
+      throw "You have invested more points than your race allows.";
     }
   }
-
-  return true;
 }
 
 function generateID()
@@ -293,90 +601,7 @@ function generateID()
 
 function attachFunctions(character)
 {
-  character.toClient = toClient;
-  character.abstract = abstract;
-  character.battleReady = battleReady;
-  character.printCharSheet = printCharSheet;
-  character.printEquipment = printEquipment;
-  character.printVault = printVault;
-  character.printTasks = printTasks;
-  character.raiseXP = raiseXP;
-  character.raiseHP = raiseHP;
-  character.raiseProt = raiseProt;
-  character.raiseStat = raiseStat;
-  character.nextLvlXP = nextLvlXP;
-  character.nextLvlPointCost = nextLvlPointCost;
-  character.getLevelledProps = getLevelledProps;
-  character.getForm = getForm;
-  character.getVault = getVault;
-  character.hasEnoughCurrency = hasEnoughCurrency;
-  character.transaction = transaction;
-  character.buy = buy;
-  character.sell = sell;
-  character.equip = equip;
-  character.prepareIntrinsic = prepareIntrinsic;
-  character.use = use;
-  character.dropItem = dropItem;
-  character.dropSlots = dropSlots;
-  character.unequipItem = unequipItem;
-  character.unequipSlots = unequipSlots;
-  character.cleanSlots = cleanSlots;
-  character.hasEquipped = hasEquipped;
-  character.hasInVault = hasInVault;
-  character.hasHealableAffl = hasHealableAffl;
-  character.isHealthy = isHealthy;
-  character.storeInVault = storeInVault;
-  character.removeFromVault = removeFromVault;
-  character.lesserRecuperate = lesserRecuperate;
-  character.recuperate = recuperate;
-  character.heal = heal;
-  character.drain = drain;
-  character.applyDmg = applyDmg;
-  character.ignite = ignite;
-  character.tickPoison = tickPoison;
-  character.tickCold = tickCold;
-  character.tickFire = tickFire;
-  character.escapeWeb = escapeWeb;
-  character.endEffects = endEffects;
-  character.changeShape = changeShape;
-  character.revertShape = revertShape;
-  character.reduceHP = reduceHP;
-  character.calcAffliction = calcAffliction;
-  character.loseSlot = loseSlot;
-  character.addFatigue = addFatigue;
-  character.reinvigorate = reinvigorate;
-  character.getSlotsNbr = getSlotsNbr;
-  character.getWeapons = getWeapons;
-  character.getRepelWeapons = getRepelWeapons;
-  character.getAttacks = getAttacks;
-  character.getRepels = getRepels;
-  character.getEquippedWeapons = getEquippedWeapons;
-  character.getIntrinsicWeapons = getIntrinsicWeapons;
-  character.getUnusableParts = getUnusableParts;
-  character.getGoldFactor = getGoldFactor;
-  character.getGemFactor = getGemFactor;
-  character.getTrainFactor = getTrainFactor;
-  character.getSharesHealingFactor = getSharesHealingFactor;
-  character.getFinalHealingFactor = getFinalHealingFactor;
-  character.getRecupFactor = getRecupFactor;
-  character.getTtlHP = getTtlHP;
-  character.getTtlShapeHP = getTtlShapeHP;
-  character.getTtlProt = getTtlProt;
-  character.getTtlShieldProt = getTtlShieldProt;
-  character.getTtlAtt = getTtlAtt;
-  character.getDualPen = getDualPen;
-  character.getTtlDef = getTtlDef;
-  character.getTtlParry = getTtlParry;
-  character.getTtlStr = getTtlStr;
-  character.getTtlMR = getTtlMR;
-  character.getTtlMor = getTtlMor;
-  character.getTtlPrec = getTtlPrec;
-  character.getTtlEnc = getTtlEnc;
-  character.getTtlPath = getTtlPath;
-  character.getTtlReinvig = getTtlReinvig;
-  character.getTtlRes = getTtlRes;
-  character.checkProp = checkProp;
-  character.printPaths = printPaths;
+  //TODO
 }
 
 function battleReady(t = this)
@@ -385,83 +610,7 @@ function battleReady(t = this)
   t.battle.position = [];
   t.battle[keys.FAT] = 0;
   t.battle.status = {};
-  t.battle.equippedWpns = t[keys.SLOTS.HANDS].equipped.slice(0);
-}
-
-function damageArc(weapon, pack, result, t = this)
-{
-	damageCheck(weapon, pack, result);
-
-  if (result.damage < 0)
-  {
-    result.failed = true;
-    return;
-  }
-
-  if (pack.target.battle.status[keys.PROPS.TWIST_FATE] != null)
-  {
-    result.twistFate = true;
-    result.failed = true;
-    delete pack.target.battle.status[keys.PROPS.TWIST_FATE];
-    return;
-  }
-
-	inflictDamage(pack, result, (weapon[ids.PROPS][ids.STUN]) ? true : false);
-
-  if (pack.data.canAfflict === true)
-  {
-    affliction.apply(weapon, pack, result);
-  }
-}
-
-function inflictDamage(pack, result, isStun)
-{
-  if (type == keys.DMG_TYPE.WEB)
-	{
-		pack.target.battle.status[keys.DMG_TYPE.WEB] = pack.data.damage;
-	}
-
-	else if (type == keys.DMG_TYPE.STUN || isStun === true)
-	{
-    var res = pack.target.addFatigue(pack.data.damage);
-    result.damageInflicted = res.fatigueDamage;
-    result.fatigueInflicted = res.fatigueAdded;
-	}
-
-	else if (type == keys.DMG_TYPE.POISON)
-	{
-		pack.target.battle.status[ids.DMG_TYPE.POISON] = ((pack.target.battle.status[ids.DMG_TYPE.POISON] || 0) + pack.data.damage).cap(Math.floor(pack.target[keys.MAX_HP]));
-    result.damageInflicted = pack.target.battle.status[ids.DMG_TYPE.POISON] - pack.data.damage;
-	}
-
-	else if (type == keys.DMG_TYPE.COLD || type == keys.DMG_TYPE.FIRE)
-	{
-		result.damageInflicted = pack.target.reduceHP(pack.data.damage);
-    result.remainingHP = pack.target[keys.CURR_HP];
-    pack.data.remainingHP = result.remainingHP;
-    pack.data.damageInflicted = result.damageInflicted;
-    pack.data.canAfflict = true;
-    pack.data.ignited = pack.target.ignite(pack, result);
-	}
-
-	else if (type == keys.DMG_TYPE.PARALYSIS)
-	{
-		result.damageInflicted = ruleset.calculateParalysis(pack.data.damage, pack.target);
-
-		if (result.damageInflicted > 0)
-		{
-			pack.target.battle.status[keys.DMG_TYPE.PARALYSIS] = pack.target.battle.status[keys.DMG_TYPE.PARALYSIS] + result.damageInflicted || result.damageInflicted;
-		}
-	}
-
-	else
-	{
-		result.damageInflicted = pack.target.reduceHP(pack.data.damage);
-    result.remainingHP = pack.target[keys.CURR_HP];
-    pack.data.remainingHP = result.remainingHP;
-    pack.data.damageInflicted = result.damageInflicted;
-    pack.data.canAfflict = true;
-	}
+  t.battle[keys.AP] = getTotalAttribute(keys.AP, t);
 }
 
 function ignite(pack, result, t = this)
@@ -511,62 +660,139 @@ function addFatigue(amount, t = this)
 
 function reduceHP(damage, t = this)
 {
-  var remainingHP;
-  var finalDamage = damage;
+  var result = {"finalDamage": damage.cap(t[keys.CURR_HP]), shiftedShapeName: null};
+  var changeShapeResult;
 
-  if (damage <= 0)
+  t[keys.CURR_HP] -= result.finalDamage;
+
+  if (t[keys.CURR_HP] === 0 && t[keys.ALL_FORMS].length > 0 && t[keys.CURR_FORM] < t[keys.ALL_FORMS].length - 1)
   {
-    return 0;
+    changeShapeResult = woundedShape(damage - finalDamage);
+    result.finalDamage += changeShapeResult.finalDamage;
+    result.shiftedShapeName = changeShapeResult.name;
   }
 
-	if (t[keys.AB_LIST][keys.ABS.SHAPE.FIRST] || t[keys.AB_LIST][keys.ABS.SHAPE.SECOND])
-	{
-    remainingHP = remainingHP.lowerCap(getTotalShapeHP(false, true, t) * -1);
-	}
-
-  else remainingHP = (Math.floor(t[keys.CURR_HP]) - damage).lowerCap(t[keys.MAX_HP] * -1);
-
-  if (finalDamage > remainingHP)
-  {
-    finalDamage = Math.abs((t[keys.MAX_HP] * -1) - Math.floor(t[keys.CURR_HP]));
-  }
-
-	t[keys.CURR_HP] = result.remainingHP;
-  return finalDamage;
+  return result;
 }
 
-function heal(amount, setAt = false, t = this)
+function woundedShape(damageCarried, t = this)
 {
-  var maxHP = getTotalHP(false, t);
-  var damageHealed = amount;
+  var maxHP;
+  var result;
 
-	if (amnt <= 0)
+  t[keys.CURR_FORM]++;
+  t[keys.FORM] = t[keys.ALL_FORMS][t[keys.CURR_FORM]];
+  maxHP = getTotalAttribute(keys.MAX_HP, t);
+  result = {"finalDamage": damageCarried.cap(t[keys.CURR_HP]), shiftedShapeName: t[keys.FORM][keys.NAME]};
+
+  t[keys.CURR_HP] = (t[keys.CURR_HP] - damageCarried).lowerCap(0);
+
+  if (t[keys.CURR_HP] === 0 && t[keys.ALL_FORMS].length > 0 && t[keys.CURR_FORM] < t[keys.ALL_FORMS].length - 1)
+  {
+    var nextResult = woundedShape(damageCarried - result.finalDamage, t);
+    result.finalDamage += nextResult.finalDamage;
+    result.shiftedShapeName = nextResult.shiftedShapeName;
+  }
+
+  result.droppedItems = updateSlots(t);
+  return result;
+}
+
+function heal(amount, t = this)
+{
+  var maxHP = getTotalAttribute(keys.MAX_HP, t);
+  var result = {"damageHealed": (maxHP - t[keys.CURR_HP]).cap(amount), shiftedShapeName: null};
+  var revertShapeResult;
+
+  t[keys.CURR_HP] += Math.floor(amount);
+
+	if (t[keys.CURR_HP] === maxHP && t[keys.ALL_FORMS].length > 0 && t[keys.CURR_FORM] > 0)
 	{
-		return;
-	}
-
-	if (setAt === true)
-	{
-    damageHealed = t[keys.MAX_HP] - amount;
-    t[keys.CURR_HP] = Math.floor(amount).cap(t[keys.MAX_HP]);
-    return damageHealed;
-	}
-
-  keys.CURR_HP += Math.floor(amount);
-
-	if (t[keys.CURR_HP] > maxHP)
-	{
-		if (t[keys.AB_LIST][keys.ABS.SHAPE.FIRST] != null)
-		{
-			//must return the total hp healed
-      return revertShape(t[keys.AB_LIST][keys.ABS.SHAPE.FIRST], t[keys.CURR_HP] - maxHP, t);
-		}
-
-    damageHealed = maxHP - t[keys.CURR_HP];
-		t[keys.CURR_HP] = maxHP;
+		revertShapeResult = healedShape(t[keys.CURR_HP] - maxHP, t);
+    result.damageHealed += revertShapeResult.damageHealed;
+    result.shiftedShapeName = revertShapeResult.shiftedShapeName;
 	}
 
   return damageHealed;
+}
+
+function healedShape(healingCarried, t = this)
+{
+  var maxHP;
+  var result;
+
+  t[keys.CURR_FORM]--;
+  t[keys.FORM] = t[keys.ALL_FORMS][t[keys.CURR_FORM]];
+  maxHP = getTotalAttribute(keys.MAX_HP, t)
+  result = {"damageHealed": healingCarried.cap(maxHP - t[keys.CURR_HP]), shiftedShapeName: t[keys.FORM][keys.NAME]};
+
+  t[keys.CURR_HP] += result.damageHealed;
+
+  if (t[keys.CURR_HP] === maxHP && t[keys.ALL_FORMS].length > 0 && t[keys.CURR_FORM] > 0)
+  {
+    var nextResult = healedShape(healingCarried - result.damageHealed, t);
+    result.damageHealed += nextResult.damageHealed;
+    result.shiftedShapeName = nextResult.shiftedShapeName;
+  }
+
+  result.droppedItems = updateSlots(t);
+  return result;
+}
+
+function updateSlots(t = this)
+{
+  var droppedItems = [];
+
+  for (var key in keys.SLOT_LIST)
+  {
+    var slot = [keys.SLOT_LIST[key]];
+    var formTotal = race[keys.SLOT_LIST][keys.SLOT_LIST][slot];
+    var charTotal = t[keys.SLOT_LIST][slot][keys.TOTAL];
+
+    t[keys.SLOT_LIST][slot][keys.TOTAL] = formTotal;
+
+    if (formTotal === charTotal)
+    {
+      continue;
+    }
+
+    else if (formTotal > charTotal)
+    {
+      t[keys.SLOT_LIST][slot][keys.FREE] += formTotal - charTotal;
+    }
+
+    else if (formTotal < charTotal)
+    {
+      droppedItems = droppedItems.concat(reduceSlots(slot, charTotal - formTotal, t));
+    }
+  }
+
+  return droppedItems;
+}
+
+function reduceSlots(slotType, difference, t = this)
+{
+  var slotReqToFind = difference;
+  var droppedItems = [];
+
+  while (difference > 0)
+  {
+    for (var key in t[keys.SLOT_LIST][slotType][keys.EQUIPPED])
+    {
+      var item = t[keys.SLOT_LIST][slotType][keys.EQUIPPED][key];
+
+      if (item[keys.REQ_SLOTS] === slotReqToFind)
+      {
+        droppedItems.push(item[keys.NAME]);
+        delete t[keys.SLOT_LIST][slotType][keys.EQUIPPED][key];
+        difference -= slotReqToFind;
+      }
+    }
+
+    slotReqToFind--;
+  }
+
+  return droppedItems;
 }
 
 function reduceFatigue(amount, t = this)
@@ -623,14 +849,18 @@ function reinvigorate(amount, t = this)
 
 function getProtectionRoll(weapon, target, hitLocation, damageType, t = this)
 {
-	var protection;
+	var protection = target[keys.PRT_LIST][hitLocation][keys.TOTAL];
 
 	if (weapon[keys.PROP_LIST].includes(keys.PROPS.A_NEGATE) === true)
 	{
 		return 0;
 	}
 
-  protection = dfndr.getTtlProt(hitLoc, (weapon[keys.PROP_LIST].includes(keys.PROPS.MAGICAL) === true) ? true : false);
+  if (weapon[keys.PROP_LIST].includes(keys.PROPS.MAGICAL) === true)
+  {
+    //loses invulnerability protection
+    protection -= target[keys.PRT_LIST][hitLocation][keys.PRT.INVUL];
+  }
 
 	if (damageType == keys.DMG_TYPE.PIERCE)
 	{
@@ -646,28 +876,201 @@ function getProtectionRoll(weapon, target, hitLocation, damageType, t = this)
 	return protection;
 }
 
-function damageCheck(weapon, pack, result)
+function reviveProtection(t = this)
 {
-  result.damageType = weapon.pickDamage();
-  pack.data.damageType = result.damageType;
+  for (var part in keys.PARTS)
+  {
+    var armor = getTotalArmor(keys.PARTS[part], t);
+    var natural = getTotalNaturalArmor(keys.PARTS[part], t);
+    var invulnerability = getTotalAbility(keys.ABS.INVUL);
 
-	if (result.damageType == keys.DMG_TYPE.WEB)
-	{
-		result.damage = data.actor[keys.SIZE];
-    pack.data.damage = result.damage;
-    return;
-	}
+    t[keys.PRT_LIST][keys.PARTS[part]] = {[keys.PRT.ARMOR]: armor,
+                                          [keys.PRT.NATURAL]: natural,
+                                          [keys.PRT.INVUL]: invulnerability,
+                                          [keys.TOTAL]: armor + natural + invulnerability};
+  }
+}
 
-  result.damageRoll = (result.damageType != keys.DMG_TYPE.POISON) ? dice.DRN() + weapon[keys.DMG] : weapon[keys.DMG];
-	result.protectionRoll = getProtectionRoll(weapon, target, pack.data.hitLocation, result.damageType, t);
-	result.difference = result.damageRoll - result.protectionRoll;
+function getTotalArmor(part, t = this)
+{
+  var total = 0;
 
-	if (weapon[keys.PROP_LIST].includes(keys.PROPS.CAPPED) === true && result.difference > 0)
-	{
-		result.damage = 1;
-    data.pack.damage = 1;
-		return;
-	}
+  for (var slot in keys.SLOTS)
+  {
+    for (var id in t[keys.SLOTS[slot]][keys.EQUIPPED])
+    {
+      var item = t[keys.SLOTS[slot]][keys.EQUIPPED][id];
 
-	ruleset.modifyDamage(pack, result, (weapon[ids.PROPS][ids.STUN]) ? true : false);
+      if (item[keys.PRT_LIST][part] == null || item[keys.PRT_LIST][part] === 0 || isNaN(item[keys.PRT_LIST][part]) === true)
+      {
+        continue;
+      }
+
+      total += item[keys.PRT_LIST][part];
+    }
+  }
+
+  return total;
+}
+
+function getTotalNaturalArmor(part, t = this)
+{
+  return (t[keys.FORM][keys.PRT_LIST][part] || 0) + getTotalAbility(keys.PRT.NATURAL);
+}
+
+function checkProperty(key, t = this)
+{
+  if (t[keys.PROP_LIST].includes(key) === true)
+  {
+    return true;
+  }
+
+  else return false;
+}
+
+/*
+* Returns the total sum of a character's stat (a stat being strength, HP, MR, etc;
+* essentially one of the properties that *every* character has). This includes
+* whatever bonuses items equipped might give. Arguments:
+*
+*   t             The character object that must be lulled, just a shorthand for the
+*                 default 'this', since it will mostly be called like so:
+*                 character.lullItemEffects()
+*/
+
+function getDualPenalty(t = this)
+{
+  var total = 0;
+
+  for (var slot in keys.SLOTS)
+  {
+    for (var id in t[keys.SLOTS[slot]][keys.EQUIPPED])
+    {
+      var item = t[keys.SLOTS[slot]][keys.EQUIPPED][id];
+
+      if (item[keys.DMG] == null || item[keys.LEN] == null)
+      {
+        //not a weapon
+        continue;
+      }
+
+      if (item[keys.PROP_LIST].includes(keys.EXTRA) === true)
+      {
+        //"Extra" weapons like
+        continue;
+      }
+
+      total += item[keys.LEN] || 0;
+    }
+  }
+
+  return (total - (t[keys.AB_LIST][keys.ABS.AMBIDEXTROUS] || 0)).lowerCap(0);
+}
+
+function getTotalAttribute(key, t = this)
+{
+  return (t[keys.FORM][key] || 0) + (t[key] || 0) + getEquippedAbility(key, t);
+}
+
+function getEquippedAbility(key, t = this)
+{
+  var total = 0;
+
+  for (var slot in keys.SLOTS)
+  {
+    for (var id in t[keys.SLOTS[slot]][keys.EQUIPPED])
+    {
+      var item = t[keys.SLOTS[slot]][keys.EQUIPPED][id];
+
+      if (item[key] != null && isNaN(item[key]) === false)
+      {
+        total += item[key];
+      }
+
+      if (item[keys.EFF_LIST][key] != null || isNaN(item[keys.EFF_LIST][key]) === false)
+      {
+        total += item[keys.EFF_LIST][key];
+      }
+    }
+  }
+
+  return total;
+}
+
+function getTotalAbility(key, t = this)
+{
+  var total = 0;
+
+  for (var ability in t[keys.AB_LIST])
+  {
+    if (key == ability && isNaN(t[keys.AB_LIST][ability]) === false)
+    {
+      total += t[keys.AB_LIST][ability];
+    }
+  }
+
+  return total;
+}
+
+function getEquippedWeapons(t = this)
+{
+  var weapons = [];
+
+  for (var slot in keys.SLOTS)
+  {
+    for (var id in t[keys.SLOTS[slot]][keys.EQUIPPED])
+    {
+      var item = t[keys.SLOTS[slot]][keys.EQUIPPED][id];
+
+      if (item[keys.DMG] != null)
+      {
+        weapons.push(item);
+      }
+    }
+  }
+
+  return weapons;
+}
+
+function getEquippedItem(id, t = this)
+{
+  var list = [];
+
+  for (var slot in keys.SLOTS)
+  {
+    for (var id in t[keys.SLOTS[slot]][keys.EQUIPPED])
+    {
+      var item = t[keys.SLOTS[slot]][keys.EQUIPPED][id];
+
+      if (item[keys.ID] === id)
+      {
+        list.push(item);
+      }
+    }
+  }
+
+  return list;
+}
+
+function getAttacks(id, t = this)
+{
+  return actor.getEquippedItem(id, t).concat(t[keys.FORM].getNaturalAttacks(id));
+}
+
+function hasAttack(id, t = this)
+{
+  for (var slot in keys.SLOTS)
+  {
+    for (var id in t[keys.SLOTS[slot]][keys.EQUIPPED])
+    {
+      var item = t[keys.SLOTS[slot]][keys.EQUIPPED][id];
+
+      if (item[keys.ID] === id)
+      {
+        return true;
+      }
+    }
+  }
+
+  return t[keys.FORM].hasNaturalAttack(id);
 }
