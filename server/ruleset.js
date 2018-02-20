@@ -43,6 +43,31 @@ module.exports =
     }
 
     else throw new Error("This attack seems to be neither melee, ranged nor a spell. This should have been verified by the previous function, check the code.");
+  },
+
+  calculateRequiredAPs: function(weapons, actor)
+  {
+    var apCost = 0;
+    var weaponIDs = [];
+
+    for (var i = 0; i < weapons.length; i++)
+    {
+      var timesAvailable = actor.getAttacks(weapons[i][keys.ID]).length;
+      var timesUsed = weaponIDs.filter(function(id) { return id === weapons[i][keys.ID]; }).length;
+      apCost += weapons[i][keys.AP_COST];
+
+      if (weaponIDs.length > 0 && timesUsed > 1 && timesUsed < timesAvailable)
+      {
+        //combos, each *new* *unique* attack in the same sequence reduces its cost by 1
+        //check the number of this attack available in the character and compare
+        //it to the number of times it's been already used in the weaponIDs
+        apCost--;
+      }
+
+      weaponIDs.push(weapons[i][keys.ID]);
+    }
+
+    return apCost;
   }
 }
 

@@ -16,7 +16,7 @@ module.exports =
 
     damageCheck(weapon, pack, result);
 
-    if (result.damage < 0)
+    if (result.finalDamage <= 0)
     {
       result.failed = true;
       return;
@@ -40,34 +40,142 @@ module.exports =
     //TODO On Damage effect happens here
     if (pack.data.currentWeapon[keys.ON_DMG] != null && pack.data.currentWeapon[keys.ON_DMG].length > 0)
     {
-      
+
     }
   }
+}
+
+function preRollDamage(weapon, pack, result)
+{
+  var resistance = pack.target.getElementalResistance(result.damageType);
+  result.damageScore = weapon[keys.DMG];
+
+  if (weapon[keys.PROP_LIST].includes(keys.PROPS.NO_STR) === false)
+  {
+    result.damageScore += pack.actor.getTotalAttribute(keys.STR);
+  }
+
+  if (weapon[keys.PROP_LIST].includes(keys.PROPS.STUN) === true)
+  {
+    resistance *= 2;
+  }
+
+  result.damageScore -= resistance;
+
+  if (pack.data.isShieldHit === true && weapon[keys.PROP_LIST].includes(keys.A_PIERCE) === true)
+  {
+    result.damageScore -= Math.floor(pack.target.getTotalAbility(keys.SHLD_PRT) / 2);
+  }
+
+  else if (pack.data.isShieldHit === true && weapon[keys.PROP_LIST].includes(keys.IGNORES_SHIELD) === false)
+  {
+    result.damageScore -= pack.target.getTotalAbility(keys.SHLD_PRT);
+  }
+}
+
+function damageCheck(weapon, pack, result)
+{
+  result.damageType = weapon.pickDamage();
+  pack.data.damageType = result.damageType;
+  preRollDamage(weapon, pack, result);
+
+  if (result.damageScore <= 0)
+  {
+    result.finalDamage = result.damageScore;
+    pack.data.finalDamage = result.finalDamage;
+    return;
+  }
+
+	if (result.damageType == keys.DMG_TYPE.WEB)
+	{
+		result.finalDamage = data.actor[keys.SIZE];
+    pack.data.finalDamage = result.finalDamage;
+    return;
+	}
+
+  result.damageRoll = dice.DRN() + result.damageScore;
+	result.protectionRoll = getProtectionRoll(weapon, target, pack.data.hitLocation, result.damageType, t);
+	result.difference = result.damageRoll - result.protectionRoll;
+
+  if (weapon[keys.PROP_LIST].includes([keys.PROPS.STUN]) === false && result.damageType != keys.DMG_TYPE.STUN && result.damageType != keys.DMG_TYPE.POISON)
+  {
+    postRollDamage(pack, result);
+  }
+
+  else
+  {
+    result.finalDamage = result.difference;
+    pack.data.finalDamage = result.finalDamage;
+  }
+}
+
+function postRollDamage(pack, result)
+{
+	var maxLimbDmg = Math.floor(pack.target[keys.MAX_HP] * 0.5).lowerCap(1);
+  result.finalDamage = result.difference;
+
+  if (result.finalDamage <= 0)
+  {
+    pack.data.finalDamage = 0;
+    return;
+  }
+
+	if (result.damageType == keys.DMG_TYPE.BLUNT && (result.hitLocation == keys.PARTS.HEAD || result.hitLocation == keys.PARTS.EYE))
+	{
+		result.finalDamage = Math.floor(result.finalDamage * 1.5);
+	}
+
+	else if (result.damageType == keys.DMG_TYPE.SLASH)
+	{
+    result.finalDamage = Math.floor(result.finalDamage * 1.25);
+	}
+
+  if (result.damageType == keys.DMG_TYPE.BLUNT && pack.target[keys.AB_LIST][keys.ABS.BLUNT] != null)
+  {
+    result.finalDamage = Math.floor(result.finalDamage * (pack.target[keys.AB_LIST][keys.ABS.BLUNT] / 100));
+  }
+
+  else if (result.damageType == keys.DMG_TYPE.PIERCE && pack.target[keys.AB_LIST][keys.ABS.PIERCE] != null)
+  {
+    result.finalDamage = Math.floor(result.finalDamage * (pack.target[keys.AB_LIST][keys.ABS.PIERCE] / 100));
+  }
+
+  else if (result.damageType == keys.DMG_TYPE.SLASH && pack.target[keys.AB_LIST][keys.ABS.SLASH] != null)
+  {
+    result.finalDamage = Math.floor(result.finalDamage * (pack.target[keys.AB_LIST][keys.ABS.SLASH] / 100));
+  }
+
+	if (result.hitLocation == keys.PARTS.ARM || result.hitLocation == keys.PARTS.LEG || result.hitLocation == keys.PARTS.WING)
+	{
+		result.finalDamage = result.finalDamage.cap(maxLimbDmg);
+	}
+
+  pack.data.finalDamage = result.finalDamage;
 }
 
 function inflictDamage(pack, result, isStun)
 {
   if (type == keys.DMG_TYPE.WEB)
 	{
-		pack.target.battle.status[keys.DMG_TYPE.WEB] = pack.data.damage;
+		pack.target.battle.status[keys.DMG_TYPE.WEB] = pack.data.finalDamage;
 	}
 
 	else if (type == keys.DMG_TYPE.STUN || isStun === true)
 	{
-    var res = pack.target.addFatigue(pack.data.damage);
+    var res = pack.target.addFatigue(pack.data.finalDamage);
     result.damageInflicted = res.fatigueDamage;
     result.fatigueInflicted = res.fatigueAdded;
 	}
 
 	else if (type == keys.DMG_TYPE.POISON)
 	{
-		pack.target.battle.status[ids.DMG_TYPE.POISON] = ((pack.target.battle.status[ids.DMG_TYPE.POISON] || 0) + pack.data.damage).cap(Math.floor(pack.target[keys.MAX_HP]));
-    result.damageInflicted = pack.target.battle.status[ids.DMG_TYPE.POISON] - pack.data.damage;
+		pack.target.battle.status[ids.DMG_TYPE.POISON] = ((pack.target.battle.status[ids.DMG_TYPE.POISON] || 0) + pack.data.finalDamage).cap(Math.floor(pack.target[keys.MAX_HP]));
+    result.damageInflicted = pack.target.battle.status[ids.DMG_TYPE.POISON] - pack.data.finalDamage;
 	}
 
 	else if (type == keys.DMG_TYPE.COLD || type == keys.DMG_TYPE.FIRE)
 	{
-    Object.assign(result, pack.target.reduceHP(pack.data.damage));
+    Object.assign(result, pack.target.reduceHP(pack.data.finalDamage));
     pack.data.damageInflicted = result.damageInflicted;
     pack.data.canAfflict = true;
     pack.data.ignited = pack.target.ignite(pack, result);
@@ -75,7 +183,7 @@ function inflictDamage(pack, result, isStun)
 
 	else if (type == keys.DMG_TYPE.PARALYSIS)
 	{
-		result.damageInflicted = calculateParalysis(pack.data.damage, pack.target);
+		result.damageInflicted = calculateParalysis(pack.data.finalDamage, pack.target);
 
 		if (result.damageInflicted > 0)
 		{
@@ -85,81 +193,10 @@ function inflictDamage(pack, result, isStun)
 
 	else
 	{
-    Object.assign(result, pack.target.reduceHP(pack.data.damage));
+    Object.assign(result, pack.target.reduceHP(pack.data.finalDamage));
     pack.data.damageInflicted = result.damageInflicted;
     pack.data.canAfflict = true;
 	}
-}
-
-function damageCheck(weapon, pack, result)
-{
-  result.damageType = weapon.pickDamage();
-  pack.data.damageType = result.damageType;
-
-	if (result.damageType == keys.DMG_TYPE.WEB)
-	{
-		result.damage = data.actor[keys.SIZE];
-    pack.data.damage = result.damage;
-    return;
-	}
-
-  result.damageRoll = (result.damageType != keys.DMG_TYPE.POISON) ? dice.DRN() + weapon[keys.DMG] : weapon[keys.DMG];
-	result.protectionRoll = getProtectionRoll(weapon, target, pack.data.hitLocation, result.damageType, t);
-	result.difference = result.damageRoll - result.protectionRoll;
-
-	if (weapon[keys.PROP_LIST].includes(keys.PROPS.CAPPED) === true && result.difference > 0)
-	{
-		result.damage = 1;
-    data.pack.damage = 1;
-		return;
-	}
-
-	modifyDamage(pack, result, (weapon[ids.PROPS][ids.STUN]) ? true : false);
-}
-
-function modifyDamage(pack, result, isStun = false)
-{
-	var maxLimbDmg = Math.floor(pack.target[keys.MAX_HP] * 0.5).lowerCap(1);
-  result.damage = result.difference.lowerCap(0);
-
-  if (result.damage <= 0)
-  {
-    pack.data.damage = 0;
-    return;
-  }
-
-	if (result.damageType == keys.DMG_TYPE.BLUNT && (result.hitLocation == keys.PARTS.HEAD || result.hitLocation == keys.PARTS.EYE))
-	{
-		result.damage = Math.floor(result.damage * 1.5);
-	}
-
-	else if (result.damageType == keys.DMG_TYPE.SLASH)
-	{
-    result.damage = Math.floor(result.damage * 1.25);
-	}
-
-  if (result.damageType == keys.DMG_TYPE.BLUNT && pack.target[keys.AB_LIST][keys.ABS.BLUNT] != null)
-  {
-    result.damage = Math.floor(result.damage * (pack.target[keys.AB_LIST][keys.ABS.BLUNT] / 100));
-  }
-
-  else if (result.damageType == keys.DMG_TYPE.PIERCE && pack.target[keys.AB_LIST][keys.ABS.PIERCE] != null)
-  {
-    result.damage = Math.floor(result.damage * (pack.target[keys.AB_LIST][keys.ABS.PIERCE] / 100));
-  }
-
-  else if (result.damageType == keys.DMG_TYPE.SLASH && pack.target[keys.AB_LIST][keys.ABS.SLASH] != null)
-  {
-    result.damage = Math.floor(result.damage * (pack.target[keys.AB_LIST][keys.ABS.SLASH] / 100));
-  }
-
-	if ((result.hitLocation == keys.PARTS.ARM || result.hitLocation == keys.PARTS.LEG || result.hitLocation == keys.PARTS.WING) &&
-      result.damage > maxLimbDmg && isStun == false && result.damageType != keys.DMG_TYPE.STUN && result.damageType != keys.DMG_TYPE.POISON)
-	{
-		result.damage = maxLimbDmg;
-	}
-
-  pack.data.damage = result.damage;
 }
 
 function calculateParalysis(damage, target)

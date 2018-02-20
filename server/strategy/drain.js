@@ -19,7 +19,7 @@ module.exports =
       return;
     }
 
-  	result.hpDrain = Math.floor(pack.data.damage * drainRate);
+  	result.hpDrain = Math.floor(pack.data.damageInflicted * drainRate);
   	result.fatigueDrain = result.hpDrain * 2;
     pack.actor.heal(result.hpDrain);
     pack.actor.reduceFatigue(result.fatigueDrain);

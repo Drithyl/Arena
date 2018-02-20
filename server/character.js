@@ -876,6 +876,18 @@ function getProtectionRoll(weapon, target, hitLocation, damageType, t = this)
 	return protection;
 }
 
+function getElementalResistance(type, t = this)
+{
+  var resistance = "";
+
+  if (type == keys.DMG_TYPE.COLD)         resistance = keys.ABS.RES.COLD;
+  else if (type == keys.DMG_TYPE.FIRE)    resistance = keys.ABS.RES.FIRE;
+  else if (type == keys.DMG_TYPE.POISON)  resistance = keys.ABS.RES.POISON;
+  else if (type == keys.DMG_TYPE.SHOCK)   resistance = keys.ABS.RES.SHOCK;
+
+  return getTotalAbility(resistance, t);
+}
+
 function reviveProtection(t = this)
 {
   for (var part in keys.PARTS)

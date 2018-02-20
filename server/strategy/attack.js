@@ -29,6 +29,8 @@ module.exports =
     result.difference = result.attackRoll - result.defenceRoll;
     result.hitLocation = getHitLocation(weapon[keys.LEN], pack.actor[keys.SIZE], pack.target[keys.PART_LIST]);
     pack.data.hitLocation = result.hitLocation;
+		result.isShieldHit = false;
+		pack.data.isShieldHit = false;
 
 		if (result.parry > 0 && pack.data.currentWeapon[keys.PROP_LIST].includes(keys.PROPS.FLAIL) === true)
 		{

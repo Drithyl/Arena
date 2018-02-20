@@ -11,7 +11,6 @@ var postRoundLimit = 20;
 const WIDTH = 25;
 const HEIGHT = 25;
 
-
 var dmgXPRate = 100;
 var lifeXPRate = 85;
 var dmgXPCap = 1;
@@ -283,7 +282,7 @@ function verifyMeleeAction(data, socket)
     throw new Error("None of the weapons can reach, affect or harm this target.");
   }
 
-  reqAPs = requiredAPs(filter.accepted, actor);
+  reqAPs = ruleset.calculateRequiredAPs(filter.accepted, actor);
 
   if (actor.battle[keys.AP] < reqAPs)
   {
@@ -331,32 +330,7 @@ function endTurn(data, socket)
 {
   var actor = this.players[data.username].characters[data.character.id];
 
-  
-}
 
-function requiredAPs(weapons, actor)
-{
-  var apCost = 0;
-  var weaponIDs = [];
-
-  for (var i = 0; i < weapons.length; i++)
-  {
-    var timesAvailable = actor.getAttacks(weapons[i][keys.ID]).length;
-    var timesUsed = weaponIDs.filter(function(id) { return id === weapons[i][keys.ID]; }).length;
-    apCost += weapons[i][keys.AP_COST];
-
-    if (weaponIDs.length > 0 && timesUsed > 1 && timesUsed < timesAvailable)
-    {
-      //combos, each *new* *unique* attack in the same sequence reduces its cost by 1
-      //check the number of this attack available in the character and compare
-      //it to the number of times it's been already used in the weaponIDs
-      apCost--;
-    }
-
-    weaponIDs.push(weapons[i][keys.ID]);
-  }
-
-  return apCost;
 }
 
 function filterWeapons(weapons, actor, target, distance)
