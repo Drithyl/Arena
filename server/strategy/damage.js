@@ -52,7 +52,14 @@ function preRollDamage(weapon, pack, result)
 
   if (weapon[keys.PROP_LIST].includes(keys.PROPS.NO_STR) === false)
   {
-    result.damageScore += pack.actor.getTotalAttribute(keys.STR);
+    if (weapon[keys.REQ_SLOTS] > 1 && weapon[keys.SLOT_TYPE] === keys.SLOTS.HANDS)
+    {
+      //two-handers use 125% of strength, so extend this to potential three-handers
+      //and more
+      result.damageScore += Math.floor(pack.actor.getTotalAttribute(keys.STR) * (1 + (0.25 * (weapon[keys.REQ_SLOTS] - 1))));
+    }
+
+    else result.damageScore += pack.actor.getTotalAttribute(keys.STR);
   }
 
   if (weapon[keys.PROP_LIST].includes(keys.PROPS.STUN) === true)
