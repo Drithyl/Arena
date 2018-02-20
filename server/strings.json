@@ -74,5 +74,7 @@
     "success": "${this.actor} goes berserk!"
   },
 
-  "drain": "${this.actor} drains ${this.hpDrain} HP and restores ${this.fatigueDrain} fatigue."
+  "drain": "${this.actor} drains ${this.hpDrain} HP and restores ${this.fatigueDrain} fatigue.",
+
+  "fatigue": "${this.actor} sustains ${this.fatigue} fatigue points."
 }

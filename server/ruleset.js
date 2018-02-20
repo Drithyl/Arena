@@ -84,17 +84,18 @@ function melee(pack)
 
     for (var j = 0; j < order.attack.length; j++)
     {
+      results[i].strategy = order.attack[i];
       strategies[j].apply(pack, results[i]);
 
       if (results[i].failed === true)
       {
+        //apply fatigue, the last strategy, before completely breaking out of the
+        //loop
+        results[i+1].strategy = order.attack[order.attack.length - 1];
+        strategies[order.attack.length - 1].apply(pack, results[i+1]);
         break;
       }
     }
-
-    var encumbrance = pack.data.actor.getTotalEncumbrance();
-    pack.data.actor.addFatigue(encumbrance);
-    results.push({fatigue: encumbrance});
   }
 
   return results;

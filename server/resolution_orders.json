@@ -13,7 +13,8 @@
     "poisonSkin",
     "damage",
     "berserk",
-    "drain"
+    "drain",
+    "fatigue"
   ],
 
   "movement":

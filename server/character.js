@@ -832,7 +832,7 @@ function reinvigorate(amount, t = this)
 		return 0;
 	}
 
-  amount += getTotalReinvigoration(t);
+  amount += getTotalAbility(keys.ABS.REINVIG, t);
 
 	if (t.battle.status[keys.FAT] >= 100)
 	{

@@ -51,6 +51,7 @@ module.exports =
     b.readyActors = readyActors;
     b.getTurnOrder = getTurnOrder;
     b.verifyMovement = verifyMovement;
+    b.endTurn = endTurn;
 
     //PROPERTIES
     b.positions = [[]];
@@ -59,8 +60,10 @@ module.exports =
     b.deployedPlayers = 0;
     b.width = WIDTH;
     b.height = HEIGHT;
+    b.turn = 1;
+    b.round = 1;
     b.map = b.generateMap();
-    b.order = b.getTurnOrder(12);
+    b.order = b.getAPTurnOrder(20);
 
     //INIT
     for (var i = 0; i < b.players.length; i++)
@@ -330,7 +333,15 @@ function endTurn(data, socket)
 {
   var actor = this.players[data.username].characters[data.character.id];
 
+  this.turn++;
 
+  if (this.turn % this.actors.length === 0)
+  {
+    this.round++;
+  }
+
+  this.order.shift();
+  socket.emit("startTurn", this.order);
 }
 
 function filterWeapons(weapons, actor, target, distance)
@@ -453,7 +464,38 @@ function readyActors()
   }
 }
 
-function getTurnOrder(turns)
+function getAPTurnOrder(turns)
+{
+  var order = [];
+  var actorSpeeds = [];
+  var index = 0;
+
+  for (var i = 0; i < this.actors.length; i++)
+  {
+    actorSpeeds[i] = {"actor": this.actors[i], "speed": this.actors[i][keys.AP]};
+  }
+
+  actorSpeeds = actorSpeed.sort(function(a, b)
+  {
+    if (b[keys.AP] === a[keys.AP])
+    {
+      //random order if same AP
+      return Math.floor(Math.random()*2) == 1 ? 1 : -1;
+    }
+
+    else return b[keys.AP] - a[keys.AP];
+  })
+
+  for (var i = 0; i < turns; i++)
+  {
+    order.push(this.actors[index]);
+    ++index.wrap(this.actors.length - 1);
+  }
+
+  return order;
+}
+
+function getTickTurnOrder(turns)
 {
   var order = [];
   var actorSpeeds = [];

@@ -1,7 +1,6 @@
 
 var keys;
-const order = require("./server/resolution_order.json");
-const locale = require("./server/resolution_order.json");
+const locale = require("./server/strings.json");
 
 module.exports =
 {
@@ -11,24 +10,26 @@ module.exports =
     return this;
   },
 
-  translateResults: function(data, results)
+  translateResults: function(pack, results)
   {
     var templates = [];
 
-    for (var i = 0; i < order.attack.length; i++)
+    for (var i = 0; i < results.length; i++)
     {
-      if (Object.keys(results[i]).length <= 0)
+      if (Object.keys(results[i]).length < 2)
       {
         //the strategy did not run, probably because neither side
-        //had the ability in question
+        //had the ability in question. Length < 2 because there
+        //will always be at least 1 key, the .strategy one with
+        //the name of the strategy, even if it gets returned early.
         continue;
       }
 
-      var tmplt = translate(order.attack[i], data, results[i]);
+      var tmplt = translate(pack, results[i]);
 
       if (tmplt == null)
       {
-        throw new Error("The strategy " + order.attack[i] + " could not be found in translate().");
+        throw new Error("The strategy " + results[i].strategy + " could not be found in translate().");
       }
 
       templates.push(tmplt);
@@ -38,59 +39,62 @@ module.exports =
   }
 }
 
-function translate(strategy, data, result)
+function translate(pack, result)
 {
-  switch(strategy)
+  switch(result.strategy)
   {
     case "awe":
-      return awe(data, result);
+      return awe(pack, result);
 
     case "attack":
-      return attack(data, result);
+      return attack(pack, result);
 
     case "glamour":
-      return glamour(data, result);
+      return glamour(pack, result);
 
     case "displacement":
-      return displacement(data, result);
+      return displacement(pack, result);
 
     case "fireShield":
-      return fireShield(data, result);
+      return fireShield(pack, result);
 
     case "ethereal":
-      return ethereal(data, result);
+      return ethereal(pack, result);
 
     case "mrNegates":
-      return mrNegates(data, result);
+      return mrNegates(pack, result);
 
     case "poisonBarbs":
-      return poisonBarbs(data, result);
+      return poisonBarbs(pack, result);
 
     case "poisonSkin":
-      return poisonSkin(data, result);
+      return poisonSkin(pack, result);
 
     case "damage":
-      return damage(data, result);
+      return damage(pack, result);
 
     case "berserk":
-      return berserk(data, result);
+      return berserk(pack, result);
 
     case "drain":
-      return drain(data, result);
+      return drain(pack, result);
+
+    case "fatigue":
+      return fatigue(pack, result);
 
     default:
       return null;
   }
 }
 
-function awe(data, result)
+function awe(pack, result)
 {
   var template = {"string": "", "vars":
   {
     moraleRoll: result.moraleRoll,
     aweRoll: result.aweRoll,
-    actor: data.actor[keys.NAME],
-    target: data.target[keys.NAME]
+    actor: pack.actor[keys.NAME],
+    target: pack.target[keys.NAME]
   }};
 
   template.string = locale.awe.check + "\n";
@@ -104,7 +108,7 @@ function awe(data, result)
   return template;
 }
 
-function attack(data, result)
+function attack(pack, result)
 {
   var template = {"string": "", "vars":
   {
@@ -125,7 +129,7 @@ function attack(data, result)
   return template;
 }
 
-function glamour(data, result)
+function glamour(pack, result)
 {
   var template = {"string": "", "vars": {}};
 
@@ -138,7 +142,7 @@ function glamour(data, result)
   return template;
 }
 
-function displacement(data, result)
+function displacement(pack, result)
 {
   var template = {"string": "", "vars": {}};
 
@@ -151,7 +155,7 @@ function displacement(data, result)
   return template;
 }
 
-function fireShield(data, result)
+function fireShield(pack, result)
 {
   var template = {"string": "", "vars":
   {
@@ -159,9 +163,9 @@ function fireShield(data, result)
     protectionRoll: result.protectionRoll,
     damageInflicted: result.damageInflicted,
     damageType: result.damageType,
-    target: data.target[keys.NAME],
-    shiftedShapeName: data.shiftedShapeName,
-    droppedItems: data.droppedItems
+    target: pack.target[keys.NAME],
+    shiftedShapeName: pack.shiftedShapeName,
+    droppedItems: pack.droppedItems
   }};
 
   template.string = locale.fireShield.intro + "\n" + locale.fireShield.check + "\n";
@@ -186,11 +190,11 @@ function fireShield(data, result)
   return template;
 }
 
-function ethereal(data, result)
+function ethereal(pack, result)
 {
   var template = {"string": "", "vars":
   {
-    target: data.target[keys.NAME]
+    target: pack.target[keys.NAME]
   }};
 
   if (result.failed === true)
@@ -202,7 +206,7 @@ function ethereal(data, result)
   return template;
 }
 
-function mrNegates(data, result)
+function mrNegates(pack, result)
 {
   var template = {"string": "", "vars":
   {
@@ -221,7 +225,7 @@ function mrNegates(data, result)
   return template;
 }
 
-function poisonBarbs(data, result)
+function poisonBarbs(pack, result)
 {
   var template = {"string": "", "vars":
   {
@@ -229,9 +233,9 @@ function poisonBarbs(data, result)
     protectionRoll: result.protectionRoll,
     damageInflicted: result.damageInflicted,
     damageType: result.damageType,
-    target: data.target[keys.NAME],
-    shiftedShapeName: data.shiftedShapeName,
-    droppedItems: data.droppedItems
+    target: pack.target[keys.NAME],
+    shiftedShapeName: pack.shiftedShapeName,
+    droppedItems: pack.droppedItems
   }};
 
   template.string = locale.poisonBarbs.intro + "\n" + locale.poisonBarbs.check + "\n";
@@ -261,7 +265,7 @@ function poisonBarbs(data, result)
   return template;
 }
 
-function poisonSkin(data, result)
+function poisonSkin(pack, result)
 {
   var template = {"string": "", "vars":
   {
@@ -269,9 +273,9 @@ function poisonSkin(data, result)
     protectionRoll: result.protectionRoll,
     damageInflicted: result.damageInflicted,
     damageType: result.damageType,
-    target: data.target[keys.NAME],
-    shiftedShapeName: data.shiftedShapeName,
-    droppedItems: data.droppedItems
+    target: pack.target[keys.NAME],
+    shiftedShapeName: pack.shiftedShapeName,
+    droppedItems: pack.droppedItems
   }};
 
   template.string = locale.poisonSkin.intro + "\n" + locale.poisonSkin.check + "\n";
@@ -301,7 +305,7 @@ function poisonSkin(data, result)
   return template;
 }
 
-function damage(data, result)
+function damage(pack, result)
 {
   var template = {"string": "", "vars":
   {
@@ -309,9 +313,9 @@ function damage(data, result)
     protectionRoll: result.protectionRoll,
     damageInflicted: result.damageInflicted,
     damageType: result.damageType,
-    target: data.target[keys.NAME],
-    shiftedShapeName: data.shiftedShapeName,
-    droppedItems: data.droppedItems
+    target: pack.target[keys.NAME],
+    shiftedShapeName: pack.shiftedShapeName,
+    droppedItems: pack.droppedItems
   }};
 
   template.string = locale.damage.check + "\n";
@@ -341,13 +345,13 @@ function damage(data, result)
   return template;
 }
 
-function berserk(data, result)
+function berserk(pack, result)
 {
   var template = {"string": "", "vars":
   {
     moraleRoll: result.moraleRoll,
     difficultyRoll: result.difficultyRoll,
-    actor: data.actor[keys.NAME]
+    actor: pack.actor[keys.NAME]
   }};
 
   template.string = locale.berserk.check + "\n";
@@ -361,15 +365,26 @@ function berserk(data, result)
   return template;
 }
 
-function drain(data, result)
+function drain(pack, result)
 {
   var template = {"string": "", "vars":
   {
     hpDrain: result.hpDrain,
     fatigueDrain: result.fatigueDrain,
-    actor: data.actor[keys.NAME]
+    actor: pack.actor[keys.NAME]
   }};
 
   template.string = locale.drain + "\n";
   return template;
+}
+
+function fatigue(pack, result)
+{
+  var template = {"string": "", "vars":
+  {
+    fatigue: result.fatigue,
+    actor: pack.actor[keys.NAME]
+  }};
+
+  template.string = locale.fatigue + "\n";
 }

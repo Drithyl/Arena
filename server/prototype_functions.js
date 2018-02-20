@@ -165,6 +165,16 @@ Number.prototype.absCap = function(limit)
 	else return this * 1;
 };
 
+Number.prototype.wrap = function(limit)
+{
+	if (this > limit)
+	{
+		return 0;
+	}
+
+	else return this * 1;
+};
+
 Number.prototype.round = function(decimals)
 {
 	var power = Math.pow(10, decimals);
