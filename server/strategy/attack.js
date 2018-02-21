@@ -23,14 +23,14 @@ module.exports =
   {
     result.parry = pack.target.getTotalAttribute(keys.PARRY);
     result.dualPenalty = pack.actor.getDualPenalty();
-  	result.harassmentPenalty = (pack.data.nbrAttacks - 1) * 2;
-  	result.attackRoll = pack.actor.getTotalAttack(pack.data.currentWeapon) - result.dualPenalty + dice.DRN();
-  	result.defenceRoll = pack.target.getTotalDefence() - result.harassmentPenalty + dice.DRN();
+  	result.attackRoll = dice.DRN() + pack.actor.getTotalAttack(pack.data.currentWeapon) - result.dualPenalty;
+  	result.defenceRoll = dice.DRN() + pack.target.getTotalDefence() - pack.target.battle.status[keys.STATUS.HARASS];
     result.difference = result.attackRoll - result.defenceRoll;
     result.hitLocation = getHitLocation(weapon[keys.LEN], pack.actor[keys.SIZE], pack.target[keys.PART_LIST]);
     pack.data.hitLocation = result.hitLocation;
 		result.isShieldHit = false;
 		pack.data.isShieldHit = false;
+		pack.target.battle.status[keys.STATUS.HARASS]++;
 
 		if (result.parry > 0 && pack.data.currentWeapon[keys.PROP_LIST].includes(keys.PROPS.FLAIL) === true)
 		{

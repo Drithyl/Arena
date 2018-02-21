@@ -1,5 +1,6 @@
 
-const event = require("./server/emitter.js");
+const event = require("./emitter.js");
+const area = require("./deployment_area.js");
 var keys;
 var ruleset;
 var interpreter;
@@ -58,6 +59,7 @@ module.exports =
     b.actors = [];
     b.players = players;
     b.deployedPlayers = 0;
+    b.deploymentAreas = assignDeploymentAreas(players[0], players[1]);
     b.width = WIDTH;
     b.height = HEIGHT;
     b.turn = 1;
@@ -109,6 +111,8 @@ module.exports =
 
 function verifyDeployment(player, characters)
 {
+  var area = this.deploymentAreas[player.username];
+
   if (characters.length < player.characters.length)
   {
     player.socket.emit("deploymentFailed", "You need to deploy all of your characters.");
@@ -117,24 +121,33 @@ function verifyDeployment(player, characters)
 
   for (var i = 0; i < characters.length; i++)
   {
-    if (i === 0 && characters[i].position.x > 2)
+    if (area.contains(characters[i].position) === false)
     {
-      player.socket.emit("deploymentFailed", "You can only place your characters in a tile within the top three rows.");
+      player.socket.emit("deploymentFailed", "You can only place your characters in a tile within x: (" + area.x1 + "," + area.x2 + ") and y: (" + area.y1 + "," + area.y2 + ").");
       return;
     }
 
-    else if (i === 1 && characters[i].position.x < WIDTH - 2)
+    else if (this.map[characters[i].position.x][characters[i].position.y].actor != null)
     {
-      player.socket.emit("deploymentFailed", "You can only place your characters in a tile within the bottom three rows.");
+      player.socket.emit("deploymentFailed", "You can't place more than one character in the same tile.");
       return;
     }
 
     player.characters[characters[i].id].battle.position = characters[i].position;
-    this.positions[characters[i].position.x][characters[i].position.y] = player.characters[characters[i].id].functionless();
+    this.positions[characters[i].id] = characters[i].position;
+    this.map[characters[i].position.x][characters[i].position.y].actor = characters[i].id;
   }
 
   this.deployedPlayers++;
-};
+}
+
+function assignDeploymentAreas(p1, p2)
+{
+  var obj = {};
+  obj[p1.username] = area.create(0, WIDTH, 0, 2);
+  obj[p2.username] = area.create(0, WIDTH, HEIGHT - 2, HEIGHT);
+  return obj;
+}
 
 function distance(pos1, pos2)
 {
@@ -175,7 +188,13 @@ function resolveMovement(data, socket)
   try
   {
     this.verifyMovement(data, socket);
-    this.players[data.username].characters[data.character.id] = data.character.position;
+
+    //delete old position
+    delete this.map[data.character.position.x][data.character.position.y].actor;
+
+    //store new position
+    this.positions[data.character.id] = data.character.position;
+    this.map[data.character.position.x][data.character.position.y].actor = data.character.id;
     socket.emit("ResolvedMovement", {character: data.character.id, position: data.character.position});
   }
 
@@ -203,6 +222,11 @@ function verifyMovement(data, socket)
     {
       //too much movement
       throw new Error("This character cannot move this far.");
+    }
+
+    if (this.map[data.character.position.x][data.character.position.y].actor != null)
+    {
+      throw new Error("This space is already occupied by another character.");
     }
   }
 

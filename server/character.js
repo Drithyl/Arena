@@ -607,9 +607,10 @@ function attachFunctions(character)
 function battleReady(t = this)
 {
   t.battle = {};
-  t.battle.position = [];
+  t.battle.position = {};
   t.battle[keys.FAT] = 0;
   t.battle.status = {};
+  t.battle.status[keys.STATUS.HARASS] = 0;
   t.battle[keys.AP] = getTotalAttribute(keys.AP, t);
 }
 

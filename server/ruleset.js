@@ -14,14 +14,14 @@ module.exports =
   {
     keys = index;
 
-    for (var i = 0; i < order.attack.length; i++)
+    for (var i = 0; i < order.melee.length; i++)
     {
-      if (fs.existsSync("./server/strategies/" + order.attack[i] + ".js") === false)
+      if (fs.existsSync("./server/strategies/" + order.melee[i] + ".js") === false)
       {
         continue;
       }
 
-      strategies.push(require("./server/strategies/" + order.attack[i] + ".js").init(keys));
+      strategies.push(require("./server/strategies/" + order.melee[i] + ".js").init(keys));
     }
   },
 
@@ -82,17 +82,17 @@ function melee(pack)
     pack.data.nbrAttacks++;
     pack.data.currentWeapon = data.weapons.accepted[i];
 
-    for (var j = 0; j < order.attack.length; j++)
+    for (var j = 0; j < order.melee.length; j++)
     {
-      results[i].strategy = order.attack[i];
+      results[i].strategy = order.melee[i];
       strategies[j].apply(pack, results[i]);
 
       if (results[i].failed === true)
       {
         //apply fatigue, the last strategy, before completely breaking out of the
         //loop
-        results[i+1].strategy = order.attack[order.attack.length - 1];
-        strategies[order.attack.length - 1].apply(pack, results[i+1]);
+        results[i+1].strategy = order.melee[order.melee.length - 1];
+        strategies[order.melee.length - 1].apply(pack, results[i+1]);
         break;
       }
     }

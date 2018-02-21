@@ -450,7 +450,8 @@
   "STATUS":
   {
     "BERSERK": "Berserk",
-    "UNCONSCIOUS": "Unconscious"
+    "UNCONSCIOUS": "Unconscious",
+    "HARASS": "Harassment"
   },
 
   "TRIGGERS":

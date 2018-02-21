@@ -1,6 +1,6 @@
 
 {
-  "attack":
+  "melee":
   [
     "awe",
     "attack",
@@ -17,23 +17,40 @@
     "fatigue"
   ],
 
+  "ranged":
+  [
+    "precision",
+    "glamour",
+    "displacement",
+    "ethereal",
+    "mrNegates",
+    "damage",
+    "berserk",
+    "drain",
+    "fatigue"
+  ],
+
   "movement":
   [
-
+    "repel"
   ],
 
   "preTurn":
   [
     "regeneration",
     "reinvigoration",
-    "heatAura",
-    "coldAura",
-    "poisonCloud",
     "poisoned",
     "onFire",
     "freezing",
     "unconscious",
     "paralyzed",
     "webbed"
+  ],
+
+  "postTurn":
+  [
+    "heatAura",
+    "coldAura",
+    "poisonCloud"
   ]
 }
