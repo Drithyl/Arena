@@ -19,7 +19,7 @@ module.exports =
       [keys.DMG] = 10,
       [keys.LEN] = 3,
       [keys.DMG_TYPE_LIST] = [[keys.DMG_TYPE.POISON]],
-      [keys.PROP_LIST] = null
+      [keys.PROP_LIST] = [[keys.NO_STR]]
     }
 
     if (pack.target[keys.AB_LIST][keys.ABS.POISON_BARBS] == null)

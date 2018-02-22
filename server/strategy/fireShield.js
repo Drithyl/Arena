@@ -18,7 +18,7 @@ module.exports =
       [keys.NAME] = "Fire Shield",
       [keys.DMG] = 0,
       [keys.DMG_TYPE_LIST] = [[keys.DMG_TYPE.FIRE]],
-      [keys.PROP_LIST] = [[keys.PROPS.MAGICAL]]
+      [keys.PROP_LIST] = [[keys.PROPS.MAGICAL], [keys.NO_STR]]
     }
 
     if (pack.target[keys.AB_LIST][keys.ABS.FIRE_SHLD] == null)

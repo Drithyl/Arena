@@ -1,6 +1,6 @@
 
 const event = require("./emitter.js");
-const area = require("./deployment_area.js");
+const area = require("./area.js");
 var keys;
 var ruleset;
 var interpreter;
@@ -64,7 +64,7 @@ module.exports =
     b.height = HEIGHT;
     b.turn = 1;
     b.round = 1;
-    b.map = b.generateMap();
+    b.map = area.map(WIDTH, HEIGHT);
     b.order = b.getAPTurnOrder(20);
 
     //INIT
@@ -135,7 +135,7 @@ function verifyDeployment(player, characters)
 
     player.characters[characters[i].id].battle.position = characters[i].position;
     this.positions[characters[i].id] = characters[i].position;
-    this.map[characters[i].position.x][characters[i].position.y].actor = characters[i].id;
+    this.map[characters[i].position.x][characters[i].position.y].actor = characters[i];
   }
 
   this.deployedPlayers++;
@@ -147,19 +147,6 @@ function assignDeploymentAreas(p1, p2)
   obj[p1.username] = area.create(0, WIDTH, 0, 2);
   obj[p2.username] = area.create(0, WIDTH, HEIGHT - 2, HEIGHT);
   return obj;
-}
-
-function distance(pos1, pos2)
-{
-  var dist1 = Math.abs(pos1[0] - pos2[0]);
-  var dist2 = Math.abs(pos1[1] - pos2[1]);
-
-  if (dist1 > dist2)
-  {
-    return dist1;
-  }
-
-  else return dist2;
 }
 
 function verifyOwner(data, socket)
@@ -194,8 +181,8 @@ function resolveMovement(data, socket)
 
     //store new position
     this.positions[data.character.id] = data.character.position;
-    this.map[data.character.position.x][data.character.position.y].actor = data.character.id;
-    socket.emit("ResolvedMovement", {character: data.character.id, position: data.character.position});
+    this.map[data.character.position.x][data.character.position.y].actor = this.players[data.username].characters[data.character.id];
+    socket.emit("ResolvedMovement", {actor: data.character.id, position: data.character.position});
   }
 
   catch(err)
@@ -218,7 +205,7 @@ function verifyMovement(data, socket)
       throw new Error("A character cannot move outside the battle space.");
     }
 
-    if (distance(serverChar.battle.position, data.character.position) > serverChar[keys.MP])
+    if (area.distance(serverChar.battle.position, data.character.position) > serverChar[keys.MP])
     {
       //too much movement
       throw new Error("This character cannot move this far.");
@@ -300,7 +287,7 @@ function verifyMeleeAction(data, socket)
 {
   var actor = this.players[data.username].characters[data.character.id];
   var target = this.players[data.target.player].characters[data.target.id];
-  var distance = distance(serverChar.battle.position, data.character.position);
+  var distance = area.distance(serverChar.battle.position, data.character.position);
   var filter = filterWeapons(data.weapons, actor, target, distance);
   var reqAPs;
 
@@ -325,7 +312,7 @@ function verifyRangedAction(data)
   target = this.players[data.target.player].characters[data.target.id];
   weapons = actor.battle.equippedWpns.filter(function(wpn)
   {
-    return wpn[keys.RANGE] >= distance(serverChar.battle.position, data.character.position);
+    return wpn[keys.RANGE] >= area.distance(serverChar.battle.position, data.character.position);
   });
 
   if (weapons.length <= 0)
@@ -356,6 +343,9 @@ function verifyRangedAction(data)
 function endTurn(data, socket)
 {
   var actor = this.players[data.username].characters[data.character.id];
+  var pack = {"actor": actor, characters: this.actors, "map": this.map, data: {}};
+  var resolvedPack = ruleset.endTurn(pack);
+
 
   this.turn++;
 
@@ -461,23 +451,6 @@ function listenAll(trigger, fn)
       fn(data, this.players[i].socket);
     });
   }
-}
-
-function generateMap()
-{
-  var map = [];
-
-  for (var i = 0; i < WIDTH; i++)
-  {
-    map.push([]);
-
-    for (var j = 0; j < HEIGHT; j++)
-    {
-      map[i].push({terrain: null, actor: null, coordinates: [i, j]});
-    }
-  }
-
-  return map;
 }
 
 function readyActors()

@@ -35,7 +35,7 @@
     "repel"
   ],
 
-  "preTurn":
+  "turnStart":
   [
     "regeneration",
     "reinvigoration",
@@ -47,7 +47,7 @@
     "webbed"
   ],
 
-  "postTurn":
+  "turnEnd":
   [
     "heatAura",
     "coldAura",

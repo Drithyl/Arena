@@ -82,6 +82,15 @@ function translate(pack, result)
     case "fatigue":
       return fatigue(pack, result);
 
+    case "heatAura":
+      return heatAura(pack, result);
+
+    case "coldAura":
+      return coldAura(pack, result);
+
+    case "poisonAura":
+      return poisonAura(pack, result);
+
     default:
       return null;
   }
@@ -387,4 +396,111 @@ function fatigue(pack, result)
   }};
 
   template.string = locale.fatigue + "\n";
+}
+
+function heatAura(pack, result)
+{
+  var template = {"string": "", "vars":
+  {
+    nbrOfAuras: result.nbrOfAuras,
+    damageRoll: result.damageRoll,
+    protectionRoll: result.protectionRoll,
+    damageInflicted: result.damageInflicted,
+    damageType: result.damageType,
+    target: pack.target[keys.NAME],
+    shiftedShapeName: pack.shiftedShapeName,
+    droppedItems: pack.droppedItems
+  }};
+
+  template.string = locale.heatAura + "\n";
+
+  if (result.failed === true)
+  {
+    if (result.twistFate === true)
+    {
+      template.string += locale.twistFate + "\n";
+    }
+
+    else template.string += locale.damage.fail + "\n";
+  }
+
+  else template.string += locale.damage.success + "\n";
+
+  if (result.shiftedShapeName != null)
+  {
+    template.string += locale.damage.shapeshift + "\n";
+  }
+
+  return template;
+}
+
+function coldAura(pack, result)
+{
+  var template = {"string": "", "vars":
+  {
+    nbrOfAuras: result.nbrOfAuras,
+    damageRoll: result.damageRoll,
+    protectionRoll: result.protectionRoll,
+    damageInflicted: result.damageInflicted,
+    damageType: result.damageType,
+    target: pack.target[keys.NAME],
+    shiftedShapeName: pack.shiftedShapeName,
+    droppedItems: pack.droppedItems
+  }};
+
+  template.string = locale.coldAura + "\n";
+
+  if (result.failed === true)
+  {
+    if (result.twistFate === true)
+    {
+      template.string += locale.twistFate + "\n";
+    }
+
+    else template.string += locale.damage.fail + "\n";
+  }
+
+  else template.string += locale.damage.success + "\n";
+
+  if (result.shiftedShapeName != null)
+  {
+    template.string += locale.damage.shapeshift + "\n";
+  }
+
+  return template;
+}
+
+function poisonAura(pack, result)
+{
+  var template = {"string": "", "vars":
+  {
+    damageRoll: result.damageRoll,
+    protectionRoll: result.protectionRoll,
+    damageInflicted: result.damageInflicted,
+    damageType: result.damageType,
+    target: pack.target[keys.NAME],
+    shiftedShapeName: pack.shiftedShapeName,
+    droppedItems: pack.droppedItems
+  }};
+
+  template.string = locale.poisonAura + "\n";
+
+  if (result.failed === true)
+  {
+    if (result.twistFate === true)
+    {
+      template.string += locale.twistFate + "\n";
+    }
+
+    else template.string += locale.damage.fail + "\n";
+  }
+
+  else template.string += locale.damage.success + "\n";
+
+  if (result.shiftedShapeName != null)
+  {
+    template.string += locale.damage.shapeshift + "\n";
+  }
+
+  return template;
 }

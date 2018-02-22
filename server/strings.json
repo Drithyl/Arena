@@ -31,6 +31,10 @@
     "check": "Fire Shield Damage Check: Damage Roll ${this.damageRoll} vs. ${this.protectionRoll} Protection Roll.",
   },
 
+  "heatAura": "${this.target} is affected by ${this.nbrOfAuras} heat auras!",
+  "coldAura": "${this.target} is affected by ${this.nbrOfAuras} cold auras!",
+  "poisonAura": "${this.target} is affected by a poison aura!",
+
   "ethereal":
   {
     "fail": "The attack goes through ${this.target}'s intangible body and has no effect.",

@@ -45,6 +45,16 @@ module.exports =
     else throw new Error("This attack seems to be neither melee, ranged nor a spell. This should have been verified by the previous function, check the code.");
   },
 
+  endTurn: function(pack)
+  {
+    var results = {};
+
+    for (var i = 0; i < order.turnEnd.lenght; i++)
+    {
+      
+    }
+  },
+
   calculateRequiredAPs: function(weapons, actor)
   {
     var apCost = 0;

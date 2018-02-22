@@ -82,7 +82,7 @@ function preRollDamage(weapon, pack, result)
 
 function damageCheck(weapon, pack, result)
 {
-  result.damageType = weapon.pickDamage();
+  result.damageType = weapon[keys.DMG_TYPE_LIST][Math.floor(Math.random() * weapon[keys.DMG_TYPE_LIST].length)];
   pack.data.damageType = result.damageType;
   preRollDamage(weapon, pack, result);
 
