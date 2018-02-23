@@ -2,27 +2,17 @@
 const fs = require('fs');
 const dice = require("./dice.js");
 const order = require("./resolution_orders.json");
-var strategies = [];
+var meleeStrategies;
+var turnEndStrategies;
 var keys;
-
-var limbDmgCap = 0.5;
-var counterThreshold = 5;
 
 module.exports =
 {
   init: function(index)
   {
     keys = index;
-
-    for (var i = 0; i < order.melee.length; i++)
-    {
-      if (fs.existsSync("./server/strategies/" + order.melee[i] + ".js") === false)
-      {
-        continue;
-      }
-
-      strategies.push(require("./server/strategies/" + order.melee[i] + ".js").init(keys));
-    }
+    meleeStrategies = loadStrategies(order.melee);
+    turnEndStrategies = loadStrategies(order.turnEnd);
   },
 
   resolveAttack: function(pack)
@@ -47,12 +37,15 @@ module.exports =
 
   endTurn: function(pack)
   {
-    var results = {};
+    var results = [];
 
-    for (var i = 0; i < order.turnEnd.lenght; i++)
+    for (var i = 0; i < turnEndStrategies.length; i++)
     {
-      
+      results.push({strategy: order.turnEnd[i]});
+      turnEndStrategies[i].apply(pack, results[i]);
     }
+
+    return results;
   },
 
   calculateRequiredAPs: function(weapons, actor)
@@ -81,6 +74,23 @@ module.exports =
   }
 }
 
+function loadStrategies(orderList)
+{
+  var arr = [];
+
+  for (var i = 0; i < orderList.length; i++)
+  {
+    if (fs.existsSync("./server/strategies/" + orderList[i] + ".js") === false)
+    {
+      continue;
+    }
+
+    arr.push(require("./server/strategies/" + orderList[i] + ".js").init(keys));
+  }
+
+  return arr;
+}
+
 function melee(pack)
 {
   var results = [];
@@ -88,21 +98,21 @@ function melee(pack)
 
   for (var i = 0; i < pack.weapons.accepted.length; i++)
   {
-    results.push({});
+    results.push([]);
     pack.data.nbrAttacks++;
     pack.data.currentWeapon = data.weapons.accepted[i];
 
-    for (var j = 0; j < order.melee.length; j++)
+    for (var j = 0; j < meleeStrategies.length; j++)
     {
-      results[i].strategy = order.melee[i];
-      strategies[j].apply(pack, results[i]);
+      results[i].push({strategy: order.melee[j]});
+      meleeStrategies[j].apply(pack, results[i][j]);
 
       if (results[i].failed === true)
       {
         //apply fatigue, the last strategy, before completely breaking out of the
         //loop
-        results[i+1].strategy = order.melee[order.melee.length - 1];
-        strategies[order.melee.length - 1].apply(pack, results[i+1]);
+        results[i][j+1] = {strategy: order.melee[order.melee.length - 1]};
+        meleeStrategies[order.melee.length - 1].apply(pack, results[i][j]);
         break;
       }
     }

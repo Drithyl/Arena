@@ -229,7 +229,7 @@ function resolveAttack(data, socket)
   {
     var verifiedPack = this.verifyAttack(data, socket);
     var resolvedPack = ruleset.resolveAttack(verifiedPack);
-    var translatedPack = interpreter.translateResults(resolvedPack);
+    var translatedPack = interpreter.translateAttack(resolvedPack);
     socket.emit("ResolvedAttack", translatePack);
   }
 

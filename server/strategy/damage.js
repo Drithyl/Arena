@@ -1,6 +1,7 @@
 
 var keys;
 const dice = require("./dice.js");
+var limbDmgCap = 0.5;
 
 module.exports =
 {

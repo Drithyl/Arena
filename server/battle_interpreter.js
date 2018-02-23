@@ -10,11 +10,46 @@ module.exports =
     return this;
   },
 
-  translateResults: function(pack, results)
+  //The outer i loop is for each attack, and the inner j loop
+  //is for each strategy within each attack.
+  translateAttack: function(pack, results)
   {
     var templates = [];
 
     for (var i = 0; i < results.length; i++)
+    {
+      templates.push([]);
+
+      for (var j = 0; < results[i].length; j++)
+      {
+        if (Object.keys(results[i][j]).length < 2)
+        {
+          //the strategy did not run, probably because neither side
+          //had the ability in question. Length < 2 because there
+          //will always be at least 1 key, the .strategy one with
+          //the name of the strategy, even if it gets returned early.
+          continue;
+        }
+
+        var tmplt = translate(pack, results[i][j]);
+
+        if (tmplt == null)
+        {
+          throw new Error("The strategy " + results[i][j].strategy + " could not be found in translate().");
+        }
+
+        templates[i].push(tmplt);
+      }
+    }
+
+    return templates;
+  },
+
+  translateTurnEnd: function(pack, results)
+  {
+    var templates = [];
+
+    for (var i = 0; < results.length; j++)
     {
       if (Object.keys(results[i]).length < 2)
       {

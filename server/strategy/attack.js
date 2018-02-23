@@ -1,5 +1,6 @@
 
 var keys;
+var counterThreshold = 5;
 
 //The area determines how big a chance it adds to it being hit,
 //and the height is subtracted from the character's size to see
