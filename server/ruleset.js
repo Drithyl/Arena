@@ -107,7 +107,16 @@ function melee(pack)
       results[i].push({strategy: order.melee[j]});
       meleeStrategies[j].apply(pack, results[i][j]);
 
-      if (results[i].failed === true)
+      if (results[i][j].targetKO === true)
+      {
+        //apply fatigue, the last strategy, before completely breaking out of the
+        //loop
+        results[i][j+1] = {strategy: order.melee[order.melee.length - 1]};
+        meleeStrategies[order.melee.length - 1].apply(pack, results[i][j]);
+        return results;
+      }
+
+      else if (results[i][j].failed === true)
       {
         //apply fatigue, the last strategy, before completely breaking out of the
         //loop

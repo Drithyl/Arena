@@ -14,7 +14,7 @@ module.exports =
   apply: function(pack, result)
   {
     var weapon = pack.data.currentWeapon;
-
+    
     damageCheck(weapon, pack, result);
 
     if (result.finalDamage <= 0)
@@ -42,6 +42,12 @@ module.exports =
     if (pack.data.currentWeapon[keys.ON_DMG] != null && pack.data.currentWeapon[keys.ON_DMG].length > 0)
     {
 
+    }
+
+    //TODO Check if KO happens
+    if (pack.target[keys.CURR_HP] <= 0)
+    {
+      result.targetKO = true;
     }
   }
 }

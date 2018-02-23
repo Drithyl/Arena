@@ -346,6 +346,7 @@ function endTurn(data, socket)
   var pack = {"actor": actor, characters: this.actors, "map": this.map, data: {}};
   var resolvedPack = ruleset.endTurn(pack);
 
+  //TODO: Check if battle has finished
 
   this.turn++;
 

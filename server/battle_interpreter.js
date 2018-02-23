@@ -201,36 +201,10 @@ function displacement(pack, result)
 
 function fireShield(pack, result)
 {
-  var template = {"string": "", "vars":
-  {
-    damageRoll: result.damageRoll,
-    protectionRoll: result.protectionRoll,
-    damageInflicted: result.damageInflicted,
-    damageType: result.damageType,
-    target: pack.target[keys.NAME],
-    shiftedShapeName: pack.shiftedShapeName,
-    droppedItems: pack.droppedItems
-  }};
+  var template = {"string": "", "vars": {}};
 
-  template.string = locale.fireShield.intro + "\n" + locale.fireShield.check + "\n";
-
-  if (result.failed === true)
-  {
-    if (result.twistFate === true)
-    {
-      template.string += locale.twistFate + "\n";
-    }
-
-    else template.string += locale.damage.fail + "\n";
-  }
-
-  else template.string += locale.damage.success + "\n";
-
-  if (result.shiftedShapeName != null)
-  {
-    template.string += locale.damage.shapeshift + "\n";
-  }
-
+  template.string = locale.fireShield.intro + "\n";
+  applyDamageTemplate(template, result);
   return template;
 }
 
@@ -271,121 +245,27 @@ function mrNegates(pack, result)
 
 function poisonBarbs(pack, result)
 {
-  var template = {"string": "", "vars":
-  {
-    damageRoll: result.damageRoll,
-    protectionRoll: result.protectionRoll,
-    damageInflicted: result.damageInflicted,
-    damageType: result.damageType,
-    target: pack.target[keys.NAME],
-    shiftedShapeName: pack.shiftedShapeName,
-    droppedItems: pack.droppedItems
-  }};
+  var template = {"string": "", "vars": {}};
 
-  template.string = locale.poisonBarbs.intro + "\n" + locale.poisonBarbs.check + "\n";
-
-  if (result.failed === true)
-  {
-    if (result.twistFate === true)
-    {
-      template.string += locale.twistFate + "\n";
-    }
-
-    else template.string += locale.damage.fail + "\n";
-  }
-
-  else template.string += locale.damage.success + "\n";
-
-  if (result.shiftedShapeName != null)
-  {
-    template.string += locale.damage.shapeshift + "\n";
-
-    if (result.droppedItems.length > 0)
-    {
-      template.string += locale.damage.droppedItems + "\n";
-    }
-  }
-
+  template.string = locale.poisonBarbs.intro + "\n";
+  applyDamageTemplate(template, result);
   return template;
 }
 
 function poisonSkin(pack, result)
 {
-  var template = {"string": "", "vars":
-  {
-    damageRoll: result.damageRoll,
-    protectionRoll: result.protectionRoll,
-    damageInflicted: result.damageInflicted,
-    damageType: result.damageType,
-    target: pack.target[keys.NAME],
-    shiftedShapeName: pack.shiftedShapeName,
-    droppedItems: pack.droppedItems
-  }};
+  var template = {"string": "", "vars": {}};
 
-  template.string = locale.poisonSkin.intro + "\n" + locale.poisonSkin.check + "\n";
-
-  if (result.failed === true)
-  {
-    if (result.twistFate === true)
-    {
-      template.string += locale.twistFate + "\n";
-    }
-
-    else template.string += locale.damage.fail + "\n";
-  }
-
-  else template.string += locale.damage.success + "\n";
-
-  if (result.shiftedShapeName != null)
-  {
-    template.string += locale.damage.shapeshift + "\n";
-
-    if (result.droppedItems.length > 0)
-    {
-      template.string += locale.damage.droppedItems + "\n";
-    }
-  }
-
+  template.string = locale.poisonSkin.intro + "\n";
+  applyDamageTemplate(template, result);
   return template;
 }
 
 function damage(pack, result)
 {
-  var template = {"string": "", "vars":
-  {
-    damageRoll: result.damageRoll,
-    protectionRoll: result.protectionRoll,
-    damageInflicted: result.damageInflicted,
-    damageType: result.damageType,
-    target: pack.target[keys.NAME],
-    shiftedShapeName: pack.shiftedShapeName,
-    droppedItems: pack.droppedItems
-  }};
+  var template = {"string": "", "vars":{}};
 
-  template.string = locale.damage.check + "\n";
-
-  if (result.failed === true)
-  {
-    if (result.twistFate === true)
-    {
-      template.string += locale.twistFate + "\n";
-    }
-
-    else template.string += locale.damage.fail + "\n";
-  }
-
-  else template.string += locale.damage.success + "\n";
-
-  if (result.shiftedShapeName != null)
-  {
-    template.string += locale.damage.shapeshift + "\n";
-
-    if (result.droppedItems.length > 0)
-    {
-      template.string += locale.damage.droppedItems + "\n";
-    }
-  }
-
+  applyDamageTemplate(template, result);
   return template;
 }
 
@@ -443,29 +323,12 @@ function heatAura(pack, result)
     damageInflicted: result.damageInflicted,
     damageType: result.damageType,
     target: pack.target[keys.NAME],
-    shiftedShapeName: pack.shiftedShapeName,
-    droppedItems: pack.droppedItems
+    shiftedShapeName: result.shiftedShapeName,
+    droppedItems: result.droppedItems
   }};
 
   template.string = locale.heatAura + "\n";
-
-  if (result.failed === true)
-  {
-    if (result.twistFate === true)
-    {
-      template.string += locale.twistFate + "\n";
-    }
-
-    else template.string += locale.damage.fail + "\n";
-  }
-
-  else template.string += locale.damage.success + "\n";
-
-  if (result.shiftedShapeName != null)
-  {
-    template.string += locale.damage.shapeshift + "\n";
-  }
-
+  applyDamageTemplate(template, result);
   return template;
 }
 
@@ -473,52 +336,33 @@ function coldAura(pack, result)
 {
   var template = {"string": "", "vars":
   {
-    nbrOfAuras: result.nbrOfAuras,
-    damageRoll: result.damageRoll,
-    protectionRoll: result.protectionRoll,
-    damageInflicted: result.damageInflicted,
-    damageType: result.damageType,
-    target: pack.target[keys.NAME],
-    shiftedShapeName: pack.shiftedShapeName,
-    droppedItems: pack.droppedItems
+    nbrOfAuras: result.nbrOfAuras
   }};
 
   template.string = locale.coldAura + "\n";
-
-  if (result.failed === true)
-  {
-    if (result.twistFate === true)
-    {
-      template.string += locale.twistFate + "\n";
-    }
-
-    else template.string += locale.damage.fail + "\n";
-  }
-
-  else template.string += locale.damage.success + "\n";
-
-  if (result.shiftedShapeName != null)
-  {
-    template.string += locale.damage.shapeshift + "\n";
-  }
-
+  applyDamageTemplate(template, result);
   return template;
 }
 
 function poisonAura(pack, result)
 {
-  var template = {"string": "", "vars":
-  {
-    damageRoll: result.damageRoll,
-    protectionRoll: result.protectionRoll,
-    damageInflicted: result.damageInflicted,
-    damageType: result.damageType,
-    target: pack.target[keys.NAME],
-    shiftedShapeName: pack.shiftedShapeName,
-    droppedItems: pack.droppedItems
-  }};
+  var template = {"string": "", "vars": {}};
 
   template.string = locale.poisonAura + "\n";
+  applyDamageTemplate(template, result);
+  return template;
+}
+
+function applyDamageTemplate(template, result)
+{
+  template.vars.damageRoll = result.damageRoll;
+  template.vars.protectionRoll = result.protectionRoll;
+  template.vars.damageInflicted = result.damageInflicted;
+  template.vars.damageType = result.damageType;
+  template.vars.shiftedShapeName = result.shiftedShapeName;
+  template.vars.droppedItems = result.droppedItems;
+  template.vars.target = pack.targer[keys.NAME];
+  template.string = locale.damage.check + "\n";
 
   if (result.failed === true)
   {
@@ -535,7 +379,15 @@ function poisonAura(pack, result)
   if (result.shiftedShapeName != null)
   {
     template.string += locale.damage.shapeshift + "\n";
+
+    if (result.droppedItems.length > 0)
+    {
+      template.string += locale.damage.droppedItems + "\n";
+    }
   }
 
-  return template;
+  if (result.targetKO === true)
+  {
+    template.string += locale.damage.targetKO + "\n";
+  }
 }
