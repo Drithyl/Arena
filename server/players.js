@@ -27,9 +27,9 @@ module.exports =
     return this;
   },
 
-  create: function(socket)
+  create: function()
   {
-    return {username: socket.username, socket: socket, characterKeys: []};
+    return {"username": username, characterKeys: []};
   },
 
   areCharactersCreated: function(username)
@@ -42,10 +42,9 @@ module.exports =
     else return true;
   },
 
-  //The id expected here is the socket.id
-  addOnline: function(id, username)
+  addOnline: function(username)
   {
-    this.online[id] = this.list[username];
+    this.online[username] = this.list[username];
   },
 
   getClientPack: function()

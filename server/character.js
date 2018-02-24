@@ -174,9 +174,9 @@ module.exports =
 
     for (var i = 0; i < characters.length; i++)
     {
-      reviveContent(obj.characters[i]);
-      attachFunctions(obj.characters[i]);
-      obj.characters[characters[i].id] = characters[i];
+      reviveContent(characters[i]);
+      attachFunctions(characters[i]);
+      obj[characters[i].id] = characters[i];
     }
 
     return obj;

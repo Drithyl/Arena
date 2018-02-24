@@ -113,6 +113,7 @@ function melee(pack)
         //loop
         results[i][j+1] = {strategy: order.melee[order.melee.length - 1]};
         meleeStrategies[order.melee.length - 1].apply(pack, results[i][j]);
+        pack.battle.koActors[pack.actor.player].push(pack.actor.id);
         return results;
       }
 

@@ -1,6 +1,7 @@
 
 const event = require("./emitter.js");
 const area = require("./area.js");
+var sm;
 var keys;
 var ruleset;
 var interpreter;
@@ -25,13 +26,21 @@ module.exports =
 {
   list: {},
 
-  init: function(index)
+  init: function(socketManager, index)
   {
+    sm = socketManager;
     keys = index;
     ruleset = require("./server/ruleset.js").init(index);
     interpreter = require("./server/battle_interpreter.js").init(index);
     return this;
   }
+
+  /*
+  * Create a battle object and all of its functions and listeners. Arguments:
+  *
+  *   players         An array of the involved player objects (like:
+  *                   {username: "yadda", characters: []})
+  */
 
   create: function(players)
   {
@@ -47,17 +56,17 @@ module.exports =
     b.verifySpellAction = verifySpellAction;
     b.resolveAttack = resolveAttack;
     b.startPack = startPack;
-    b.emitAll = emitAll;
-    b.generateMap = generateMap;
     b.readyActors = readyActors;
-    b.getTurnOrder = getTurnOrder;
+    b.getAPTurnOrder = getAPTurnOrder;
     b.verifyMovement = verifyMovement;
     b.endTurn = endTurn;
+    b.endBattle = endBattle;
 
     //PROPERTIES
     b.positions = [[]];
     b.actors = [];
     b.players = players;
+    b.koActors = {};
     b.deployedPlayers = 0;
     b.deploymentAreas = assignDeploymentAreas(players[0], players[1]);
     b.width = WIDTH;
@@ -68,36 +77,37 @@ module.exports =
     b.order = b.getAPTurnOrder(20);
 
     //INIT
-    for (var i = 0; i < b.players.length; i++)
+    for (var i = 0; i < players.length; i++)
     {
       //STORING THE BATTLE UNDER EACH PLAYER'S USERNAME
-      this.list[b.players[i].username] = b;
+      this.list[players[i].username] = b;
+      this.koActors[players[i].username] = [];
 
-      for (var j = 0; j < b.players[i].characters.length; j++)
+      for (var j = 0; j < players[i].characters.length; j++)
       {
-        b.actors.push(b.players[i].characters[j]);
+        b.actors.push(players[i].characters[j]);
       }
 
-      b.players[i].socket.emit("deploymentPhase", {size: [b.map.length, b.map[0].length]});
-      b.players[i].socket.on("deploymentScheme", function(data)
+      sm.logged[players[i].username].emit("deploymentPhase", {size: [b.map.length, b.map[0].length]});
+      sm.logged[players[i].username].on("deploymentScheme", function(data)
       {
-        b.verifyDeployment(b.players[i], data);
+        b.verifyDeployment(players[i], data);
 
-        if (b.deployedPlayers >= b.players.length)
+        if (b.deployedPlayers >= players.length)
         {
           //battle start!
-          b.emitAll("battleStart", {order: b.order, positions: b.positions});
-          b.listenAll("movement", function(data, socket)
+          sm.emitMany("battleStart", {order: b.order, positions: b.positions});
+          sm.listenMany(players, "movement", function(data, socket)
           {
             b.resolveMovement(data, socket);
           });
 
-          b.listenAll("attack", function(data, socket)
+          sm.listenMany(players, "attack", function(data, socket)
           {
             b.resolveAttack(data, socket);
           });
 
-          b.listenAll("endTurn", function(data, socket)
+          sm.listenMany(players, "endTurn", function(data, socket)
           {
             b.endTurn(data, socket);
           });
@@ -115,7 +125,7 @@ function verifyDeployment(player, characters)
 
   if (characters.length < player.characters.length)
   {
-    player.socket.emit("deploymentFailed", "You need to deploy all of your characters.");
+    sm.logged[player.username].emit("deploymentFailed", "You need to deploy all of your characters.");
     return;
   }
 
@@ -123,13 +133,13 @@ function verifyDeployment(player, characters)
   {
     if (area.contains(characters[i].position) === false)
     {
-      player.socket.emit("deploymentFailed", "You can only place your characters in a tile within x: (" + area.x1 + "," + area.x2 + ") and y: (" + area.y1 + "," + area.y2 + ").");
+      sm.logged[player.username].emit("deploymentFailed", "You can only place your characters in a tile within x: (" + area.x1 + "," + area.x2 + ") and y: (" + area.y1 + "," + area.y2 + ").");
       return;
     }
 
     else if (this.map[characters[i].position.x][characters[i].position.y].actor != null)
     {
-      player.socket.emit("deploymentFailed", "You can't place more than one character in the same tile.");
+      sm.logged[player.username].emit("deploymentFailed", "You can't place more than one character in the same tile.");
       return;
     }
 
@@ -167,6 +177,12 @@ function verifyOwner(data, socket)
   {
     //wrong character
     throw new Error("This isn't a valid character for you to control.");
+  }
+
+  if (this.koActors[data.username].includes(data.character.id) === true)
+  {
+    //KOed character
+    throw new Error("This character is knocked out.");
   }
 }
 
@@ -230,7 +246,7 @@ function resolveAttack(data, socket)
     var verifiedPack = this.verifyAttack(data, socket);
     var resolvedPack = ruleset.resolveAttack(verifiedPack);
     var translatedPack = interpreter.translateAttack(resolvedPack);
-    socket.emit("ResolvedAttack", translatePack);
+    socket.emit("ResolvedAttack", translatedPack);
   }
 
   catch(err)
@@ -303,10 +319,10 @@ function verifyMeleeAction(data, socket)
     throw new Error("Not enough APs to make these attacks. The total AP cost is " + reqAPs + ", but this character only has " + actor.battle[keys.AP] + " left.");
   }
 
-  return {"type": keys.TRIGGERS.MELEE, "actor": actor, "target": target, "distance": distance, weapons: filter, data: {}};
+  return {"type": keys.TRIGGERS.MELEE, "battle": this, "actor": actor, "target": target, "distance": distance, weapons: filter, data: {}};
 }
 
-function verifyRangedAction(data)
+function verifyRangedAction(data, socket)
 {
   actor = this.players[data.username].characters[data.character.id];
   target = this.players[data.target.player].characters[data.target.id];
@@ -343,10 +359,20 @@ function verifyRangedAction(data)
 function endTurn(data, socket)
 {
   var actor = this.players[data.username].characters[data.character.id];
-  var pack = {"actor": actor, characters: this.actors, "map": this.map, data: {}};
+  var pack = {"actor": actor, battle: this, characters: this.actors, "map": this.map, data: {}};
   var resolvedPack = ruleset.endTurn(pack);
 
-  //TODO: Check if battle has finished
+  for (var i = 0; i < this.players; i++)
+  {
+    var player = this.players[i];
+
+    if (this.koActors[player.username].length >= player.characters.length)
+    {
+      //battle ends
+      this.endBattle();
+      return;
+    }
+  }
 
   this.turn++;
 
@@ -357,6 +383,11 @@ function endTurn(data, socket)
 
   this.order.shift();
   socket.emit("startTurn", this.order);
+}
+
+function endBattle()
+{
+  //TODO
 }
 
 function filterWeapons(weapons, actor, target, distance)
@@ -421,7 +452,7 @@ function filterWeapons(weapons, actor, target, distance)
 }
 
 //TODO
-function verifySpellAction(data)
+function verifySpellAction(data, socket)
 {
   actor = this.players[data.username].characters[data.character.id];
   target = this.players[data.target.player].characters[data.target.id];
@@ -433,25 +464,6 @@ function startPack()
   var obj = {order: this.order, positions: null};
 
   for (var )
-}
-
-function emitAll(trigger, data)
-{
-  for (var i = 0; i < this.players.length; i++)
-  {
-    this.players[i].socket.emit(trigger, data);
-  }
-};
-
-function listenAll(trigger, fn)
-{
-  for (var i = 0; i < this.players.length; i++)
-  {
-    this.players[i].socket.on(trigger, function(data)
-    {
-      fn(data, this.players[i].socket);
-    });
-  }
 }
 
 function readyActors()

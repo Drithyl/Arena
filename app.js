@@ -6,11 +6,12 @@ var io = require("socket.io")(serv, {});
 var pf = require("./server/prototype_functions.js");
 var keys = require("./shared/keyIndex.json");
 var rw;
+var sm;
+var battle;
 var characterModule;
 var playersModule;
 var content;
 var port = 3000;
-var SOCKET_LIST = {};
 var spawn = require('child_process').spawn;
 //var dbProcess = spawn("C:/Program Files/MongoDB/Server/3.4/bin/mongod.exe");
 var mongo = require("mongodb");
@@ -47,7 +48,7 @@ io.sockets.on("connection", function(socket)
 		throw new Error("Server was not launched correctly. Ignoring connection from socket " + socket.id);
 	}
 
-  SOCKET_LIST[socket.id] = socket;
+  sm.list[socket.id] = socket;
 	rw.log(socket.id + " connected.");
 	socket.emit("connected", getInitPack());
 
@@ -68,7 +69,8 @@ io.sockets.on("connection", function(socket)
 
   socket.on("disconnect", function()
   {
-		delete SOCKET_LIST[socket.id];
+    delete sm.logged[socket.username];
+    delete sm.list[socket.id];
   });
 });
 
@@ -99,6 +101,8 @@ function initializeServer(cb)
 	keys.arr = keys.toFlatArr();
 	keys.lowerCaseArr = keys.arr.toLowerCase();
 	rw = require("./server/reader_writer.js").init(db, keys);
+  sm = require("./server/socket_manager.js").init(io);
+  battle = require("./server/battle.js").init(sm, keys);
 	content = require("./server/content.js").init(rw.readContent(), keys);
 
 	db.find("characters", {}, function(err, charsFetched)
@@ -193,6 +197,14 @@ function signUp(data, socket)
 	});
 }
 
+/*
+* A new logged in player is dealt with here. Arguments:
+*
+*   data            Contains the username and password of the user who signed in.
+*
+*   socket          The socket through which the user connected to the server.
+*/
+
 function emitCharacters(data, socket)
 {
 	if (playersModule.areCharactersCreated(data.username) === false)
@@ -210,7 +222,7 @@ function emitCharacters(data, socket)
 
 function verifyCharacters(data, socket)
 {
-	var player = playersModule.create(socket);
+	var player = playersModule.create(socket.username);
 
 	characterModule.registerCharacters(data, player, function(err, verifiedCharacters)
 	{
