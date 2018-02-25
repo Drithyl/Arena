@@ -614,6 +614,31 @@ function battleReady(t = this)
   t.battle[keys.AP] = getTotalAttribute(keys.AP, t);
 }
 
+function giveEnemyData(t = this)
+{
+  var data = {};
+  data[keys.ID] = t[keys.ID];
+  data[keys.NAME] = t[keys.NAME];
+  data[keys.PLAYER] t[keys.PLAYER];
+  data[keys.LVL] = t[keys.LVL];
+  data[keys.FORM] = t[keys.FORM][keys.NAME];
+  data[keys.SIZE] = t[keys.SIZE];
+  data[keys.SLOT_LIST] = {};
+
+  for (var slot in t[keys.SLOT_LIST])
+  {
+    data[keys.SLOT_LIST][slot] = {[keys.EQUIPPED]: {}};
+
+    for (var key in t[keys.SLOT_LIST][slot][keys.EQUIPPED])
+    {
+      var item = t[keys.SLOT_LIST][slot][keys.EQUIPPED][key];
+      data[keys.SLOT_LIST][slot][keys.EQUIPPED][key] = item[keys.NAME];
+    }
+  }
+
+  return data;
+}
+
 function ignite(pack, result, t = this)
 {
   var igniteChance = pack.data.damage * 5;

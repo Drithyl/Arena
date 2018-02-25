@@ -39,7 +39,7 @@ module.exports =
   * Create a battle object and all of its functions and listeners. Arguments:
   *
   *   players         An array of the involved player objects (like:
-  *                   {username: "yadda", characters: []})
+  *                   {username: "yadda", characters: {id1: character1, id2: character2, etc.}})
   */
 
   create: function(players)
@@ -55,7 +55,7 @@ module.exports =
     b.verifyRangedAction = verifyRangedAction;
     b.verifySpellAction = verifySpellAction;
     b.resolveAttack = resolveAttack;
-    b.startPack = startPack;
+    b.emitBattleStartPacks = emitBattleStartPacks;
     b.readyActors = readyActors;
     b.getAPTurnOrder = getAPTurnOrder;
     b.verifyMovement = verifyMovement;
@@ -96,7 +96,7 @@ module.exports =
         if (b.deployedPlayers >= players.length)
         {
           //battle start!
-          sm.emitMany("battleStart", {order: b.order, positions: b.positions});
+          b.emitBattleStartPacks();
           sm.listenMany(players, "movement", function(data, socket)
           {
             b.resolveMovement(data, socket);
@@ -459,11 +459,32 @@ function verifySpellAction(data, socket)
   spell;
 }
 
-function startPack()
+function emitBattleStartPacks()
 {
-  var obj = {order: this.order, positions: null};
+  for (var i = 0; i < this.players.length; i++)
+  {
+    var playerPacks = {};
 
-  for (var )
+    this.players.forEach(function(player, index)
+    {
+      if (this.players[i].username != player.username)
+      {
+        playerPacks[player.username] = {};
+
+        for (var id in player.characters)
+        {
+          playerPacks[player.username][id] = player.characters[id].giveEnemyData();
+        }
+      }
+    });
+
+    sm.logged[this.players[i].username].emit("battleStartPack",
+    {
+      order: this.order,
+      position: this.positions,
+      "playerPacks": playerPacks
+    });
+  }
 }
 
 function readyActors()

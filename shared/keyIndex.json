@@ -2,6 +2,7 @@
   "ID": "ID",
   "NAME": "Name",
   "PLAYER": "Player",
+  "LVL": "Level",
   "START_GOLD": "Starting Gold",
   "START_POINTS": "Starting Points",
   "TRANS_POINTS": "Transition Points",
