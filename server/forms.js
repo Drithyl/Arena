@@ -31,7 +31,7 @@ function reviveNaturalWeapons(form)
 {
   for (var i = 0; i < form[keys.NAT_WPN_LIST].length; i++)
   {
-    form[keys.NAT_WPN_LIST][i] = content.getItems({key: keys.ID, value: form[keys.NAT_WPN_LIST][i][keys.ID])[0];
+    form[keys.NAT_WPN_LIST][i] = content.getItems({key: keys.ID, value: form[keys.NAT_WPN_LIST][i][keys.ID]})[0];
   }
 }
 

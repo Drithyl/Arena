@@ -58,7 +58,7 @@ module.exports =
       return arr;
     }
 
-    map.actors = function()
+    //TODO: map.actors = function()
 
     return map;
   },

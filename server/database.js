@@ -177,22 +177,17 @@ module.exports =
   	});
   },
 
-  areCharactersCreated: function(username, cb)
+  getCharacters: function(username, cb)
   {
-    this.find("characters", {"username": username}, function(err, res)
+    this.find("characters", {player: username}, function(err, result)
     {
       if (err)
       {
-        cb(err.name + ": in areCharactersCreated(): " + err.message, null);
+        cb(err.name + ": in getCharacters(): " + err.message, null);
         return;
       }
 
-      if (res == null || res.characters == null)
-  		{
-  			cb(null, 0);
-  		}
-
-      else cb(null, res.characters.length);
+      cb(null, result);
     });
   },
 
@@ -221,11 +216,11 @@ module.exports =
   	{
   		if (err)
   		{
-        cb(err.name + ": from collection accounts, could not add user: " + JSON.stringify(data.username) + "\n\n: " + err.message, null);
+        cb(err.name + ": from collection accounts, could not add user: " + JSON.stringify(data.username) + "\n\n: " + err.message, false);
         return;
   		}
 
-  		cb(null);
+  		cb(null, true);
   	});
   }
 }

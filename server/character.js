@@ -5,53 +5,8 @@ const ruleset = require("./ruleset.js");
 var keys;
 var forms;
 
-var itemEffectsOnCharacter =
-[
-  keys.EFF.ALL_WATERBREATHING,
-  keys.EFF.REINVIG,
-  keys.EFF.INSPIRATION,
-  keys.EFF.FEAR,
-  keys.EFF.AWE,
-  keys.EFF.ANIMAL_AWE,
-  keys.EFF.UP_HEAL,
-  keys.EFF.POISON_BARBS,
-  keys.EFF.RECUP,
-  keys.EFF.BONUS.SIEGE,
-  keys.EFF.BONUS.FORGE,
-  keys.EFF.BONUS.HEAL,
-  keys.EFF.BONUS.SUPPLY,
-  keys.EFF.RES.FIRE,
-  keys.EFF.RES.COLD,
-  keys.EFF.RES.POISON,
-  keys.EFF.RES.SHOCK
-];
-
-var itemPropsOnCharacter =
-[
-  keys.PROPS.BLIND,
-  keys.PROPS.ETHEREAL,
-  keys.PROPS.NO_EAT,
-  keys.PROPS.RECUP,
-  keys.PROPS.AMPHIBIAN,
-  keys.PROPS.POOR_AMPH,
-  keys.PROPS.TRAMPLE,
-  keys.PROPS.NO_HEAL,
-  keys.PROPS.GLAMOUR,
-  keys.PROPS.FLY,
-  keys.PROPS.BLINDFIGHTER,
-  keys.PROPS.SACRED,
-  keys.PROPS.IMMORTAL,
-  keys.PROPS.STORM_FLY,
-  keys.PROPS.TELEPORT,
-  keys.PROPS.TWIST_FATE,
-  keys.PROPS.SKIN.BARK,
-  keys.PROPS.SKIN.STONE,
-  keys.PROPS.SKIN.IRON,
-  keys.PROPS.SURV.FOREST,
-  keys.PROPS.SURV.MOUNTAIN,
-  keys.PROPS.SURV.WASTE,
-  keys.PROPS.SURV.SWAMP
-];
+var itemEffectsOnCharacter;
+var itemPropsOnCharacter;
 
 module.exports =
 {
@@ -73,6 +28,54 @@ module.exports =
     {
       this.namesTaken.push(this.list[i][keys.NAME]);
     }
+
+    itemEffectsOnCharacter =
+    [
+      keys.EFF.ALL_WATERBREATHING,
+      keys.EFF.REINVIG,
+      keys.EFF.INSPIRATION,
+      keys.EFF.FEAR,
+      keys.EFF.AWE,
+      keys.EFF.ANIMAL_AWE,
+      keys.EFF.UP_HEAL,
+      keys.EFF.POISON_BARBS,
+      keys.EFF.RECUP,
+      keys.EFF.BONUS.SIEGE,
+      keys.EFF.BONUS.FORGE,
+      keys.EFF.BONUS.HEAL,
+      keys.EFF.BONUS.SUPPLY,
+      keys.EFF.RES.FIRE,
+      keys.EFF.RES.COLD,
+      keys.EFF.RES.POISON,
+      keys.EFF.RES.SHOCK
+    ];
+
+    itemPropsOnCharacter =
+    [
+      keys.PROPS.BLIND,
+      keys.PROPS.ETHEREAL,
+      keys.PROPS.NO_EAT,
+      keys.PROPS.RECUP,
+      keys.PROPS.AMPHIBIAN,
+      keys.PROPS.POOR_AMPH,
+      keys.PROPS.TRAMPLE,
+      keys.PROPS.NO_HEAL,
+      keys.PROPS.GLAMOUR,
+      keys.PROPS.FLY,
+      keys.PROPS.BLINDFIGHTER,
+      keys.PROPS.SACRED,
+      keys.PROPS.IMMORTAL,
+      keys.PROPS.STORM_FLY,
+      keys.PROPS.TELEPORT,
+      keys.PROPS.TWIST_FATE,
+      keys.PROPS.SKIN.BARK,
+      keys.PROPS.SKIN.STONE,
+      keys.PROPS.SKIN.IRON,
+      keys.PROPS.SURV.FOREST,
+      keys.PROPS.SURV.MOUNTAIN,
+      keys.PROPS.SURV.WASTE,
+      keys.PROPS.SURV.SWAMP
+    ];
 
     return this;
   },
@@ -365,7 +368,7 @@ function reviveSlots(t = this)
 
     for (var i = 0; i < equipped.length; i++)
     {
-      equipped[i] = content.getItems({key: keys.ID, value: equipped[i][keys.ID])[0];
+      equipped[i] = content.getItems({key: keys.ID, value: equipped[i][keys.ID]})[0];
     }
   }
 }
@@ -619,7 +622,7 @@ function giveEnemyData(t = this)
   var data = {};
   data[keys.ID] = t[keys.ID];
   data[keys.NAME] = t[keys.NAME];
-  data[keys.PLAYER] t[keys.PLAYER];
+  data[keys.PLAYER] = t[keys.PLAYER];
   data[keys.LVL] = t[keys.LVL];
   data[keys.FORM] = t[keys.FORM][keys.NAME];
   data[keys.SIZE] = t[keys.SIZE];

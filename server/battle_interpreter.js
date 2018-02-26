@@ -1,6 +1,6 @@
 
 var keys;
-const locale = require("./server/strings.json");
+const locale = require("./strings.json");
 
 module.exports =
 {
@@ -20,7 +20,7 @@ module.exports =
     {
       templates.push([]);
 
-      for (var j = 0; < results[i].length; j++)
+      for (var j = 0; j < results[i].length; j++)
       {
         if (Object.keys(results[i][j]).length < 2)
         {
@@ -49,7 +49,7 @@ module.exports =
   {
     var templates = [];
 
-    for (var i = 0; < results.length; j++)
+    for (var i = 0; i < results.length; j++)
     {
       if (Object.keys(results[i]).length < 2)
       {

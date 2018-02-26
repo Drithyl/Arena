@@ -154,46 +154,66 @@ function getInitPack()
 
 function signIn(data, socket)
 {
-	db.isValidPassword(data, function(err, res)
+	db.isValidPassword(data, function(err, result)
 	{
     if (err)
     {
-      throw new Error("signIn() error: " + err.message);
+      throw new Error("signIn() error when validating password: " + err.message);
+    }
+
+    if (result === false)
+    {
+      socket.emit("signInResponse", {success: false, characters: null});
       return;
     }
 
-		if (res !== true)
-		{
-			socket.emit("signInRejected");
-			return;
-		}
+    db.getCharacters(data.username, function(err, result)
+    {
+      if (err)
+      {
+        throw new Error("signIn() error when fetching characters for this user: " + err.message);
+      }
 
-		socket.emit("SignInAccepted");
-		socket.username = data.username;
-		attachChat(socket);
-		emitCharacters(data, socket);
+      if (result != null && result.length === 4)
+      {
+        setPlayerOnline(data.username, socket);
+      }
+
+      socket.emit("signInResponse", {success: true, characters: result});
+    });
 	});
 }
 
 function signUp(data, socket)
 {
+  if (typeof data.username != "string" || typeof data.password != "string" || data.username === "" || data.password === "")
+  {
+    socket.emit("signUpResponse", {success: false});
+    return;
+  }
+
 	db.isUsernameTaken(data, function(err, res)
 	{
     if (err)
     {
-      throw new Error("signIn() error: " + err.message);
+      throw new Error("signIn() error when checking if the username is taken: " + err.message);
+    }
+
+    if (res === true)
+    {
+      socket.emit("signUpResponse", {success: false});
       return;
     }
 
-		if (res === false)
+		db.addUser(data, function(err)
 		{
-			db.addUser(data, function()
-			{
-				socket.emit("signUpResponse", {success: true});
-			});
-		}
+      if (err)
+      {
+        throw new Error("signIn() error when checking if the username is taken: " + err.message);
+      }
 
-		else socket.emit("signUpResponse", {success: false});
+			socket.emit("signUpResponse", {success: true});
+		});
 	});
 }
 
@@ -205,19 +225,13 @@ function signUp(data, socket)
 *   socket          The socket through which the user connected to the server.
 */
 
-function emitCharacters(data, socket)
+function setPlayerOnline(username, socket)
 {
-	if (playersModule.areCharactersCreated(data.username) === false)
-	{
-		socket.emit("createCharacters");
-		return;
-	}
-
-	//starting point for a client
-	var player = playersModule.list[data.username];
-	playersModule.addOnline(socket.id, player.username);
-	socket.emit("startGame");
-	socket.broadcast.emit("playerJoined", player.functionless());
+  //starting point for a client
+  attachChat(socket);
+  socket.username = data.username;
+	playersModule.addOnline(username);
+  socket.broadcast.emit("playerJoined", player.functionless());
 }
 
 function verifyCharacters(data, socket)

@@ -87,7 +87,7 @@ function filterFn(item, filters)
       validFilters++;
     }
 
-    else (typeof item[key] === "string" && item[key] === value)
+    else if (typeof item[key] === "string" && item[key] === value)
     {
       validFilters++;
     }

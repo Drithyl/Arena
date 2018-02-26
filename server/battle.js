@@ -30,10 +30,10 @@ module.exports =
   {
     sm = socketManager;
     keys = index;
-    ruleset = require("./server/ruleset.js").init(index);
-    interpreter = require("./server/battle_interpreter.js").init(index);
+    ruleset = require("./ruleset.js").init(index);
+    interpreter = require("./battle_interpreter.js").init(index);
     return this;
-  }
+  },
 
   /*
   * Create a battle object and all of its functions and listeners. Arguments:
