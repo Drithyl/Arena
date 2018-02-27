@@ -231,7 +231,7 @@ function setPlayerOnline(username, socket)
   attachChat(socket);
   socket.username = data.username;
 	playersModule.addOnline(username);
-  socket.broadcast.emit("playerJoined", player.functionless());
+  socket.broadcast.emit("playerJoined", {player: username});
 }
 
 function verifyCharacters(data, socket)
