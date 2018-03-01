@@ -4,30 +4,17 @@ const dice = require("./dice.js");
 const ruleset = require("./ruleset.js");
 var keys;
 var forms;
-
+var content;
 var itemEffectsOnCharacter;
 var itemPropsOnCharacter;
 
 module.exports =
 {
-  db: null,
-  content: null,
-  keys: null,
-  list: null,
-  namesTaken: [],
-
-  init: function(database, contentModule, index, charsFetched)
+  init: function(contentModule, index)
   {
     keys = index;
-    this.db = database;
-    this.content = contentModule;
-    this.list = charsFetched;
+    content = contentModule;
     forms = require("./forms.js").init(contentModule, index);
-
-    for (var i = 0; i < this.list.length; i++)
-    {
-      this.namesTaken.push(this.list[i][keys.NAME]);
-    }
 
     itemEffectsOnCharacter =
     [
@@ -78,195 +65,7 @@ module.exports =
     ];
 
     return this;
-  },
-
-  addCharacter: function(characters, cb)
-  {
-    if (Array.isArray(characters) === false)
-    {
-      characters = [characters];
-    }
-
-    db.insert("characters", characters, function(err, res)
-    {
-      if (err)
-      {
-        cb(err.name + ": in addCharacter(): " + err.message, null);
-        return;
-      }
-
-      for (var i = 0; i < characters.length; i++)
-      {
-        this.namesTaken.push(characters[i][keys.NAME]);
-      }
-
-      cb(null);
-    });
-  },
-
-  registerCharacters: function(charactersData, player, cb)
-  {
-    var verifiedArr = [];
-    player.characters = {};
-
-    for (var i = 0; i < charactersData.length; i++)
-    {
-      try
-      {
-        verifyCharacterData(charactersData[i]);
-        var character = buildCharacter(charactersData[i], player.username);
-        this.namesTaken.push(character[keys.NAME]);
-        verifiedArr.push(character);
-        player.characterKeys.push(character.id);
-      }
-
-      catch (err)
-      {
-        cb(err, null);
-      }
-    }
-
-    db.insert("players", player, function(err, res)
-    {
-      if (err)
-      {
-        cb(err.name + ": in registerCharacters(): " + err.message, null);
-        return;
-      }
-
-      db.insert("characters", verifiedArr, function(err, res)
-      {
-        if (err)
-        {
-          cb(err.name + ": in registerCharacters(): " + err.message, null);
-          return;
-        }
-
-        this.namesTaken.concat(namesArr);
-        cb(null, verifiedArr);
-      });
-    });
-  },
-
-  /*
-  * Reattach the relevant data to the characters that a username owns on server
-  * launch and then return an object of those characters accessible through
-  * their ids.  Arguments:
-  *
-  *    username       the username of the player that owns the characters
-  *
-  * This function may fail for several reasons:
-  *
-  *    NotFound       No character belonging to this username is found. In this
-  *                   case, no return object will be supplied.
-  */
-
-  reviveCharacters: function(username)
-  {
-    var obj = {};
-
-    var characters = this.list.filter(function(char)
-    {
-      return char[keys.PLAYER] == username;
-    });
-
-    if (characters == null || characters.length == null || characters.length <= 0)
-    {
-      throw new Error("No characters for username " + username + " were found.");
-    }
-
-    for (var i = 0; i < characters.length; i++)
-    {
-      reviveContent(characters[i]);
-      attachFunctions(characters[i]);
-      obj[characters[i].id] = characters[i];
-    }
-
-    return obj;
-  },
-
-  /*
-  * Save the characters state in the database. This will be only called by the
-  * players module function save(). Some of the properties of the characters
-  * that must not be saved (unnecessary data stored in JSON content files)
-  * are converted into their id, such as item objects, and are revived into
-  * their proper object through the id whenever the server is launched.
-  * Arguments:
-  *
-  *   characters     The object within the .characters key of a player object,
-  *                  containing the current state of each character.
-  *
-  *   cb             The callback function called once the saving is done, or
-  *                  when an error occurs.
-  *
-  * This function may fail for several reasons:
-  *
-  *   DBError        The attempt to save one of the characters in the database
-  *                  threw an error, which is then passed into the callback.
-  */
-
-  saveCharacters: function(characters, cb)
-  {
-    var arr = [];
-
-    for (var id in characters)
-    {
-      var clone = characters[id].functionless();
-      lullContent(clone);
-      arr.push(clone);
-    }
-
-    db.save("characters", arr, function(err, res)
-    {
-      if (err)
-      {
-        cb(err.name + ": in saveCharacters(): " + err.message, null);
-        return;
-      }
-
-      cb(null, res);
-    });
   }
-}
-
-function buildCharacter(verifiedData, player)
-{
-  var obj = {};
-  var race = content.getForms({key: keys.NAME, value: verifiedData.race});
-
-  obj[keys.NAME] = verifiedData.name;
-  obj[keys.ID] = generateID();
-  obj[keys.PLAYER] = player;
-  obj[keys.TRANS_POINTS] = 0;
-  obj[keys.FORM] = race[keys.ID];
-  obj[keys.CURR_FORM] = race[keys.ID];
-  obj[keys.ALL_FORMS] = race[keys.ALL_FORMS];
-  obj[keys.MAX_HP] = verifiedData[keys.MAX_HP];
-  obj[keys.CURR_HP] = obj[keys.MAX_HP] + race[keys.MAX_HP];
-  obj[keys.MR] = verifiedData[keys.MR];
-  obj[keys.MRL] = verifiedData[keys.MRL];
-  obj[keys.STR] = verifiedData[keys.STR];
-  obj[keys.ATK] = 0;
-  obj[keys.DEF] = 0;
-  obj[keys.PRC] = 0;
-  obj[keys.AP] = 0;
-  obj[keys.MP] = 0;
-  obj[keys.SPEED] = 0;
-  obj[keys.AFFL_LIST] = {};
-  obj[keys.PATH_LIST] = {};
-  obj[keys.PROP_LIST] = [];
-  obj[keys.AB_LIST] = {};
-  obj[keys.PART_LIST] = race[keys.PART_LIST];
-
-  for (var key in keys.SLOT_LIST)
-  {
-    obj[keys.SLOT_LIST[key]] = {};
-    obj[keys.SLOT_LIST[key]][keys.EQUIPPED] = [];
-    obj[keys.SLOT_LIST[key]][keys.FREE] = race[keys.SLOT_LIST][keys.SLOT_LIST[key]];
-    obj[keys.SLOT_LIST[key]][keys.TOTAL] = race[keys.SLOT_LIST][keys.SLOT_LIST[key]];
-  }
-
-  return obj;
 }
 
 /*
@@ -514,94 +313,6 @@ function removeItemEffects(item, effectsFilter, propsFilter, char)
 *                   than his chosen race allows.
 */
 
-function verifyCharacterData(data)
-{
-  var chosenRace = content.getForms({key: keys.NAME, value: char.race});
-
-  if (chosenRace === null || chosenRace.length <= 0)
-  {
-    throw "The chosen race is invalid. Please choose only from the given options.";
-  }
-
-  try
-  {
-    verifyName(data.name);
-    verifyAttributes(chosenRace, data.attributes);
-  }
-
-  catch (err)
-  {
-    throw err;
-  }
-}
-
-function verifyName(name)
-{
-	if (typeof name !== "string")
-	{
-		throw "The name must be a string of text.";
-	}
-
-  else if (/\S+/.test(name) === false)
-  {
-    throw "The name must not be left empty.";
-  }
-
-  else if (/[\(\)\{\}\[\]\!\?\@\#\$\%\^]/.test(name) === true)
-  {
-    throw "The name must not contain special characters other than spaces, dashes or underscores.";
-  }
-
-  else if (name.length > 36)
-  {
-    throw "The name must be 36 characters or less in length.";
-  }
-
-  if (this.namesTaken.includes(name.toLowerCase()) === true)
-  {
-    throw "The name is already taken by another character.";
-  }
-}
-
-function verifyAttributes(race, attributes)
-{
-  var maxPoints = race[keys.START_POINTS];
-  var pointsUsed = 0;
-
-  for (var key in attributes)
-  {
-    if (race[key] == null)
-    {
-      throw "The attribute " + key + " is invalid. It does not exist.";
-    }
-
-    if (isNaN(attributes[key]) === true)
-    {
-      throw "The attribute " + key + " must be an integer.";
-    }
-
-    pointsUsed += attributes[key];
-
-    if (pointsUsed > maxPoints)
-    {
-      throw "You have invested more points than your race allows.";
-    }
-  }
-}
-
-function generateID()
-{
-  //line borrowed from https://gist.github.com/gordonbrander/2230317
-  var id = '_' + Math.random().toString(36).substr(2, 9);
-
-  while (module.exports.list.filter(function(char) {  return char.id == id;  }).length > 0)
-  {
-    id = '_' + Math.random().toString(36).substr(2, 9);
-  }
-
-  return id;
-}
-
 function attachFunctions(character)
 {
   //TODO
@@ -724,6 +435,7 @@ function woundedShape(damageCarried, t = this)
   }
 
   result.droppedItems = updateSlots(t);
+  //TODO: update protection stats
   return result;
 }
 
@@ -765,6 +477,7 @@ function healedShape(healingCarried, t = this)
   }
 
   result.droppedItems = updateSlots(t);
+  //TODO: update protection stats
   return result;
 }
 

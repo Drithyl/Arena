@@ -9,8 +9,10 @@ var rw;
 var sm;
 var battle;
 var characterModule;
-var playersModule;
+var characterCreator;
+var playerModule;
 var content;
+var formulas;
 var port = 3000;
 var spawn = require('child_process').spawn;
 //var dbProcess = spawn("C:/Program Files/MongoDB/Server/3.4/bin/mongod.exe");
@@ -69,8 +71,8 @@ io.sockets.on("connection", function(socket)
 
   socket.on("disconnect", function()
   {
-    delete sm.logged[socket.username];
-    delete sm.list[socket.id];
+    playerModule.disconnect(socket.username);
+    sm.disconnect(socket.id);
   });
 });
 
@@ -88,7 +90,7 @@ io.sockets.on("connection", function(socket)
 *    Error          The database module returns an error in the callback when
 *										trying to fetch all existing players.
 *
-*    Error          The playersModule throws an error when initializing,
+*    Error          The playerModule throws an error when initializing,
 *										particularly when trying to revive the player objects.
 
 *	Any error here will cause the function to exit and the boolean
@@ -104,8 +106,11 @@ function initializeServer(cb)
   sm = require("./server/socket_manager.js").init(io);
   battle = require("./server/battle.js").init(sm, keys);
 	content = require("./server/content.js").init(rw.readContent(), keys);
+  formulas = require("./server/formulas.js").init(keys);
+  characterCreator = require("./server/character_creator.js").init(content, keys);
+  characterModule = require("./server/character.js").init(content, keys);
 
-	db.find("characters", {}, function(err, charsFetched)
+	db.find("players", {}, function(err, playersFetched)
 	{
 		if (err)
 		{
@@ -113,31 +118,20 @@ function initializeServer(cb)
 			return;
 		}
 
-		characterModule = require("./server/character.js").init(db, content, keys, charsFetched);
-
-		db.find("players", {}, function(err, playersFetched)
+		try
 		{
-			if (err)
-			{
-				cb("CRITICAL ERROR, server launch corrupted: " + err.name + ": in initializeServer(): " + err.message);
-				return;
-			}
+      playerModule = require("./server/player.js").init(db, playersFetched, characterModule, characterCreator, keys);
+		}
 
-			try
-			{
-        playersModule = require("./server/players.js").init(db, playersFetched, characterModule, keys);
-			}
+		catch(err)
+		{
+			cb("CRITICAL ERROR, server launch corrupted: " + err.name + ": in playerModule.init(): " + err.message, null);
+			return;
+		}
 
-			catch(err)
-			{
-				cb("CRITICAL ERROR, server launch corrupted: " + err.name + ": in playersModule.init(): " + err.message, null);
-				return;
-			}
-
-			serv.listen(port);
-			wasLaunchedCorrectly = true;
-			rw.log("Server started.");
-		});
+		serv.listen(port);
+		wasLaunchedCorrectly = true;
+		rw.log("Server started.");
 	});
 }
 
@@ -146,7 +140,7 @@ function getInitPack()
 	var obj =
 	{
 		forms: content.getForms({key: keys.CAT_LIST, value: keys.CAT.START}),
-		players: playersModule.getClientPack()
+		players: playerModule.getClientPack()
 	}
 
 	return obj;
@@ -163,24 +157,22 @@ function signIn(data, socket)
 
     if (result === false)
     {
-      socket.emit("signInResponse", {success: false, characters: null});
+      socket.emit("signInResponse", {success: false, player: null});
       return;
     }
 
-    db.getCharacters(data.username, function(err, result)
+    if (playerModule.playersList[data.username] == null)
     {
-      if (err)
-      {
-        throw new Error("signIn() error when fetching characters for this user: " + err.message);
-      }
+      socket.emit("signInResponse", {success: false, player: null});
+      return;
+    }
 
-      if (result != null && result.length === 4)
-      {
-        setPlayerOnline(data.username, socket);
-      }
+    if (Object.keys(playerModule.playersList[data.username].characters).length === 4)
+    {
+      setPlayerOnline(data.username, socket);
+    }
 
-      socket.emit("signInResponse", {success: true, characters: result});
-    });
+    socket.emit("signInResponse", {success: true, player: playerModule.playersList[data.username], formulas: formulas.startingPoints});
 	});
 }
 
@@ -230,27 +222,23 @@ function setPlayerOnline(username, socket)
   //starting point for a client
   attachChat(socket);
   socket.username = data.username;
-	playersModule.addOnline(username);
+	playerModule.addOnline(username);
   socket.broadcast.emit("playerJoined", {player: username});
 }
 
 function verifyCharacters(data, socket)
 {
-	var player = playersModule.create(socket.username);
-
-	characterModule.registerCharacters(data, player, function(err, verifiedCharacters)
-	{
-		if (err)
-		{
-			socket.emit("characterFail", err.name + ": in verifyCharacters(): " + err.message);
+  playerModule.register(data.player, function(err, res)
+  {
+    if (err)
+    {
+      socket.emit("characterFail", err.name + ": in verifyCharacters(): " + err.message);
 			return;
-		}
+    }
 
-		playersModule.revive(player);
-		playersModule.addOnline(socket.id, player.username);
-		socket.emit("characterSuccess");
+    socket.emit("characterSuccess");
 		socket.broadcast.emit("playerJoined", player.functionless());
-	});
+  });
 }
 
 function attachChat(socket)

@@ -5,12 +5,16 @@ var io;
 module.exports =
 {
   list: {},
-  logged: {},
 
   init: function(io)
   {
     io = io;
     return this;
+  },
+
+  disconnect: function(id)
+  {
+    delete this.list[id];
   },
 
   broadcast: function(trigger, data)
