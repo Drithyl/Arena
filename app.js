@@ -1,9 +1,8 @@
-
+require("./server/prototype_functions.js");
 var express = require ("express");
 var app = express();
 var serv = require("http").Server(app);
 var io = require("socket.io")(serv, {});
-var pf = require("./server/prototype_functions.js");
 var keys = require("./shared/keyIndex.json");
 var rw;
 var sm;
@@ -64,7 +63,7 @@ io.sockets.on("connection", function(socket)
 		signUp(data, socket);
 	});
 
-	socket.on("sendCharacter", function(data)
+	socket.on("charactersCreated", function(data)
 	{
 		verifyCharacters(data, socket);
 	});
@@ -172,6 +171,7 @@ function signIn(data, socket)
       setPlayerOnline(data.username, socket);
     }
 
+    socket.username = data.username;
     socket.emit("signInResponse", {success: true, player: playerModule.playersList[data.username], formulas: formulas.startingPoints});
 	});
 }
@@ -212,7 +212,7 @@ function signUp(data, socket)
 /*
 * A new logged in player is dealt with here. Arguments:
 *
-*   data            Contains the username and password of the user who signed in.
+*   username        The username of the user who signed in.
 *
 *   socket          The socket through which the user connected to the server.
 */
@@ -221,9 +221,8 @@ function setPlayerOnline(username, socket)
 {
   //starting point for a client
   attachChat(socket);
-  socket.username = data.username;
 	playerModule.addOnline(username);
-  socket.broadcast.emit("playerJoined", {player: username});
+  socket.broadcast.emit("playerJoined", {username: username});
 }
 
 function verifyCharacters(data, socket)
@@ -232,26 +231,25 @@ function verifyCharacters(data, socket)
   {
     if (err)
     {
-      socket.emit("characterFail", err.name + ": in verifyCharacters(): " + err.message);
+      socket.emit("charactersCreatedResponse", {success: false, error: err.name + ": in verifyCharacters(): " + err.message});
 			return;
     }
 
-    socket.emit("characterSuccess");
-		socket.broadcast.emit("playerJoined", player.functionless());
+    setPlayerOnline(socket.username, socket);
+    socket.emit("charactersCreatedResponse", {success: true, error: null});
   });
 }
 
 function attachChat(socket)
 {
-	socket.on("sendMsgToServer", function(data)
+	socket.on("sendMessage", function(data)
 	{
-		var msg = {name: socket.id, message: data};
-		io.emit("addToChat", msg);
+		io.emit("addToChat", {username: socket.username, message: data.message});
 	});
 
 	socket.on("evalServer", function(data)
 	{
-		if (DEBUG === false)
+		if (DEBUG !== true)
 		{
 			return;
 		}

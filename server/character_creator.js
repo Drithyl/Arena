@@ -1,6 +1,7 @@
 
 var keys;
 var forms;
+var formulas = require("./formulas.js");
 
 module.exports =
 {
@@ -51,20 +52,20 @@ module.exports =
 function buildCharacter(verifiedData, username)
 {
   var obj = {};
-  var race = content.getForms({key: keys.NAME, value: verifiedData.race});
+  var form = content.getForms({key: keys.NAME, value: verifiedData.form});
 
   obj[keys.NAME] = verifiedData.name;
   obj[keys.ID] = generateID();
   obj[keys.PLAYER] = username;
   obj[keys.TRANS_POINTS] = 0;
-  obj[keys.FORM] = race[keys.ID];
-  obj[keys.CURR_FORM] = race[keys.ID];
-  obj[keys.ALL_FORMS] = race[keys.ALL_FORMS];
-  obj[keys.MAX_HP] = verifiedData[keys.MAX_HP];
-  obj[keys.CURR_HP] = obj[keys.MAX_HP] + race[keys.MAX_HP];
-  obj[keys.MR] = verifiedData[keys.MR];
-  obj[keys.MRL] = verifiedData[keys.MRL];
-  obj[keys.STR] = verifiedData[keys.STR];
+  obj[keys.FORM] = form[keys.ID];
+  obj[keys.CURR_FORM] = form[keys.ID];
+  obj[keys.ALL_FORMS] = form[keys.ALL_FORMS];
+  obj[keys.MAX_HP] = formulas.startingPoints[keys.MAX_HP](verifiedData[keys.MAX_HP], form[keys.MAX_HP]);
+  obj[keys.CURR_HP] = obj[keys.MAX_HP] + form[keys.MAX_HP];
+  obj[keys.MR] = formulas.startingPoints[keys.MR](verifiedData[keys.MR], form[keys.MR]);
+  obj[keys.MRL] = formulas.startingPoints[keys.MRL](verifiedData[keys.MRL], form[keys.MRL]);
+  obj[keys.STR] = formulas.startingPoints[keys.STR](verifiedData[keys.STR], form[keys.STR]);
   obj[keys.ATK] = 0;
   obj[keys.DEF] = 0;
   obj[keys.PRC] = 0;
@@ -75,14 +76,14 @@ function buildCharacter(verifiedData, username)
   obj[keys.PATH_LIST] = {};
   obj[keys.PROP_LIST] = [];
   obj[keys.AB_LIST] = {};
-  obj[keys.PART_LIST] = race[keys.PART_LIST];
+  obj[keys.PART_LIST] = form[keys.PART_LIST];
 
   for (var key in keys.SLOT_LIST)
   {
     obj[keys.SLOT_LIST[key]] = {};
     obj[keys.SLOT_LIST[key]][keys.EQUIPPED] = [];
-    obj[keys.SLOT_LIST[key]][keys.FREE] = race[keys.SLOT_LIST][keys.SLOT_LIST[key]];
-    obj[keys.SLOT_LIST[key]][keys.TOTAL] = race[keys.SLOT_LIST][keys.SLOT_LIST[key]];
+    obj[keys.SLOT_LIST[key]][keys.FREE] = form[keys.SLOT_LIST][keys.SLOT_LIST[key]];
+    obj[keys.SLOT_LIST[key]][keys.TOTAL] = form[keys.SLOT_LIST][keys.SLOT_LIST[key]];
   }
 
   return obj;
@@ -93,35 +94,35 @@ function buildCharacter(verifiedData, username)
 * to make sure that it is valid. Arguments:
 *
 *   data            The character data. It is supposed to contain a string .name
-*                   property, a string .race property, and a subObject
+*                   property, a string .form property, and a subObject
 *                   .attributes, with a collection of the attribute keys and
 *                   integer values that the client invested.
 *
 * This function may fail for several reasons:
 *
-*   RaceError       The race in .race could not be found within the content.
+*   FormError       The form in .form could not be found within the content.
 *
 *   NameError       The character name is incorrect. It might not be a string,
 *                   contain invalid characters, be too short or too long.
 *
 *   AttributesError One or more of the attributes either does not exist, or
 *                   is not a number, or the client somehow invested more points
-*                   than his chosen race allows.
+*                   than his chosen form allows.
 */
 
 function verifyCharacterData(data)
 {
-  var chosenRace = content.getForms({key: keys.NAME, value: char.race});
+  var chosenForm = content.getForms({key: keys.NAME, value: char.form});
 
-  if (chosenRace === null || chosenRace.length <= 0)
+  if (chosenForm === null || chosenForm.length <= 0)
   {
-    throw "The chosen race is invalid. Please choose only from the given options.";
+    throw "The chosen form is invalid. Please choose only from the given options.";
   }
 
   try
   {
     verifyName(data.name);
-    verifyAttributes(chosenRace, data.attributes);
+    verifyAttributes(chosenForm, data.attributes);
   }
 
   catch (err)
@@ -153,14 +154,14 @@ function verifyName(name)
   }
 }
 
-function verifyAttributes(race, attributes)
+function verifyAttributes(form, attributes)
 {
-  var maxPoints = race[keys.START_POINTS];
+  var maxPoints = form[keys.START_POINTS];
   var pointsUsed = 0;
 
   for (var key in attributes)
   {
-    if (race[key] == null)
+    if (form[key] == null)
     {
       throw "The attribute " + key + " is invalid. It does not exist.";
     }
@@ -174,7 +175,7 @@ function verifyAttributes(race, attributes)
 
     if (pointsUsed > maxPoints)
     {
-      throw "You have invested more points than your race allows.";
+      throw "You have invested more points than your form allows.";
     }
   }
 }
