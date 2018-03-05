@@ -2,9 +2,9 @@
 const event = require("./emitter.js");
 const area = require("./area.js");
 var sm;
-var keys;
-var ruleset;
-var interpreter;
+var ruleset = require("./ruleset.js");
+var interpreter = require("./battle_interpreter.js");
+var playerModule;
 var battleExpireTime = 1190000;	//after this amount of time a challenge will expire.
 var challengeExpireTime = 59000;	//after this amount of time a challenge will expire.
 
@@ -25,98 +25,166 @@ var xpAdjLvlMult = 1.05;
 module.exports =
 {
   list: {},
+  challenges: {},
 
-  init: function(socketManager, index)
+  init: function(socketManager, playerModule)
   {
     sm = socketManager;
-    keys = index;
-    ruleset = require("./ruleset.js").init(index);
-    interpreter = require("./battle_interpreter.js").init(index);
+    playerModule = playerModule;
+    listenToChallenges();
     return this;
-  },
+  }
+}
 
-  /*
-  * Create a battle object and all of its functions and listeners. Arguments:
-  *
-  *   players         An array of the involved player objects (like:
-  *                   {username: "yadda", characters: {id1: character1, id2: character2, etc.}})
-  */
-
-  create: function(players)
+function listenToChallenges()
+{
+  sm.listenAll("challengeRequest", function(data, socket)
   {
-    var b = {};
-
-    //FUNCTIONS
-    b.verifyDeployment = verifyDeployment;
-    b.verifyOwner = verifyOwner;
-    b.verifyMovement = verifyMovement;
-    b.verifyAttack = verifyAttack;
-    b.verifyMeleeAction = verifyMeleeAction;
-    b.verifyRangedAction = verifyRangedAction;
-    b.verifySpellAction = verifySpellAction;
-    b.resolveAttack = resolveAttack;
-    b.emitBattleStartPacks = emitBattleStartPacks;
-    b.readyActors = readyActors;
-    b.getAPTurnOrder = getAPTurnOrder;
-    b.verifyMovement = verifyMovement;
-    b.endTurn = endTurn;
-    b.endBattle = endBattle;
-
-    //PROPERTIES
-    b.positions = [[]];
-    b.actors = [];
-    b.players = players;
-    b.koActors = {};
-    b.deployedPlayers = 0;
-    b.deploymentAreas = assignDeploymentAreas(players[0], players[1]);
-    b.width = WIDTH;
-    b.height = HEIGHT;
-    b.turn = 1;
-    b.round = 1;
-    b.map = area.map(WIDTH, HEIGHT);
-    b.order = b.getAPTurnOrder(20);
-
-    //INIT
-    for (var i = 0; i < players.length; i++)
+    if (module.exports.list[socket.username] != null)
     {
-      //STORING THE BATTLE UNDER EACH PLAYER'S USERNAME
-      this.list[players[i].username] = b;
-      this.koActors[players[i].username] = [];
-
-      for (var j = 0; j < players[i].characters.length; j++)
-      {
-        b.actors.push(players[i].characters[j]);
-      }
-
-      sm.logged[players[i].username].emit("deploymentPhase", {size: [b.map.length, b.map[0].length]});
-      sm.logged[players[i].username].on("deploymentScheme", function(data)
-      {
-        b.verifyDeployment(players[i], data);
-
-        if (b.deployedPlayers >= players.length)
-        {
-          //battle start!
-          b.emitBattleStartPacks();
-          sm.listenMany(players, "movement", function(data, socket)
-          {
-            b.resolveMovement(data, socket);
-          });
-
-          sm.listenMany(players, "attack", function(data, socket)
-          {
-            b.resolveAttack(data, socket);
-          });
-
-          sm.listenMany(players, "endTurn", function(data, socket)
-          {
-            b.endTurn(data, socket);
-          });
-        }
-      });
+      socket.emit("challengeRequestResponse", {success: false, challenger: socket.username, error: "You already have a battle ongoing."});
+      return;
     }
 
-    b.readyActors();
+    if (module.exports.list[data.target] != null)
+    {
+      socket.emit("challengeRequestResponse", {success: false, challenger: socket.username, error: "A battle is already ongoing for this user."});
+      return;
+    }
+
+    if (module.exports.challenges[data.target] != null && module.exports.challenges[data.target][socket.username] != null)
+    {
+      socket.emit("challengeRequestResponse", {success: false, challenger: socket.username, error: "You already issued a challenge to this user."});
+      return;
+    }
+
+    if (module.exports.challenges[data.target] == null)
+    {
+      module.exports.challenges[data.target] = {};
+
+      if (module.exports.challenges[data.target].challengers == null)
+      {
+        module.exports.challenges[data.target].challengers = [];
+      }
+    }
+
+    module.exports.challenges[data.target].challengers.push(socket.username);
+    socket.emit("challengeRequestResponse", {success: true, challenger: socket.username, error: null});
+  });
+
+  sm.listenAll("challengeReply", function(data, socket)
+  {
+    if (module.exports.list[socket.username] != null)
+    {
+      socket.emit("challengeReplyResponse", {success: false, error: "You already have a battle ongoing."});
+      return;
+    }
+
+    if (module.exports.challenges[socket.username] == null || module.exports.challenges[socket.username].includes(data.challenger) === false)
+    {
+      socket.emit("challengeReplyResponse", {success: false, error: "This challenge offer no longer exists."});
+      return;
+    }
+
+    if (data.challengeAccepted === false)
+    {
+      sm.logged[challenger].emit("challengeReplyResponse", {success: false, error: null});
+      return;
+    }
+
+    module.exports.challenges[socket.username].splice(module.exports.challenges[socket.username].indexOf(data.challenger), 1);
+    sm.logged[data.challenger].emit("challengeReplyResponse", {success: true, error: null});
+    createBattle([playerModule.online[data.challenger], playerModule.online[socket.username]]);
+  });
+}
+
+/*
+* Create a battle object and all of its functions and listeners. Arguments:
+*
+*   players         An array of the involved player objects (like:
+*                   {username: "yadda", characters: {id1: character1, id2: character2, etc.}})
+*/
+
+function createBattle(players)
+{
+  var b = {};
+
+  //FUNCTIONS
+  b.verifyDeployment = verifyDeployment;
+  b.verifyOwner = verifyOwner;
+  b.verifyMovement = verifyMovement;
+  b.verifyAttack = verifyAttack;
+  b.verifyMeleeAction = verifyMeleeAction;
+  b.verifyRangedAction = verifyRangedAction;
+  b.verifySpellAction = verifySpellAction;
+  b.resolveAttack = resolveAttack;
+  b.emitBattleStartPacks = emitBattleStartPacks;
+  b.readyActors = readyActors;
+  b.getAPTurnOrder = getAPTurnOrder;
+  b.verifyMovement = verifyMovement;
+  b.endTurn = endTurn;
+  b.endBattle = endBattle;
+
+  //PROPERTIES
+  b.positions = [[]];
+  b.actors = [];
+  b.players = players;
+  b.koActors = {};
+  b.deployedPlayers = 0;
+  b.deploymentAreas = assignDeploymentAreas(players[0], players[1]);
+  b.width = WIDTH;
+  b.height = HEIGHT;
+  b.turn = 1;
+  b.round = 1;
+  b.map = area.map(WIDTH, HEIGHT);
+  b.order = b.getAPTurnOrder(20);
+
+  //INIT
+  for (var i = 0; i < players.length; i++)
+  {
+    //STORING THE BATTLE UNDER EACH PLAYER'S USERNAME
+    module.exports.list[players[i].username] = b;
+    b.koActors[players[i].username] = [];
+
+    for (var j = 0; j < players[i].characters.length; j++)
+    {
+      b.actors.push(players[i].characters[j]);
+    }
+
+    sm.logged[players[i].username].emit("deploymentPhase", {size: {x: b.map.length, y: b.map[0].length}, area: b.deploymentAreas[players[i].username]});
+
+    sm.listenMany(players, "deployment", function(data, socket)
+    {
+      b.verifyDeployment(playerModule.playerList[socket.username], data.characters);
+
+      if (b.deployedPlayers >= b.players.length)
+      {
+        //battle start!
+        b.emitBattleStartPacks();
+        sm.listenMany(b.players, "movement", function(data, socket)
+        {
+          b.resolveMovement(data, socket);
+        });
+
+        sm.listenMany(b.players, "attack", function(data, socket)
+        {
+          b.resolveAttack(data, socket);
+        });
+
+        sm.listenMany(b.players, "endTurn", function(data, socket)
+        {
+          b.endTurn(data, socket);
+        });
+      }
+    });
+
+    sm.logged[players[i].username].on("deployment", function(data)
+    {
+
+    });
   }
+
+  b.readyActors();
 }
 
 function verifyDeployment(player, characters)
@@ -125,7 +193,7 @@ function verifyDeployment(player, characters)
 
   if (characters.length < player.characters.length)
   {
-    sm.logged[player.username].emit("deploymentFailed", "You need to deploy all of your characters.");
+    sm.logged[player.username].emit("deploymentResponse", {success: false, error: "You need to deploy all of your characters."});
     return;
   }
 
@@ -133,19 +201,20 @@ function verifyDeployment(player, characters)
   {
     if (area.contains(characters[i].position) === false)
     {
-      sm.logged[player.username].emit("deploymentFailed", "You can only place your characters in a tile within x: (" + area.x1 + "," + area.x2 + ") and y: (" + area.y1 + "," + area.y2 + ").");
+      sm.logged[player.username].emit("deploymentResponse", {success: false, error: "You can only place your characters in a tile within x: (" + area.xStart + "," + area.xEnd + ") and y: (" + area.yStart + "," + area.yEnd + ")."});
       return;
     }
 
     else if (this.map[characters[i].position.x][characters[i].position.y].actor != null)
     {
-      sm.logged[player.username].emit("deploymentFailed", "You can't place more than one character in the same tile.");
+      sm.logged[player.username].emit("deploymentResponse", {success: false, error: "You can't place more than one character in the same tile."});
       return;
     }
 
     player.characters[characters[i].id].battle.position = characters[i].position;
     this.positions[characters[i].id] = characters[i].position;
     this.map[characters[i].position.x][characters[i].position.y].actor = characters[i];
+    sm.logged[player.username].emit("deploymentResponse", {success: true, error: null});
   }
 
   this.deployedPlayers++;
@@ -161,7 +230,7 @@ function assignDeploymentAreas(p1, p2)
 
 function verifyOwner(data, socket)
 {
-  if (data.character.id != this.order[0].actor.id)
+  if (data.character.id != this.order[0])
   {
     //wrong turn
     throw new Error("It is not this character's turn to act.");
@@ -221,7 +290,7 @@ function verifyMovement(data, socket)
       throw new Error("A character cannot move outside the battle space.");
     }
 
-    if (area.distance(serverChar.battle.position, data.character.position) > serverChar[keys.MP])
+    if (area.distance(serverChar.battle.position, data.character.position) > serverChar.ap)
     {
       //too much movement
       throw new Error("This character cannot move this far.");
@@ -269,23 +338,23 @@ function verifyAttack(data, socket)
       throw new Error("The target does not exist.");
     }
 
-    if (this.order[0].actor[keys.PLAYER] == data.target.player)
+    if (this.order[0].actor.player == data.target.player)
     {
       //wrong target (friendly)
       throw new Error("You cannot target one of your own characters.");
     }
 
-    if (data.action === keys.TRIGGERS.MELEE)
+    if (data.action === "melee")
     {
       return this.verifyMeleeAction(data, socket);
     }
 
-    else if (data.action === keys.TRIGGERS.RANGED)
+    else if (data.action === "ranged")
     {
       return this.verifyRangedAction(data, socket);
     }
 
-    else if (data.action === keys.TRIGGERS.SPELL)
+    else if (data.action === "spell")
     {
       return this.verifySpellAction(data, socket);
     }
@@ -314,12 +383,12 @@ function verifyMeleeAction(data, socket)
 
   reqAPs = ruleset.calculateRequiredAPs(filter.accepted, actor);
 
-  if (actor.battle[keys.AP] < reqAPs)
+  if (actor.battle.ap < reqAPs)
   {
-    throw new Error("Not enough APs to make these attacks. The total AP cost is " + reqAPs + ", but this character only has " + actor.battle[keys.AP] + " left.");
+    throw new Error(`Not enough APs to make these attacks. The total AP cost is ${reqAPs}, but this character only has ${actor.battle.ap} left.`);
   }
 
-  return {"type": keys.TRIGGERS.MELEE, "battle": this, "actor": actor, "target": target, "distance": distance, weapons: filter, data: {}};
+  return {"type": "melee", "battle": this, "actor": actor, "target": target, "distance": distance, weapons: filter, data: {}};
 }
 
 function verifyRangedAction(data, socket)
@@ -328,7 +397,7 @@ function verifyRangedAction(data, socket)
   target = this.players[data.target.player].characters[data.target.id];
   weapons = actor.battle.equippedWpns.filter(function(wpn)
   {
-    return wpn[keys.RANGE] >= area.distance(serverChar.battle.position, data.character.position);
+    return wpn.range >= area.distance(serverChar.battle.position, data.character.position);
   });
 
   if (weapons.length <= 0)
@@ -340,7 +409,7 @@ function verifyRangedAction(data, socket)
 
   weapons = weapons.filter(function(wpn)
   {
-    return wpn[keys.CAT_LIST].includes(keys.CAT.RANGED) === true;
+    return wpn.categories.includes("Ranged") === true;
   });
 
   if (weapons.length <= 0)
@@ -410,9 +479,9 @@ function filterWeapons(weapons, actor, target, distance)
 
   verified = verified.filter(function(wpn)
   {
-    if (wpn[keys.RANGE] < distance)
+    if (wpn.range < distance)
     {
-      rejected.push({weapon: wpn[keys.NAME], reason: "This weapon does not have enough range to hit this target."});
+      rejected.push({weapon: wpn.name, reason: "This weapon does not have enough range to hit this target."});
     }
 
     else return wpn;
@@ -420,9 +489,9 @@ function filterWeapons(weapons, actor, target, distance)
 
   verified = verified.filter(function(wpn)
   {
-    if (wpn[keys.CAT_LIST].includes(keys.CAT.MELEE) === false)
+    if (wpn.categories.includes("melee") === false)
     {
-      rejected.push({weapon: wpn[keys.NAME], reason: "This weapon is a melee weapon."});
+      rejected.push({weapon: wpn.name, reason: "This weapon is a melee weapon."});
     }
 
     else return wpn;
@@ -430,9 +499,9 @@ function filterWeapons(weapons, actor, target, distance)
 
   verified = verified.filter(function(wpn)
   {
-    if (wpn[keys.PROP_LIST].includes([keys.PROPS.REQ.LIFE]) === true && target[keys.PROP_LIST].includes([keys.PROPS.LIFELESS]) === true)
+    if (wpn.properties.includes("requiresLife") === true && target.properties.includes("lifeless") === true)
     {
-      rejected.push({weapon: wpn[keys.NAME], reason: "This weapon does not work against lifeless targets."});
+      rejected.push({weapon: wpn.name, reason: "This weapon does not work against lifeless targets."});
     }
 
     else return wpn;
@@ -440,9 +509,9 @@ function filterWeapons(weapons, actor, target, distance)
 
   verified = verified.filter(function(wpn)
   {
-    if (wpn[keys.PROP_LIST].includes([keys.PROPS.REQ.MIND]) === true && target[keys.PROP_LIST].includes([keys.PROPS.MINDLESS]) === true)
+    if (wpn.properties.includes("requiresMind") === true && target.properties.includes("mindless") === true)
     {
-      rejected.push({weapon: wpn[keys.NAME], reason: "This weapon does not work against mindless targets."});
+      rejected.push({weapon: wpn.name, reason: "This weapon does not work against mindless targets."});
     }
 
     else return wpn;
@@ -478,10 +547,10 @@ function emitBattleStartPacks()
       }
     });
 
-    sm.logged[this.players[i].username].emit("battleStartPack",
+    sm.logged[this.players[i].username].emit("battleStart",
     {
       order: this.order,
-      position: this.positions,
+      positions: this.positions,
       "playerPacks": playerPacks
     });
   }
@@ -503,23 +572,23 @@ function getAPTurnOrder(turns)
 
   for (var i = 0; i < this.actors.length; i++)
   {
-    actorSpeeds[i] = {"actor": this.actors[i], "speed": this.actors[i][keys.AP]};
+    actorSpeeds[i] = {"actor": this.actors[i], "speed": this.actors[i].ap};
   }
 
   actorSpeeds = actorSpeed.sort(function(a, b)
   {
-    if (b[keys.AP] === a[keys.AP])
+    if (b.ap === a.ap)
     {
       //random order if same AP
       return Math.floor(Math.random()*2) == 1 ? 1 : -1;
     }
 
-    else return b[keys.AP] - a[keys.AP];
+    else return b.ap - a.ap;
   })
 
   for (var i = 0; i < turns; i++)
   {
-    order.push(this.actors[index]);
+    order.push(this.actors[index].id);
     ++index.wrap(this.actors.length - 1);
   }
 
@@ -538,7 +607,7 @@ function getTickTurnOrder(turns)
   //resulting first one each turn, since that will be the faster actor.
   for (var i = 0; i < this.actors.length; i++)
   {
-    actorSpeeds[i] = {"actor": this.actors[i], "speed": this.actors[i][keys.SPEED], "currSpeed": 0};
+    actorSpeeds[i] = {"actor": this.actors[i], "speed": this.actors[i].speed, "currSpeed": 0};
   }
 
   for (var i = 0; i < turns; i++)

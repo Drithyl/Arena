@@ -1,5 +1,25 @@
 
-Object.defineProperty(Object.prototype, "toFlatArr",
+Object.defineProperty(Object.prototype, "getProperties",
+{
+  value: function(filter)
+  {
+    var obj = {};
+
+    for (var key in filter)
+    {
+      if (this[filter[key]] == null)
+      {
+        continue;
+      }
+
+      obj[filter[key]] = this[filter[key]];
+    }
+
+    return obj;
+  }
+});
+
+Object.defineProperty(Object.prototype, "toFlatArray",
 {
   value: function()
   {

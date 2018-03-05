@@ -1,20 +1,13 @@
 
-var keys;
 const dice = require("./dice.js");
 var limbDmgCap = 0.5;
 
 module.exports =
 {
-  init: function(index)
-  {
-    keys = index;
-    return this;
-  },
-
   apply: function(pack, result)
   {
     var weapon = pack.data.currentWeapon;
-    
+
     damageCheck(weapon, pack, result);
 
     if (result.finalDamage <= 0)
@@ -23,15 +16,15 @@ module.exports =
       return;
     }
 
-    if (pack.target.battle.status[keys.PROPS.TWIST_FATE] != null)
+    if (pack.target.battle.status.twistFate != null)
     {
       result.twistFate = true;
       result.failed = true;
-      delete pack.target.battle.status[keys.PROPS.TWIST_FATE];
+      delete pack.target.battle.status.twistFate;
       return;
     }
 
-  	inflictDamage(pack, result, (weapon[ids.PROPS][ids.STUN]) ? true : false);
+  	inflictDamage(pack, result, weapon.properties.includes("stun"));
 
     if (pack.data.canAfflict === true)
     {
@@ -39,13 +32,13 @@ module.exports =
     }
 
     //TODO On Damage effect happens here
-    if (pack.data.currentWeapon[keys.ON_DMG] != null && pack.data.currentWeapon[keys.ON_DMG].length > 0)
+    if (pack.data.currentWeapon.onDamage != null && pack.data.currentWeapon.onDamage.length > 0)
     {
 
     }
 
     //TODO Check if KO happens
-    if (pack.target[keys.CURR_HP] <= 0)
+    if (pack.target.currentHP <= 0)
     {
       result.targetKO = true;
     }
@@ -55,41 +48,41 @@ module.exports =
 function preRollDamage(weapon, pack, result)
 {
   var resistance = pack.target.getElementalResistance(result.damageType);
-  result.damageScore = weapon[keys.DMG];
+  result.damageScore = weapon.damage;
 
-  if (weapon[keys.PROP_LIST].includes(keys.PROPS.NO_STR) === false)
+  if (weapon.properties.includes("noStrength") === false)
   {
-    if (weapon[keys.REQ_SLOTS] > 1 && weapon[keys.SLOT_TYPE] === keys.SLOTS.HANDS)
+    if (weapon.requiredSlots > 1 && weapon.slotType === "hands")
     {
       //two-handers use 125% of strength, so extend this to potential three-handers
       //and more
-      result.damageScore += Math.floor(pack.actor.getTotalAttribute(keys.STR) * (1 + (0.25 * (weapon[keys.REQ_SLOTS] - 1))));
+      result.damageScore += Math.floor(pack.actor.getTotalAttribute("strength") * (1 + (0.25 * (weapon.requiredSlots - 1))));
     }
 
-    else result.damageScore += pack.actor.getTotalAttribute(keys.STR);
+    else result.damageScore += pack.actor.getTotalAttribute("strength");
   }
 
-  if (weapon[keys.PROP_LIST].includes(keys.PROPS.STUN) === true)
+  if (weapon.properties.includes("stun") === true)
   {
     resistance *= 2;
   }
 
   result.damageScore -= resistance;
 
-  if (pack.data.isShieldHit === true && weapon[keys.PROP_LIST].includes(keys.A_PIERCE) === true)
+  if (pack.data.isShieldHit === true && weapon.properties.includes("armorPiercing") === true)
   {
-    result.damageScore -= Math.floor(pack.target.getTotalAbility(keys.SHLD_PRT) / 2);
+    result.damageScore -= Math.floor(pack.target.getTotalAbility("shieldProtection") / 2);
   }
 
-  else if (pack.data.isShieldHit === true && weapon[keys.PROP_LIST].includes(keys.IGNORES_SHIELD) === false)
+  else if (pack.data.isShieldHit === true && weapon.properties.includes("ignoreShields") === false)
   {
-    result.damageScore -= pack.target.getTotalAbility(keys.SHLD_PRT);
+    result.damageScore -= pack.target.getTotalAbility("shieldProtection");
   }
 }
 
 function damageCheck(weapon, pack, result)
 {
-  result.damageType = weapon[keys.DMG_TYPE_LIST][Math.floor(Math.random() * weapon[keys.DMG_TYPE_LIST].length)];
+  result.damageType = weapon.damageTypes[Math.floor(Math.random() * weapon.damageTypes.length)];
   pack.data.damageType = result.damageType;
   preRollDamage(weapon, pack, result);
 
@@ -100,18 +93,18 @@ function damageCheck(weapon, pack, result)
     return;
   }
 
-	if (result.damageType == keys.DMG_TYPE.WEB)
+	if (result.damageType == "web")
 	{
-		result.finalDamage = data.actor[keys.SIZE];
+		result.finalDamage = data.actor.size();
     pack.data.finalDamage = result.finalDamage;
     return;
 	}
 
   result.damageRoll = dice.DRN() + result.damageScore;
-	result.protectionRoll = getProtectionRoll(weapon, target, pack.data.hitLocation, result.damageType, t);
+	result.protectionRoll = pack.target.getProtectionRoll(weapon, target, pack.data.hitLocation, result.damageType);
 	result.difference = result.damageRoll - result.protectionRoll;
 
-  if (weapon[keys.PROP_LIST].includes([keys.PROPS.STUN]) === false && result.damageType != keys.DMG_TYPE.STUN && result.damageType != keys.DMG_TYPE.POISON)
+  if (weapon.properties.includes("stun") === false && result.damageType != "stun" && result.damageType != "poison")
   {
     postRollDamage(pack, result);
   }
@@ -125,7 +118,7 @@ function damageCheck(weapon, pack, result)
 
 function postRollDamage(pack, result)
 {
-	var maxLimbDmg = Math.floor(pack.target[keys.MAX_HP] * 0.5).lowerCap(1);
+	var maxLimbDmg = Math.floor(pack.target.maxHP * 0.5).lowerCap(1);
   result.finalDamage = result.difference;
 
   if (result.finalDamage <= 0)
@@ -134,32 +127,32 @@ function postRollDamage(pack, result)
     return;
   }
 
-	if (result.damageType == keys.DMG_TYPE.BLUNT && (result.hitLocation == keys.PARTS.HEAD || result.hitLocation == keys.PARTS.EYE))
+	if (result.damageType == "blunt" && (result.hitLocation == "head" || result.hitLocation == "eye"))
 	{
 		result.finalDamage = Math.floor(result.finalDamage * 1.5);
 	}
 
-	else if (result.damageType == keys.DMG_TYPE.SLASH)
+	else if (result.damageType == "slash")
 	{
     result.finalDamage = Math.floor(result.finalDamage * 1.25);
 	}
 
-  if (result.damageType == keys.DMG_TYPE.BLUNT && pack.target[keys.AB_LIST][keys.ABS.BLUNT] != null)
+  if (result.damageType == "blunt" && pack.target.abilities.bluntImmunity != null)
   {
-    result.finalDamage = Math.floor(result.finalDamage * (pack.target[keys.AB_LIST][keys.ABS.BLUNT] / 100));
+    result.finalDamage = Math.floor(result.finalDamage * (pack.target.abilities.bluntImmunity / 100));
   }
 
-  else if (result.damageType == keys.DMG_TYPE.PIERCE && pack.target[keys.AB_LIST][keys.ABS.PIERCE] != null)
+  else if (result.damageType == "pierce" && pack.target.abilities.pierceImmunity != null)
   {
-    result.finalDamage = Math.floor(result.finalDamage * (pack.target[keys.AB_LIST][keys.ABS.PIERCE] / 100));
+    result.finalDamage = Math.floor(result.finalDamage * (pack.target.abilities.pierceImmunity / 100));
   }
 
-  else if (result.damageType == keys.DMG_TYPE.SLASH && pack.target[keys.AB_LIST][keys.ABS.SLASH] != null)
+  else if (result.damageType == "slash" && pack.target.abilities.slashImmunity != null)
   {
-    result.finalDamage = Math.floor(result.finalDamage * (pack.target[keys.AB_LIST][keys.ABS.SLASH] / 100));
+    result.finalDamage = Math.floor(result.finalDamage * (pack.target.abilities.slashImmunity / 100));
   }
 
-	if (result.hitLocation == keys.PARTS.ARM || result.hitLocation == keys.PARTS.LEG || result.hitLocation == keys.PARTS.WING)
+	if (result.hitLocation == "arm" || result.hitLocation == "leg" || result.hitLocation == "wing")
 	{
 		result.finalDamage = result.finalDamage.cap(maxLimbDmg);
 	}
@@ -169,25 +162,25 @@ function postRollDamage(pack, result)
 
 function inflictDamage(pack, result, isStun)
 {
-  if (type == keys.DMG_TYPE.WEB)
+  if (type == "web")
 	{
-		pack.target.battle.status[keys.DMG_TYPE.WEB] = pack.data.finalDamage;
+		pack.target.battle.status.web = pack.data.finalDamage;
 	}
 
-	else if (type == keys.DMG_TYPE.STUN || isStun === true)
+	else if (type == "stun" || isStun === true)
 	{
     var res = pack.target.addFatigue(pack.data.finalDamage);
     result.damageInflicted = res.fatigueDamage;
     result.fatigueInflicted = res.fatigueAdded;
 	}
 
-	else if (type == keys.DMG_TYPE.POISON)
+	else if (type == "poison")
 	{
-		pack.target.battle.status[ids.DMG_TYPE.POISON] = ((pack.target.battle.status[ids.DMG_TYPE.POISON] || 0) + pack.data.finalDamage).cap(Math.floor(pack.target[keys.MAX_HP]));
-    result.damageInflicted = pack.target.battle.status[ids.DMG_TYPE.POISON] - pack.data.finalDamage;
+		pack.target.battle.status.poison = ((pack.target.battle.status.poison || 0) + pack.data.finalDamage).cap(Math.floor(pack.target.maxHP));
+    result.damageInflicted = pack.target.battle.status.poison - pack.data.finalDamage;
 	}
 
-	else if (type == keys.DMG_TYPE.COLD || type == keys.DMG_TYPE.FIRE)
+	else if (type == "cold" || type == "fire")
 	{
     Object.assign(result, pack.target.reduceHP(pack.data.finalDamage));
     pack.data.damageInflicted = result.damageInflicted;
@@ -195,13 +188,13 @@ function inflictDamage(pack, result, isStun)
     pack.data.ignited = pack.target.ignite(pack, result);
 	}
 
-	else if (type == keys.DMG_TYPE.PARALYSIS)
+	else if (type == "paralysis")
 	{
 		result.damageInflicted = calculateParalysis(pack.data.finalDamage, pack.target);
 
 		if (result.damageInflicted > 0)
 		{
-			pack.target.battle.status[keys.DMG_TYPE.PARALYSIS] = pack.target.battle.status[keys.DMG_TYPE.PARALYSIS] + result.damageInflicted || result.damageInflicted;
+			pack.target.battle.status.paralysis = pack.target.battle.status.paralysis + result.damageInflicted || result.damageInflicted;
 		}
 	}
 
@@ -215,13 +208,13 @@ function inflictDamage(pack, result, isStun)
 
 function calculateParalysis(damage, target)
 {
-  var ttl = Math.floor((damage - target[keys.SIZE]) * 0.5);
+  var ttl = Math.floor((damage - target.size()) * 0.5);
 
-  if (target.battle.status[keys.DMG_TYPE.PARALYSIS] != null)
+  if (target.battle.status.paralysis != null)
   {
-    if (target.battle.status[keys.DMG_TYPE.PARALYSIS] > ttl)
+    if (target.battle.status.paralysis > ttl)
     {
-      ttl = Math.floor(target[ids.STATUS][ids.PARALYZED] * 0.5).cap(5);
+      ttl = Math.floor(target.status.paralysis * 0.5).cap(5);
     }
 
     else Math.floor(ttl * 0.5).cap(5);

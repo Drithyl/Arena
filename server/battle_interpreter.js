@@ -1,12 +1,10 @@
 
-var keys;
 const locale = require("./strings.json");
 
 module.exports =
 {
-  init: function(index)
+  init: function()
   {
-    keys = index;
     return this;
   },
 
@@ -137,8 +135,8 @@ function awe(pack, result)
   {
     moraleRoll: result.moraleRoll,
     aweRoll: result.aweRoll,
-    actor: pack.actor[keys.NAME],
-    target: pack.target[keys.NAME]
+    actor: pack.actor.name,
+    target: pack.target.name
   }};
 
   template.string = locale.awe.check + "\n";
@@ -212,7 +210,7 @@ function ethereal(pack, result)
 {
   var template = {"string": "", "vars":
   {
-    target: pack.target[keys.NAME]
+    target: pack.target.name
   }};
 
   if (result.failed === true)
@@ -275,7 +273,7 @@ function berserk(pack, result)
   {
     moraleRoll: result.moraleRoll,
     difficultyRoll: result.difficultyRoll,
-    actor: pack.actor[keys.NAME]
+    actor: pack.actor.name
   }};
 
   template.string = locale.berserk.check + "\n";
@@ -295,7 +293,7 @@ function drain(pack, result)
   {
     hpDrain: result.hpDrain,
     fatigueDrain: result.fatigueDrain,
-    actor: pack.actor[keys.NAME]
+    actor: pack.actor.name
   }};
 
   template.string = locale.drain + "\n";
@@ -307,7 +305,7 @@ function fatigue(pack, result)
   var template = {"string": "", "vars":
   {
     fatigue: result.fatigue,
-    actor: pack.actor[keys.NAME]
+    actor: pack.actor.name
   }};
 
   template.string = locale.fatigue + "\n";
@@ -322,7 +320,7 @@ function heatAura(pack, result)
     protectionRoll: result.protectionRoll,
     damageInflicted: result.damageInflicted,
     damageType: result.damageType,
-    target: pack.target[keys.NAME],
+    target: pack.target.name,
     shiftedShapeName: result.shiftedShapeName,
     droppedItems: result.droppedItems
   }};
@@ -361,7 +359,7 @@ function applyDamageTemplate(template, result)
   template.vars.damageType = result.damageType;
   template.vars.shiftedShapeName = result.shiftedShapeName;
   template.vars.droppedItems = result.droppedItems;
-  template.vars.target = pack.targer[keys.NAME];
+  template.vars.target = pack.targer.name;
   template.string = locale.damage.check + "\n";
 
   if (result.failed === true)

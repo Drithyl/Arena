@@ -1,17 +1,9 @@
 
-var keys;
-
 module.exports =
 {
-  init: function(index)
-  {
-    keys = index;
-    return this;
-  },
-
   apply: function(pack, result)
   {
-		if (weapon[keys.PROP_LIST].includes(keys.PROPS.MR_NEGATE) === false)
+		if (weapon.properties.includes("mrNegates") === false)
 		{
 			return;
 		}

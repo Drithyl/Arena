@@ -25,7 +25,7 @@ module.exports =
 
   findOne: function(collection, query, cb)
   {
-    db.collection(collection).findOne(query).toArray(function(err, res)
+    db.collection(collection).findOne(query, function(err, res)
   	{
   		if (err)
   		{

@@ -1,42 +1,34 @@
 
-var keys;
-var damageStrategy;
+var damageStrategy = require("./damage.js");
 var area = require("./area.js");
 
 module.exports =
 {
-  init: function(index)
-  {
-    keys = index;
-    damageStrategy = require("./damage.js").init(keys);
-    return this;
-  },
-
   apply: function(pack, result)
   {
     var poisonAuraWeapon =
     {
-      [keys.NAME] = "Cold Aura",
-      [keys.DMG] = 0,
-      [keys.DMG_TYPE_LIST] = [[keys.DMG_TYPE.POISON]],
-      [keys.PROP_LIST] = [[keys.PROPS.MAGICAL], [keys.NO_STR]]
+      name: "Cold Aura",
+      damage: 0,
+      damageTypes: ["poison"],
+      properties: ["magical", "noStrength"]
     };
 
     var auras = 0;
 
     for (var i = 0; i < pack.characters.length; i++)
     {
-      if (pack.characters[i][keys.ID] === pack.actor[keys.ID])
+      if (pack.characters[i].id === pack.actor.id)
       {
         continue;
       }
 
-      if (pack.characters[i][keys.AB_LIST][keys.ABS.AURA.POISON] == null)
+      if (pack.characters[i].abilities.poisonAura == null)
       {
         continue;
       }
 
-      var damageScore = (pack.characters[i][keys.AB_LIST][keys.ABS.AURA.POISON] - area.distance(pack.actor.battle.position, pack.characters[i].battle.position)).lowerCap(0);
+      var damageScore = (pack.characters[i].abilities.poisonAura - area.distance(pack.actor.battle.position, pack.characters[i].battle.position)).lowerCap(0);
 
       if (damageScore <= 0)
       {
@@ -45,13 +37,13 @@ module.exports =
 
       auras++;
 
-      if (poisonAuraWeapon[keys.DMG] < damageScore)
+      if (poisonAuraWeapon.damage < damageScore)
       {
-        poisonAuraWeapon[keys.DMG] = damageScore;
+        poisonAuraWeapon.damage = damageScore;
       }
     }
 
-    if (poisonAuraWeapon[keys.DMG] <= 0)
+    if (poisonAuraWeapon.damage <= 0)
     {
       //no poison auras where the actor stands
       return;

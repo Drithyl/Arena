@@ -1,22 +1,14 @@
 
-var keys;
-
 module.exports =
 {
-  init: function(index)
-  {
-    keys = index;
-    return this;
-  },
-
   apply: function(data, result)
   {
-    if (pack.target[keys.AB_LIST][keys.ABS.DISPLACEMENT] == null)
+    if (pack.target.abilities.displacement == null)
     {
       return;
     }
 
-    if (Math.floor((Math.random() * 100)) + 1 <= pack.target[keys.AB_LIST][keys.ABS.DISPLACEMENT])
+    if (Math.floor((Math.random() * 100)) + 1 <= pack.target.abilities.displacement)
     {
       result.failed = true;
     }

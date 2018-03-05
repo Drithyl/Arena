@@ -1,18 +1,10 @@
 
-var keys;
-
 module.exports =
 {
-  init: function(index)
-  {
-    keys = index;
-    return this;
-  },
-
   apply: function(pack, result)
   {
-    var drainRate = ((pack.actor[keys.AB_LIST][keys.ABS.DRAIN] || 0) +
-                    (pack.data.currentWeapon[keys.EFF_LIST][keys.EFF.DRAIN] || 0)) / 100;
+    var drainRate = ((pack.actor.abilities.drain || 0) +
+                    (pack.data.currentWeapon.effects.drain || 0)) / 100;
 
     if (drainRate <= 0)
     {

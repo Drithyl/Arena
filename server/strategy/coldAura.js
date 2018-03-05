@@ -1,42 +1,34 @@
 
-var keys;
-var damageStrategy;
+var damageStrategy = require("./damage.js");
 var area = require("./area.js");
 
 module.exports =
 {
-  init: function(index)
-  {
-    keys = index;
-    damageStrategy = require("./damage.js").init(keys);
-    return this;
-  },
-
   apply: function(pack, result)
   {
     var coldAuraWeapon =
     {
-      [keys.NAME] = "Cold Aura",
-      [keys.DMG] = 0,
-      [keys.DMG_TYPE_LIST] = [[keys.DMG_TYPE.COLD]],
-      [keys.PROP_LIST] = [[keys.PROPS.MAGICAL], [keys.NO_STR], [keys.STUN]]
+      name: "Cold Aura",
+      damage: 0,
+      damageTypes: ["cold"],
+      properties: ["magical", "noStrength", "stun"]
     };
 
     var auras = 0;
 
     for (var i = 0; i < pack.characters.length; i++)
     {
-      if (pack.characters[i][keys.ID] === pack.actor[keys.ID])
+      if (pack.characters[i].id === pack.actor.id)
       {
         continue;
       }
 
-      if (pack.characters[i][keys.AB_LIST][keys.ABS.AURA.COLD] == null)
+      if (pack.characters[i].abilities.coldAura == null)
       {
         continue;
       }
 
-      var damageScore = (pack.characters[i][keys.AB_LIST][keys.ABS.AURA.COLD] - area.distance(pack.actor.battle.position, pack.characters[i].battle.position)).lowerCap(0);
+      var damageScore = (pack.characters[i].abilities.coldAura - area.distance(pack.actor.battle.position, pack.characters[i].battle.position)).lowerCap(0);
 
       if (damageScore <= 0)
       {
@@ -44,10 +36,10 @@ module.exports =
       }
 
       auras++;
-      coldAuraWeapon[keys.DMG] += (pack.characters[i][keys.AB_LIST][keys.ABS.AURA.COLD] - area.distance(pack.actor.battle.position, pack.characters[i].battle.position)).lowerCap(0);
+      coldAuraWeapon.damage += (pack.characters[i].abilities.coldAura - area.distance(pack.actor.battle.position, pack.characters[i].battle.position)).lowerCap(0);
     }
 
-    if (coldAuraWeapon[keys.DMG] <= 0)
+    if (coldAuraWeapon.damage <= 0)
     {
       //no cold auras where the actor stands
       return;

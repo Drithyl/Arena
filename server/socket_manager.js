@@ -5,6 +5,7 @@ var io;
 module.exports =
 {
   list: {},
+  logged: {},
 
   init: function(io)
   {
@@ -51,6 +52,44 @@ module.exports =
       this.logged[username].on(trigger, function(data)
       {
         fn(data, this.logged[username]);
+      });
+    }
+  },
+
+  emitLogged: function(trigger, data)
+  {
+    for (var id in this.logged)
+    {
+      this.logged[id].emit(trigger, data);
+    }
+  },
+
+  listenLogged: function(trigger, fn)
+  {
+    for (var id in this.logged)
+    {
+      this.logged[id].listen(trigger, function(data)
+      {
+        fn(data, this.logged[id]);
+      });
+    }
+  },
+
+  emitAll: function(trigger, data)
+  {
+    for (var id in this.list)
+    {
+      this.list[id].emit(trigger, data);
+    }
+  },
+
+  listenAll: function(trigger, fn)
+  {
+    for (var id in this.list)
+    {
+      this.list[id].listen(trigger, function(data)
+      {
+        fn(data, this.list[id]);
       });
     }
   }

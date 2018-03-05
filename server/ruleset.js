@@ -4,30 +4,28 @@ const dice = require("./dice.js");
 const order = require("./resolution_orders.json");
 var meleeStrategies;
 var turnEndStrategies;
-var keys;
 
 module.exports =
 {
-  init: function(index)
+  init: function()
   {
-    keys = index;
     meleeStrategies = loadStrategies(order.melee);
     turnEndStrategies = loadStrategies(order.turnEnd);
   },
 
   resolveAttack: function(pack)
   {
-    if (pack.type === keys.TRIGGERS.MELEE)
+    if (pack.type === "melee")
     {
       return melee(pack);
     }
 
-    else if (pack.type === keys.TRIGGERS.RANGED)
+    else if (pack.type === "ranged")
     {
       return ranged(pack);
     }
 
-    else if (pack.type === keys.TRIGGERS.SPELL)
+    else if (pack.type === "spell")
     {
       return spell(pack);
     }
@@ -55,9 +53,9 @@ module.exports =
 
     for (var i = 0; i < weapons.length; i++)
     {
-      var timesAvailable = actor.getAttacks(weapons[i][keys.ID]).length;
-      var timesUsed = weaponIDs.filter(function(id) { return id === weapons[i][keys.ID]; }).length;
-      apCost += weapons[i][keys.AP_COST];
+      var timesAvailable = actor.weaponTimesAvailable(weapons[i].id);
+      var timesUsed = weaponIDs.filter(function(id) { return id === weapons[i].id; }).length;
+      apCost += weapons[i].ap;
 
       if (weaponIDs.length > 0 && timesUsed > 1 && timesUsed < timesAvailable)
       {
@@ -67,7 +65,7 @@ module.exports =
         apCost--;
       }
 
-      weaponIDs.push(weapons[i][keys.ID]);
+      weaponIDs.push(weapons[i].id);
     }
 
     return apCost;
@@ -85,7 +83,7 @@ function loadStrategies(orderList)
       continue;
     }
 
-    arr.push(require("./server/strategies/" + orderList[i] + ".js").init(keys));
+    arr.push(require("./server/strategies/" + orderList[i] + ".js"));
   }
 
   return arr;

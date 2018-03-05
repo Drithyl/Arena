@@ -1,6 +1,4 @@
 
-var keys = null;
-
 module.exports =
 {
   items: null,
@@ -10,7 +8,7 @@ module.exports =
   trinkets: null,
   weapons: null,
 
-  init: function(data, index)
+  init: function(data)
   {
     this.items = Object.assign({}, data.armors, data.consumables, data.trinkets, data.weapons);
     this.armors = data.armors;
@@ -18,7 +16,6 @@ module.exports =
     this.forms = data.forms;
     this.trinkets = data.trinkets;
     this.weapons = data.weapons;
-    keys = index;
     return this;
   },
 

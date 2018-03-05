@@ -1,17 +1,9 @@
 
-var keys;
-
 module.exports =
 {
-  init: function(index)
-  {
-    keys = index;
-    return this;
-  },
-
   apply: function(pack, result)
   {
-    var encumbrance = pack.actor.getTotalAttribute(keys.ENC);
+    var encumbrance = pack.actor.getTotalAttribute("encumbrance");
 
     if (encumbrance <= 0)
     {
@@ -19,6 +11,6 @@ module.exports =
     }
 
     pack.actor.addFatigue(encumbrance);
-    result[keys.FAT] = encumbrance;
+    result.fatigue = encumbrance;
   }
 }

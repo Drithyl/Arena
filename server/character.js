@@ -2,358 +2,99 @@
 const dice = require("./dice.js");
 //const affliction = require("./affliction.js");
 const ruleset = require("./ruleset.js");
-var keys;
-var forms;
+var formModule;
+var slotsModule;
 var content;
-var itemEffectsOnCharacter;
-var itemPropsOnCharacter;
+var prototype;
 
 module.exports =
 {
-  init: function(contentModule, index)
+  init: function(contentModule)
   {
-    keys = index;
     content = contentModule;
-    forms = require("./forms.js").init(contentModule, index);
+    formModule = require("./form.js").init(contentModule);
+    slotsModule = require("./slots.js").init(contentModule);
+    return this;
+  },
 
-    itemEffectsOnCharacter =
-    [
-      keys.EFF.ALL_WATERBREATHING,
-      keys.EFF.REINVIG,
-      keys.EFF.INSPIRATION,
-      keys.EFF.FEAR,
-      keys.EFF.AWE,
-      keys.EFF.ANIMAL_AWE,
-      keys.EFF.UP_HEAL,
-      keys.EFF.POISON_BARBS,
-      keys.EFF.RECUP,
-      keys.EFF.BONUS.SIEGE,
-      keys.EFF.BONUS.FORGE,
-      keys.EFF.BONUS.HEAL,
-      keys.EFF.BONUS.SUPPLY,
-      keys.EFF.RES.FIRE,
-      keys.EFF.RES.COLD,
-      keys.EFF.RES.POISON,
-      keys.EFF.RES.SHOCK
-    ];
+  Character: function(data)
+  {
+    this.name = data.name;
+    this.id = data.id;
+    this.player = data.username;
+    this.level = data.level;
+    this.transitionPoints = data.transitionPoints;
+    this.maxHP = data.maxHP;
+    this.currentHP = data.currentHP;
+    this.mr = data.mr;
+    this.morale = data.morale;
+    this.strength = data.strength;
+    this.attack = data.attack;
+    this.defence = data.defence;
+    this.precision = data.precision;
+    this.ap = data.ap;
+    this.afflictions = data.afflictions;
+    this.paths = data.paths;
+    this.properties = data.properties;
+    this.abilities = data.abilities;
+    this.parts = data.parts;
 
-    itemPropsOnCharacter =
-    [
-      keys.PROPS.BLIND,
-      keys.PROPS.ETHEREAL,
-      keys.PROPS.NO_EAT,
-      keys.PROPS.RECUP,
-      keys.PROPS.AMPHIBIAN,
-      keys.PROPS.POOR_AMPH,
-      keys.PROPS.TRAMPLE,
-      keys.PROPS.NO_HEAL,
-      keys.PROPS.GLAMOUR,
-      keys.PROPS.FLY,
-      keys.PROPS.BLINDFIGHTER,
-      keys.PROPS.SACRED,
-      keys.PROPS.IMMORTAL,
-      keys.PROPS.STORM_FLY,
-      keys.PROPS.TELEPORT,
-      keys.PROPS.TWIST_FATE,
-      keys.PROPS.SKIN.BARK,
-      keys.PROPS.SKIN.STONE,
-      keys.PROPS.SKIN.IRON,
-      keys.PROPS.SURV.FOREST,
-      keys.PROPS.SURV.MOUNTAIN,
-      keys.PROPS.SURV.WASTE,
-      keys.PROPS.SURV.SWAMP
-    ];
+    this.form = formModule.Form(data.form);
+    this.formIndex = data.formIndex;
 
+    for (var i = 0; i < data.formList.length; i++)
+    {
+      this.formList[i] = formModule.Form(data.formList[i]);
+    }
+
+    character.slots = slotsModule.Slots(data.slots);
     return this;
   }
 }
 
-/*
-* Puts some of the character object's content to sleep, as in replacing it for
-* its IDs (in the case of equipped items and forms) or base values (for protection),
-* so as to save the character into the database. These content objects will be
-* revived again on server launch (see reviveContent()). Arguments:
-*
-*   char           The character object that must be lulled.
-*/
+prototype = module.exports.Character.prototype;
 
-function lullContent(char)
+prototype.battleReady = function()
 {
-  char.lullItemEffects(itemEffectsOnCharacter, itemPropsOnCharacter);
-  char.lullProtection();
-  char.lullSlots();
-  char.lullForms();
+  this.battle = {};
+  this.battle.position = {};
+  this.battle.fatigue = 0;
+  this.battle.status = {};
+  this.battle.status.harassment = 0;
+  this.battle.ap = this.getTotalAttribute("ap");
 }
 
-function lullProtection(t = this)
-{
-  for (var part in keys.PARTS)
-  {
-    t[keys.PRT_LIST][keys.PARTS[part]] = t[keys.FORM][keys.PRT_LIST][keys.PARTS[part]];
-  }
-}
-
-function lullSlots(t = this)
-{
-  for (var slot in keys.SLOTS)
-  {
-    var equipped = char[keys.SLOT_LIST][keys.SLOTS[slot]][keys.EQUIPPED];
-
-    for (var i = 0; i < equipped.length; i++)
-    {
-      equipped[i] = equipped[i][keys.ID];
-    }
-  }
-}
-
-function lullForms(t = this)
-{
-  t[keys.FORM] = t[keys.FORM][keys.ID];
-
-  for (var i = 0; i < t[keys.ALL_FORMS].length; i++)
-  {
-    t[keys.ALL_FORMS][i] = t[keys.ALL_FORMS][i][keys.ID];
-  }
-}
-
-/*
-* Unloads the effects and properties that equipped items are transferring to
-* the character, usually for the purpose of saving the character in the database.
-* To determine which effects and properties might have been loaded, the function
-* uses the array Arguments:
-*
-*   effectsFilter An array listing the keys of effects to be removed.
-*
-*   propsFilter   An array listing the keys of properties to be removed.
-*
-*   t             The character object that must be lulled, just a shorthand for the
-*                 default 'this', since it will mostly be called like so:
-*                 character.lullItemEffects()
-*/
-
-function lullItemEffects(effectsFilter, propsFilter, t = this)
-{
-  for (var slot in keys.SLOTS)
-  {
-    for (var id in t[keys.SLOTS[slot]][keys.EQUIPPED])
-    {
-      var item = t[keys.SLOTS[slot]][keys.EQUIPPED][id];
-      removeItemEffects(item, itemEffectsOnCharacter, itemPropsOnCharacter, t);
-    }
-  }
-}
-
-/*
-* Revives the relevant properties of a character for ease of access during runtime,
-* such as grabbing the item objects that the character has equipped, or calculating
-* the different total protection values of each bodypart. Arguments:
-*
-*   char           The character object that must be lulled.
-*/
-
-function reviveContent(char)
-{
-  char.reviveSlots();
-  char.reviveForms();
-  char.reviveProtection();  //must go last
-  char.reviveItemEffects(itemEffectsOnCharacter, itemPropsOnCharacter);
-}
-
-function reviveSlots(t = this)
-{
-  for (var slot in keys.SLOTS)
-  {
-    var equipped = char[keys.SLOT_LIST][keys.SLOTS[slot]][keys.EQUIPPED];
-
-    for (var i = 0; i < equipped.length; i++)
-    {
-      equipped[i] = content.getItems({key: keys.ID, value: equipped[i][keys.ID]})[0];
-    }
-  }
-}
-
-function reviveForms(t = this)
-{
-  t[keys.FORM] = forms.create(t[keys.FORM]);
-
-  for (var i = 0; i < t[keys.ALL_FORMS].length; i++)
-  {
-    t[keys.ALL_FORMS][i] = forms.create(t[keys.ALL_FORMS][i]);
-  }
-}
-
-/*
-* Transfers the effects and properties of equipped items to the character for ease
-* of use during runtime (rather than having to search for them in both characters
-* and items). Arguments:
-*
-*   effectsFilter An array listing the keys of effects to be applied.
-*
-*   propsFilter   An array listing the keys of properties to be applied.
-*
-*   t             The character object that must be lulled, just a shorthand for the
-*                 default 'this', since it will mostly be called like so:
-*                 character.lullItemEffects()
-*/
-
-function reviveItemEffects(effectsFilter, propsFilter, t = this)
-{
-  for (var slot in keys.SLOTS)
-  {
-    for (var id in t[keys.SLOTS[slot]][keys.EQUIPPED])
-    {
-      var item = t[keys.SLOTS[slot]][keys.EQUIPPED][id];
-      applyItemEffects(item, itemEffectsOnCharacter, itemPropsOnCharacter, t);
-    }
-  }
-}
-
-/*
-* Transfers to the character the effects and properties of a single equipped
-* item. Arguments:
-*
-*   item          The item that contains the effects to apply.
-*
-*   effectsFilter An array listing the keys of effects to be applied.
-*
-*   propsFilter   An array listing the keys of properties to be applied.
-*
-*   char          The character object from which to remove the effects.
-*/
-
-function applyItemEffects(item, effectsFilter, propsFilter, char)
-{
-  for (eff in item[keys.EFF_LIST])
-  {
-    if (itemEffectsOnCharacter.includes(eff) === false)
-    {
-      continue;
-    }
-
-    if (char[keys.AB_LIST][eff] == null)
-    {
-      char[keys.AB_LIST][eff] = item[keys.EFF_LIST][eff];
-    }
-
-    else char[keys.AB_LIST][eff] += item[keys.EFF_LIST][eff];
-  }
-
-  for (prop in item[keys.PROP_LIST])
-  {
-    if (itemPropsOnCharacter.includes(prop) === false)
-    {
-      continue;
-    }
-
-    if (char[keys.PROP_LIST].includes(prop) === false)
-    {
-      char[keys.PROP_LIST].push(item[keys.PROP_LIST][prop]);
-    }
-  }
-}
-
-/*
-* Removes the effects and properties of an item applied to a character. Arguments:
-*
-*   item          The item that contains the effects to remove.
-*
-*   effectsFilter An array listing the keys of effects to be removed.
-*
-*   propsFilter   An array listing the keys of properties to be removed.
-*
-*   char          The character object from which to remove the effects.
-*/
-
-function removeItemEffects(item, effectsFilter, propsFilter, char)
-{
-  for (eff in item[keys.EFF_LIST])
-  {
-    if (itemEffectsOnCharacter.includes(eff) === false)
-    {
-      continue;
-    }
-
-    char[keys.AB_LIST][eff] -= item[keys.EFF_LIST][eff];
-
-    if (char[keys.AB_LIST][eff] === 0)
-    {
-      delete char[keys.AB_LIST][eff];
-    }
-  }
-
-  for (prop in item[keys.PROP_LIST])
-  {
-    if (itemPropsOnCharacter.includes(prop) === false)
-    {
-      continue;
-    }
-
-    char[keys.PROP_LIST].splice(char[keys.PROP_LIST].indexOf(item[keys.PROP_LIST][prop]), 1);
-  }
-}
-
-/*
-* Verify the data of a single character sent by a client on character creation
-* to make sure that it is valid. Arguments:
-*
-*   data            The character data. It is supposed to contain a string .name
-*                   property, a string .race property, and a subObject
-*                   .attributes, with a collection of the attribute keys and
-*                   integer values that the client invested.
-*
-* This function may fail for several reasons:
-*
-*   RaceError       The race in .race could not be found within the content.
-*
-*   NameError       The character name is incorrect. It might not be a string,
-*                   contain invalid characters, be too short or too long.
-*
-*   AttributesError One or more of the attributes either does not exist, or
-*                   is not a number, or the client somehow invested more points
-*                   than his chosen race allows.
-*/
-
-function attachFunctions(character)
-{
-  //TODO
-}
-
-function battleReady(t = this)
-{
-  t.battle = {};
-  t.battle.position = {};
-  t.battle[keys.FAT] = 0;
-  t.battle.status = {};
-  t.battle.status[keys.STATUS.HARASS] = 0;
-  t.battle[keys.AP] = getTotalAttribute(keys.AP, t);
-}
-
-function giveEnemyData(t = this)
+prototype.giveEnemyData = function()
 {
   var data = {};
-  data[keys.ID] = t[keys.ID];
-  data[keys.NAME] = t[keys.NAME];
-  data[keys.PLAYER] = t[keys.PLAYER];
-  data[keys.LVL] = t[keys.LVL];
-  data[keys.FORM] = t[keys.FORM][keys.NAME];
-  data[keys.SIZE] = t[keys.SIZE];
-  data[keys.SLOT_LIST] = {};
+  data.id = this.id;
+  data.name = this.name;
+  data.player = this.player;
+  data.level = this.level;
+  data.form = this.form.name;
+  data.size = size(t);
+  data.slots = {};
 
-  for (var slot in t[keys.SLOT_LIST])
+  for (var slot in this.slots)
   {
-    data[keys.SLOT_LIST][slot] = {[keys.EQUIPPED]: {}};
+    data.slots[slot] = {equipped: {}};
 
-    for (var key in t[keys.SLOT_LIST][slot][keys.EQUIPPED])
+    for (var key in this.slots[slot].equipped)
     {
-      var item = t[keys.SLOT_LIST][slot][keys.EQUIPPED][key];
-      data[keys.SLOT_LIST][slot][keys.EQUIPPED][key] = item[keys.NAME];
+      var item = this.slots[slot].equipped[key];
+      data.slots[slot].equipped[key] = item.name;
     }
   }
 
   return data;
 }
 
-function ignite(pack, result, t = this)
+prototype.size = function()
+{
+  return this.form.size;
+}
+
+prototype.ignite = function(pack, result)
 {
   var igniteChance = pack.data.damage * 5;
 	var roll = Math.floor((Math.random() * 100)) + 1;
@@ -363,49 +104,49 @@ function ignite(pack, result, t = this)
 		return false;
 	}
 
-	if (pack.damageType == keys.DMG_TYPE.FIRE)
+	if (pack.damageType === "fire")
 	{
-		t.battle.status[keys.DMG_TYPE.FIRE] = true;
+		this.battle.status.fire = true;
 	}
 
-	else if (pack.damageType ==  keys.DMG_TYPE.COLD)
+	else if (pack.damageType === "cold")
 	{
-		t.battle.status[keys.DMG_TYPE.COLD] = true;
+		this.battle.status.cold = true;
 	}
 
   return true;
 }
 
-function addFatigue(amount, t = this)
+prototype.addFatigue = function(amount)
 {
   var result = {fatigueAdded: amount, damage: 0};
-  t.battle.status[keys.FAT] += amount;
+  this.battle.status.fatigue += amount;
 
-  if (t.battle.status[keys.FAT] > 200)
+  if (this.battle.status.fatigue > 200)
   {
-    result.fatigueAdded -= t.battle.status[keys.FAT] - 200;
-    result.fatigueDamage = Math.floor((t.battle.status[keys.FAT] - 200) / 5);
-    t.battle.status[keys.FAT] = 200;
-    reduceHP(result.fatigueDamage, t);
+    result.fatigueAdded -= this.battle.status.fatigue - 200;
+    result.fatigueDamage = Math.floor((this.battle.status.fatigue - 200) / 5);
+    this.battle.status.fatigue = 200;
+    this.reduceHP(result.fatigueDamage);
   }
 
-  if (t.battle.status[keys.FAT] >= 100)
+  if (this.battle.status.fatigue >= 100)
   {
-    delete t.battle.status[keys.STATUS.BERSERK];
-    t.battle.status[keys.STATUS.UNCONSCIOUS] = true;
+    delete this.battle.status.berserk;
+    this.battle.status.berserk = true;
   }
 
   return result;
 }
 
-function reduceHP(damage, t = this)
+prototype.reduceHP = function(damage)
 {
-  var result = {"finalDamage": damage.cap(t[keys.CURR_HP]), shiftedShapeName: null};
+  var result = {"finalDamage": damage.cap(this.currentHP), shiftedShapeName: null};
   var changeShapeResult;
 
-  t[keys.CURR_HP] -= result.finalDamage;
+  this.currentHP -= result.finalDamage;
 
-  if (t[keys.CURR_HP] === 0 && t[keys.ALL_FORMS].length > 0 && t[keys.CURR_FORM] < t[keys.ALL_FORMS].length - 1)
+  if (this.currentHP === 0 && this.formList.length > 0 && this.formIndex < this.formList.length - 1)
   {
     changeShapeResult = woundedShape(damage - finalDamage);
     result.finalDamage += changeShapeResult.finalDamage;
@@ -415,41 +156,41 @@ function reduceHP(damage, t = this)
   return result;
 }
 
-function woundedShape(damageCarried, t = this)
+prototype.woundedShape = function(damageCarried)
 {
   var maxHP;
   var result;
 
-  t[keys.CURR_FORM]++;
-  t[keys.FORM] = t[keys.ALL_FORMS][t[keys.CURR_FORM]];
-  maxHP = getTotalAttribute(keys.MAX_HP, t);
-  result = {"finalDamage": damageCarried.cap(t[keys.CURR_HP]), shiftedShapeName: t[keys.FORM][keys.NAME]};
+  this.formIndex++;
+  this.form = this.formList[this.formIndex];
+  maxHP = this.getTotalAttribute("maxHP");
+  result = {"finalDamage": damageCarried.cap(this.currentHP), shiftedShapeName: this.form.name};
 
-  t[keys.CURR_HP] = (t[keys.CURR_HP] - damageCarried).lowerCap(0);
+  this.currentHP = (this.currentHP - damageCarried).lowerCap(0);
 
-  if (t[keys.CURR_HP] === 0 && t[keys.ALL_FORMS].length > 0 && t[keys.CURR_FORM] < t[keys.ALL_FORMS].length - 1)
+  if (this.currentHP === 0 && this.formList.length > 0 && this.formIndex < this.formList.length - 1)
   {
-    var nextResult = woundedShape(damageCarried - result.finalDamage, t);
+    var nextResult = this.woundedShape(damageCarried - result.finalDamage);
     result.finalDamage += nextResult.finalDamage;
     result.shiftedShapeName = nextResult.shiftedShapeName;
   }
 
-  result.droppedItems = updateSlots(t);
+  result.droppedItems = updateSlots(this);
   //TODO: update protection stats
   return result;
 }
 
-function heal(amount, t = this)
+prototype.heal = function(amount)
 {
-  var maxHP = getTotalAttribute(keys.MAX_HP, t);
-  var result = {"damageHealed": (maxHP - t[keys.CURR_HP]).cap(amount), shiftedShapeName: null};
+  var maxHP = this.getTotalAttribute("maxHP");
+  var result = {"damageHealed": (maxHP - this.currentHP).cap(amount), shiftedShapeName: null};
   var revertShapeResult;
 
-  t[keys.CURR_HP] += Math.floor(amount);
+  this.currentHP += Math.floor(amount);
 
-	if (t[keys.CURR_HP] === maxHP && t[keys.ALL_FORMS].length > 0 && t[keys.CURR_FORM] > 0)
+	if (this.currentHP === maxHP && this.formList.length > 0 && this.formIndex > 0)
 	{
-		revertShapeResult = healedShape(t[keys.CURR_HP] - maxHP, t);
+		revertShapeResult = this.healedShape(this.currentHP - maxHP);
     result.damageHealed += revertShapeResult.damageHealed;
     result.shiftedShapeName = revertShapeResult.shiftedShapeName;
 	}
@@ -457,41 +198,38 @@ function heal(amount, t = this)
   return damageHealed;
 }
 
-function healedShape(healingCarried, t = this)
+prototype.healedShape = function(healingCarried)
 {
   var maxHP;
   var result;
 
-  t[keys.CURR_FORM]--;
-  t[keys.FORM] = t[keys.ALL_FORMS][t[keys.CURR_FORM]];
-  maxHP = getTotalAttribute(keys.MAX_HP, t)
-  result = {"damageHealed": healingCarried.cap(maxHP - t[keys.CURR_HP]), shiftedShapeName: t[keys.FORM][keys.NAME]};
+  this.formIndex--;
+  this.form = this.formList[this.formIndex];
+  maxHP = this.getTotalAttribute("maxHP")
+  result = {"damageHealed": healingCarried.cap(maxHP - this.currentHP), shiftedShapeName: this.form.name};
 
-  t[keys.CURR_HP] += result.damageHealed;
+  this.currentHP += result.damageHealed;
 
-  if (t[keys.CURR_HP] === maxHP && t[keys.ALL_FORMS].length > 0 && t[keys.CURR_FORM] > 0)
+  if (this.currentHP === maxHP && this.formList.length > 0 && this.formIndex > 0)
   {
-    var nextResult = healedShape(healingCarried - result.damageHealed, t);
+    var nextResult = this.healedShape(healingCarried - result.damageHealed);
     result.damageHealed += nextResult.damageHealed;
     result.shiftedShapeName = nextResult.shiftedShapeName;
   }
 
-  result.droppedItems = updateSlots(t);
+  result.droppedItems = updateSlots(this);
   //TODO: update protection stats
   return result;
 }
 
-function updateSlots(t = this)
+prototype.updateSlots = function()
 {
   var droppedItems = [];
 
-  for (var key in keys.SLOT_LIST)
+  for (var key in this.form.slots)
   {
-    var slot = [keys.SLOT_LIST[key]];
-    var formTotal = race[keys.SLOT_LIST][keys.SLOT_LIST][slot];
-    var charTotal = t[keys.SLOT_LIST][slot][keys.TOTAL];
-
-    t[keys.SLOT_LIST][slot][keys.TOTAL] = formTotal;
+    var formTotal = this.form.slots[key];
+    var charTotal = this.slots[key].total;
 
     if (formTotal === charTotal)
     {
@@ -500,186 +238,179 @@ function updateSlots(t = this)
 
     else if (formTotal > charTotal)
     {
-      t[keys.SLOT_LIST][slot][keys.FREE] += formTotal - charTotal;
+      this.slots[key].free += formTotal - charTotal;
     }
 
     else if (formTotal < charTotal)
     {
-      droppedItems = droppedItems.concat(reduceSlots(slot, charTotal - formTotal, t));
+      droppedItems = droppedItems.concat(this.reduceSlots(key, charTotal - formTotal));
     }
   }
 
   return droppedItems;
 }
 
-function reduceSlots(slotType, difference, t = this)
+prototype.reduceSlots = function(slotType, difference)
 {
-  var slotReqToFind = difference;
+  var slotRequirementToDrop = difference;
   var droppedItems = [];
 
   while (difference > 0)
   {
-    for (var key in t[keys.SLOT_LIST][slotType][keys.EQUIPPED])
+    for (var key in this.slots[slotType].equipped)
     {
-      var item = t[keys.SLOT_LIST][slotType][keys.EQUIPPED][key];
+      var item = this.slots[slotType].equipped[key];
 
-      if (item[keys.REQ_SLOTS] === slotReqToFind)
+      if (item.requiredSlots === slotRequirementToDrop)
       {
-        droppedItems.push(item[keys.NAME]);
-        delete t[keys.SLOT_LIST][slotType][keys.EQUIPPED][key];
-        difference -= slotReqToFind;
+        droppedItems.push(item.name);
+        delete this.slots[slotType].equipped[key];
+        difference -= slotRequirementToDrop;
       }
     }
 
-    slotReqToFind--;
+    slotRequirementToDrop--;
   }
 
   return droppedItems;
 }
 
-function reduceFatigue(amount, t = this)
+prototype.reduceFatigue = function(amount)
 {
   var originalFat;
   var fatigueReduced = amount;
 
-  if (t.battle == null || t.battle.status[keys.FAT] <= 0 || amount <= 0)
+  if (this.battle == null || this.battle.status.fatigue <= 0 || amount <= 0)
 	{
-		t.battle.status[keys.FAT] = 0;
+		this.battle.status.fatigue = 0;
 		return 0;
 	}
 
-  if (amount > t.battle.status[keys.FAT])
+  if (amount > this.battle.status.fatigue)
   {
-    fatigueReduced -= amount - t.battle.status[keys.FAT];
+    fatigueReduced -= amount - this.battle.status.fatigue;
   }
 
-  fatigueReduced = Math.abs(amount - (t.battle.status[keys.FAT].lowerCap(0) - amount));
-	originalFat = t.battle.status[keys.FAT];
-	t.battle.status[keys.FAT] = (t.battle.status[keys.FAT] - amount).lowerCap(0);
+  fatigueReduced = Math.abs(amount - (this.battle.status.fatigue.lowerCap(0) - amount));
+	originalFat = this.battle.status.fatigue;
+	this.battle.status.fatigue = (this.battle.status.fatigue - amount).lowerCap(0);
 
-	if (t.battle.status[keys.FAT] < 100 && originalFat >= 100)
+	if (this.battle.status.fatigue < 100 && originalFat >= 100)
 	{
-		delete t.battle.status[keys.STATUS.UNCONSCIOUS];
+		delete this.battle.status.unconscious;
 	}
 
   return fatigueReduced;
 }
 
-function reinvigorate(amount, t = this)
+prototype.reinvigorate = function(amount)
 {
   var originalFat;
 
-  if (t.battle == null)
+  if (this.battle == null)
 	{
 		return 0;
 	}
 
-  amount += getTotalAbility(keys.ABS.REINVIG, t);
+  amount += this.getTotalAbility("reinvigoration");
 
-	if (t.battle.status[keys.FAT] >= 100)
+	if (this.battle.status.fatigue >= 100)
 	{
 		amount += 5; //Reinvigorate 5 if it's unconscious
 	}
 
 	if (amount > 0)
 	{
-		return reduceFatigue(amount, t);
+		return this.reduceFatigue(amount);
 	}
 
   else return 0;
 }
 
-function getProtectionRoll(weapon, target, hitLocation, damageType, t = this)
+prototype.getTotalProtection = function(hitLocation)
 {
-	var protection = target[keys.PRT_LIST][hitLocation][keys.TOTAL];
+  return getTotalArmor(hitLocation) + getTotalNaturalArmor(hitLocation) + getTotalAbility("invulnerability");
+}
 
-	if (weapon[keys.PROP_LIST].includes(keys.PROPS.A_NEGATE) === true)
+prototype.getProtectionRoll = function(weapon, target, hitLocation, damageType)
+{
+	var armor = target.getTotalArmor(hitLocation);
+  var natural = target.getTotalNaturalArmor(hitLocation);
+  var invulnerability = target.getTotalAbility("invulnerability");
+
+	if (weapon.properties.includes("armorNegating") === true)
 	{
 		return 0;
 	}
 
-  if (weapon[keys.PROP_LIST].includes(keys.PROPS.MAGICAL) === true)
+  if (weapon.properties.includes("magical") === true)
   {
     //loses invulnerability protection
-    protection -= target[keys.PRT_LIST][hitLocation][keys.PRT.INVUL];
+    invulnerability = 0;
   }
 
-	if (damageType == keys.DMG_TYPE.PIERCE)
+	if (damageType == "pierce")
 	{
-		protection = Math.floor(protection * 0.8);
+		armor = Math.floor(armor * 0.8);
+    natural = Math.floor(natural * 0.8);
 	}
 
-	if (weapon[keys.PROP_LIST].includes(keys.PROPS.A_PIERCE) === true)
+	if (weapon.properties.includes("armorPiercing") === true)
 	{
-		protection = Math.floor(protection * 0.5);
+		armor = Math.floor(armor * 0.5);
+    natural = Math.floor(natural * 0.5);
 	}
 
-	protection += dice.DRN();
-	return protection;
+	return dice.DRN() + armor + natural + invulnerability;
 }
 
-function getElementalResistance(type, t = this)
+prototype.getElementalResistance = function(type)
 {
-  var resistance = "";
-
-  if (type == keys.DMG_TYPE.COLD)         resistance = keys.ABS.RES.COLD;
-  else if (type == keys.DMG_TYPE.FIRE)    resistance = keys.ABS.RES.FIRE;
-  else if (type == keys.DMG_TYPE.POISON)  resistance = keys.ABS.RES.POISON;
-  else if (type == keys.DMG_TYPE.SHOCK)   resistance = keys.ABS.RES.SHOCK;
-
-  return getTotalAbility(resistance, t);
+  return getTotalAbility(type + "Resistance");
 }
 
-function reviveProtection(t = this)
-{
-  for (var part in keys.PARTS)
-  {
-    var armor = getTotalArmor(keys.PARTS[part], t);
-    var natural = getTotalNaturalArmor(keys.PARTS[part], t);
-    var invulnerability = getTotalAbility(keys.ABS.INVUL);
-
-    t[keys.PRT_LIST][keys.PARTS[part]] = {[keys.PRT.ARMOR]: armor,
-                                          [keys.PRT.NATURAL]: natural,
-                                          [keys.PRT.INVUL]: invulnerability,
-                                          [keys.TOTAL]: armor + natural + invulnerability};
-  }
-}
-
-function getTotalArmor(part, t = this)
+prototype.getTotalArmor = function(part)
 {
   var total = 0;
 
-  for (var slot in keys.SLOTS)
+  for (var key in this.slots)
   {
-    for (var id in t[keys.SLOTS[slot]][keys.EQUIPPED])
-    {
-      var item = t[keys.SLOTS[slot]][keys.EQUIPPED][id];
+    var equipped = this.slots[key].equipped;
 
-      if (item[keys.PRT_LIST][part] == null || item[keys.PRT_LIST][part] === 0 || isNaN(item[keys.PRT_LIST][part]) === true)
+    for (var i = 0; i < equipped.length; i++)
+    {
+      var item = equipped[i];
+
+      if (item.protection[part] == null || isNaN(item.protection[part]) === true)
       {
         continue;
       }
 
-      total += item[keys.PRT_LIST][part];
+      total += item.protection[part];
     }
   }
 
   return total;
 }
 
-function getTotalNaturalArmor(part, t = this)
+prototype.getTotalNaturalArmor = function(part)
 {
-  return (t[keys.FORM][keys.PRT_LIST][part] || 0) + getTotalAbility(keys.PRT.NATURAL);
+  return (this.form.protection[part] || 0) + this.getTotalAbility("naturalArmor");
 }
 
-function checkProperty(key, t = this)
+prototype.hasProperty = function(key)
 {
-  if (t[keys.PROP_LIST].includes(key) === true)
+  if (this.properties.includes(key) === true)
   {
     return true;
   }
 
-  else return false;
+  if (this.form.hasProperty(key) === true)
+  {
+    return true;
+  }
+
+  return false;
 }
 
 /*
@@ -692,139 +423,73 @@ function checkProperty(key, t = this)
 *                 character.lullItemEffects()
 */
 
-function getDualPenalty(t = this)
+prototype.getDualPenalty = function()
 {
   var total = 0;
 
-  for (var slot in keys.SLOTS)
+  for (var key in this.slots)
   {
-    for (var id in t[keys.SLOTS[slot]][keys.EQUIPPED])
-    {
-      var item = t[keys.SLOTS[slot]][keys.EQUIPPED][id];
+    var equipped = this.slots[key].equipped;
 
-      if (item[keys.DMG] == null || item[keys.LEN] == null)
+    for (var i = 0; i < equipped.length; i++)
+    {
+      var item = equipped[i];
+
+      if (item.damage == null || item.reach == null)
       {
         //not a weapon
         continue;
       }
 
-      if (item[keys.PROP_LIST].includes(keys.EXTRA) === true)
+      if (item.properties.includes("extra") === true)
       {
         //"Extra" weapons like
         continue;
       }
 
-      total += item[keys.LEN] || 0;
+      total += item.reach;
     }
   }
 
-  return (total - (t[keys.AB_LIST][keys.ABS.AMBIDEXTROUS] || 0)).lowerCap(0);
+  return (total - (this.abilities.ambidextrous || 0)).lowerCap(0);
 }
 
-function getTotalAttribute(key, t = this)
+prototype.getTotalAttribute = function(key)
 {
-  return (t[keys.FORM][key] || 0) + (t[key] || 0) + getEquippedAbility(key, t);
+  return (this.form[key] || 0) + (this[key] || 0) + this.getEquippedAbility(key);
 }
 
-function getEquippedAbility(key, t = this)
+prototype.getTotalAbility = function(key)
 {
-  var total = 0;
+  var total = this.form.getTotalAbility(key);
 
-  for (var slot in keys.SLOTS)
+  for (var ability in this.abilities)
   {
-    for (var id in t[keys.SLOTS[slot]][keys.EQUIPPED])
+    if (key == ability && isNaN(this.abilities[ability]) === false)
     {
-      var item = t[keys.SLOTS[slot]][keys.EQUIPPED][id];
-
-      if (item[key] != null && isNaN(item[key]) === false)
-      {
-        total += item[key];
-      }
-
-      if (item[keys.EFF_LIST][key] != null || isNaN(item[keys.EFF_LIST][key]) === false)
-      {
-        total += item[keys.EFF_LIST][key];
-      }
+      total += this.abilities[ability];
     }
   }
 
   return total;
 }
 
-function getTotalAbility(key, t = this)
+prototype.weaponTimesAvailable = function(id)
 {
-  var total = 0;
-
-  for (var ability in t[keys.AB_LIST])
-  {
-    if (key == ability && isNaN(t[keys.AB_LIST][ability]) === false)
-    {
-      total += t[keys.AB_LIST][ability];
-    }
-  }
-
-  return total;
+  return actor.slots.timesEquipped(id) + this.form.weaponTimesAvailable(id);
 }
 
-function getEquippedWeapons(t = this)
+prototype.hasWeapon = function(id)
 {
-  var weapons = [];
-
-  for (var slot in keys.SLOTS)
+  if (this.slots.hasEquipped(id) === true)
   {
-    for (var id in t[keys.SLOTS[slot]][keys.EQUIPPED])
-    {
-      var item = t[keys.SLOTS[slot]][keys.EQUIPPED][id];
-
-      if (item[keys.DMG] != null)
-      {
-        weapons.push(item);
-      }
-    }
+    return true;
   }
 
-  return weapons;
-}
-
-function getEquippedItem(id, t = this)
-{
-  var list = [];
-
-  for (var slot in keys.SLOTS)
+  else if (this.form.hasNaturalWeapon(id) === true)
   {
-    for (var id in t[keys.SLOTS[slot]][keys.EQUIPPED])
-    {
-      var item = t[keys.SLOTS[slot]][keys.EQUIPPED][id];
-
-      if (item[keys.ID] === id)
-      {
-        list.push(item);
-      }
-    }
+    return true;
   }
 
-  return list;
-}
-
-function getAttacks(id, t = this)
-{
-  return actor.getEquippedItem(id, t).concat(t[keys.FORM].getNaturalAttacks(id));
-}
-
-function hasAttack(id, t = this)
-{
-  for (var slot in keys.SLOTS)
-  {
-    for (var id in t[keys.SLOTS[slot]][keys.EQUIPPED])
-    {
-      var item = t[keys.SLOTS[slot]][keys.EQUIPPED][id];
-
-      if (item[keys.ID] === id)
-      {
-        return true;
-      }
-    }
-  }
-
-  return t[keys.FORM].hasNaturalAttack(id);
+  else return false;
 }

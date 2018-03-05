@@ -1,33 +1,25 @@
 
-var keys;
-var damageStrategy;
+var damageStrategy = require("./damage.js");
 
 module.exports =
 {
-  init: function(index)
-  {
-    keys = index;
-    damageStrategy = require("./damage.js").init(keys);
-    return this;
-  },
-
   apply: function(pack, result)
   {
     var poisonBarbsWeapon =
     {
-      [keys.NAME] = "Poison Barbs",
-      [keys.DMG] = 10,
-      [keys.LEN] = 3,
-      [keys.DMG_TYPE_LIST] = [[keys.DMG_TYPE.POISON]],
-      [keys.PROP_LIST] = [[keys.NO_STR]]
+      name: "Poison Barbs",
+      damage: 10,
+      reach: 3,
+      damageType: ["poison"],
+      properties: ["noStrength"]
     }
 
-    if (pack.target[keys.AB_LIST][keys.ABS.POISON_BARBS] == null)
+    if (pack.target.abilities.poisonBarbs == null)
     {
       return;
     }
 
-    if (pack.distance >= poisonBarbsWeapon[keys.LEN])
+    if (pack.distance >= poisonBarbsWeapon.reach)
     {
       //distance long enough that barbs can't hit
       return;

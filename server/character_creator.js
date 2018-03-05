@@ -1,18 +1,15 @@
 
-var keys;
-var forms;
+var content;
 var formulas = require("./formulas.js");
 
 module.exports =
 {
-  content: null,
   keys: null,
 
   init: function(contentModule, index)
   {
     keys = index;
-    this.content = contentModule;
-    forms = require("./forms.js").init(contentModule, index);
+    content = contentModule;
     return this;
   },
 
@@ -25,7 +22,7 @@ module.exports =
       try
       {
         verifyCharacterData(player.characters[i]);
-        player.characters[i] = buildCharacter(player.characters[i], player.username);
+        player.characters[i] = buildCharacterData(player.characters[i], player.username);
       }
 
       catch (err)
@@ -49,41 +46,44 @@ module.exports =
   *                   case, no return object will be supplied.
   */
 
-function buildCharacter(verifiedData, username)
+function buildCharacterData(data, username)
 {
   var obj = {};
-  var form = content.getForms({key: keys.NAME, value: verifiedData.form});
+  var form = content.getForms({key: "name", value: data.form});
 
-  obj[keys.NAME] = verifiedData.name;
-  obj[keys.ID] = generateID();
-  obj[keys.PLAYER] = username;
-  obj[keys.TRANS_POINTS] = 0;
-  obj[keys.FORM] = form[keys.ID];
-  obj[keys.CURR_FORM] = form[keys.ID];
-  obj[keys.ALL_FORMS] = form[keys.ALL_FORMS];
-  obj[keys.MAX_HP] = formulas.startingPoints[keys.MAX_HP](verifiedData[keys.MAX_HP], form[keys.MAX_HP]);
-  obj[keys.CURR_HP] = obj[keys.MAX_HP] + form[keys.MAX_HP];
-  obj[keys.MR] = formulas.startingPoints[keys.MR](verifiedData[keys.MR], form[keys.MR]);
-  obj[keys.MRL] = formulas.startingPoints[keys.MRL](verifiedData[keys.MRL], form[keys.MRL]);
-  obj[keys.STR] = formulas.startingPoints[keys.STR](verifiedData[keys.STR], form[keys.STR]);
-  obj[keys.ATK] = 0;
-  obj[keys.DEF] = 0;
-  obj[keys.PRC] = 0;
-  obj[keys.AP] = 0;
-  obj[keys.MP] = 0;
-  obj[keys.SPEED] = 0;
-  obj[keys.AFFL_LIST] = {};
-  obj[keys.PATH_LIST] = {};
-  obj[keys.PROP_LIST] = [];
-  obj[keys.AB_LIST] = {};
-  obj[keys.PART_LIST] = form[keys.PART_LIST];
+  obj.name = data.name;
+  obj.id = generateID();
+  obj.player = username;
+  obj.transitionPoints = 0;
+  obj.form = form.id;
+  obj.formIndex = 0;
+  obj.formList = [];
+  obj.maxHP = formulas.startingPoints.maxHP(data.maxHP, form.maxHP);
+  obj.currentHP = obj.maxHP;
+  obj.mr = formulas.startingPoints.mr(data.mr, form.mr);
+  obj.morale = formulas.startingPoints.morale(data.morale, form.morale);
+  obj.strength = formulas.startingPoints.strength(data.strength, form.strength);
+  obj.attack = 0;
+  obj.defence = 0;
+  obj.precision = 0;
+  obj.ap = 0;
+  obj.afflictions = {};
+  obj.paths = {};
+  obj.properties = [];
+  obj.abilities = {};
+  obj.parts = form.parts;
 
-  for (var key in keys.SLOT_LIST)
+  for (var i = 0; i < form.formList.length; i++)
   {
-    obj[keys.SLOT_LIST[key]] = {};
-    obj[keys.SLOT_LIST[key]][keys.EQUIPPED] = [];
-    obj[keys.SLOT_LIST[key]][keys.FREE] = form[keys.SLOT_LIST][keys.SLOT_LIST[key]];
-    obj[keys.SLOT_LIST[key]][keys.TOTAL] = form[keys.SLOT_LIST][keys.SLOT_LIST[key]];
+    obj.formList.push(content.getForms({key: "id", value: form.formList[i]}));
+  }
+
+  for (var key in form.slots)
+  {
+    obj.slots[key] = {};
+    obj.slots[key].equipped = [];
+    obj.slots[key].free = form.slots[key];
+    obj.slots[key].total = form.slots[key];
   }
 
   return obj;
@@ -112,7 +112,7 @@ function buildCharacter(verifiedData, username)
 
 function verifyCharacterData(data)
 {
-  var chosenForm = content.getForms({key: keys.NAME, value: char.form});
+  var chosenForm = content.getForms({key: "name", value: data.form});
 
   if (chosenForm === null || chosenForm.length <= 0)
   {
@@ -156,7 +156,7 @@ function verifyName(name)
 
 function verifyAttributes(form, attributes)
 {
-  var maxPoints = form[keys.START_POINTS];
+  var maxPoints = form.startingPoints;
   var pointsUsed = 0;
 
   for (var key in attributes)

@@ -1,17 +1,13 @@
 
-var keys;
-
 module.exports =
 {
   startingPoints: {},
-  
-  init: function(index)
-  {
-    keys = index;
 
-    module.exports.startingPoints =
+  init: function()
+  {
+    this.startingPoints =
     {
-      [keys.MAX_HP]: function(points, hp)
+      maxHP: function(points, hp)
       {
         for (var i = 0; i < points; i++)
         {
@@ -28,17 +24,17 @@ module.exports =
         return hp;
       },
 
-      [keys.STR]: function(points, strength)
+      strength: function(points, strength)
       {
         return strength + points;
       },
 
-      [keys.MR]: function(points, mr)
+      mr: function(points, mr)
       {
         return mr + points;
       },
 
-      [keys.MRL]: function(points, morale)
+      morale: function(points, morale)
       {
         return morale + (points * 2);
       }

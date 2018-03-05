@@ -1,22 +1,14 @@
 
-var keys;
-
 module.exports =
 {
-  init: function(index)
-  {
-    keys = index;
-    return this;
-  },
-
   apply: function(pack, result)
   {
-    if (pack.target[keys.AB_LIST][keys.ABS.BERSERK] == null)
+    if (pack.target.abilities.berserk == null)
     {
       return;
     }
 
-    if (pack.target.battle.status[keys.ABS.BERSERK]] != null)
+    if (pack.target.battle.status.berserk != null)
     {
       //already berserked
       return;
@@ -31,7 +23,7 @@ module.exports =
       return;
     }
 
-		pack.target.battle.status[keys.ABS.BERSERK]] = pack.target[keys.AB_LIST][keys.ABS.BERSERK];
+		pack.target.battle.status.berserk = pack.target.abilities.berserk;
     result.triggered = true;
   }
 }

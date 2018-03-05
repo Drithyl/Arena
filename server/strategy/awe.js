@@ -1,24 +1,16 @@
 
-var keys;
-
 module.exports =
 {
-  init: function(index)
-  {
-    keys = index;
-    return this;
-  },
-
   apply: function(pack, result)
   {
-    if (pack.target[keys.AB_LIST][keys.ABS.AWE] == null)
+    if (pack.target.abilities.awe == null)
     {
       return;
     }
 
     result.failed = false;
     result.moraleRoll = dice.DRN() + getTotalMorale(pack.actor);
-    result.aweRoll = dice.DRN() + 10 + pack.target[keys.AB_LIST][keys.ABS.AWE];
+    result.aweRoll = dice.DRN() + 10 + pack.target.abilities.awe;
 
     if (result.moraleRoll <= result.aweRoll)
     {

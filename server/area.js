@@ -2,19 +2,19 @@
 
 module.exports =
 {
-  create: function(x1, x2, y1, y2)
+  create: function(xStart, xEnd, yStart, yEnd)
   {
     var obj = {};
-    obj.x1 = x1;
-    obj.x2 = x2;
-    obj.y1 = y1;
-    obj.y2 = y2;
+    obj.xStart = xStart;
+    obj.xEnd = xEnd;
+    obj.yStart = yStart;
+    obj.yEnd = yEnd;
 
     obj.contains = function(x, y)
     {
-      if ((x >= this.x1 && x <= this.x2) || ( x >= this.x2 && x <= this.x1))
+      if ((x >= this.xStart && x <= this.xEnd) || ( x >= this.xEnd && x <= this.xStart))
       {
-        if ((y >= this.y1 && y <= this.y2) || ( y >= this.y2 && x <= this.y1))
+        if ((y >= this.yStart && y <= this.yEnd) || ( y >= this.yEnd && x <= this.yStart))
         {
           return true;
         }

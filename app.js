@@ -3,7 +3,6 @@ var express = require ("express");
 var app = express();
 var serv = require("http").Server(app);
 var io = require("socket.io")(serv, {});
-var keys = require("./shared/keyIndex.json");
 var rw;
 var sm;
 var battle;
@@ -11,7 +10,7 @@ var characterModule;
 var characterCreator;
 var playerModule;
 var content;
-var formulas;
+var formulas = require("./server/formulas.js");
 var port = 3000;
 var spawn = require('child_process').spawn;
 //var dbProcess = spawn("C:/Program Files/MongoDB/Server/3.4/bin/mongod.exe");
@@ -99,15 +98,11 @@ io.sockets.on("connection", function(socket)
 
 function initializeServer(cb)
 {
-	keys.arr = keys.toFlatArr();
-	keys.lowerCaseArr = keys.arr.toLowerCase();
-	rw = require("./server/reader_writer.js").init(db, keys);
+	rw = require("./server/reader_writer.js").init(db);
   sm = require("./server/socket_manager.js").init(io);
-  battle = require("./server/battle.js").init(sm, keys);
-	content = require("./server/content.js").init(rw.readContent(), keys);
-  formulas = require("./server/formulas.js").init(keys);
-  characterCreator = require("./server/character_creator.js").init(content, keys);
-  characterModule = require("./server/character.js").init(content, keys);
+	content = require("./server/content.js").init(rw.readContent());
+  characterCreator = require("./server/character_creator.js").init(content);
+  characterModule = require("./server/character.js").init(content);
 
 	db.find("players", {}, function(err, playersFetched)
 	{
@@ -119,7 +114,8 @@ function initializeServer(cb)
 
 		try
 		{
-      playerModule = require("./server/player.js").init(db, playersFetched, characterModule, characterCreator, keys);
+      playerModule = require("./server/player.js").init(db, playersFetched, characterModule, characterCreator);
+      battle = require("./server/battle.js").init(sm, playerModule);
 		}
 
 		catch(err)
@@ -138,7 +134,7 @@ function getInitPack()
 {
 	var obj =
 	{
-		forms: content.getForms({key: keys.CAT_LIST, value: keys.CAT.START}),
+		forms: content.getForms({key: "categories", value: "startingForm"}),
 		players: playerModule.getClientPack()
 	}
 
@@ -221,6 +217,7 @@ function setPlayerOnline(username, socket)
 {
   //starting point for a client
   attachChat(socket);
+  sm.logged[username] = socket;
 	playerModule.addOnline(username);
   socket.broadcast.emit("playerJoined", {username: username});
 }

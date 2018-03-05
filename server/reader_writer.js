@@ -1,14 +1,13 @@
 const fs = require("fs");
-const event = require("../server/emitter.js");
-var keys;
+const event = require("./emitter.js");
+var index = require("../shared/keyIndex.json");
 var db;
 
 module.exports =
 {
-	init: function(database, index)
+	init: function(database)
 	{
 		db = database;
-		keys = index;
 		return this;
 	},
 
@@ -384,7 +383,7 @@ function findMismatches(data)
 				chkArr.push("Data Index " + i + ": " + valChk);
 			}
 
-			if (isNaN(data[i][key]) === false || key == keys.ID || key == keys.NAME  || key == keys.DESCR)
+			if (isNaN(data[i][key]) === false || key == "id" || key == "name"  || key == "description")
 			{
 				continue;
 			}
@@ -432,7 +431,7 @@ function findMismatches(data)
 
 function verifyKey(key)
 {
-	if (keys.arr.includes(key) === true)
+	if (keys.includes(key) === true)
 	{
 		return true;
 	}
@@ -442,14 +441,9 @@ function verifyKey(key)
 		return true;
 	}
 
-	else if (keys.arr.includes(key) === false && keys.lowerCaseArr.includes(key.toLowerCase()) === false)
+	else if (keys.includes(key) === false)
 	{
 		return "The key " + key + " does not exist.";
-	}
-
-	else if (keys.lowerCaseArr.includes(key.toLowerCase()) === true)
-	{
-		return "The key " + key + " exists but has the wrong capitalization. The proper one is " + keys.arr[keys.lowerCaseArr.indexOf(key.toLowerCase())];
 	}
 
 	else
@@ -460,16 +454,16 @@ function verifyKey(key)
 
 function verifyValue(key, value)
 {
-	if (value === null && (key == keys.CAT_LIST || key == keys.TRANS_LIST || key == keys.ON_HIT ||
-			key == keys.ON_DMG || key == keys.SLOT_TYPE || key == keys.DESCR || key == keys.AB_LIST ||
-			key == keys.EFF_LIST || key == keys.PATH_LIST || key == keys.PROP_LIST || key == keys.NAT_WPN_LIST))
+	if (value === null && (key == "categories" || key == "transitions" || key == "onHit" ||
+			key == "onDamage" || key == "slotType" || key == "description" || key == "abilities" ||
+			key == "effects" || key == "paths" || key == "properties" || key == "naturalWeapons"))
 	{
 		//These fields can be left empty, which will yield a null value, without causing issues
 		return true;
 	}
 
-	else if (key == keys.ID || key == keys.NAME || key == keys.SLOT_TYPE ||
-		  key == keys.DESCR || key == keys.AFF_PART)
+	else if (key == "id" || key == "name" || key == "slotType" ||
+		  key == "description" || key == "affectedPart")
 	{
 		if (typeof value == "string")
 		{
@@ -479,13 +473,13 @@ function verifyValue(key, value)
 		else return "The value of key " + key + " is " + (typeof value) + ". Expected a string.";
 	}
 
-	else if (key == keys.SHLD_PRT || key == keys.DEF || key == keys.PARRY ||
-					 key == keys.ENC || key == keys.REQ_SLOTS || key == keys.RAR ||
-					 key == keys.START_GOLD || key == keys.START_POINTS ||
-					 key == keys.TRANS_POINTS || key == keys.SIZE || key == keys.MAX_HP ||
-					 key == keys.MR || key == keys.MRL || key == keys.STR ||
-					 key == keys.ATK || key == keys.PRC || key == keys.AP ||
-				 	 key == keys.DMG || key == keys.LEN || key == keys.NBR_ATKS)
+	else if (key == "shieldProtection" || key == "defence" || key == "parry" ||
+					 key == "encumbrance" || key == "requiredSlots" || key == "rarity" ||
+					 key == "startGold" || key == "startPoints" ||
+					 key == "transitionPoints" || key == "size" || key == "maxHP" ||
+					 key == "mr" || key == "morale" || key == "strength" ||
+					 key == "attack" || key == "precision" || key == "ap" ||
+				 	 key == "damage" || key == "reach")
 	{
 		if (isNaN(value) === false)
 		{
@@ -495,7 +489,7 @@ function verifyValue(key, value)
 		else return "The value of key " + key + " is " + (typeof value) + ". Expected a Number.";
 	}
 
-	else if (key == keys.CAN_HEAL || key == keys.CAN_RPL)
+	else if (key == "isHealable" || key == "canRepel")
 	{
 		if (value === true || value === false)
 		{
@@ -505,8 +499,8 @@ function verifyValue(key, value)
 		else return "The value of key " + key + " is " + (typeof value) + ". Expected a boolean.";
 	}
 
-	else if (key == keys.CAT_LIST || key == keys.TRANS_LIST || key == keys.DMG_TYPE_LIST ||
-					 key == keys.ON_HIT || key == keys.PROP_LIST || key == keys.ON_DMG)
+	else if (key == "categories" || key == "transitions" || key == "damageTypes" ||
+					 key == "onHit" || key == "properties" || key == "onDamage")
 	{
 		if (Array.isArray(value) === true)
 		{
@@ -524,9 +518,9 @@ function verifyValue(key, value)
 		else return "The value of key " + key + " is " + (typeof value) + ". Expected an Array.";
 	}
 
-	else if (key == keys.NAT_WPN_LIST || key == keys.EFF_LIST || key == keys.COST_LIST ||
-					 key == keys.PRT || key == keys.AB_LIST || key == keys.PATH_LIST ||
-					 key == keys.SLOT_LIST || key == keys.PART_LIST)
+	else if (key == "naturalWeapons" || key == "effects" || key == "cost" ||
+					 key == "protection" || key == "abilities" || key == "paths" ||
+					 key == "slots" || key == "parts")
 	{
 		if (typeof value == "object" && Array.isArray(value) === false)
 		{
@@ -616,15 +610,15 @@ function CSVCellToVal(cell, header)
 
 	cell = cell.replace(/"/g, "");
 
-	if (header == keys.CAT_LIST || header == keys.TRANS_LIST || header == keys.DMG_TYPE_LIST ||
-			header == keys.ON_HIT || header == keys.PROP_LIST || header == keys.ON_DMG)
+	if (header == "categories" || header == "transitions" || header == "damageTypes" ||
+			header == "onHit" || header == "properties" || header == "onDamage")
 	{
 		return evalArray(cell.split(","));
 	}
 
-	else if (header == keys.ATKS || header == keys.EFF_LIST || header == keys.COST_LIST ||
-					 header == keys.PRT || header == keys.AB_LIST || header == keys.PATH_LIST ||
-					 header == keys.SLOT_LIST || header == keys.PART_LIST)
+	else if (header == "effects" || header == "cost" ||
+					 header == "protection" || header == "abilities" || header == "paths" ||
+					 header == "slots" || header == "parts")
 	{
 		return evalObj(cell.split(","));
 	}
