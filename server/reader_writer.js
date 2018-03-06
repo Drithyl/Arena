@@ -1,6 +1,5 @@
 const fs = require("fs");
-const event = require("./emitter.js");
-var index = require("../shared/keyIndex.json");
+var index = require("./keyIndex.json");
 var db;
 
 module.exports =
