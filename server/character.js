@@ -410,18 +410,13 @@ prototype.hasProperty = function(key)
     return true;
   }
 
+  if (this.slots.hasProperty(key) === true)
+  {
+    return true;
+  }
+
   return false;
 }
-
-/*
-* Returns the total sum of a character's stat (a stat being strength, HP, MR, etc;
-* essentially one of the properties that *every* character has). This includes
-* whatever bonuses items equipped might give. Arguments:
-*
-*   t             The character object that must be lulled, just a shorthand for the
-*                 default 'this', since it will mostly be called like so:
-*                 character.lullItemEffects()
-*/
 
 prototype.getDualPenalty = function()
 {
@@ -456,12 +451,12 @@ prototype.getDualPenalty = function()
 
 prototype.getTotalAttribute = function(key)
 {
-  return (this.form[key] || 0) + (this[key] || 0) + this.getEquippedAbility(key);
+  return (this.form[key] || 0) + (this[key] || 0) + this.slots.getTotalAbility(key + "Bonus");
 }
 
 prototype.getTotalAbility = function(key)
 {
-  var total = this.form.getTotalAbility(key);
+  var total = this.form.getTotalAbility(key) + this.slots.getTotalAbility(key);
 
   for (var ability in this.abilities)
   {

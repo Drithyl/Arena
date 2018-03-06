@@ -112,7 +112,9 @@ prototype.hasProperty = function(key)
 
     for (var i = 0; i < equipped.length; i++)
     {
-      if (equipped[i].properties.includes(key) === true)
+      var item = equipped[i];
+
+      if (item.properties.includes(key) === true)
       {
         return true;
       }
