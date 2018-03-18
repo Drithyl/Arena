@@ -5,6 +5,7 @@ const ruleset = require("./ruleset.js");
 var formModule;
 var slotsModule;
 var content;
+var area = require("./area.js");
 var prototype;
 
 module.exports =
@@ -47,21 +48,29 @@ module.exports =
       this.formList[i] = formModule.Form(data.formList[i]);
     }
 
-    character.slots = slotsModule.Slots(data.slots);
+    this.slots = slotsModule.Slots(data.slots);
+    this.setBattleStatus();
+
     return this;
   }
 }
 
 prototype = module.exports.Character.prototype;
 
-prototype.battleReady = function()
+prototype.setBattleStatus = function()
 {
   this.battle = {};
-  this.battle.position = {};
   this.battle.fatigue = 0;
   this.battle.status = {};
   this.battle.status.harassment = 0;
   this.battle.ap = this.getTotalAttribute("ap");
+  this.battle.mp = this.getTotalAttribute("mp");
+  this.battle.area = area.Area(0, 0, this.area().width, this.area().height);
+}
+
+prototype.readyForBattle = function()
+{
+
 }
 
 prototype.giveEnemyData = function()
@@ -72,7 +81,9 @@ prototype.giveEnemyData = function()
   data.player = this.player;
   data.level = this.level;
   data.form = this.form.name;
-  data.size = size(t);
+  data.size = this.size();
+  data.sizeType = this.sizeType();
+  data.area = this.area();
   data.slots = {};
 
   for (var slot in this.slots)
@@ -89,9 +100,29 @@ prototype.giveEnemyData = function()
   return data;
 }
 
+prototype.postAttackData = function()
+{
+
+}
+
 prototype.size = function()
 {
   return this.form.size;
+}
+
+prototype.area = function()
+{
+  return this.form.area;
+}
+
+prototype.sizeType = function()
+{
+  return this.form.sizeType;
+}
+
+prototype.stepSize = function()
+{
+  return this.form.stepSize;
 }
 
 prototype.ignite = function(pack, result)
@@ -141,43 +172,38 @@ prototype.addFatigue = function(amount)
 
 prototype.reduceHP = function(damage)
 {
-  var result = {"finalDamage": damage.cap(this.currentHP), shiftedShapeName: null};
+  var damageInflicted = damage.cap(this.currentHP);
   var changeShapeResult;
 
-  this.currentHP -= result.finalDamage;
+  this.currentHP -= damageInflicted;
 
   if (this.currentHP === 0 && this.formList.length > 0 && this.formIndex < this.formList.length - 1)
   {
-    changeShapeResult = woundedShape(damage - finalDamage);
-    result.finalDamage += changeShapeResult.finalDamage;
-    result.shiftedShapeName = changeShapeResult.name;
+    damageInflicted += woundedShape(damage - damageInflicted);
   }
 
-  return result;
+  return damageInflicted;
 }
 
 prototype.woundedShape = function(damageCarried)
 {
   var maxHP;
-  var result;
+  var damageInflicted;
 
   this.formIndex++;
   this.form = this.formList[this.formIndex];
   maxHP = this.getTotalAttribute("maxHP");
-  result = {"finalDamage": damageCarried.cap(this.currentHP), shiftedShapeName: this.form.name};
+  damageInflicted = damageCarried.cap(this.currentHP);
 
   this.currentHP = (this.currentHP - damageCarried).lowerCap(0);
 
   if (this.currentHP === 0 && this.formList.length > 0 && this.formIndex < this.formList.length - 1)
   {
-    var nextResult = this.woundedShape(damageCarried - result.finalDamage);
-    result.finalDamage += nextResult.finalDamage;
-    result.shiftedShapeName = nextResult.shiftedShapeName;
+    damageInflicted += this.woundedShape(damageCarried - damageInflicted);
   }
 
-  result.droppedItems = updateSlots(this);
-  //TODO: update protection stats
-  return result;
+  updateSlots(this);
+  return damageInflicted;
 }
 
 prototype.heal = function(amount)
@@ -217,23 +243,25 @@ prototype.healedShape = function(healingCarried)
     result.shiftedShapeName = nextResult.shiftedShapeName;
   }
 
-  result.droppedItems = updateSlots(this);
-  //TODO: update protection stats
+  updateSlots(this);
   return result;
 }
 
 prototype.updateSlots = function()
 {
-  var droppedItems = [];
-
   for (var key in this.form.slots)
   {
-    var formTotal = this.form.slots[key];
     var charTotal = this.slots[key].total;
+    var formTotal = this.form.slots[key].total || 0;
 
     if (formTotal === charTotal)
     {
       continue;
+    }
+
+    else if (formTotal === 0)
+    {
+      delete this.slots[key];
     }
 
     else if (formTotal > charTotal)
@@ -243,36 +271,13 @@ prototype.updateSlots = function()
 
     else if (formTotal < charTotal)
     {
-      droppedItems = droppedItems.concat(this.reduceSlots(key, charTotal - formTotal));
+      /******Will be added whenever we decide to include shapeshifting that can turn
+      *******a form into another one with the same slot type, but in less quantities,
+      *******since at the moment this NEVER happens.********************************/
+
+      //droppedItems = droppedItems.concat(this.slots.reduceSlots(key, formTotal));
     }
   }
-
-  return droppedItems;
-}
-
-prototype.reduceSlots = function(slotType, difference)
-{
-  var slotRequirementToDrop = difference;
-  var droppedItems = [];
-
-  while (difference > 0)
-  {
-    for (var key in this.slots[slotType].equipped)
-    {
-      var item = this.slots[slotType].equipped[key];
-
-      if (item.requiredSlots === slotRequirementToDrop)
-      {
-        droppedItems.push(item.name);
-        delete this.slots[slotType].equipped[key];
-        difference -= slotRequirementToDrop;
-      }
-    }
-
-    slotRequirementToDrop--;
-  }
-
-  return droppedItems;
 }
 
 prototype.reduceFatigue = function(amount)
@@ -487,4 +492,9 @@ prototype.hasWeapon = function(id)
   }
 
   else return false;
+}
+
+prototype.getWeapon = function(id)
+{
+  return this.slots.getItem(id) || this.form.getNaturalWeapon(id);
 }

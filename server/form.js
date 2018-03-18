@@ -16,6 +16,10 @@ module.exports =
     this.name = data.name;
     this.id = data.id;
     this.cost = data.cost;
+    this.size = data.size;
+    this.area = data.area;
+    this.sizeType = data.sizeType;
+    this.stepSize = data.stepSize;
     this.maxHP = data.maxHP;
     this.mr = data.mr;
     this.morale = data.morale;
@@ -30,7 +34,7 @@ module.exports =
     this.parts = data.parts;
     this.slots = data.slots;
 
-    return obj;
+    return this;
   }
 }
 
@@ -90,13 +94,16 @@ prototype.hasNaturalWeapon = function(id)
 {
   if (this.naturalWeapons == null || this.naturalWeapons.length < 1)
   {
-    return false;
+    return null;
   }
 
-  if (this.naturalWeapons.filter(function(attack) {  return attack.id === id; }).length < 1)
+  for (var i = 0; i < this.naturalWeapons.length; i++)
   {
-    return false;
+    if (this.naturalWeapons[i].id === id)
+    {
+      return this.naturalWeapons[i];
+    }
   }
 
-  return true;
+  return null;
 }

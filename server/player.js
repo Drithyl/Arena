@@ -114,8 +114,6 @@ module.exports =
   }
 }
 
-var lullCharacter = require("./character_reviver.js").lull;
-
 function revivePlayerCharacters(player)
 {
   for (var i = 0; i < player.characters.length; i++)

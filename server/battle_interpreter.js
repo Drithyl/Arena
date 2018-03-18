@@ -1,5 +1,6 @@
 
 const locale = require("./strings.json");
+const order = require("./resolution_orders.json");
 
 module.exports =
 {
@@ -10,33 +11,17 @@ module.exports =
 
   //The outer i loop is for each attack, and the inner j loop
   //is for each strategy within each attack.
-  translateAttack: function(pack, results)
+  translateMelee: function(pack)
   {
-    var templates = [];
+    var templates = {};
 
-    for (var i = 0; i < results.length; i++)
+    for (var id in pack.results)
     {
-      templates.push([]);
+      templates[id] = [];
 
-      for (var j = 0; j < results[i].length; j++)
+      for (var i = 0; i < pack.results[id].length; i++)
       {
-        if (Object.keys(results[i][j]).length < 2)
-        {
-          //the strategy did not run, probably because neither side
-          //had the ability in question. Length < 2 because there
-          //will always be at least 1 key, the .strategy one with
-          //the name of the strategy, even if it gets returned early.
-          continue;
-        }
-
-        var tmplt = translate(pack, results[i][j]);
-
-        if (tmplt == null)
-        {
-          throw new Error("The strategy " + results[i][j].strategy + " could not be found in translate().");
-        }
-
-        templates[i].push(tmplt);
+        templates[id].push(translateAttack(pack, pack.results[id][i]));
       }
     }
 
@@ -72,9 +57,37 @@ module.exports =
   }
 }
 
-function translate(pack, result)
+function translateAttack(pack, results)
 {
-  switch(result.strategy)
+  var templates = [];
+
+  for (var i = 0; i < order.melee.length; i++)
+  {
+    var strategy = order.melee[i];
+
+    if (results[strategy] == null || Object.keys(results[strategy]).length < 1)
+    {
+      //the strategy did not run, probably because neither side
+      //had the ability in question.
+      continue;
+    }
+
+    var template = translateStrategy(pack, results[strategy], strategy);
+
+    if (template == null)
+    {
+      throw new Error("The strategy " + strategy + " could not be found in translate().");
+    }
+
+    templates.push(template);
+  }
+
+  return templates;
+}
+
+function translateStrategy(pack, result, strategy)
+{
+  switch(strategy)
   {
     case "awe":
       return awe(pack, result);
@@ -321,8 +334,7 @@ function heatAura(pack, result)
     damageInflicted: result.damageInflicted,
     damageType: result.damageType,
     target: pack.target.name,
-    shiftedShapeName: result.shiftedShapeName,
-    droppedItems: result.droppedItems
+    shiftedShapeName: result.shiftedShapeName
   }};
 
   template.string = locale.heatAura + "\n";
@@ -358,7 +370,7 @@ function applyDamageTemplate(template, result)
   template.vars.damageInflicted = result.damageInflicted;
   template.vars.damageType = result.damageType;
   template.vars.shiftedShapeName = result.shiftedShapeName;
-  template.vars.droppedItems = result.droppedItems;
+  //template.vars.droppedItems = result.droppedItems;
   template.vars.target = pack.targer.name;
   template.string = locale.damage.check + "\n";
 
@@ -378,10 +390,10 @@ function applyDamageTemplate(template, result)
   {
     template.string += locale.damage.shapeshift + "\n";
 
-    if (result.droppedItems.length > 0)
+    /*if (result.droppedItems.length > 0)
     {
       template.string += locale.damage.droppedItems + "\n";
-    }
+    }*/
   }
 
   if (result.targetKO === true)

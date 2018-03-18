@@ -1,69 +1,29 @@
 
+var prototype;
 
 module.exports =
 {
-  create: function(xStart, xEnd, yStart, yEnd)
+  Area: function(x, y, width, height)
   {
-    var obj = {};
-    obj.xStart = xStart;
-    obj.xEnd = xEnd;
-    obj.yStart = yStart;
-    obj.yEnd = yEnd;
-
-    obj.contains = function(x, y)
-    {
-      if ((x >= this.xStart && x <= this.xEnd) || ( x >= this.xEnd && x <= this.xStart))
-      {
-        if ((y >= this.yStart && y <= this.yEnd) || ( y >= this.yEnd && x <= this.yStart))
-        {
-          return true;
-        }
-      }
-
-      return false;
-    };
+    this.x = x;
+    this.width = width;
+    this.y = y;
+    this.height = height;
+    this.center = {x: Math.floor(this.width / 2), y: Math.floor(this.height / 2)};
+    return this;
   },
 
-  map: function(width, height)
+  AreaOfEffect: function(centerPosition, radius)
   {
-    var map = {width: width, height: height, tiles: []};
-
-    for (var x = 0; x < width; x++)
+    if (radius <= 0)
     {
-      map.tiles.push([]);
-
-      for (var y = 0; y < height; y++)
-      {
-        map.tiles[i].push({terrain: null, actor: null, position: {"x": x, "y": y}});
-      }
+      return this.Area(centerPosition.x, centerPosition.y, 1, 1);
     }
 
-    map.nextTo = function(p, radius = 1)
-    {
-      var arr = [];
-
-      for (var x = 0; x < this.tiles.length; x++)
-      {
-        for (var y = 0; y < this.tiles[x].length; y++)
-        {
-          var distance = this.distance(p, {"x": x, "y": y});
-
-          if (distance <= radius && distance > 0)
-          {
-            arr.push({tile: this.tiles[x][y], "distance": distance});
-          }
-        }
-      }
-
-      return arr;
-    }
-
-    //TODO: map.actors = function()
-
-    return map;
+    else return this.Area(centerPosition.x - radius, centerPosition.y - radius, radius * 2 + 1, radius * 2 + 1);
   },
 
-  isAdjacent: function(p1, p2)
+  areAdjacentPoints: function(p1, p2)
   {
     if (this.distance(p1, p2) === 1)
     {
@@ -86,3 +46,182 @@ module.exports =
     else return dist2;
   }
 }
+
+prototype = module.exports.Area.prototype;
+
+prototype.position = function()
+{
+  return {x: this.x, y: this.y};
+}
+
+prototype.globalCenter = function()
+{
+  return {x: this.x + this.center.x, y: this.y + this.center.y};
+}
+
+prototype.loopGlobal = function(fn)
+{
+  for (var i = 0; i < this.width; i++)
+  {
+    for (var j = 0; j < this.height; j++)
+    {
+      fn(i + this.x, j + this.y);
+    }
+  }
+}
+
+prototype.loopLocal = function(fn)
+{
+  for (var i = 0; i < this.width; i++)
+  {
+    for (var j = 0; j < this.height; j++)
+    {
+      fn(i, j);
+    }
+  }
+}
+
+prototype.assignPosition = function(x, y)
+{
+  this.x = x;
+  this.y = y;
+}
+
+prototype.tileNumber = function()
+{
+  return this.x * this.y;
+}
+
+prototype.tiles = function()
+{
+  var tiles = [];
+
+  this.loopGlobal(function(x, y)
+  {
+    tiles.push({x: x, y: y});
+  });
+
+  return tiles;
+}
+
+prototype.left = function()
+{
+  return this.x;
+};
+
+prototype.right = function()
+{
+  return this.x + this.width;
+};
+
+prototype.top = function()
+{
+  return this.y;
+};
+
+prototype.bottom = function()
+{
+  return this.y + this.height;
+};
+
+prototype.yAdjacent = function(area)
+{
+  if (this.top() === area.bottom() || this.bottom() === area.top())
+  {
+    return true;
+  }
+
+  else return false;
+}
+
+prototype.xAdjacent = function(area)
+{
+  if (this.left() === area.right() || this.right() === area.left())
+  {
+    return true;
+  }
+
+  else return false;
+}
+
+prototype.adjacent = function(area)
+{
+  if (this.xAdjacent(area) === true &&
+      ((this.top() >= area.top() && this.top() <= area.bottom()) ||
+       (this.bottom() >= area.top() && this.bottom() <= area.bottom())))
+  {
+    return true;
+  }
+
+  else if (this.yAdjacent(area) === true &&
+     ((this.left() >= area.left() && this.left() <= area.right()) ||
+      (this.right() >= area.left() && this.right() <= area.right())))
+  {
+    return true;
+  }
+
+  else return false;
+}
+
+prototype.distance = function(area)
+{
+  var xDistance;
+  var yDistance;
+
+  if (this.right() <= area.left())
+  {
+    xDistance = area.left() - this.right();
+  }
+
+  else xDistance = this.left() - area.right();
+
+  if (this.bottom() <= area.top())
+  {
+    yDistance = area.top() - this.bottom();
+  }
+
+  else yDistance = this.top() - area.bottom();
+
+  if (xDistance >= yDistance)
+  {
+    return xDistance;
+  }
+
+  else return yDistance;
+}
+
+prototype.intersection = function(area)
+{
+  var tilesInside = [];
+
+  this.loopGlobal(function(x, y)
+  {
+    if (this.contains(x, y) === true)
+    {
+      tilesInside.push({x: x, y: y});
+    }
+  });
+
+  return tilesInside;
+};
+
+prototype.containsArea = function(area)
+{
+  if (area.left() >= this.left() && area.right() < this.right() &&
+      area.top() >= this.top() && area.bottom() < this.bottom())
+  {
+    return true;
+  }
+
+  else return false;
+};
+
+prototype.contains = function(x, y)
+{
+  if (x >= this.left() && x < this.right() && y >= this.top() && y < this.bottom())
+  {
+    return true;
+  }
+
+  else return false;
+};

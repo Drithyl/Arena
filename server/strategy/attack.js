@@ -15,6 +15,7 @@ module.exports =
 {
   apply: function(pack, result)
   {
+		result.success = false;
     result.parry = pack.target.getTotalAttribute("parry");
     result.dualPenalty = pack.actor.getDualPenalty();
   	result.attackRoll = dice.DRN() + pack.actor.getTotalAttack(pack.data.currentWeapon) - result.dualPenalty;
@@ -33,7 +34,6 @@ module.exports =
 
 		if (result.difference < 0)
 		{
-			result.failed = true;
 			return;
 		}
 
@@ -42,6 +42,8 @@ module.exports =
 			result.isShieldHit = true;
       pack.data.isShieldHit = true;
 		}
+
+		result.success = true;
 
   	//TODO On Hit effect happens here
 		if (pack.data.currentWeapon.onHit != null && pack.data.currentWeapon.onHit.length > 0)

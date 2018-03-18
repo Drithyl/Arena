@@ -1,26 +1,14 @@
 
 const event = require("./emitter.js");
 const area = require("./area.js");
+const map = require("./map.js");
 var sm;
 var ruleset = require("./ruleset.js");
 var interpreter = require("./battle_interpreter.js");
 var playerModule;
-var battleExpireTime = 1190000;	//after this amount of time a challenge will expire.
-var challengeExpireTime = 59000;	//after this amount of time a challenge will expire.
 
-var postRoundLimit = 20;
-
-const WIDTH = 25;
-const HEIGHT = 25;
-
-var dmgXPRate = 100;
-var lifeXPRate = 85;
-var dmgXPCap = 1;
-var xpAdjCons = 10;
-var xpAdjMult = 0.5;
-var xpAdjHighCap = 2.5;
-var xpAdjLowCap = 0.25;
-var xpAdjLvlMult = 1.05;
+const WIDTH = 120;
+const HEIGHT = 120;
 
 module.exports =
 {
@@ -94,7 +82,7 @@ function listenToChallenges()
 
     module.exports.challenges[socket.username].splice(module.exports.challenges[socket.username].indexOf(data.challenger), 1);
     sm.logged[data.challenger].emit("challengeReplyResponse", {success: true, error: null});
-    createBattle([playerModule.online[data.challenger], playerModule.online[socket.username]]);
+    Battle([playerModule.online[data.challenger], playerModule.online[socket.username]]);
   });
 }
 
@@ -105,89 +93,76 @@ function listenToChallenges()
 *                   {username: "yadda", characters: {id1: character1, id2: character2, etc.}})
 */
 
-function createBattle(players)
+function Battle(players)
 {
-  var b = {};
-
-  //FUNCTIONS
-  b.verifyDeployment = verifyDeployment;
-  b.verifyOwner = verifyOwner;
-  b.verifyMovement = verifyMovement;
-  b.verifyAttack = verifyAttack;
-  b.verifyMeleeAction = verifyMeleeAction;
-  b.verifyRangedAction = verifyRangedAction;
-  b.verifySpellAction = verifySpellAction;
-  b.resolveAttack = resolveAttack;
-  b.emitBattleStartPacks = emitBattleStartPacks;
-  b.readyActors = readyActors;
-  b.getAPTurnOrder = getAPTurnOrder;
-  b.verifyMovement = verifyMovement;
-  b.endTurn = endTurn;
-  b.endBattle = endBattle;
-
-  //PROPERTIES
-  b.positions = [[]];
-  b.actors = [];
-  b.players = players;
-  b.koActors = {};
-  b.deployedPlayers = 0;
-  b.deploymentAreas = assignDeploymentAreas(players[0], players[1]);
-  b.width = WIDTH;
-  b.height = HEIGHT;
-  b.turn = 1;
-  b.round = 1;
-  b.map = area.map(WIDTH, HEIGHT);
-  b.order = b.getAPTurnOrder(20);
+  this.positions = {};
+  this.characters = [];
+  this.players = players;
+  this.koCharacters = {};
+  this.deployedPlayers = 0;
+  this.deploymentAreas = assignDeploymentAreas(players[0], players[1]);
+  this.turn = 1;
+  this.round = 1;
+  this.map = map.Map(WIDTH, HEIGHT);
+  this.order = this.getAPTurnOrder(20);
 
   //INIT
   for (var i = 0; i < players.length; i++)
   {
     //STORING THE BATTLE UNDER EACH PLAYER'S USERNAME
     module.exports.list[players[i].username] = b;
-    b.koActors[players[i].username] = [];
+    this.koCharacters[players[i].username] = [];
 
     for (var j = 0; j < players[i].characters.length; j++)
     {
-      b.actors.push(players[i].characters[j]);
+      this.characters.push(players[i].characters[j]);
     }
 
-    sm.logged[players[i].username].emit("deploymentPhase", {size: {x: b.map.length, y: b.map[0].length}, area: b.deploymentAreas[players[i].username]});
+    sm.logged[players[i].username].emit("deploymentPhase", {size: {x: this.map.length, y: this.map[0].length}, area: this.deploymentAreas[players[i].username]});
 
     sm.listenMany(players, "deployment", function(data, socket)
     {
-      b.verifyDeployment(playerModule.playerList[socket.username], data.characters);
+      this.verifyDeployment(playerModule.playerList[socket.username], data.characters);
 
-      if (b.deployedPlayers >= b.players.length)
+      if (this.deployedPlayers >= this.players.length)
       {
         //battle start!
-        b.emitBattleStartPacks();
-        sm.listenMany(b.players, "movement", function(data, socket)
+        this.emitBattleStartPacks();
+        sm.listenMany(this.players, "movement", function(data, socket)
         {
-          b.resolveMovement(data, socket);
+          this.processMovement(data, socket);
         });
 
-        sm.listenMany(b.players, "attack", function(data, socket)
+        sm.listenMany(this.players, "attack", function(data, socket)
         {
-          b.resolveAttack(data, socket);
+          if (data.action === "melee")
+          {
+            this.processMelee(data);
+          }
+
+          else if (data.action === "ranged")
+          {
+            this.processRanged(data);
+          }
+
+          else if (data.action === "spell")
+          {
+            this.processSpell(data);
+          }
         });
 
-        sm.listenMany(b.players, "endTurn", function(data, socket)
+        sm.listenMany(this.players, "endTurn", function(data, socket)
         {
-          b.endTurn(data, socket);
+          this.processEndTurn(data, socket);
         });
       }
     });
-
-    sm.logged[players[i].username].on("deployment", function(data)
-    {
-
-    });
   }
 
-  b.readyActors();
+  this.readyCharacters();
 }
 
-function verifyDeployment(player, characters)
+Battle.prototype.verifyDeployment = function(player, characters)
 {
   var area = this.deploymentAreas[player.username];
 
@@ -205,30 +180,30 @@ function verifyDeployment(player, characters)
       return;
     }
 
-    else if (this.map[characters[i].position.x][characters[i].position.y].actor != null)
+    else if (this.map[characters[i].position.x][characters[i].position.y].character != null)
     {
       sm.logged[player.username].emit("deploymentResponse", {success: false, error: "You can't place more than one character in the same tile."});
       return;
     }
 
-    player.characters[characters[i].id].battle.position = characters[i].position;
+    player.characters[characters[i].id].battle.area = characters[i].position;
     this.positions[characters[i].id] = characters[i].position;
-    this.map[characters[i].position.x][characters[i].position.y].actor = characters[i];
+    this.map[characters[i].position.x][characters[i].position.y].character = characters[i];
     sm.logged[player.username].emit("deploymentResponse", {success: true, error: null});
   }
 
   this.deployedPlayers++;
 }
 
-function assignDeploymentAreas(p1, p2)
+Battle.prototype.assignDeploymentAreas = function(p1, p2)
 {
   var obj = {};
-  obj[p1.username] = area.create(0, WIDTH, 0, 2);
-  obj[p2.username] = area.create(0, WIDTH, HEIGHT - 2, HEIGHT);
+  obj[p1.username] = area.Area(0, 0, WIDTH, 3);
+  obj[p2.username] = area.Area(0, HEIGHT - 3, WIDTH, HEIGHT);
   return obj;
 }
 
-function verifyOwner(data, socket)
+Battle.prototype.verifyOwner = function(data)
 {
   if (data.character.id != this.order[0])
   {
@@ -248,204 +223,102 @@ function verifyOwner(data, socket)
     throw new Error("This isn't a valid character for you to control.");
   }
 
-  if (this.koActors[data.username].includes(data.character.id) === true)
+  if (this.koCharacters[data.username].includes(data.character.id) === true)
   {
     //KOed character
     throw new Error("This character is knocked out.");
   }
 }
 
-function resolveMovement(data, socket)
+Battle.prototype.processMovement = function(data, socket)
 {
+  var actor = this.players[socket.username].characters[data.id];
+
   try
   {
-    this.verifyMovement(data, socket);
-
-    //delete old position
-    delete this.map[data.character.position.x][data.character.position.y].actor;
-
-    //store new position
-    this.positions[data.character.id] = data.character.position;
-    this.map[data.character.position.x][data.character.position.y].actor = this.players[data.username].characters[data.character.id];
-    socket.emit("ResolvedMovement", {actor: data.character.id, position: data.character.position});
+    this.verifyOwner(data);
+    ruleset.move(actor, map, data.position);
+    this.positions[data.id] = data.position;
   }
 
   catch(err)
   {
-    socket.emit("InvalidMovement", err);
+    socket.emit("movementResponse", {success: false, error: err, characterID: null, position: null});
   }
+
+  socket.emit("movementResponse", {success: true, error: null, characterID: data.id, position: data.position});
+  sm.emitMany(this.players.filter(function(player) {return player.username != socket.username;}), "movementBroacast", {characterID: data.id, position: data.position});
 }
 
-function verifyMovement(data, socket)
+Battle.prototype.processMelee = function(data, socket)
 {
-  var serverChar;
+  var resolvedPack;
+  var translatedPack;
+  var actor = this.players[socket.username].characters[data.character.id];
+  //var target = this.players[data.target.player].characters[data.target.id];
 
   try
   {
-    this.verifyOwner(data, socket);
-
-    if (data.character.position.x > b.width || data.character.position.x > b.height)
-    {
-      //moved out of bounds
-      throw new Error("A character cannot move outside the battle space.");
-    }
-
-    if (area.distance(serverChar.battle.position, data.character.position) > serverChar.ap)
-    {
-      //too much movement
-      throw new Error("This character cannot move this far.");
-    }
-
-    if (this.map[data.character.position.x][data.character.position.y].actor != null)
-    {
-      throw new Error("This space is already occupied by another character.");
-    }
+    this.verifyOwner(data);
+    resolvedPack = ruleset.melee(actor, data.targetPosition, data.weapons, this.map);
+    translatedPack = interpreter.translateMelee(resolvedPack);
+    //TODO map packages to players depending on which characters show up in the results
   }
 
   catch(err)
   {
-    throw err;
+    socket.emit("attackResponse", {success: false, error: err});
   }
+
+  //socket.emit("attackResponse", {success: true, error: null});
+  sm.emitMany(this.players, "attackBroadcast", translatedPack);
+  sm.logged[data.target.player].emit("")
 }
 
-function resolveAttack(data, socket)
+Battle.prototype.processRanged = function(data, socket)
 {
-  try
-  {
-    var verifiedPack = this.verifyAttack(data, socket);
-    var resolvedPack = ruleset.resolveAttack(verifiedPack);
-    var translatedPack = interpreter.translateAttack(resolvedPack);
-    socket.emit("ResolvedAttack", translatedPack);
-  }
-
-  catch(err)
-  {
-    socket.emit("InvalidAttack", err);
-  }
-}
-
-function verifyAttack(data, socket)
-{
-  var actionFunctions = {};
-
-  try
-  {
-    this.verifyOwner(data, socket);
-
-    if (this.actors.filter(function(char) {  return char.id == data.target.id;  }).length <= 0)
-    {
-      //wrong target
-      throw new Error("The target does not exist.");
-    }
-
-    if (this.order[0].actor.player == data.target.player)
-    {
-      //wrong target (friendly)
-      throw new Error("You cannot target one of your own characters.");
-    }
-
-    if (data.action === "melee")
-    {
-      return this.verifyMeleeAction(data, socket);
-    }
-
-    else if (data.action === "ranged")
-    {
-      return this.verifyRangedAction(data, socket);
-    }
-
-    else if (data.action === "spell")
-    {
-      return this.verifySpellAction(data, socket);
-    }
-
-    else throw new Error("The attack does not seem to be a melee, ranged or spell one.");
-  }
-
-  catch(err)
-  {
-    throw err;
-  }
-}
-
-function verifyMeleeAction(data, socket)
-{
-  var actor = this.players[data.username].characters[data.character.id];
+  var resolvedPack;
+  var translatedPack;
+  var actor = this.players[socket.username].characters[data.character.id];
   var target = this.players[data.target.player].characters[data.target.id];
-  var distance = area.distance(serverChar.battle.position, data.character.position);
-  var filter = filterWeapons(data.weapons, actor, target, distance);
-  var reqAPs;
 
-  if (filter.accepted.length <= 0)
+  try
   {
-    throw new Error("None of the weapons can reach, affect or harm this target.");
+    this.verifyOwner(data);
+    resolvedPack = ruleset.ranged(actor, target, data.weapon);
+    translatedPack = interpreter.translateAttack(resolvedPack);
   }
 
-  reqAPs = ruleset.calculateRequiredAPs(filter.accepted, actor);
-
-  if (actor.battle.ap < reqAPs)
+  catch(err)
   {
-    throw new Error(`Not enough APs to make these attacks. The total AP cost is ${reqAPs}, but this character only has ${actor.battle.ap} left.`);
+    socket.emit("attackResponse", {success: false, error: err, });
   }
 
-  return {"type": "melee", "battle": this, "actor": actor, "target": target, "distance": distance, weapons: filter, data: {}};
+  socket.emit("attackResponse", {success: true, error: null, });
+  sm.emitMany(this.players.filter(function(player) {return player.username != socket.username;}), "attackBroadcast", translatedPack);
 }
 
-function verifyRangedAction(data, socket)
-{
-  actor = this.players[data.username].characters[data.character.id];
-  target = this.players[data.target.player].characters[data.target.id];
-  weapons = actor.battle.equippedWpns.filter(function(wpn)
-  {
-    return wpn.range >= area.distance(serverChar.battle.position, data.character.position);
-  });
-
-  if (weapons.length <= 0)
-  {
-    //no equipped weapon has enough range
-    socket.emit("InvalidRange", "No equipped weapon has enough range to hit this target.");
-    return;
-  }
-
-  weapons = weapons.filter(function(wpn)
-  {
-    return wpn.categories.includes("Ranged") === true;
-  });
-
-  if (weapons.length <= 0)
-  {
-    //no equipped weapon has enough range
-    socket.emit("InvalidType", "No equipped weapon is a ranged weapon.");
-    return;
-  }
-
-  //TODO verify immunities (req_life attacks against lifeless, etc.)
-
-  //resolve attack here calling upon the ruleset
-  ruleset.ranged(data.character, data.target, weapons);
-}
-
-function endTurn(data, socket)
+Battle.prototype.processEndTurn = function(data, socket)
 {
   var actor = this.players[data.username].characters[data.character.id];
-  var pack = {"actor": actor, battle: this, characters: this.actors, "map": this.map, data: {}};
+  var pack = {"actor": actor, battle: this, characters: this.characters, "map": this.map, data: {}};
   var resolvedPack = ruleset.endTurn(pack);
 
   for (var i = 0; i < this.players; i++)
   {
     var player = this.players[i];
 
-    if (this.koActors[player.username].length >= player.characters.length)
+    if (this.koCharacters[player.username].length >= player.characters.length)
     {
       //battle ends
-      this.endBattle();
+      this.processEndBattle();
       return;
     }
   }
 
   this.turn++;
 
-  if (this.turn % this.actors.length === 0)
+  if (this.turn % this.characters.length === 0)
   {
     this.round++;
   }
@@ -454,81 +327,12 @@ function endTurn(data, socket)
   socket.emit("startTurn", this.order);
 }
 
-function endBattle()
+Battle.prototype.processEndBattle = function()
 {
   //TODO
 }
 
-function filterWeapons(weapons, actor, target, distance)
-{
-  var verified = [];
-  var rejected = [];
-
-  for (var i = 0; i < weapons.length; i++)
-  {
-    var attacks = actor.getAttacks(weapons[i]);
-
-    if (attacks == null || attacks.length < 1)
-    {
-      rejected.push({weapon: weapons[i], reason: "This weapon id is not valid."});
-      continue;
-    }
-
-    verified.push(attacks[0]);
-  }
-
-  verified = verified.filter(function(wpn)
-  {
-    if (wpn.range < distance)
-    {
-      rejected.push({weapon: wpn.name, reason: "This weapon does not have enough range to hit this target."});
-    }
-
-    else return wpn;
-  });
-
-  verified = verified.filter(function(wpn)
-  {
-    if (wpn.categories.includes("melee") === false)
-    {
-      rejected.push({weapon: wpn.name, reason: "This weapon is a melee weapon."});
-    }
-
-    else return wpn;
-  });
-
-  verified = verified.filter(function(wpn)
-  {
-    if (wpn.properties.includes("requiresLife") === true && target.properties.includes("lifeless") === true)
-    {
-      rejected.push({weapon: wpn.name, reason: "This weapon does not work against lifeless targets."});
-    }
-
-    else return wpn;
-  });
-
-  verified = verified.filter(function(wpn)
-  {
-    if (wpn.properties.includes("requiresMind") === true && target.properties.includes("mindless") === true)
-    {
-      rejected.push({weapon: wpn.name, reason: "This weapon does not work against mindless targets."});
-    }
-
-    else return wpn;
-  });
-
-  return {rejected: rejected, accepted: verified};
-}
-
-//TODO
-function verifySpellAction(data, socket)
-{
-  actor = this.players[data.username].characters[data.character.id];
-  target = this.players[data.target.player].characters[data.target.id];
-  spell;
-}
-
-function emitBattleStartPacks()
+Battle.prototype.emitBattleStartPacks = function()
 {
   for (var i = 0; i < this.players.length; i++)
   {
@@ -556,26 +360,26 @@ function emitBattleStartPacks()
   }
 }
 
-function readyActors()
+Battle.prototype.readyCharacters = function()
 {
-  for (var i = 0; i < this.actors.length; i++)
+  for (var i = 0; i < this.characters.length; i++)
   {
-    this.actors[i].battleReady();
+    this.characters[i].readyForBattle();
   }
 }
 
-function getAPTurnOrder(turns)
+Battle.prototype.getAPTurnOrder = function(turns)
 {
   var order = [];
-  var actorSpeeds = [];
+  var characterSpeeds = [];
   var index = 0;
 
-  for (var i = 0; i < this.actors.length; i++)
+  for (var i = 0; i < this.characters.length; i++)
   {
-    actorSpeeds[i] = {"actor": this.actors[i], "speed": this.actors[i].ap};
+    characterSpeeds[i] = {"character": this.characters[i], "speed": this.characters[i].ap};
   }
 
-  actorSpeeds = actorSpeed.sort(function(a, b)
+  characterSpeeds = characterSpeeds.sort(function(a, b)
   {
     if (b.ap === a.ap)
     {
@@ -588,33 +392,33 @@ function getAPTurnOrder(turns)
 
   for (var i = 0; i < turns; i++)
   {
-    order.push(this.actors[index].id);
-    ++index.wrap(this.actors.length - 1);
+    order.push(this.characters[index].id);
+    ++index.wrap(this.characters.length - 1);
   }
 
   return order;
 }
 
-function getTickTurnOrder(turns)
+Battle.prototype.getTickTurnOrder = function(turns)
 {
   var order = [];
-  var actorSpeeds = [];
+  var characterSpeeds = [];
 
   //create a virtual "current speed" meter and simulate several turns, to generate
-  //the future order. The function returns an array of actors (the character objects)
+  //the future order. The function returns an array of characters (the character objects)
   //in the proper turn order for a given length of turns. It does so by increasing
-  //the current speed meter and then sorting the actorSpeeds array and grabbing the
-  //resulting first one each turn, since that will be the faster actor.
-  for (var i = 0; i < this.actors.length; i++)
+  //the current speed meter and then sorting the characterSpeeds array and grabbing the
+  //resulting first one each turn, since that will be the faster character.
+  for (var i = 0; i < this.characters.length; i++)
   {
-    actorSpeeds[i] = {"actor": this.actors[i], "speed": this.actors[i].speed, "currSpeed": 0};
+    characterSpeeds[i] = {"character": this.characters[i], "speed": this.characters[i].speed, "currSpeed": 0};
   }
 
   for (var i = 0; i < turns; i++)
   {
-    for (var j = 0; j < this.actors.length; j++)
+    for (var j = 0; j < this.characters.length; j++)
     {
-      order.push(actorSpeeds.sort(function(a, b)
+      order.push(characterSpeeds.sort(function(a, b)
       {
         if (a.currSpeed == b.currSpeed && a.speed > b.speed)
         {
@@ -627,9 +431,9 @@ function getTickTurnOrder(turns)
         }
 
         else return a.currSpeed - b.currSpeed;
-      })[0].actor);
+      })[0].character);
 
-      actorSpeeds[0].currSpeed += actorSpeeds[0].speed;
+      characterSpeeds[0].currSpeed += characterSpeeds[0].speed;
     }
   }
 

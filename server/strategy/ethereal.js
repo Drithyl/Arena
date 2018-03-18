@@ -10,9 +10,11 @@ module.exports =
       return;
     }
 
-    if (Math.floor((Math.random() * 100)) + 1 <= etherealChance)
+    result.success = false;
+
+    if (Math.floor((Math.random() * 100)) + 1 > etherealChance)
     {
-      result.failed = true;
+      result.success = true;
     }
   }
 }

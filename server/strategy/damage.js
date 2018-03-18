@@ -7,23 +7,23 @@ module.exports =
   apply: function(pack, result)
   {
     var weapon = pack.data.currentWeapon;
+    result.success = false;
 
     damageCheck(weapon, pack, result);
 
     if (result.finalDamage <= 0)
     {
-      result.failed = true;
       return;
     }
 
     if (pack.target.battle.status.twistFate != null)
     {
       result.twistFate = true;
-      result.failed = true;
       delete pack.target.battle.status.twistFate;
       return;
     }
 
+    result.success = true;
   	inflictDamage(pack, result, weapon.properties.includes("stun"));
 
     if (pack.data.canAfflict === true)
@@ -31,13 +31,6 @@ module.exports =
       affliction.apply(weapon, pack, result);
     }
 
-    //TODO On Damage effect happens here
-    if (pack.data.currentWeapon.onDamage != null && pack.data.currentWeapon.onDamage.length > 0)
-    {
-
-    }
-
-    //TODO Check if KO happens
     if (pack.target.currentHP <= 0)
     {
       result.targetKO = true;
@@ -88,15 +81,14 @@ function damageCheck(weapon, pack, result)
 
   if (result.damageScore <= 0)
   {
-    result.finalDamage = result.damageScore;
-    pack.data.finalDamage = result.finalDamage;
-    return;
+    result.damageScore = 0;
+    pack.data.damageScore =0;
   }
 
 	if (result.damageType == "web")
 	{
-		result.finalDamage = data.actor.size();
-    pack.data.finalDamage = result.finalDamage;
+		result.damageScore = data.actor.size() + weapon.damage;
+    pack.data.damageScore = result.damageScore;
     return;
 	}
 
@@ -165,6 +157,8 @@ function inflictDamage(pack, result, isStun)
   if (type == "web")
 	{
 		pack.target.battle.status.web = pack.data.finalDamage;
+    pack.data.damageInflicted = pack.data.finalDamage;
+    return;
 	}
 
 	else if (type == "stun" || isStun === true)
@@ -172,38 +166,40 @@ function inflictDamage(pack, result, isStun)
     var res = pack.target.addFatigue(pack.data.finalDamage);
     result.damageInflicted = res.fatigueDamage;
     result.fatigueInflicted = res.fatigueAdded;
+    pack.data.damageInflicted = result.damageInflicted;
+    pack.data.fatigueInflicted = result.damageInflicted;
+    return;
 	}
 
 	else if (type == "poison")
 	{
 		pack.target.battle.status.poison = ((pack.target.battle.status.poison || 0) + pack.data.finalDamage).cap(Math.floor(pack.target.maxHP));
     result.damageInflicted = pack.target.battle.status.poison - pack.data.finalDamage;
-	}
-
-	else if (type == "cold" || type == "fire")
-	{
-    Object.assign(result, pack.target.reduceHP(pack.data.finalDamage));
     pack.data.damageInflicted = result.damageInflicted;
-    pack.data.canAfflict = true;
-    pack.data.ignited = pack.target.ignite(pack, result);
+    return;
 	}
 
 	else if (type == "paralysis")
 	{
 		result.damageInflicted = calculateParalysis(pack.data.finalDamage, pack.target);
+    pack.data.damageInflicted = result.damageInflicted;
 
 		if (result.damageInflicted > 0)
 		{
 			pack.target.battle.status.paralysis = pack.target.battle.status.paralysis + result.damageInflicted || result.damageInflicted;
 		}
+
+    return;
 	}
 
-	else
+  else if (type == "cold" || type == "fire")
 	{
-    Object.assign(result, pack.target.reduceHP(pack.data.finalDamage));
-    pack.data.damageInflicted = result.damageInflicted;
-    pack.data.canAfflict = true;
+    pack.data.ignited = pack.target.ignite(pack, result);
 	}
+
+  result.damageInflicted = pack.target.reduceHP(pack.data.finalDamage);
+  pack.data.damageInflicted = result.damageInflicted;
+  pack.data.canAfflict = true;
 }
 
 function calculateParalysis(damage, target)
