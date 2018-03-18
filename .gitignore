@@ -1,6 +1,8 @@
 *.ini
 *.bat
 *.txt
+*.tmp
+*.rtf
 testapp.js
 module1.js
 module2.js
