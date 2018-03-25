@@ -8,13 +8,13 @@ module.exports =
       return;
     }
 
-    result.failed = false;
+    result.success = false;
     result.moraleRoll = dice.DRN() + getTotalMorale(pack.actor);
     result.aweRoll = dice.DRN() + 10 + pack.target.abilities.awe;
 
-    if (result.moraleRoll <= result.aweRoll)
+    if (result.moraleRoll > result.aweRoll)
     {
-      result.failed = true;
+      result.success = true;
     }
   }
 }

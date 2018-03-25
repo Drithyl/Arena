@@ -1,88 +1,101 @@
 
+var prototype;
 
 module.exports =
 {
-  create: function(xStart, xEnd, yStart, yEnd)
+  create: function(x, y, width, height)
   {
-    var obj = {};
-    obj.xStart = xStart;
-    obj.xEnd = xEnd;
-    obj.yStart = yStart;
-    obj.yEnd = yEnd;
-
-    obj.contains = function(x, y)
-    {
-      if ((x >= this.xStart && x <= this.xEnd) || ( x >= this.xEnd && x <= this.xStart))
-      {
-        if ((y >= this.yStart && y <= this.yEnd) || ( y >= this.yEnd && x <= this.yStart))
-        {
-          return true;
-        }
-      }
-
-      return false;
-    };
-  },
-
-  map: function(width, height)
-  {
-    var map = {width: width, height: height, tiles: []};
-
-    for (var x = 0; x < width; x++)
-    {
-      map.tiles.push([]);
-
-      for (var y = 0; y < height; y++)
-      {
-        map.tiles[i].push({terrain: null, actor: null, position: {"x": x, "y": y}});
-      }
-    }
-
-    map.nextTo = function(p, radius = 1)
-    {
-      var arr = [];
-
-      for (var x = 0; x < this.tiles.length; x++)
-      {
-        for (var y = 0; y < this.tiles[x].length; y++)
-        {
-          var distance = this.distance(p, {"x": x, "y": y});
-
-          if (distance <= radius && distance > 0)
-          {
-            arr.push({tile: this.tiles[x][y], "distance": distance});
-          }
-        }
-      }
-
-      return arr;
-    }
-
-    //TODO: map.actors = function()
-
-    return map;
-  },
-
-  isAdjacent: function(p1, p2)
-  {
-    if (this.distance(p1, p2) === 1)
-    {
-      return true;
-    }
-
-    else return false;
-  },
-
-  distance: function(p1, p2)
-  {
-    var dist1 = Math.abs(p1[0] - p2[0]);
-    var dist2 = Math.abs(p1[1] - p2[1]);
-
-    if (dist1 > dist2)
-    {
-      return dist1;
-    }
-
-    else return dist2;
+    this.x = x;
+    this.width = width;
+    this.y = y;
+    this.height = height;
+    this.center = {x: Math.floor(this.width / 2), y: Math.floor(this.height / 2)};
+    return this;
   }
 }
+
+prototype = module.exports.create.prototype;
+
+prototype.position = function()
+{
+  return {x: this.x, y: this.y};
+}
+
+prototype.globalCenter = function()
+{
+  return {x: this.x + this.center.x, y: this.y + this.center.y};
+}
+
+prototype.assignPosition = function(p)
+{
+  this.x = p.x;
+  this.y = p.y;
+}
+
+prototype.left = function()
+{
+  return this.x;
+};
+
+prototype.right = function()
+{
+  return this.x + this.width;
+};
+
+prototype.top = function()
+{
+  return this.y;
+};
+
+prototype.bottom = function()
+{
+  return this.y + this.height;
+};
+
+prototype.distance = function(area)
+{
+  var xDistance;
+  var yDistance;
+
+  if (this.right() <= area.left())
+  {
+    xDistance = area.left() - this.right();
+  }
+
+  else xDistance = this.left() - area.right();
+
+  if (this.bottom() <= area.top())
+  {
+    yDistance = area.top() - this.bottom();
+  }
+
+  else yDistance = this.top() - area.bottom();
+
+  if (xDistance >= yDistance)
+  {
+    return xDistance;
+  }
+
+  else return yDistance;
+}
+
+prototype.containsArea = function(area)
+{
+  if (area.left() >= this.left() && area.right() < this.right() &&
+      area.top() >= this.top() && area.bottom() < this.bottom())
+  {
+    return true;
+  }
+
+  else return false;
+};
+
+prototype.contains = function(x, y)
+{
+  if (x >= this.left() && x < this.right() && y >= this.top() && y < this.bottom())
+  {
+    return true;
+  }
+
+  else return false;
+};

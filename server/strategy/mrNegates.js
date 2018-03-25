@@ -8,14 +8,14 @@ module.exports =
 			return;
 		}
 
+    result.success = false;
 		result.penetrationRoll = dice.DRN() + 10;
 		result.mrRoll = dice.DRN() + pack.target.getTotalMR();
 		result.difference = result.penetrationRoll - result.mrRoll;
 
-		if (result.difference < 0)
+		if (result.difference >= 0)
 		{
-			result.fail = true;
-			return;
+			result.success = true;
 		}
   }
 }

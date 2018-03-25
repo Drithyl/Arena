@@ -1,21 +1,16 @@
 
 const dice = require("./dice.js");
-var content;
 var prototype;
 
 module.exports =
 {
-  init: function(contentModule)
-  {
-    content = contentModule;
-    return this;
-  },
-
-  Form: function(data)
+  create: function(data)
   {
     this.name = data.name;
     this.id = data.id;
     this.cost = data.cost;
+    this.size = data.size;
+    this.sizeType = data.sizeType;
     this.maxHP = data.maxHP;
     this.mr = data.mr;
     this.morale = data.morale;
@@ -24,17 +19,18 @@ module.exports =
     this.defence = data.defence;
     this.precision = data.precision;
     this.ap = data.ap;
+    this.mp = data.mp;
     this.paths = data.paths;
     this.properties = data.properties;
     this.abilities = data.abilities;
     this.parts = data.parts;
     this.slots = data.slots;
 
-    return obj;
+    return this;
   }
 }
 
-prototype = module.exports.Form.prototype;
+prototype = module.exports.create.prototype;
 
 prototype.hasProperty = function(key)
 {
@@ -90,13 +86,16 @@ prototype.hasNaturalWeapon = function(id)
 {
   if (this.naturalWeapons == null || this.naturalWeapons.length < 1)
   {
-    return false;
+    return null;
   }
 
-  if (this.naturalWeapons.filter(function(attack) {  return attack.id === id; }).length < 1)
+  for (var i = 0; i < this.naturalWeapons.length; i++)
   {
-    return false;
+    if (this.naturalWeapons[i].id === id)
+    {
+      return this.naturalWeapons[i];
+    }
   }
 
-  return true;
+  return null;
 }

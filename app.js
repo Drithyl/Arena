@@ -1,3 +1,6 @@
+
+"use strict";
+
 require("./server/prototype_functions.js");
 var express = require ("express");
 var app = express();
@@ -6,7 +9,6 @@ var io = require("socket.io")(serv, {});
 var rw;
 var sm;
 var battle;
-var characterModule;
 var characterCreator;
 var playerModule;
 var content;
@@ -17,6 +19,7 @@ var spawn = require('child_process').spawn;
 var mongo = require("mongodb");
 var db;
 var wasLaunchedCorrectly = false;
+
 
 app.get("/", function (req, res)
 {
@@ -62,7 +65,7 @@ io.sockets.on("connection", function(socket)
 		signUp(data, socket);
 	});
 
-	socket.on("charactersCreated", function(data)
+	socket.on("characterCreated", function(data)
 	{
 		verifyCharacters(data, socket);
 	});
@@ -102,25 +105,26 @@ function initializeServer(cb)
   sm = require("./server/socket_manager.js").init(io);
 	content = require("./server/content.js").init(rw.readContent());
   characterCreator = require("./server/character_creator.js").init(content);
-  characterModule = require("./server/character.js").init(content);
 
 	db.find("players", {}, function(err, playersFetched)
 	{
 		if (err)
 		{
-			cb("CRITICAL ERROR, server launch corrupted: " + err.name + ": in initializeServer(): " + err.message);
+			cb("CRITICAL ERROR, server launch failed: " + err.name + ": in initializeServer(): " + err.message);
 			return;
 		}
 
+    playerModule = require("./server/player.js").init(db, playersFetched, characterCreator);
+    battle = require("./server/battle.js").init(sm, playerModule);
+
 		try
 		{
-      playerModule = require("./server/player.js").init(db, playersFetched, characterModule, characterCreator);
-      battle = require("./server/battle.js").init(sm, playerModule);
+
 		}
 
 		catch(err)
 		{
-			cb("CRITICAL ERROR, server launch corrupted: " + err.name + ": in playerModule.init(): " + err.message, null);
+			cb("CRITICAL ERROR, server launch failed: " + err.name + ": in playerModule.init(): " + err.message, null);
 			return;
 		}
 
@@ -162,12 +166,8 @@ function signIn(data, socket)
       return;
     }
 
-    if (Object.keys(playerModule.playersList[data.username].characters).length === 4)
-    {
-      setPlayerOnline(data.username, socket);
-    }
-
     socket.username = data.username;
+    setPlayerOnline(data.username, socket);
     socket.emit("signInResponse", {success: true, player: playerModule.playersList[data.username], formulas: formulas.startingPoints});
 	});
 }
@@ -222,18 +222,18 @@ function setPlayerOnline(username, socket)
   socket.broadcast.emit("playerJoined", {username: username});
 }
 
-function verifyCharacters(data, socket)
+function verifyCharacter(data, socket)
 {
   playerModule.register(data.player, function(err, res)
   {
     if (err)
     {
-      socket.emit("charactersCreatedResponse", {success: false, error: err.name + ": in verifyCharacters(): " + err.message});
+      socket.emit("characterCreatedResponse", {success: false, error: err.name + ": in verifyCharacter(): " + err.message});
 			return;
     }
 
     setPlayerOnline(socket.username, socket);
-    socket.emit("charactersCreatedResponse", {success: true, error: null});
+    socket.emit("characterCreatedResponse", {success: true, error: null});
   });
 }
 

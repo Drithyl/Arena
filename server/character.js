@@ -2,66 +2,71 @@
 const dice = require("./dice.js");
 //const affliction = require("./affliction.js");
 const ruleset = require("./ruleset.js");
-var formModule;
-var slotsModule;
-var content;
+const formModule = require("./form.js");
+const slotsModule = require("./slots.js");
+var circle = require("./math/circle.js");
 var prototype;
 
 module.exports =
 {
-  init: function(contentModule)
+  create: function(data)
   {
-    content = contentModule;
-    formModule = require("./form.js").init(contentModule);
-    slotsModule = require("./slots.js").init(contentModule);
-    return this;
-  },
-
-  Character: function(data)
-  {
+    //Required values, whether it's a new character or a revived one
     this.name = data.name;
     this.id = data.id;
     this.player = data.username;
-    this.level = data.level;
-    this.transitionPoints = data.transitionPoints;
     this.maxHP = data.maxHP;
-    this.currentHP = data.currentHP;
     this.mr = data.mr;
     this.morale = data.morale;
     this.strength = data.strength;
-    this.attack = data.attack;
-    this.defence = data.defence;
-    this.precision = data.precision;
-    this.ap = data.ap;
-    this.afflictions = data.afflictions;
-    this.paths = data.paths;
-    this.properties = data.properties;
-    this.abilities = data.abilities;
-    this.parts = data.parts;
 
-    this.form = formModule.Form(data.form);
-    this.formIndex = data.formIndex;
+    //Optional values; new characters will only have the default values here,
+    //whereas revived characters will load their own
+    this.level = data.level || 0;
+    this.transitionPoints = data.transitionPoints || 0;
+    this.currentHP = data.currentHP || this.getTotalAttribute("maxHP");
+    this.attack = data.attack || 0;
+    this.defence = data.defence || 0;
+    this.precision = data.precision || 0;
+    this.ap = data.ap || 0;
+    this.mp = data.mp || 0;
+    this.afflictions = data.afflictions || null;
+    this.paths = data.paths || null;
+    this.properties = data.properties || null;
+    this.abilities = data.abilities || null;
+
+    //Temporary values (battle-related values) that will always be at a default
+    //state when the character is loaded up
+    this.fatigue = 0;
+    this.statusEffects = {harassment: 0};
+    this.apLeft = this.getTotalAttribute("ap");
+    this.mpLeft = this.getTotalAttribute("mp");
+    this.area = circle.create(0, 0, this.size());
+
+    //Form-related values. The form itself will always come with data from
+    //the character_creator.js or simply the loaded data, and will be
+    //revived with the appropriate functions in the formModule
+    this.formIndex = data.formIndex || 0;
+    this.form = formModule.create(data.form);
 
     for (var i = 0; i < data.formList.length; i++)
     {
-      this.formList[i] = formModule.Form(data.formList[i]);
+      this.formList[i] = formModule.create(data.formList[i]);
     }
 
-    character.slots = slotsModule.Slots(data.slots);
-    return this;
+    //Slots object. A new character will come with a null data.slots,
+    //in which case the slotsModule will create a new object with
+    //the form's default values. Otherwise it will load up the data
+    //from data.slots
+    this.slots = slotsModule.create(this, data.slots);
   }
 }
 
-prototype = module.exports.Character.prototype;
+prototype = module.exports.create.prototype;
 
-prototype.battleReady = function()
+prototype.readyForBattle = function()
 {
-  this.battle = {};
-  this.battle.position = {};
-  this.battle.fatigue = 0;
-  this.battle.status = {};
-  this.battle.status.harassment = 0;
-  this.battle.ap = this.getTotalAttribute("ap");
+
 }
 
 prototype.giveEnemyData = function()
@@ -72,7 +77,9 @@ prototype.giveEnemyData = function()
   data.player = this.player;
   data.level = this.level;
   data.form = this.form.name;
-  data.size = size(t);
+  data.size = this.size();
+  data.sizeType = this.sizeType();
+  data.position = {x: this.area.x, y: this.area.y};
   data.slots = {};
 
   for (var slot in this.slots)
@@ -89,9 +96,19 @@ prototype.giveEnemyData = function()
   return data;
 }
 
+prototype.postAttackData = function()
+{
+
+}
+
 prototype.size = function()
 {
   return this.form.size;
+}
+
+prototype.sizeType = function()
+{
+  return this.form.sizeType;
 }
 
 prototype.ignite = function(pack, result)
@@ -106,12 +123,12 @@ prototype.ignite = function(pack, result)
 
 	if (pack.damageType === "fire")
 	{
-		this.battle.status.fire = true;
+		this.statusEffects.fire = true;
 	}
 
 	else if (pack.damageType === "cold")
 	{
-		this.battle.status.cold = true;
+		this.statusEffects.cold = true;
 	}
 
   return true;
@@ -120,20 +137,20 @@ prototype.ignite = function(pack, result)
 prototype.addFatigue = function(amount)
 {
   var result = {fatigueAdded: amount, damage: 0};
-  this.battle.status.fatigue += amount;
+  this.fatigue += amount;
 
-  if (this.battle.status.fatigue > 200)
+  if (this.fatigue > 200)
   {
-    result.fatigueAdded -= this.battle.status.fatigue - 200;
-    result.fatigueDamage = Math.floor((this.battle.status.fatigue - 200) / 5);
-    this.battle.status.fatigue = 200;
+    result.fatigueAdded -= this.fatigue - 200;
+    result.fatigueDamage = Math.floor((this.fatigue - 200) / 5);
+    this.fatigue = 200;
     this.reduceHP(result.fatigueDamage);
   }
 
-  if (this.battle.status.fatigue >= 100)
+  if (this.fatigue >= 100)
   {
-    delete this.battle.status.berserk;
-    this.battle.status.berserk = true;
+    delete this.statusEffects.berserk;
+    this.statusEffects.berserk = true;
   }
 
   return result;
@@ -141,43 +158,38 @@ prototype.addFatigue = function(amount)
 
 prototype.reduceHP = function(damage)
 {
-  var result = {"finalDamage": damage.cap(this.currentHP), shiftedShapeName: null};
+  var damageInflicted = damage.cap(this.currentHP);
   var changeShapeResult;
 
-  this.currentHP -= result.finalDamage;
+  this.currentHP -= damageInflicted;
 
   if (this.currentHP === 0 && this.formList.length > 0 && this.formIndex < this.formList.length - 1)
   {
-    changeShapeResult = woundedShape(damage - finalDamage);
-    result.finalDamage += changeShapeResult.finalDamage;
-    result.shiftedShapeName = changeShapeResult.name;
+    damageInflicted += woundedShape(damage - damageInflicted);
   }
 
-  return result;
+  return damageInflicted;
 }
 
 prototype.woundedShape = function(damageCarried)
 {
   var maxHP;
-  var result;
+  var damageInflicted;
 
   this.formIndex++;
   this.form = this.formList[this.formIndex];
   maxHP = this.getTotalAttribute("maxHP");
-  result = {"finalDamage": damageCarried.cap(this.currentHP), shiftedShapeName: this.form.name};
+  damageInflicted = damageCarried.cap(this.currentHP);
 
   this.currentHP = (this.currentHP - damageCarried).lowerCap(0);
 
   if (this.currentHP === 0 && this.formList.length > 0 && this.formIndex < this.formList.length - 1)
   {
-    var nextResult = this.woundedShape(damageCarried - result.finalDamage);
-    result.finalDamage += nextResult.finalDamage;
-    result.shiftedShapeName = nextResult.shiftedShapeName;
+    damageInflicted += this.woundedShape(damageCarried - damageInflicted);
   }
 
-  result.droppedItems = updateSlots(this);
-  //TODO: update protection stats
-  return result;
+  this.slots.update();
+  return damageInflicted;
 }
 
 prototype.heal = function(amount)
@@ -217,62 +229,8 @@ prototype.healedShape = function(healingCarried)
     result.shiftedShapeName = nextResult.shiftedShapeName;
   }
 
-  result.droppedItems = updateSlots(this);
-  //TODO: update protection stats
+  this.slots.update();
   return result;
-}
-
-prototype.updateSlots = function()
-{
-  var droppedItems = [];
-
-  for (var key in this.form.slots)
-  {
-    var formTotal = this.form.slots[key];
-    var charTotal = this.slots[key].total;
-
-    if (formTotal === charTotal)
-    {
-      continue;
-    }
-
-    else if (formTotal > charTotal)
-    {
-      this.slots[key].free += formTotal - charTotal;
-    }
-
-    else if (formTotal < charTotal)
-    {
-      droppedItems = droppedItems.concat(this.reduceSlots(key, charTotal - formTotal));
-    }
-  }
-
-  return droppedItems;
-}
-
-prototype.reduceSlots = function(slotType, difference)
-{
-  var slotRequirementToDrop = difference;
-  var droppedItems = [];
-
-  while (difference > 0)
-  {
-    for (var key in this.slots[slotType].equipped)
-    {
-      var item = this.slots[slotType].equipped[key];
-
-      if (item.requiredSlots === slotRequirementToDrop)
-      {
-        droppedItems.push(item.name);
-        delete this.slots[slotType].equipped[key];
-        difference -= slotRequirementToDrop;
-      }
-    }
-
-    slotRequirementToDrop--;
-  }
-
-  return droppedItems;
 }
 
 prototype.reduceFatigue = function(amount)
@@ -280,24 +238,24 @@ prototype.reduceFatigue = function(amount)
   var originalFat;
   var fatigueReduced = amount;
 
-  if (this.battle == null || this.battle.status.fatigue <= 0 || amount <= 0)
+  if (this.fatigue == null || this.fatigue <= 0 || amount <= 0)
 	{
-		this.battle.status.fatigue = 0;
+		this.fatigue = 0;
 		return 0;
 	}
 
-  if (amount > this.battle.status.fatigue)
+  if (amount > this.fatigue)
   {
-    fatigueReduced -= amount - this.battle.status.fatigue;
+    fatigueReduced -= amount - this.fatigue;
   }
 
-  fatigueReduced = Math.abs(amount - (this.battle.status.fatigue.lowerCap(0) - amount));
-	originalFat = this.battle.status.fatigue;
-	this.battle.status.fatigue = (this.battle.status.fatigue - amount).lowerCap(0);
+  fatigueReduced = Math.abs(amount - (this.fatigue.lowerCap(0) - amount));
+	originalFat = this.fatigue;
+	this.fatigue = (this.fatigue - amount).lowerCap(0);
 
-	if (this.battle.status.fatigue < 100 && originalFat >= 100)
+	if (this.fatigue < 100 && originalFat >= 100)
 	{
-		delete this.battle.status.unconscious;
+		delete this.statusEffects.unconscious;
 	}
 
   return fatigueReduced;
@@ -307,14 +265,14 @@ prototype.reinvigorate = function(amount)
 {
   var originalFat;
 
-  if (this.battle == null)
+  if (this.fatigue == null)
 	{
 		return 0;
 	}
 
   amount += this.getTotalAbility("reinvigoration");
 
-	if (this.battle.status.fatigue >= 100)
+	if (this.fatigue >= 100)
 	{
 		amount += 5; //Reinvigorate 5 if it's unconscious
 	}
@@ -487,4 +445,9 @@ prototype.hasWeapon = function(id)
   }
 
   else return false;
+}
+
+prototype.getWeapon = function(id)
+{
+  return this.slots.getItem(id) || this.form.getNaturalWeapon(id);
 }

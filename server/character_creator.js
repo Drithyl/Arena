@@ -49,41 +49,19 @@ module.exports =
 function buildCharacterData(data, username)
 {
   var obj = {};
-  var form = content.getForms({key: "name", value: data.form});
 
   obj.name = data.name;
   obj.id = generateID();
   obj.player = username;
-  obj.transitionPoints = 0;
-  obj.form = form.id;
-  obj.formIndex = 0;
-  obj.formList = [];
+  obj.form = content.getForms({key: "name", value: data.form})[0];
   obj.maxHP = formulas.startingPoints.maxHP(data.maxHP, form.maxHP);
-  obj.currentHP = obj.maxHP;
   obj.mr = formulas.startingPoints.mr(data.mr, form.mr);
   obj.morale = formulas.startingPoints.morale(data.morale, form.morale);
   obj.strength = formulas.startingPoints.strength(data.strength, form.strength);
-  obj.attack = 0;
-  obj.defence = 0;
-  obj.precision = 0;
-  obj.ap = 0;
-  obj.afflictions = {};
-  obj.paths = {};
-  obj.properties = [];
-  obj.abilities = {};
-  obj.parts = form.parts;
 
   for (var i = 0; i < form.formList.length; i++)
   {
-    obj.formList.push(content.getForms({key: "id", value: form.formList[i]}));
-  }
-
-  for (var key in form.slots)
-  {
-    obj.slots[key] = {};
-    obj.slots[key].equipped = [];
-    obj.slots[key].free = form.slots[key];
-    obj.slots[key].total = form.slots[key];
+    obj.formList.push(content.getForms({key: "id", value: obj.form.formList[i]})[0]);
   }
 
   return obj;

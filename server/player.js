@@ -1,7 +1,7 @@
 
 var db;
-var characterModule;
 var characterCreator;
+var characterModule = require("./character.js");
 
 module.exports =
 {
@@ -94,13 +94,6 @@ module.exports =
 
   save: function(player, cb)
   {
-    var clone = player.functionless();
-
-    for (var id in clone.characters)
-    {
-      lullCharacter(clone.characters[id]);
-    }
-
     db.save("players", clone, function(err, res)
     {
       if (err)
@@ -114,13 +107,11 @@ module.exports =
   }
 }
 
-var lullCharacter = require("./character_reviver.js").lull;
-
 function revivePlayerCharacters(player)
 {
   for (var i = 0; i < player.characters.length; i++)
   {
-    player.characters[i] = characterModule.Character(player.characters[i]);
+    player.characters[i] = characterModule.create(player.characters[i]);
     module.exports.characterList[player.characters[i].id] = player.characters[i];
   }
 }
