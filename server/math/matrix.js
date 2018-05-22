@@ -18,6 +18,31 @@ module.exports =
     }
 
     this.content = array2D;
+  },
+
+  verticesToMatrix: function(vertices)
+  {
+    var vertArr = [[], []];
+
+    for (var i = 0; i < vertices.length; i++)
+    {
+      vertArr[0].push(vertices[i].x);
+      vertArr[1].push(vertices[i].y);
+    }
+
+    return new module.exports.create(vertArr);
+  },
+
+  matrixToVertices: function(vertMatrix)
+  {
+    var vertices = [];
+
+    for (var i = 0; i < vertMatrix.content[0].length; i++)
+    {
+      vertices.push(point.fromCoords(vertMatrix.content[0][i], vertMatrix.content[1][i]));
+    }
+
+    return vertices;
   }
 }
 

@@ -1,21 +1,33 @@
 
 var db;
+var mongo = require("mongodb");
 
 module.exports =
 {
-  init: function(database)
+  connect: function(cb)
   {
-    db = database;
-    return this;
+    mongo.MongoClient.connect("mongodb://localhost:27017", function(err, client)
+    {
+    	if (err)
+    	{
+    		throw err.name + ": in mongo.MongoClient.connect(): " + err.message;
+    	}
+
+      db = client.db("arena");
+      cb(null, module.exports);
+    });
   },
 
+  //items are inserted and saved by stringifying them and putting the string result into
+  //an object with one key, json (the database cannot store strings alone), thus why
+  //the result returned calls the property .json
   find: function(collection, query, cb)
   {
     db.collection(collection).find(query).toArray(function(err, res)
   	{
   		if (err)
   		{
-        cb(err.name + ": from collection " + collection + ", could not grab:\n\n" + query + "\n\n: " + err.message, null);
+        cb(err.name + ": from collection " + collection + ", could not grab item: " + err.message, null);
         return;
   		}
 
@@ -23,13 +35,16 @@ module.exports =
   	});
   },
 
+  //items are inserted and saved by stringifying them and putting the string result into
+  //an object with one key, json (the database cannot store strings alone), thus why
+  //the result returned calls the property .json
   findOne: function(collection, query, cb)
   {
     db.collection(collection).findOne(query, function(err, res)
   	{
   		if (err)
   		{
-        cb(err.name + ": from collection " + collection + ", could not grab:\n\n" + query + "\n\n: " + err.message, null);
+        cb(err.name + ": from collection " + collection + ", could not grab item: " + err.message, null);
         return;
   		}
 
@@ -39,13 +54,25 @@ module.exports =
 
   insert: function(collection, item, cb)
   {
+    if (item == null)
+    {
+      cb("Error : in database.insert(): the provided data is null.", null);
+      return;
+    }
+
     if (Array.isArray(item) === true)
     {
+      if (item.includes(null) === true)
+      {
+        cb("Error : in database.insert(): one of the items in the provided array is null.", null);
+        return;
+      }
+
       db.collection(collection).insertMany(item, function(err, res)
       {
         if (err)
         {
-          cb(err.name + ": from collection " + collection + ", could not grab:\n\n" + item + "\n\n: " + err.message, null);
+          cb(err.name + ": from collection " + collection + ", could not grab: " + err.message, null);
           return;
         }
 
@@ -59,7 +86,7 @@ module.exports =
       {
         if (err)
         {
-          cb(err.name + ": from collection " + collection + ", could not grab:\n\n" + item + "\n\n: " + err.message, null);
+          cb(err.name + ": from collection " + collection + ", could not grab: " + err.message, null);
           return;
         }
 
@@ -70,15 +97,27 @@ module.exports =
 
   save: function(collection, item, cb)
   {
+    if (item == null)
+    {
+      cb("Error : in database.save(): the provided data is null.", null);
+      return;
+    }
+
     if (Array.isArray(item) === true)
     {
+      if (item.includes(null) === true)
+      {
+        cb("Error : in database.save(): one of the items in the provided array is null.", null);
+        return;
+      }
+
       item.forEach(function(doc, index)
     	{
     		db.collection(collection).save(doc, {}, function(err, res)
     		{
     			if (err)
     			{
-            cb(err.name + ": from collection " + collection + ", could not grab:\n\n" + JSON.stringify(doc) + "\n\n: " + err.message, null);
+            cb(err.name + ": from collection " + collection + ", could not grab item: " + err.message, null);
             return;
     			}
 
@@ -92,14 +131,18 @@ module.exports =
 
     else
     {
+      console.log("Saving...");
       db.collection(collection).save(item, {}, function(err, res)
       {
+        console.log("Save result:");
         if (err)
         {
-          cb(err.name + ": from collection " + collection + ", could not grab:\n\n" + JSON.stringify(item) + "\n\n: " + err.message, null);
+          console.log(err);
+          cb(err.name + ": from collection " + collection + ", could not grab item: " + err.message, null);
           return;
         }
 
+        console.log("Callback invoked.");
         cb(null, res);
       });
     }
@@ -139,84 +182,23 @@ module.exports =
 		});
 	},
 
-  isValidPassword: function(data, cb)
-  {
-  	db.collection("accounts").findOne({username:data.username, password:data.password}, function(err, res)
-  	{
-      if (err)
-      {
-        cb(err.name + ": from collection accounts, could not grab:\n\n" + JSON.stringify(data.username) + "\n\n: " + err.message, null);
-        return;
-      }
-
-  		if (res != null)
-  		{
-  			cb(null, true);
-  		}
-
-  		else cb(null, false);
-  	});
-  },
-
-  isUsernameTaken: function(data, cb)
-  {
-  	db.collection("accounts").findOne({username:data.username}, function(err, res)
-  	{
-      if (err)
-      {
-        cb(err.name + ": from collection accounts, could not grab:\n\n" + JSON.stringify(data) + "\n\n: " + err.message, null);
-        return;
-      }
-
-  		if (res == null)
-  		{
-        cb(null, false);
-  		}
-
-  		else cb(null, true);
-  	});
-  },
-
-  getCharacters: function(username, cb)
-  {
-    this.find("characters", {player: username}, function(err, result)
-    {
-      if (err)
-      {
-        cb(err.name + ": in getCharacters(): " + err.message, null);
-        return;
-      }
-
-      cb(null, result);
-    });
-  },
-
-  isCharacterNameTaken: function(name, cb)
-  {
-    this.findOne("characterNames", {"name": name}, function(err, res)
-    {
-      if (err)
-      {
-        cb(err.name + ": in isCharacterNameTaken(): " + err.message, null);
-        return;
-      }
-
-      if (res == null)
-  		{
-  			cb(null, false);
-  		}
-
-  		else cb(null, true);
-    });
-  },
-
   addUser: function(data, cb)
   {
+    if (data.username == null || typeof data.username !== "string")
+    {
+      throw new Error("The username must be a string.");
+    }
+
+    if (data.password == null || typeof data.password !== "string")
+    {
+      throw new Error("The password must be a string.");
+    }
+
   	db.collection("accounts").insertOne({username:data.username, password:data.password}, function(err)
   	{
   		if (err)
   		{
-        cb(err.name + ": from collection accounts, could not add user: " + JSON.stringify(data.username) + "\n\n: " + err.message, false);
+        cb(err.name + ": from collection accounts, could not add user: " + err.message, false);
         return;
   		}
 

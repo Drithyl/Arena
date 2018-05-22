@@ -1,200 +1,200 @@
-[
-  {
-    "ID": "t1",
-    "Name": "ironfang",
-    "Cost": {
-      "Gold": 5
+{
+  "t1": {
+    "id": "t1",
+    "name": "ironfang",
+    "cost": {
+      "gold": 5
     },
-    "Encumbrance": 0,
-    "Slot Type": "Miscellaneous",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 0,
-    "Categories": [
+    "encumbrance": 0,
+    "slotType": "miscellaneous",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 0,
+    "categories": [
       "Miscellaneous"
     ],
-    "Description": "This trinket will make even the most docile dog appear ferocious. the basic bite -e322- of Animals becomes piercing."
+    "description": "This trinket will make even the most docile dog appear ferocious. the basic bite -e322- of animals becomes piercing."
   },
-  {
-    "ID": "t2",
-    "Name": "ring of Cold Resistance",
-    "Cost": {
-      "Gold": 10,
-      "Sapphires": 3
+  "t2": {
+    "id": "t2",
+    "name": "ring of Cold Resistance",
+    "cost": {
+      "gold": 10,
+      "sapphires": 3
     },
-    "Encumbrance": 0,
-    "Slot Type": "Miscellaneous",
-    "Required Slots": 1,
-    "Effects": {
-      "Cold Resistance": 5
+    "encumbrance": 0,
+    "slotType": "miscellaneous",
+    "requiredSlots": 1,
+    "abilities": {
+      "coldResistance": 5
     },
-    "Properties": null,
-    "Rarity": 0,
-    "Categories": [
+    "properties": null,
+    "rarity": 0,
+    "categories": [
       "Miscellaneous"
     ],
-    "Description": "A crucial piece of equipment for anyone insane enough to explore the highest peaks of this world."
+    "description": "A crucial piece of equipment for anyone insane enough to explore the highest peaks of this world."
   },
-  {
-    "ID": "t3",
-    "Name": "ring of Fire Resistance",
-    "Cost": {
-      "Gold": 10,
-      "Rubies": 3
+  "t3": {
+    "id": "t3",
+    "name": "ring of Fire Resistance",
+    "cost": {
+      "gold": 10,
+      "rubies": 3
     },
-    "Encumbrance": 0,
-    "Slot Type": "Miscellaneous",
-    "Required Slots": 1,
-    "Effects": {
-      "Fire Resistance": 5
+    "encumbrance": 0,
+    "slotType": "miscellaneous",
+    "requiredSlots": 1,
+    "abilities": {
+      "fireResistance": 5
     },
-    "Properties": null,
-    "Rarity": 0,
-    "Categories": [
+    "properties": null,
+    "rarity": 0,
+    "categories": [
       "Miscellaneous"
     ],
-    "Description": "A crucial piece of equipment for anyone insane enough to explore the scorching deserts of this world."
+    "description": "A crucial piece of equipment for anyone insane enough to explore the scorching deserts of this world."
   },
-  {
-    "ID": "t4",
-    "Name": "ring of Poison Resistance",
-    "Cost": {
-      "Gold": 10,
-      "Emeralds": 3
+  "t4": {
+    "id": "t4",
+    "name": "ring of Poison Resistance",
+    "cost": {
+      "gold": 10,
+      "emeralds": 3
     },
-    "Encumbrance": 0,
-    "Slot Type": "Miscellaneous",
-    "Required Slots": 1,
-    "Effects": {
-      "Poison Resistance": 5
+    "encumbrance": 0,
+    "slotType": "miscellaneous",
+    "requiredSlots": 1,
+    "abilities": {
+      "poisonResistance": 5
     },
-    "Properties": null,
-    "Rarity": 0,
-    "Categories": [
+    "properties": null,
+    "rarity": 0,
+    "categories": [
       "Miscellaneous"
     ],
-    "Description": "A crucial piece of equipment for anyone insane enough to explore the noxious swamps of this world."
+    "description": "A crucial piece of equipment for anyone insane enough to explore the noxious swamps of this world."
   },
-  {
-    "ID": "t5",
-    "Name": "ring of Shock Resistance",
-    "Cost": {
-      "Gold": 10,
-      "Diamonds": 3
+  "t5": {
+    "id": "t5",
+    "name": "ring of Shock Resistance",
+    "cost": {
+      "gold": 10,
+      "diamonds": 3
     },
-    "Encumbrance": 0,
-    "Slot Type": "Miscellaneous",
-    "Required Slots": 1,
-    "Effects": {
-      "Shock Resistance": 5
+    "encumbrance": 0,
+    "slotType": "miscellaneous",
+    "requiredSlots": 1,
+    "abilities": {
+      "shockResistance": 5
     },
-    "Properties": null,
-    "Rarity": 0,
-    "Categories": [
+    "properties": null,
+    "rarity": 0,
+    "categories": [
       "Miscellaneous"
     ],
-    "Description": "A crucial piece of equipment for anyone insane enough to explore the lightning storms of this world."
+    "description": "A crucial piece of equipment for anyone insane enough to explore the lightning storms of this world."
   },
-  {
-    "ID": "t6",
-    "Name": "crystalized warrior's Blood",
-    "Cost": {
-      "Gold": 18,
-      "Bloodstones": 4
+  "t6": {
+    "id": "t6",
+    "name": "crystalized warrior's blood",
+    "cost": {
+      "gold": 18,
+      "bloodstones": 4
     },
-    "Encumbrance": 0,
-    "Slot Type": "Miscellaneous",
-    "Required Slots": 1,
-    "Effects": {
-      "Strength Bonus": 1,
-      "Attack Bonus": 1
+    "encumbrance": 0,
+    "slotType": "miscellaneous",
+    "requiredSlots": 1,
+    "abilities": {
+      "strengthBonus": 1,
+      "attack Bonus": 1
     },
-    "Properties": null,
-    "Rarity": 0,
-    "Categories": [
+    "properties": null,
+    "rarity": 0,
+    "categories": [
       "Miscellaneous"
     ],
-    "Description": "You've been told that this gem is the crystalized Blood of a great warrior of times past. as you hold it in your hand the thought itself seems to fill you with Strength: +1 str and +1 Attack."
+    "description": "You've been told that this gem is the crystalized blood of a great warrior of times past. as you hold it in your hand the thought itself seems to fill you with strength: +1 str and +1 attack."
   },
-  {
-    "ID": "t7",
-    "Name": "Barkskin amulet",
-    "Cost": {
-      "Gold": 15,
-      "Emeralds": 4
+  "t7": {
+    "id": "t7",
+    "name": "Barkskin amulet",
+    "cost": {
+      "gold": 15,
+      "emeralds": 4
     },
-    "Encumbrance": 0,
-    "Slot Type": "Miscellaneous",
-    "Required Slots": 1,
-    "Effects": {
-      "Fire Resistance": -5
+    "encumbrance": 0,
+    "slotType": "miscellaneous",
+    "requiredSlots": 1,
+    "abilities": {
+      "fireResistance": -5
     },
-    "Properties": [
-      "Barkskin"
+    "properties": [
+      "barkskin"
     ],
-    "Rarity": 0,
-    "Categories": [
+    "rarity": 0,
+    "categories": [
       "Miscellaneous"
     ],
-    "Description": "This Magical amulet turns your flesh rough and barklike... which makes you a great target practice for those Fireballs (natural prot is set to 10 or +1 if already >= that, -5 Fire Resistance)"
+    "description": "This magical amulet turns your flesh rough and barklike... which makes you a great target practice for those Fireballs (natural prot is set to 10 or +1 if already >= that, -5 fire Resistance)"
   },
-  {
-    "ID": "t8",
-    "Name": "champion's skull",
-    "Cost": {
-      "Gold": 15,
-      "Onyxes": 4
+  "t8": {
+    "id": "t8",
+    "name": "champion's skull",
+    "cost": {
+      "gold": 15,
+      "onyxes": 4
     },
-    "Encumbrance": 0,
-    "Slot Type": "Miscellaneous",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 0,
-    "Categories": [
+    "encumbrance": 0,
+    "slotType": "miscellaneous",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 0,
+    "categories": [
       "Miscellaneous"
     ],
-    "Description": "Apparently this is the skull of a Legendary general. it is said that carrying it through training helps to gain insight and skill faster: +5% on each minute tick for task completion."
+    "description": "Apparently this is the skull of a legendary general. it is said that carrying it through training helps to gain insight and skill faster: +5% on each minute tick for task completion."
   },
-  {
-    "ID": "t9",
-    "Name": "pendant of fate",
-    "Cost": {
-      "Gold": 15,
-      "Pearls": 4
+  "t9": {
+    "id": "t9",
+    "name": "pendant of fate",
+    "cost": {
+      "gold": 15,
+      "pearls": 4
     },
-    "Encumbrance": 0,
-    "Slot Type": "Miscellaneous",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": [
-      "Twist Fate"
+    "encumbrance": 0,
+    "slotType": "miscellaneous",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": [
+      "twistFate"
     ],
-    "Rarity": 0,
-    "Categories": [
+    "rarity": 0,
+    "categories": [
       "Miscellaneous"
     ],
-    "Description": "This pendant will Magically prevent some catastrophes from striking the wearer. not that its effectiveness could ever be verified."
+    "description": "This pendant will magically prevent some catastrophes from striking the wearer. not that its effectiveness could ever be verified."
   },
-  {
-    "ID": "t10",
-    "Name": "vigorous belt",
-    "Cost": {
-      "Gold": 20,
-      "Topazes": 5
+  "t10": {
+    "id": "t10",
+    "name": "vigorous belt",
+    "cost": {
+      "gold": 20,
+      "topazes": 5
     },
-    "Encumbrance": 0,
-    "Slot Type": "Miscellaneous",
-    "Required Slots": 1,
-    "Effects": {
-      "Reinvigoration": 2
+    "encumbrance": 0,
+    "slotType": "miscellaneous",
+    "requiredSlots": 1,
+    "abilities": {
+      "reinvigoration": 2
     },
-    "Properties": null,
-    "Rarity": 0,
-    "Categories": [
+    "properties": null,
+    "rarity": 0,
+    "categories": [
       "Miscellaneous"
     ],
-    "Description": "This belt is highly sought after by those who wear heavier Armor. It will constantly reinvigorate the wearer, decreasing their fatigue."
+    "description": "This belt is highly sought after by those who wear heavier armor. It will constantly reinvigorate the wearer, decreasing their fatigue."
   }
-]
+}

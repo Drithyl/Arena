@@ -1,0 +1,329 @@
+{
+  "s1": {
+    "id": "s1",
+    "name": "buckler",
+    "cost": {
+      "gold": 3.5
+    },
+    "shieldProtection": 14,
+    "defence": 0,
+    "parry": 2,
+    "encumbrance": 0,
+    "slotType": "hands",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 0,
+    "categories": [
+      "Shields"
+    ]
+  },
+  "s2": {
+    "id": "s2",
+    "name": "shield",
+    "cost": {
+      "gold": 5
+    },
+    "shieldProtection": 16,
+    "defence": -1,
+    "parry": 4,
+    "encumbrance": 1,
+    "slotType": "hands",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 0,
+    "categories": [
+      "Shields"
+    ]
+  },
+  "s3": {
+    "id": "s3",
+    "name": "kite shield",
+    "cost": {
+      "gold": 8
+    },
+    "shieldProtection": 19,
+    "defence": -2,
+    "parry": 6,
+    "encumbrance": 2,
+    "slotType": "hands",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 0,
+    "categories": [
+      "Shields"
+    ]
+  },
+  "s4": {
+    "id": "s4",
+    "name": "tower shield",
+    "cost": {
+      "gold": 8
+    },
+    "shieldProtection": 16,
+    "defence": -2,
+    "parry": 7,
+    "encumbrance": 2,
+    "slotType": "hands",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 0,
+    "categories": [
+      "Shields"
+    ]
+  },
+  "s25": {
+    "id": "s25",
+    "name": "turtle shell shield",
+    "cost": {
+      "gold": 4
+    },
+    "shieldProtection": 15,
+    "defence": -1,
+    "parry": 4,
+    "encumbrance": 1,
+    "slotType": "hands",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 0,
+    "categories": [
+      "Shields"
+    ]
+  },
+  "s28": {
+    "id": "s28",
+    "name": "ice aegis",
+    "cost": {
+      "gold": 15
+    },
+    "shieldProtection": 18,
+    "defence": -1,
+    "parry": 6,
+    "encumbrance": 1,
+    "slotType": "hands",
+    "requiredSlots": 1,
+    "abilities": {
+      "iceProtection": 0.8
+    },
+    "properties": null,
+    "rarity": 1,
+    "categories": [
+      "Shields"
+    ]
+  },
+  "s85": {
+    "id": "s85",
+    "name": "amber shield",
+    "cost": {
+      "gold": 6
+    },
+    "shieldProtection": 16,
+    "defence": -1,
+    "parry": 4,
+    "encumbrance": 1,
+    "slotType": "hands",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 0,
+    "categories": [
+      "Shields"
+    ]
+  },
+  "s105": {
+    "id": "s105",
+    "name": "hide shield",
+    "cost": {
+      "gold": 2
+    },
+    "shieldProtection": 11,
+    "defence": -1,
+    "parry": 4,
+    "encumbrance": 1,
+    "slotType": "hands",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 0,
+    "categories": [
+      "Shields"
+    ]
+  },
+  "s112": {
+    "id": "s112",
+    "name": "great hide shield",
+    "cost": {
+      "gold": 4
+    },
+    "shieldProtection": 11,
+    "defence": -1,
+    "parry": 6,
+    "encumbrance": 1,
+    "slotType": "hands",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 0,
+    "categories": [
+      "Shields"
+    ]
+  },
+  "s155": {
+    "id": "s155",
+    "name": "golden shield",
+    "cost": {
+      "gold": 15
+    },
+    "shieldProtection": 23,
+    "defence": -1,
+    "parry": 5,
+    "encumbrance": 1,
+    "slotType": "hands",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 1,
+    "categories": [
+      "Shields"
+    ]
+  },
+  "s156": {
+    "id": "s156",
+    "name": "spectral shield",
+    "cost": {
+      "gold": 1
+    },
+    "shieldProtection": 15,
+    "defence": 0,
+    "parry": 3,
+    "encumbrance": 0,
+    "slotType": "hands",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": [
+      "Ethereal"
+    ],
+    "rarity": 1,
+    "categories": [
+      "Shields"
+    ]
+  },
+  "s164": {
+    "id": "s164",
+    "name": "anakite shield",
+    "cost": {
+      "gold": 10
+    },
+    "shieldProtection": 20,
+    "defence": -1,
+    "parry": 5,
+    "encumbrance": 1,
+    "slotType": "hands",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 1,
+    "categories": [
+      "Shields"
+    ]
+  },
+  "s166": {
+    "id": "s166",
+    "name": "dawn shield",
+    "cost": {
+      "gold": 9
+    },
+    "shieldProtection": 19,
+    "defence": -1,
+    "parry": 5,
+    "encumbrance": 1,
+    "slotType": "hands",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 1,
+    "categories": [
+      "Shields"
+    ]
+  },
+  "s189": {
+    "id": "s189",
+    "name": "pearl shield",
+    "cost": {
+      "gold": 6
+    },
+    "shieldProtection": 16,
+    "defence": -1,
+    "parry": 5,
+    "encumbrance": 1,
+    "slotType": "hands",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 1,
+    "categories": [
+      "Shields"
+    ]
+  },
+  "s207": {
+    "id": "s207",
+    "name": "wicker shield",
+    "cost": {
+      "gold": 3
+    },
+    "shieldProtection": 13,
+    "defence": -1,
+    "parry": 4,
+    "encumbrance": 1,
+    "slotType": "hands",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 0,
+    "categories": [
+      "Shields"
+    ]
+  },
+  "s208": {
+    "id": "s208",
+    "name": "iron shield",
+    "cost": {
+      "gold": 7
+    },
+    "shieldProtection": 19,
+    "defence": -1,
+    "parry": 4,
+    "encumbrance": 1,
+    "slotType": "hands",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 0,
+    "categories": [
+      "Shields"
+    ]
+  },
+  "s209": {
+    "id": "s209",
+    "name": "hoplon",
+    "cost": {
+      "gold": 7
+    },
+    "shieldProtection": 19,
+    "defence": -1,
+    "parry": 4,
+    "encumbrance": 1,
+    "slotType": "hands",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 0,
+    "categories": [
+      "Shields"
+    ]
+  }
+}

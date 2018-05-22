@@ -1,45 +1,35 @@
 
 module.exports =
 {
-  startingPoints: {},
-
-  init: function()
+  maxHP: function(points, hp)
   {
-    this.startingPoints =
+    for (var i = 0; i < points; i++)
     {
-      maxHP: function(points, hp)
+      var gain = Math.round((Math.log(hp) / Math.log(2)));
+
+      if (gain < 3)
       {
-        for (var i = 0; i < points; i++)
-        {
-          var gain = Math.round((Math.log(hp) / Math.log(2)));
-
-          if (gain < 3)
-          {
-            hp += 3;
-          }
-
-          else hp += gain;
-        }
-
-        return hp;
-      },
-
-      strength: function(points, strength)
-      {
-        return strength + points;
-      },
-
-      mr: function(points, mr)
-      {
-        return mr + points;
-      },
-
-      morale: function(points, morale)
-      {
-        return morale + (points * 2);
+        hp += 3;
       }
+
+      else hp += gain;
     }
 
-    return this;
+    return hp;
+  },
+
+  strength: function(points, strength)
+  {
+    return strength + points;
+  },
+
+  magicResistance: function(points, magicResistance)
+  {
+    return magicResistance + points;
+  },
+
+  morale: function(points, morale)
+  {
+    return morale + (points * 2);
   }
 }

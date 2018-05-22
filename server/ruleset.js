@@ -1,370 +1,531 @@
 
-const fs = require('fs');
 const dice = require("./dice.js");
-const order = require("./resolution_orders.json");
-var meleeStrategies;
-var turnEndStrategies;
+var content;
 
 module.exports =
 {
-  init: function()
+  init: function(contentModule)
   {
-    meleeStrategies = loadStrategies(order.melee);
-    turnEndStrategies = loadStrategies(order.turnEnd);
+    content = contentModule;
+    return this;
   },
 
-  move: function(actor, map, targetPosition)
+  canAffect: function(actor, target, weapon)
   {
-    var distanceMoved = actor.area.distanceToPoint(targetPosition);
-
-    if (distanceMoved > actor.mp)
+    if (weapon.range < actor.distanceToReach(target))
     {
-      //too much movement
-      throw new Error("This character cannot move this far.");
+      throw new Error("This weapon does not have enough range to hit this target.");
     }
 
-    if (map.isOccupied(actor.area, actor.id) === true)
+    if (weapon.hasProperty("requiresLife") === true && target.hasProperty("lifeless") === true)
     {
-      throw new Error("This space is already occupied by another character.");
+      throw new Error("This weapon does not work against lifeless targets.");
     }
 
-    if (map.isOutOfBounds(actor.area) === true)
+    if (weapon.hasProperty("requiresMind") === true && target.hasProperty("mindless") === true)
     {
-      throw new Error("You cannot move out of the boundaries of the battle map.");
+      throw new Error("This weapon does not work against mindless targets.");
+    }
+  },
+
+  awe: function(actor, target)
+  {
+    var result = {success: false};
+
+    result.moraleRoll = dice.DRN() + actor.getTotalAttribute("morale");
+    result.aweRoll = dice.DRN() + 10 + target.getTotalAbility("awe");
+
+    if (result.moraleRoll > result.aweRoll)
+    {
+      result.success = true;
     }
 
-    actor.mpLeft -= distanceMoved;
-    actor.area.setPosition(targetPosition);
+    return result;
   },
 
-  melee: function(actor, targetPosition, weapon, battle)
+  hit: function(actor, target, weapon)
   {
-    var target = battle.map.getCharacterAt({x: targetPosition.x, y: targetPosition.y});
-    var distance = actor.area.distanceToReach(target.area);
-    var pack = {type: "melee", battle: battle, actor: actor, targetPosition: targetPosition, distance: distance, weapon: weapon, results: {}, data: {}};
+    var result = {success: false};
 
-    verifyMelee(actor, target, weapon, distance);
-    resolveMelee(pack);
+    result.parry = target.getTotalAttribute("parry");
+    result.dualPenalty = actor.getDualPenalty();
+    result.attackRoll = dice.DRN();
+    result.defenceRoll = dice.DRN();
+  	result.totalAttackRoll = result.attackRoll + actor.getTotalAttack(weapon) - result.dualPenalty;
+  	result.totalDefenceRoll = result.defenceRoll + target.getTotalDefence() - target.getStatusEffect("harassment");
+    result.difference = result.totalAttackRoll - result.totalDefenceRoll;
+    result.location = getHitLocation(weapon.reach, actor.getSize(), target.getBodyparts());
+		result.isShieldHit = false;
+		target.statusEffects.harassment++;
 
-    return pack.results;
+		if (result.parry > 0 && weapon.properties.includes("flail") === true)
+		{
+			result.difference += 2;
+		}
+
+		if (result.difference < 0)
+		{
+			return;
+		}
+
+		else if (result.difference > 0 && result.difference - result.parry < 0)
+		{
+			result.isShieldHit = true;
+		}
+
+		result.success = true;
+    return result;
   },
 
-  ranged: function(actor, targetPosition, weapon, battle)
+  glamour: function(target)
   {
-    var target = battle.map.getCharacterAt({x: targetPosition.x, y: targetPosition.y});
-    var distance = actor.area.distanceToReach(target.area);
-    var pack = {type: "ranged", battle: battle, actor: actor, targetPosition: targetPosition, distance: distance, weapon: weapon, data: {}}
+    var result = {success: false};
 
-    verifyRanged(actor, target, weapon, distance);
-    resolveMelee(pack);
-  },
-
-  endTurn: function(pack)
-  {
-    var results = [];
-
-    for (var i = 0; i < turnEndStrategies.length; i++)
-    {
-      results.push({});
-      turnEndStrategies[i].apply(pack, results[i]);
+    //hit bypasses glamour
+    if (Math.floor((Math.random() * 100)) + 1 <= 100 / (1 + target.statusEffects.glamour))
+		{
+      result.success = true;
+      return result;
     }
 
-    return results;
+    target.setStatusEffect("glamour", target.statusEffects.glamour - 1);
+
+		if (target.statusEffects.glamour <= 0)
+		{
+      target.setStatusEffect("glamour", "DELETE");
+		}
+
+    return result;
   },
 
-  calculateRequiredAPs: function(weapons, actor)
+  displacement: function(target)
   {
-    var apCost = 0;
-    var weaponIDs = [];
+    var result = {success: false};
 
-    for (var i = 0; i < weapons.length; i++)
+    if (Math.floor((Math.random() * 100)) + 1 > target.abilities.displacement)
     {
-      var timesAvailable = actor.weaponTimesAvailable(weapons[i].id);
-      var timesUsed = weaponIDs.filter(function(id) { return id === weapons[i].id; }).length;
-      apCost += weapons[i].apCost;
+      result.success = true;
+    }
 
-      if (weaponIDs.length > 0 && timesUsed > 1 && timesUsed < timesAvailable)
+    return result;
+  },
+
+  ethereal: function(target)
+  {
+    var result = {success: false};
+
+    if (Math.floor((Math.random() * 100)) + 1 > 75)
+    {
+      result.success = true;
+    }
+
+    return result;
+  },
+
+  magicResistanceCheck: function(target)
+  {
+    var result = {success: false};
+
+		result.penetrationRoll = dice.DRN() + 10;
+		result.magicResistanceRoll = dice.DRN() + target.getTotalMR();
+		result.difference = result.penetrationRoll - result.magicResistanceRoll;
+
+		if (result.difference >= 0)
+		{
+			result.success = true;
+		}
+
+    return result;
+  },
+
+  damageCheck: function(actor, target, weapon, hitLocation, isShieldHit)
+  {
+    var result = {success: false, targetKO: false};
+
+    preRollModifiers(actor, target, weapon, isShieldHit, result);
+    damageRoll(actor, target, weapon, hitLocation, result);
+    postRollModifiers(target, hitLocation, result);
+
+    if (result.finalDamage <= 0)
+    {
+      return result;
+    }
+
+    if (target.getStatusEffect("twistFate") != null)
+    {
+      result.twistFate = true;
+      return result;
+    }
+
+    return result;
+  },
+
+  applyDamage: function(target, type, effect, finalDamage)
+  {
+    var result = {};
+
+    if (effect === "web")
+    {
+      result.damageInflicted = finalDamage;
+      target.setStatusEffect("web", result.damageInflicted);
+    }
+
+    else if (effect === "stun")
+    {
+      Object.assign(result, module.exports.fatigue(target, finalDamage));
+    }
+
+    else if (effect === "poison")
+    {
+      result.damageInflicted.cap(target.getTotalAttribute("maxHP") - (target.getStatusEffect("poison") || 0));
+      target.setStatusEffect("poison", target.getStatusEffect("poison") || 0 + result.damageInflicted);
+    }
+
+    else if (effect === "paralysis")
+    {
+      result.damageInflicted = calculateParalysis(finalDamage, target);
+      target.setStatusEffect("paralysis", result.damageInflicted);
+    }
+
+    else
+    {
+      result.damageInflicted = reduceHP(target, finalDamage);
+
+      if (target.currentHP <= 0)
       {
-        //combos, each *new* *unique* attack in the same sequence reduces its cost by 1
-        //check the number of this attack available in the character and compare
-        //it to the number of times it's been already used in the weaponIDs
-        apCost--;
+        target.setStatusEffect("ko", true);
+        result.targetKO = true;
       }
-
-      weaponIDs.push(weapons[i].id);
     }
 
-    return apCost;
-  }
-}
-
-function loadStrategies(orderList)
-{
-  var arr = [];
-
-  for (var i = 0; i < orderList.length; i++)
-  {
-    if (fs.existsSync("./server/strategies/" + orderList[i] + ".js") === false)
+    if (type === "cold" || type === "fire")
     {
-      continue;
+      if (ignites(type, result.damageInflicted) === true)
+      {
+        result.ignited = true;
+        target.setStatusEffect(type, true);
+      }
     }
 
-    arr.push(require("./server/strategies/" + orderList[i] + ".js"));
-  }
+    result.damageLeft = finalDamage - result.damageInflicted;
+    return result;
+  },
 
-  return arr;
-}
-
-function verifyMelee(actor, target, weapon, distance)
-{
-  if (target == null)
+  berserk: function(target)
   {
-    throw new Error("The selected target is an empty tile.");
-  }
+    var moraleRoll = dice.DRN() + target.getTotalAttribute("morale");
+    var difficulty = dice.DRN() + 12;
+    var success;
 
-  if (actor.player === target.player)
-  {
-    //wrong target (friendly)
-    throw new Error("You cannot target one of your own characters.");
-  }
-
-  verifyMeleeWeapon(weapon, actor, target, distance);
-
-  if (actor.apLeft < weapon.apRequired)
-  {
-    throw new Error(`Not enough APs to make these attacks. The total AP cost is ${reqAPs}, but this character only has ${actor.apLeft} left.`);
-  }
-}
-
-function verifyRanged(actor, target, weapon, distance)
-{
-  if (target == null)
-  {
-    //wrong target
-    throw new Error("The selected target is an empty tile.");
-  }
-
-  if (actor.player === target.player)
-  {
-    //wrong target (friendly)
-    throw new Error("You cannot target one of your own characters.");
-  }
-
-  verifyRangedWeapon(weapon, actor, target, distance);
-
-  if (actor.apLeft < weapon.apRequired)
-  {
-    throw new Error(`Not enough APs to make these attacks. The total AP cost is ${reqAPs}, but this character only has ${actor.apLeft} left.`);
-  }
-}
-
-function resolveMelee(pack)
-{
-  var targets = pack.battle.map.getCharactersWithin(pack.targetPosition, pack.weapon.abilities.areaOfEffect);
-
-  for (var i = 0; i < targets.length; i++)
-  {
-    var result;
-
-    if (pack.results[targets[i].id] == null)
+    if (moraleRoll > difficulty)
     {
-      pack.results[targets[i].id] = [];
+      success = true;
+      target.setStatusEffect("berserk", target.getTotalAbility("berserk"));
     }
 
-    pack.target = targets[i];
-    result = resolveAttack(pack);
-    pack.results[targets[i].id].push(result);
+    return {moraleRoll: moraleRoll, difficulty: difficulty, success: sucess};
+  },
 
-    //check onHit
-    if (pack.type === "melee" && result.attack.success === true && pack.weapon.onHit != null)
+  drain: function(actor, weapon, damageInflicted)
+  {
+    var drainRate = Math.floor((actor.getTotalAbility("drain") + weapon.getAbility("drain")) * 0.01);
+    var hpDrain = Math.floor(damageInflicted * drainRate).cap(actor.getTotalAttribute("maxHP") - actor.currentHP);
+    var fatigueDrain = (hpDrain * 2).cap(actor.fatigue);
+    var hpHealed;
+    var fatigueReduced;
+
+    if (hpDrain > 0)
     {
-      onHit(pack);
+      hpHealed = healHP(actor, hpDrain);
+      fatigueReduced = reduceFatigue(actor, fatigueDrain);
     }
 
-    //check onDamage
-    if (pack.type === "melee" && result.damage.success === true && pack.weapon.onDamage != null)
+    return {drainRate: drainRate, hpHealed: hpHealed, fatigueReduced: fatigueReduced};
+  },
+
+  fatigue: function(actor, amount = actor.getTotalAttribute("encumbrance"))
+  {
+    var totalFatigue = actor.fatigue + fatigue;
+    var fatigueAdded = (totalFatigue - currentFatigue).cap(200);
+    var fatigueDamage = Math.floor((totalFatigue - 200) * 0.2);
+
+    if (fatigueAdded > 0)
     {
-      onDamage(pack);
+      actor.fatigue += fatigueAdded;
     }
 
-    //cleave
-    if (result.damage.success === true && pack.data.targetKO === true &&
-        pack.data.finalDamage > pack.data.damageInflicted)
+    if (fatigueDamage > 0)
     {
-      cleave(pack);
+      reduceHP(actor, fatigueDamage);
     }
+
+    if (actor.fatigue >= 100)
+    {
+      actor.setStatusEffect("berserk", "DELETE");
+    }
+
+    return {fatigueAdded: fatigueAdded, fatigueDamage: fatigueDamage};
+  },
+
+  reinvigorate: function(target, amount)
+  {
+    amount += target.getTotalAbility("reinvigoration");
+
+  	if (target.fatigue >= 100)
+  	{
+  		amount += 5; //Reinvigorate 5 if it's unconscious
+  	}
+
+  	return reduceFatigue(target, amount);
   }
 }
 
-function resolveAttack(pack)
+function getHitLocation(weaponLength, actorSize, targetParts)
 {
-  var result = {};
+	var arr = [];
+	var maxHeight = weaponLength + actor.size();
 
-  for (var i = 0; i < meleeStrategies.length; i++)
+  for (var part in targetParts)
   {
-    result[order.melee[i]] = {};
-    meleeStrategies[i].apply(pack, result[order.melee[i]]);
+    var weight = partSizes[part].area * targetParts[part];
 
-    if (result[order.melee[i]].targetKO === true)
+    for (var i = 0; i < weight; i++)
     {
-      pack.data.targetKO = true;
-      pack.battle.koActors[pack.actor.player].push(pack.actor.id);
-      break;
-    }
-
-    else if (result[order.melee[i]].success === false)
-    {
-      break;
+      arr.push(part);
     }
   }
 
-  //check if fatigue was applied or if loop broke out before
-  if (result.fatigue == null)
-  {
-    result.fatigue = {};
-    meleeStrategies[order.melee.length - 1].apply(pack, result.fatigue);
-  }
-
-  return result;
+  return arr[Math.floor((Math.random() * arr.length))];
 }
 
-function onHit(pack)
+function damageRoll(actor, target, weapon, hitLocation, result)
 {
-  var onHitPack = {type: "onHit", battle: pack.battle, actor: pack.actor, targetPosition: pack.targetPosition, distance: 0, weapon: pack.weapon.onHit, results: pack.results, data: pack.data};
-
-  try
+  if (result.damageScore <= 0)
   {
-    verifyMelee(pack.actor, pack.target, pack.weapon.onHit, 0);
-    resolveMelee(onHitPack);
+    result.damageScore = 0;
   }
 
-  catch(err)
-  {
+	if (weapon.damageEffect === "web")
+	{
+		result.damageScore = actor.size() + weapon.damage;
+    return;
+	}
 
+  result.damageRoll = dice.DRN();
+  result.protectionRoll = dice.DRN();
+  result.totalDamageRoll = result.damageRoll + result.damageScore;
+	result.totalProtectionRoll = result.protectionRoll + getProtectionAgainst(weapon, target, hitLocation, result.damageType);
+	result.difference = result.totalDamageRoll - result.totalProtectionRoll;
+  result.finalDamage = result.difference;
+}
+
+function getProtectionAgainst(weapon, target, hitLocation, damageType)
+{
+  var armor = target.getTotalArmor(hitLocation);
+  var natural = target.getTotalNaturalArmor(hitLocation);
+  var invulnerability = target.getTotalAbility("invulnerability");
+
+	if (weapon.hasProperty("armorNegating") === true)
+	{
+		return 0;
+	}
+
+  if (weapon.hasProperty("magical") === true)
+  {
+    //loses invulnerability protection
+    invulnerability = 0;
+  }
+
+	if (damageType == "pierce")
+	{
+		armor = Math.floor(armor * 0.8);
+    natural = Math.floor(natural * 0.8);
+	}
+
+	if (weapon.hasProperty("armorPiercing") === true)
+	{
+		armor = Math.floor(armor * 0.5);
+    natural = Math.floor(natural * 0.5);
+	}
+
+	return armor + natural + invulnerability;
+}
+
+function preRollModifiers(actor, target, weapon, isShieldHit, result)
+{
+  result.damageType = weapon.chooseDamageType();
+  result.damageScore = weapon.damage;
+  result.damageResistance = target.getElementalResistance(result.damageType);
+
+  if (weapon.hasProperty("noStrength") === false)
+  {
+    if (weapon.requiredSlots > 1 && weapon.slotType === "hands")
+    {
+      //two-handers use 125% of strength, so extend this to potential three-handers
+      //and more
+      result.damageScore += Math.floor(actor.getTotalAttribute("strength") * (1 + (0.25 * (weapon.requiredSlots - 1))));
+    }
+
+    else result.damageScore += actor.getTotalAttribute("strength");
+  }
+
+  if (weapon.damageEffect === "stun")
+  {
+    result.damageResistance *= 2;
+  }
+
+  result.damageScore -= result.damageResistance;
+
+  if (isShieldHit === true && weapon.hasProperty("armorPiercing") === true)
+  {
+    result.damageScore -= Math.floor(target.getTotalAbility("shieldProtection") / 2);
+  }
+
+  else if (isShieldHit === true && weapon.hasProperty("ignoreShields") === false)
+  {
+    result.damageScore -= target.getTotalAbility("shieldProtection");
   }
 }
 
-function onDamage(pack)
+function postRollModifiers(target, hitLocation, result)
 {
-  var onDamagePack = {type: "onDamage", battle: pack.battle, actor: pack.actor, targetPosition: pack.targetPosition, distance: 0, weapon: pack.weapon.onDamage, results: pack.results, data: pack.data};
+	var maxLimbDmg = Math.floor(target.maxHP * 0.5).lowerCap(1);
+  var immunity;
 
-  try
+  if (result.damageType === "blunt")
   {
-    verifyMelee(pack.actor, pack.target, pack.weapon.onDamage, 0);
-    resolveMelee(onDamagePack);
+    immunity = target.getTotalAbility("bluntImmunity");
   }
 
-  catch(err)
+  else if (result.damageType === "pierce")
   {
-
+    immunity = target.getTotalAbility("bluntImmunity");
   }
-}
 
-function cleave(pack)
-{
-  var cleavePack;
-  var targetChosen;
-  var cleaveTargets;
+  else if (result.damageType === "slash")
+  {
+    immunity = target.getTotalAbility("slashtImmunity");
+  }
 
-  if (pack.data.damageType !== "pierce" && pack.data.damageType !== "blunt" && pack.data.damageType !== "slash")
+  if (result.finalDamage <= 0 || weapon.damageEffect === "stun" || result.damageEffect === "poison")
   {
     return;
   }
 
-  else if (pack.data.damageType === "pierce")
-  {
-    cleaveTargets = pack.battle.map.getOppositeAdjacentCharacters(pack.actor.area, pack.target.area).filter(function(item)
-    {
-      return pack.actor.area.distanceToReach(item.area) <= pack.weapon.reach;
-    });
+	if (result.damageType == "blunt" && (hitLocation == "head" || hitLocation == "eye"))
+	{
+		result.finalDamage = Math.floor(result.finalDamage * 1.5);
+	}
 
-    if (cleaveTargets.length < 1)
-    {
-      return;
-    }
+	else if (result.damageType == "slash")
+	{
+    result.finalDamage = Math.floor(result.finalDamage * 1.25);
+	}
+
+  if (immunity > 0)
+  {
+    result.finalDamage = Math.floor(result.finalDamage * (immunity / 100));
   }
 
-  else if (pack.data.damageType === "blunt" || pack.data.damageType === "slash")
-  {
-    cleaveTargets = pack.battle.map.getSideAdjacentCharacters(pack.actor.area, pack.target.area).filter(function(item)
-    {
-      return pack.actor.area.distanceToReach(item.area) <= pack.weapon.reach;
-    });
-
-    if (cleaveTargets.length < 1)
-    {
-      return;
-    }
-  }
-
-  targetChosen = cleaveTargets[Math.floor(Math.random() * cleaveTargets.length)];
-  cleavePack = {type: "cleave", battle: pack.battle, actor: pack.actor, targetPosition: targetChosen.area.position(),
-                distance: pack.actor.area.distanceToReach(targetChosen.area), weapon: pack.weapon, results: pack.results, data: pack.data};
-
-  try
-  {
-    verifyMelee(pack.actor, pack.target, pack.weapon.onDamage, cleavePack.distance);
-    resolveMelee(cleavePack);
-  }
-
-  catch(err)
-  {
-
-  }
+	if (hitLocation == "arm" || hitLocation == "leg" || hitLocation == "wing")
+	{
+		result.finalDamage = result.finalDamage.cap(maxLimbDmg);
+	}
 }
 
-function verifyMeleeWeapon(weapon, actor, target, distance)
+function calculateParalysis(damage, target)
 {
-  if (weapon == null)
+  var total = Math.floor((damage - target.size()) * 0.5);
+
+  if (target.statusEffects.paralysis != null)
   {
-    throw new Error("The weapon id " + weapon + " is not valid or equipped on this character.");
+    if (target.statusEffects.paralysis > total)
+    {
+      total = Math.floor(target.statusEffects.paralysis * 0.5).cap(5);
+    }
+
+    else Math.floor(total * 0.5).cap(5);
   }
 
-  else if (weapon.range < distance)
-  {
-    throw new Error("This weapon does not have enough range to hit this target.");
-  }
-
-  else if (weapon.categories.includes("melee") === false)
-  {
-    throw new Error("This weapon is not a melee weapon.");
-  }
-
-  else if (weapon.properties.includes("requiresLife") === true && target.properties.includes("lifeless") === true)
-  {
-    throw new Error("This weapon does not work against lifeless targets.");
-  }
-
-  else if (weapon.properties.includes("requiresMind") === true && target.properties.includes("mindless") === true)
-  {
-    throw new Error("This weapon does not work against mindless targets.");
-  }
+  return total;
 }
 
-function verifyRangedWeapon(weapon, actor, target, distance)
+function ignites(type, finalDamage)
 {
-  if (weapon == null)
+  if (type !== "cold" && type !== "fire")
   {
-    throw new Error("The weapon id " + weapon + " is not valid or equipped on this character.");
+    return false;
   }
 
-  else if (weapon.range < distance)
+  var igniteChance = finalDamage * 5;
+	var roll = Math.floor((Math.random() * 100)) + 1;
+
+	if (roll > igniteChance)
+	{
+		return false;
+	}
+
+  return true;
+}
+
+function reduceHP(target, amount)
+{
+  var damageInflicted = amount.cap(target.currentHP);
+  var damageRemaining = amount - damageInflicted;
+  var nextFormHP;
+
+  while (damageRemaining > 0 && target.isInLastForm === false)
   {
-    throw new Error("This weapon does not have enough range to hit this target.");
+    target.nextForm();
+    nextFormHP = target.getTotalAttribute("maxHP");
+    damageInflicted += damageRemaining.cap(nextFormHP);
+
+    if (damageRemaining - nextFormHP <= 0)
+    {
+      //no more damage left, so set the final form's current hp
+      target.currentHP = nextFormHP - damageRemaining;
+    }
+
+    damageRemaining -= nextFormHP;
   }
 
-  else if (weapon.categories.includes("ranged") === false)
+  return damageInflicted;
+}
+
+function healHP(target, amount)
+{
+  var maxHP = target.getTotalAttribute("maxHP");
+  var damageHealed = amount.cap(maxHP - target.currentHP);
+  var healRemaining = amount - damageHealed;
+
+  while (healRemaining > 0 && target.isInFirstForm === false)
   {
-    throw new Error("This weapon is not a ranged weapon.");
+    target.previousForm();
+    maxHP = target.getTotalAttribute("maxHP");
+    damageHealed += healRemaining.cap(maxHP);
+
+    if (healRemaining <= maxHP)
+    {
+      //no more damage left, so set the final form's current hp
+      target.currentHP = healRemaining;
+    }
+
+    healRemaining = healRemaining - healRemaining.cap(maxHP);
   }
 
-  else if (weapon.properties.includes("requiresLife") === true && target.properties.includes("lifeless") === true)
+  return damageHealed;
+}
+
+function reduceFatigue(target, amount)
+{
+  var originalFat;
+  var fatigueReduced = amount.cap(target.fatigue);
+
+  if (target.fatigue >= 100 && target.fatigue - fatigueReduced < 100)
   {
-    throw new Error("This weapon does not work against lifeless targets.");
+    target.setStatusEffect("unconscious", "DELETE");
   }
 
-  else if (weapon.properties.includes("requiresMind") === true && target.properties.includes("mindless") === true)
-  {
-    throw new Error("This weapon does not work against mindless targets.");
-  }
+  target.fatigue -= fatigueReduced;
+  return fatigueReduced;
 }

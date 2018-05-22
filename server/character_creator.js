@@ -1,35 +1,58 @@
 
-var content;
+var contentModule;
+var database;
 var formulas = require("./formulas.js");
+var uuid;
+var characterCtor;
 
 module.exports =
 {
-  keys: null,
-
-  init: function(contentModule, index)
+  init: function(content, charCtor, idGenerator, db)
   {
-    keys = index;
-    content = contentModule;
+    contentModule = content;
+    characterCtor = charCtor;
+    uuid = idGenerator;
+    database = db;
     return this;
   },
 
-  buildPlayerCharacters: function(player)
+  whenCharacterCreated(player, cb)
   {
-    var verifiedArr = [];
+    player.socket.on("characterCreated", function(characterData, clientCb)
+  	{
+      var chosenForm;
+      var builtData;
+      var constructedCharacter;
 
-    for (var i = 0; i < player.characters.length; i++)
-    {
       try
       {
-        verifyCharacterData(player.characters[i]);
-        player.characters[i] = buildCharacterData(player.characters[i], player.username);
+        chosenForm = verifyForm(characterData.form);
+        verifyName(characterData.name);
+        verifyAttributes(chosenForm, characterData.attributes);
+
+        builtData = buildCharacterData(player.username, characterData);
+        constructedCharacter = new characterCtor(builtData, builtData.formList);
+        player.addCharacter(constructedCharacter);
       }
 
-      catch (err)
+      catch(err)
       {
-        throw err;
+        clientCb(err.message, null);
+        return;
       }
-    }
+
+      database.save("characters", constructedCharacter.toDatabase(), function(err, res)
+      {
+        if (err)
+        {
+          clientCb(err.message, null);
+          return;
+        }
+
+        cb(constructedCharacter);
+        clientCb(null);
+      });
+  	});
   }
 }
 
@@ -40,73 +63,44 @@ module.exports =
   *
   *    username       the username of the player that owns the characters
   *
+  *     data          the data of the character previously verified by verifyCharacterData()
+  *
   * This function may fail for several reasons:
   *
   *    NotFound       No character belonging to this username is found. In this
   *                   case, no return object will be supplied.
   */
 
-function buildCharacterData(data, username)
+function buildCharacterData(username, data)
 {
   var obj = {};
 
   obj.name = data.name;
-  obj.id = generateID();
+  obj.id = uuid();
   obj.player = username;
-  obj.form = content.getForms({key: "name", value: data.form})[0];
-  obj.maxHP = formulas.startingPoints.maxHP(data.maxHP, form.maxHP);
-  obj.mr = formulas.startingPoints.mr(data.mr, form.mr);
-  obj.morale = formulas.startingPoints.morale(data.morale, form.morale);
-  obj.strength = formulas.startingPoints.strength(data.strength, form.strength);
+  obj.maxHP = formulas.maxHP(data.maxHP, form.maxHP);
+  obj.magicResistance = formulas.magicResistance(data.magicResistance, form.magicResistance);
+  obj.morale = formulas.morale(data.morale, form.morale);
+  obj.strength = formulas.strength(data.strength, form.strength);
 
-  for (var i = 0; i < form.formList.length; i++)
+  for (var i = 0; i < data.form.formList.length; i++)
   {
-    obj.formList.push(content.getForms({key: "id", value: obj.form.formList[i]})[0]);
+    obj.formList.push(contentModule.getOneForm({id: data.form.formList[i]}));
   }
 
   return obj;
 }
 
-/*
-* Verify the data of a single character sent by a client on character creation
-* to make sure that it is valid. Arguments:
-*
-*   data            The character data. It is supposed to contain a string .name
-*                   property, a string .form property, and a subObject
-*                   .attributes, with a collection of the attribute keys and
-*                   integer values that the client invested.
-*
-* This function may fail for several reasons:
-*
-*   FormError       The form in .form could not be found within the content.
-*
-*   NameError       The character name is incorrect. It might not be a string,
-*                   contain invalid characters, be too short or too long.
-*
-*   AttributesError One or more of the attributes either does not exist, or
-*                   is not a number, or the client somehow invested more points
-*                   than his chosen form allows.
-*/
-
-function verifyCharacterData(data)
+function verifyForm(formID)
 {
-  var chosenForm = content.getForms({key: "name", value: data.form});
+  var form = contentModule.getOneForm({id: formID});
 
-  if (chosenForm === null || chosenForm.length <= 0)
+  if (form == null)
   {
     throw "The chosen form is invalid. Please choose only from the given options.";
   }
 
-  try
-  {
-    verifyName(data.name);
-    verifyAttributes(chosenForm, data.attributes);
-  }
-
-  catch (err)
-  {
-    throw err;
-  }
+  return form;
 }
 
 function verifyName(name)
@@ -136,6 +130,11 @@ function verifyAttributes(form, attributes)
 {
   var maxPoints = form.startingPoints;
   var pointsUsed = 0;
+
+  if (attributes == null)
+  {
+    throw "The character data must contain the attribute starting points assigned.";
+  }
 
   for (var key in attributes)
   {

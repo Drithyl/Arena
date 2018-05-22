@@ -9,6 +9,10 @@
   "author": "Drithyl",
   "license": "ISC",
   "dependencies": {
-    "mongodb": "^3.0.0-rc0"
+    "express": "^4.16.3",
+    "mongodb": "^3.0.0-rc0",
+    "socket.io": "^2.1.0",
+    "uuid": "^3.2.1",
+    "uuid-v4": "^0.1.0"
   }
 }

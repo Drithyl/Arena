@@ -1,88 +1,18 @@
 
-const area = require("./area.js");
-const map = require("./map.js");
-var sm;
-var ruleset = require("./ruleset.js");
+const battleUpdate = require("./battle_update.js");
+var attack = require("./attack.js");
 var interpreter = require("./battle_interpreter.js");
-var playerModule;
+var socketManager;
+var prototype;
+var list;
 
 const WIDTH = 120;
 const HEIGHT = 120;
 
-module.exports =
+module.exports.init = function(sockets)
 {
-  list: {},
-  challenges: {},
-
-  init: function(socketManager, playerModule)
-  {
-    sm = socketManager;
-    playerModule = playerModule;
-    listenToChallenges();
-    return this;
-  }
-}
-
-function listenToChallenges()
-{
-  sm.listenAll("challengeRequest", function(data, socket)
-  {
-    if (module.exports.list[socket.username] != null)
-    {
-      socket.emit("challengeRequestResponse", {success: false, challenger: socket.username, error: "You already have a battle ongoing."});
-      return;
-    }
-
-    if (module.exports.list[data.target] != null)
-    {
-      socket.emit("challengeRequestResponse", {success: false, challenger: socket.username, error: "A battle is already ongoing for this user."});
-      return;
-    }
-
-    if (module.exports.challenges[data.target] != null && module.exports.challenges[data.target][socket.username] != null)
-    {
-      socket.emit("challengeRequestResponse", {success: false, challenger: socket.username, error: "You already issued a challenge to this user."});
-      return;
-    }
-
-    if (module.exports.challenges[data.target] == null)
-    {
-      module.exports.challenges[data.target] = {};
-
-      if (module.exports.challenges[data.target].challengers == null)
-      {
-        module.exports.challenges[data.target].challengers = [];
-      }
-    }
-
-    module.exports.challenges[data.target].challengers.push(socket.username);
-    socket.emit("challengeRequestResponse", {success: true, challenger: socket.username, error: null});
-  });
-
-  sm.listenAll("challengeReply", function(data, socket)
-  {
-    if (module.exports.list[socket.username] != null)
-    {
-      socket.emit("challengeReplyResponse", {success: false, error: "You already have a battle ongoing."});
-      return;
-    }
-
-    if (module.exports.challenges[socket.username] == null || module.exports.challenges[socket.username].includes(data.challenger) === false)
-    {
-      socket.emit("challengeReplyResponse", {success: false, error: "This challenge offer no longer exists."});
-      return;
-    }
-
-    if (data.challengeAccepted === false)
-    {
-      sm.logged[challenger].emit("challengeReplyResponse", {success: false, error: null});
-      return;
-    }
-
-    module.exports.challenges[socket.username].splice(module.exports.challenges[socket.username].indexOf(data.challenger), 1);
-    sm.logged[data.challenger].emit("challengeReplyResponse", {success: true, error: null});
-    create([playerModule.online[data.challenger], playerModule.online[socket.username]]);
-  });
+  socketManager = sockets;
+  return this;
 }
 
 /*
@@ -90,316 +20,433 @@ function listenToChallenges()
 *
 *   players         An array of the involved player objects (like:
 *                   {username: "yadda", characters: {id1: character1, id2: character2, etc.}})
+*
+*   map             A map object which will contain all spacial representations of characters.
 */
-
-function create(players)
+module.exports.Battle = function(players, map)
 {
-  this.positions = {};
-  this.characters = [];
-  this.players = players;
-  this.koCharacters = {};
-  this.deployedPlayers = 0;
-  this.deploymentAreas = assignDeploymentAreas(players[0], players[1]);
-  this.turn = 1;
-  this.round = 1;
-  this.map = map.create(WIDTH, HEIGHT);
-  this.order = this.getAPTurnOrder(20);
+  var _characters = [];
+  var _players = {};
+  var _started = false;
+  var _deployedPlayers = 0;
+  var _turn = 1;
+  var _round = 1;
+  var _map = map;
+  var _order = getAPTurnOrder(_characters, 20);
 
-  //INIT
-  for (var i = 0; i < players.length; i++)
+
+  /**********************
+  *   INITIALIZATION    *
+  **********************/
+
+  _map.setDeploymentArea(players[0].username, 0, 0, WIDTH, 50);
+  _map.setDeploymentArea(players[1].username, 0, HEIGHT - 50, WIDTH, HEIGHT);
+
+  players.forEach(function(player, index)
   {
+    _players[player.username] = player;
+  });
+
+  for (var username in _players)
+  {
+    var player = _players[username];
+
     //STORING THE BATTLE UNDER EACH PLAYER'S USERNAME
-    module.exports.list[players[i].username] = b;
-    this.koCharacters[players[i].username] = [];
+    list[username] = this;
 
-    for (var j = 0; j < players[i].characters.length; j++)
+    _characters.concat(player.characters);
+  }
+
+  readyCharacters();
+
+
+  /**************************
+  *   GETTERS AND SETTERS   *
+  **************************/
+
+  Object.defineProperty(this, "turn",
+  {
+    get: function()
     {
-      this.characters.push(players[i].characters[j]);
-    }
+      return _turn;
+    },
+    enumerable: true
+  });
 
-    sm.logged[players[i].username].emit("deploymentPhase", {size: {x: this.map.length, y: this.map[0].length}, area: this.deploymentAreas[players[i].username]});
-
-    sm.listenMany(players, "deployment", function(data, socket)
+  Object.defineProperty(this, "round",
+  {
+    get: function()
     {
-      this.verifyDeployment(playerModule.playerList[socket.username], data.characters);
+      return _round;
+    },
+    enumerable: true
+  });
 
-      if (this.deployedPlayers >= this.players.length)
+  Object.defineProperty(this, "isDeploymentFinished",
+  {
+    get: function()
+    {
+      if (_deployedPlayers >= Object.keys(_players).length)
       {
-        //battle start!
-        this.emitBattleStartPacks();
-        sm.listenMany(this.players, "movement", function(data, socket)
-        {
-          this.processMovement(data, socket);
-        });
-
-        sm.listenMany(this.players, "attack", function(data, socket)
-        {
-          if (data.action === "melee")
-          {
-            this.processMelee(data);
-          }
-
-          else if (data.action === "ranged")
-          {
-            this.processRanged(data);
-          }
-
-          else if (data.action === "spell")
-          {
-            this.processSpell(data);
-          }
-        });
-
-        sm.listenMany(this.players, "endTurn", function(data, socket)
-        {
-          this.processEndTurn(data, socket);
-        });
+        return true;
       }
+
+      else return false;
+    },
+    enumerable: true
+  });
+
+
+  /****************************
+  *   PRIVILEDGED FUNCTIONS   *
+  ****************************/
+
+  this.startDeployment = function()
+  {
+    for (var username in _players)
+    {
+      var player = _players[username];
+
+      player.socket.emit("deploymentPhase", getDeploymentPack(username));
+
+      player.socket.on("deployment", function(data, clientCb)
+      {
+        deployCharacters(player, data, clientCb);
+
+        if (this.isDeploymentFinished === true)
+        {
+          emitInitPack();
+          listenToActions();
+        }
+      });
+    }
+  }
+
+  /**********************
+  *   PRIVATE METHODS   *
+  ***********************/
+
+  function getDeploymentPack(username)
+  {
+    return {map: {x: _map.width, y: _map.height}, area: _map.getDeploymentArea(username)};
+  };
+
+  function verifyDeployment(player, charPositions)
+  {
+    var deploymentArea = _deploymentAreas[player.username];
+
+    player.characters.forEach(function(character)
+    {
+      var position = charPositions[character.id];
+
+      if (position == null)
+      {
+        throw new Error("The character " + character.name + " cannot be found among the deployment positions sent.");
+      }
+
+      _map.deployCharacter(player.username, character.id, position);
     });
+
+    _deployedPlayers++;
   }
 
-  this.readyCharacters();
-}
-
-create.prototype.verifyDeployment = function(player, characters)
-{
-  var deploymentArea = this.deploymentAreas[player.username];
-
-  if (characters.length < player.characters.length)
+  function deployCharacters(player, data, clientCb)
   {
-    sm.logged[player.username].emit("deploymentResponse", {success: false, error: "You need to deploy all of your characters."});
-    return;
-  }
-
-  for (var i = 0; i < characters.length; i++)
-  {
-    var character = player.characters[characters[i].id];
-    character.area.setPosition(characters[i].position);
-
-    if (deploymentArea.containsArea(character.area) === false)
+    try
     {
-      sm.logged[player.username].emit("deploymentResponse", {success: false, error: "You can only place your characters in a tile within x: (" + deploymentArea.x + "," + (deploymentArea.width + deploymentArea.x) + ") and y: (" + deploymentArea.y + "," + (deploymentArea.height + deploymentArea.y) + ")."});
-      return;
+      verifyDeployment(player, data.positions);
     }
 
-    else if (this.map.isOccupied(character.area) === true)
+    catch(err)
     {
-      sm.logged[player.username].emit("deploymentResponse", {success: false, error: "You can't place more than one character in the same tile."});
-      return;
+      clientCb(err, null);
     }
 
-    this.positions[characters[i].id] = characters[i].position;
-    sm.logged[player.username].emit("deploymentResponse", {success: true, error: null});
-  }
+    clientCb(null);
+  };
 
-  this.deployedPlayers++;
-}
-
-create.prototype.assignDeploymentAreas = function(p1, p2)
-{
-  var obj = {};
-  obj[p1.username] = area.create(0, 0, WIDTH, 3);
-  obj[p2.username] = area.create(0, HEIGHT - 3, WIDTH, HEIGHT);
-  return obj;
-}
-
-create.prototype.verifyOwner = function(data)
-{
-  if (data.character.id != this.order[0])
-  {
-    //wrong turn
-    throw new Error("It is not this character's turn to act.");
-  }
-
-  if (data.username == null || this.players[data.username] == null)
-  {
-    //wrong username
-    throw new Error("This isn't a valid player for you to control.");
-  }
-
-  if (this.players[data.username].characters[data.character.id] == null)
-  {
-    //wrong character
-    throw new Error("This isn't a valid character for you to control.");
-  }
-
-  if (this.koCharacters[data.username].includes(data.character.id) === true)
-  {
-    //KOed character
-    throw new Error("This character is knocked out.");
-  }
-}
-
-create.prototype.processMovement = function(data, socket)
-{
-  var actor = this.players[socket.username].characters[data.id];
-
-  try
-  {
-    this.verifyOwner(data);
-    ruleset.move(actor, map, data.position);
-    this.positions[data.id] = data.position;
-  }
-
-  catch(err)
-  {
-    socket.emit("movementResponse", {success: false, error: err, characterID: null, position: null});
-  }
-
-  socket.emit("movementResponse", {success: true, error: null, characterID: data.id, position: data.position});
-  sm.emitMany(this.players.filter(function(player) {return player.username != socket.username;}), "movementBroacast", {characterID: data.id, position: data.position});
-}
-
-create.prototype.processMelee = function(data, socket)
-{
-  var resolvedPack;
-  var translatedPack;
-  var actor = this.players[socket.username].characters[data.character.id];
-  //var target = this.players[data.target.player].characters[data.target.id];
-
-  try
-  {
-    this.verifyOwner(data);
-    resolvedPack = ruleset.melee(actor, data.targetPosition, actor.getWeapon(data.weapon), this.map);
-    translatedPack = interpreter.translateMelee(resolvedPack);
-    //TODO map packages to players depending on which characters show up in the results
-  }
-
-  catch(err)
-  {
-    socket.emit("attackResponse", {success: false, error: err});
-  }
-
-  //socket.emit("attackResponse", {success: true, error: null});
-  sm.emitMany(this.players, "attackBroadcast", translatedPack);
-  sm.logged[data.target.player].emit("")
-}
-
-create.prototype.processRanged = function(data, socket)
-{
-  var resolvedPack;
-  var translatedPack;
-  var actor = this.players[socket.username].characters[data.character.id];
-  var target = this.players[data.target.player].characters[data.target.id];
-
-  try
-  {
-    this.verifyOwner(data);
-    resolvedPack = ruleset.ranged(actor, target, data.weapon);
-    translatedPack = interpreter.translateAttack(resolvedPack);
-  }
-
-  catch(err)
-  {
-    socket.emit("attackResponse", {success: false, error: err, });
-  }
-
-  socket.emit("attackResponse", {success: true, error: null, });
-  sm.emitMany(this.players.filter(function(player) {return player.username != socket.username;}), "attackBroadcast", translatedPack);
-}
-
-create.prototype.processEndTurn = function(data, socket)
-{
-  var actor = this.players[data.username].characters[data.character.id];
-  var pack = {actor: actor, battle: this, characters: this.characters, map: this.map, data: {}};
-  var resolvedPack = ruleset.endTurn(pack);
-
-  for (var i = 0; i < this.players; i++)
-  {
-    var player = this.players[i];
-
-    if (this.koCharacters[player.username].length >= player.characters.length)
-    {
-      //battle ends
-      this.processEndBattle();
-      return;
-    }
-  }
-
-  this.turn++;
-
-  if (this.turn % this.characters.length === 0)
-  {
-    this.round++;
-  }
-
-  this.order.shift();
-  socket.emit("startTurn", this.order);
-}
-
-create.prototype.processEndBattle = function()
-{
-  //TODO
-}
-
-create.prototype.emitBattleStartPacks = function()
-{
-  for (var i = 0; i < this.players.length; i++)
+  function emitInitPack()
   {
     var playerPacks = {};
 
-    this.players.forEach(function(player, index)
+    _players.forEach(function(player, index)
     {
-      if (this.players[i].username != player.username)
-      {
-        playerPacks[player.username] = {};
+      playerPacks[player.username] = {};
 
-        for (var id in player.characters)
+      player.characters.forEach(function(character)
+      {
+        playerPacks[player.username][id] = character.giveEnemyData();
+      });
+    });
+
+    _players.forEach(function(player, index)
+    {
+      var initPack = {order: this.order, positions: this.positions, players: {}};
+
+      for (var username in playerPacks)
+      {
+        if (username != player.username)
         {
-          playerPacks[player.username][id] = player.characters[id].giveEnemyData();
+          initPack.players[username] = playerPacks[username];
         }
+      }
+
+      player.socket.emit("battleInitPack", initPack);
+    });
+  };
+
+  function listenToActions()
+  {
+    for (var username in _players)
+    {
+      var player = _players[username];
+
+      player.socket.on("movement", function(data, clientCb)
+      {
+        processMovement(player, data, clientCb);
+      });
+
+      player.socket.on("attack", function(data, clientCb)
+      {
+        processAttack(player, data, clientCb);
+      });
+
+      player.socket.on("endTurn", function(data, clientCb)
+      {
+        processEndTurn(player, data, clientCb);
+      });
+    }
+  }
+
+  function processMovement(player, data, clientCb)
+  {
+    var actor = player.characters.find(function(char)
+    {
+      return data.character.id === char.id;
+    });
+
+    try
+    {
+      verifyData(actor, data);
+      dispatchUpdatePack(strategyManager.move(actor, data.targetPosition, _map), buildUpdatePack());
+    }
+
+    catch (err)
+    {
+      clientCb(err, null);
+    }
+  }
+
+  function processAttack(player, data, clientCb)
+  {
+    var actor = player.characters.find(function(char)
+    {
+      return data.character.id === char.id;
+    });
+
+    try
+    {
+      verifyData(actor, data);
+      dispatchUpdatePack(attack.resolve(actor, data.targetPosition, actor.getEquippedItem(data.slotType, data.slotIndex), _map), buildUpdatePack());
+    }
+
+    catch(err)
+    {
+      clientCb(err, null);
+    }
+  }
+
+  function processEndTurn(data, socket)
+  {
+    var actor;
+    var pack;
+    var resolvedPack;
+    var koCharacters;
+
+    try
+    {
+      actor = getVerifiedActor(data, socket);
+      pack = {actor: actor, battle: this, characters: this.characters, map: this.map, data: {}};
+      //TODO resolvedPack = ;
+
+      for (var username in _players)
+      {
+        koCharacters = Object.filter(_players[username].characters, function(character)
+        {
+          return character.getStatusEffect("ko") != null;
+        });
+
+        if (koCharacters.length >= _players[username].characters.length)
+        {
+          //battle ends
+          processEndBattle();
+          return;
+        }
+      }
+
+      _turn++;
+
+      if (_turn % _characters.length === 0)
+      {
+        _round++;
+      }
+
+      _order.shift();
+      socket.emit("startTurn", _order);
+    }
+
+    catch(err)
+    {
+      socket.emit("endTurnError", err);
+    }
+  }
+
+  function processEndBattle()
+  {
+    //TODO
+  }
+
+  //pulls the data of the latest changes in the character objects and the map object.
+  //this must be gathered for all players at once because the data gets deleted after
+  //it is pulled from the objects, as it only stores the most recent changes
+  function buildUpdatePack()
+  {
+    var pack = {};
+    var characterUpdates = {};
+
+    _characters.forEach(function(character)
+    {
+      characterUpdates[character.id] = {};
+      characterUpdates[character.id].position = _map.getLastMovements(character.id);
+      Object.assign(characterUpdates[character.id], character.getChanges());
+
+      for (var username in _players)
+      {
+        var player = _players[username];
+
+        if (pack[username] == null)
+        {
+          pack[username] = {};
+        }
+
+        if (character.player === username)
+        {
+          pack[username][character.id] = characterUpdates[character.id];
+        }
+
+        else pack[username][character.id] = Object.assign({}, characterUpdates[character.id].position, character.getPublicData());
       }
     });
 
-    sm.logged[this.players[i].username].emit("battleStart",
-    {
-      order: this.order,
-      positions: this.positions,
-      "playerPacks": playerPacks
-    });
+    return pack;
   }
-}
 
-create.prototype.readyCharacters = function()
-{
-  for (var i = 0; i < this.characters.length; i++)
+  function dispatchUpdatePack(resultsPack, changesPack)
   {
+    for (var username in _players)
+    {
+      _players[username].socket.emit("battleUpdate", {results: resultsPack, changes: pack[username]});
+    }
+  }
 
+  function verifyData(actor, data)
+  {
+    if (actor == null)
+    {
+      throw new Error("The character cannot be found under this player.");
+    }
+
+    if (actor.id != _order[0])
+    {
+      //wrong turn
+      throw new Error("It is not this character's turn to act.");
+    }
+
+    if (actor.getStatusEffect("ko") != null)
+    {
+      //KOed character
+      throw new Error("This character is knocked out.");
+    }
+
+    if (data.targetPosition == null || _map.getCharacterAt(data.targetPosition) == null)
+    {
+      throw new Error("The target position is null or empty.");
+    }
+
+    if (_map.isOutOfBounds(data.targetPosition) === true)
+    {
+      throw new Error("The target position is out of bounds.");
+    }
+
+    if (data.slotType != null && data.slotIndex == null)
+    {
+      throw new Error("The slot index chosen is null.");
+    }
+
+    else if (data.slotType == null && data.slotIndex != null)
+    {
+      throw new Error("The slot type chosen is null.");
+    }
+
+    else if (actor.getEquippedItem(data.slotType, data.slotIndex) == null)
+    {
+      throw new Error("There is no equipped item at the given slot, or the slot does not exist in this character.");
+    }
+  }
+
+  function readyCharacters()
+  {
+    for (var i = 0; i < _characters.length; i++)
+    {
+
+    }
   }
 }
 
-create.prototype.getAPTurnOrder = function(turns)
+
+/********************
+*   PUBLIC METHODS  *
+********************/
+
+prototype = module.exports.Battle.prototype;
+
+
+/**********************
+*   MODULE METHODS    *
+**********************/
+
+function getAPTurnOrder(characters, turns)
 {
   var order = [];
   var characterSpeeds = [];
   var index = 0;
 
-  for (var i = 0; i < this.characters.length; i++)
+  for (var i = 0; i < characters.length; i++)
   {
-    characterSpeeds[i] = {"character": this.characters[i], "speed": this.characters[i].ap};
+    characterSpeeds[i] = {"character": characters[i], "speed": characters[i].actionPoints};
   }
 
   characterSpeeds = characterSpeeds.sort(function(a, b)
   {
-    if (b.ap === a.ap)
+    if (b.actionPoints === a.actionPoints)
     {
       //random order if same AP
       return Math.floor(Math.random()*2) == 1 ? 1 : -1;
     }
 
-    else return b.ap - a.ap;
+    else return b.actionPoints - a.actionPoints;
   })
 
   for (var i = 0; i < turns; i++)
   {
-    order.push(this.characters[index].id);
-    ++index.wrap(this.characters.length - 1);
+    order.push(characters[index].id);
+    ++index.wrap(characters.length - 1);
   }
 
   return order;
 }
 
-create.prototype.getTickTurnOrder = function(turns)
+function getTickTurnOrder(characters, turns)
 {
   var order = [];
   var characterSpeeds = [];
@@ -409,14 +456,14 @@ create.prototype.getTickTurnOrder = function(turns)
   //in the proper turn order for a given length of turns. It does so by increasing
   //the current speed meter and then sorting the characterSpeeds array and grabbing the
   //resulting first one each turn, since that will be the faster character.
-  for (var i = 0; i < this.characters.length; i++)
+  for (var i = 0; i < characters.length; i++)
   {
-    characterSpeeds[i] = {"character": this.characters[i], "speed": this.characters[i].speed, "currSpeed": 0};
+    characterSpeeds[i] = {"character": characters[i], "speed": characters[i].speed, "currSpeed": 0};
   }
 
   for (var i = 0; i < turns; i++)
   {
-    for (var j = 0; j < this.characters.length; j++)
+    for (var j = 0; j < characters.length; j++)
     {
       order.push(characterSpeeds.sort(function(a, b)
       {

@@ -11,4 +11,5 @@ module2.js
 /bot.log.report
 /log.txt
 /config.json
+/old_client/*
 /node_modules/*

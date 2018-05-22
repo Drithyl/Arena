@@ -1,21 +1,84 @@
 
-
+//the original object of the library
 var io;
+
+//socket id keys that point to the socket
+var list = {};
+
+//socket id keys that point to the username
+var usernames = {};
+
+//username keys that point to their socket
+var logged = {};
 
 module.exports =
 {
-  list: {},
-  logged: {},
-
-  init: function(io)
+  init: function(server, connectFn, disconnectFn)
   {
-    io = io;
+    io = require("socket.io")(server, {});
+
+    //applies to all sockets, and passes the client socket as argument
+    io.on("connection", function(socket)
+    {
+      module.exports.addSocket(socket);
+
+      try
+      {
+        connectFn(socket);
+      }
+
+      catch (err)
+      {
+        throw err;
+      }
+    });
+
+    io.on("disconnect", function(socket)
+    {
+      try
+      {
+        disconnectFn(socket);
+      }
+
+      catch (err)
+      {
+        throw err;
+      }
+
+      finally
+      {
+        module.exports.removeSocket(socket.id);
+      }
+    });
+
     return this;
   },
 
-  disconnect: function(id)
+  addSocket: function(socket)
   {
-    delete this.list[id];
+    list[socket.id] = socket;
+  },
+
+  addLoggedPlayer: function(username, socket)
+  {
+    logged[username] = socket;
+    usernames[socket.id] = username;
+  },
+
+  getPlayerSocket: function(username)
+  {
+    return logged[username];
+  },
+
+  getUsername: function(socketID)
+  {
+    return usernames[socketID];
+  },
+
+  removeSocket: function(id)
+  {
+    list[id].disconnect(true);
+    delete list[id];
   },
 
   broadcast: function(trigger, data)
@@ -23,73 +86,66 @@ module.exports =
     io.broadcast(trigger, data);
   },
 
+  emit: function(username, trigger, data)
+  {
+    logged[username].emit(trigger, data);
+  },
+
+  listen: function(username, trigger, fn)
+  {
+    logged[username].on(trigger, function(data)
+    {
+      fn(data, logged[username]);
+    });
+  },
+
   emitMany: function(players, trigger, data)
   {
-    for (var i = 0; i < players.length; i++)
+    for (var username in players)
     {
-      if (typeof players[i] === "string")
-      {
-        this.logged[players[i]].emit(trigger, data);
-      }
-
-      else this.logged[players[i].username].emit(trigger, data);
+      this.emit(username, trigger, data);
     }
   },
 
   listenMany: function(players, trigger, fn)
   {
-    for (var i = 0; i < players.length; i++)
+    for (var username in players)
     {
-      var username;
-
-      if (typeof players[i] === "string")
-      {
-        username = players[i];
-      }
-
-      else username = players[i].username;
-
-      this.logged[username].on(trigger, function(data)
-      {
-        fn(data, this.logged[username]);
-      });
+      this.listen(username, trigger, fn);
     }
   },
 
   emitLogged: function(trigger, data)
   {
-    for (var id in this.logged)
+    for (var username in logged)
     {
-      this.logged[id].emit(trigger, data);
+      logged[id].emit(trigger, data);
     }
   },
 
   listenLogged: function(trigger, fn)
   {
-    for (var id in this.logged)
+    for (var username in logged)
     {
-      this.logged[id].listen(trigger, function(data)
-      {
-        fn(data, this.logged[id]);
-      });
+      this.emit(username, trigger, fn);
     }
   },
 
   emitAll: function(trigger, data)
   {
-    for (var id in this.list)
+    for (var id in list)
     {
-      this.list[id].emit(trigger, data);
+      list[id].emit(trigger, data);
     }
   },
 
   listenAll: function(trigger, fn)
   {
-    for (var id in this.list)
+    for (var id in list)
     {
-      this.list[id].listen(trigger, function(data)
+      list[id].listen(trigger, function(data)
       {
-        fn(data, this.list[id]);
+        fn(data, list[id]);
       });
     }
   }

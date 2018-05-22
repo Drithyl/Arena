@@ -1,115 +1,115 @@
-ID,Name,Cost,Protection,Shield Protection,Defence,Parry,Encumbrance,Slot Type,Required Slots,Effects,Properties,Rarity,Categories
-a1,buckler,Gold (3.5),"Eye (0), Head (0), Body (0), Arm (0), Leg (0), Wing (0)",14,0,2,0,Hands,1,,,0,Shields
-a2,shield,Gold (5),"Eye (0), Head (0), Body (0), Arm (0), Leg (0), Wing (0)",16,-1,4,1,Hands,1,,,0,Shields
-a3,kite shield,Gold (8),"Eye (0), Head (0), Body (0), Arm (0), Leg (0), Wing (0)",19,-2,6,2,Hands,1,,,0,Shields
-a4,tower shield,Gold (8),"Eye (0), Head (0), Body (0), Arm (0), Leg (0), Wing (0)",16,-2,7,2,Hands,1,,,0,Shields
-a5,leather cuirass,Gold (5.5),"Eye (0), Head (0), Body (6), Arm (6), Leg (6), Wing (6)",0,0,0,0,Body,1,,,0,Light Armors
-a6,ring mail cuirass,Gold (9),"Eye (0), Head (0), Body (8), Arm (8), Leg (8), Wing (8)",0,0,0,0,Body,1,,,0,Light Armors
-a7,scale mail cuirass,Gold (9),"Eye (0), Head (0), Body (10), Arm (10), Leg (10), Wing (10)",0,-1,0,1,Body,1,,,0,Light Armors
-a8,chain mail cuirass,Gold (12),"Eye (0), Head (0), Body (12), Arm (12), Leg (12), Wing (12)",0,-1,0,1,Body,1,,,0,Light Armors
-a9,plate cuirass,Gold (16),"Eye (0), Head (0), Body (14), Arm (14), Leg (14), Wing (14)",0,-1,0,2,Body,1,,,0,Medium Armors
-a10,leather hauberk,Gold (9),"Eye (0), Head (0), Body (8), Arm (8), Leg (8), Wing (8)",0,0,0,0,Body,1,,,0,Light Armors
-a11,ring mail hauberk,Gold (12),"Eye (0), Head (0), Body (10), Arm (10), Leg (10), Wing (10)",0,-1,0,1,Body,1,,,0,Light Armors
-a12,scale mail hauberk,Gold (14.5),"Eye (0), Head (0), Body (13), Arm (13), Leg (13), Wing (13)",0,-1,0,2,Body,1,,,0,Medium Armors
-a13,chain mail hauberk,Gold (13),"Eye (0), Head (0), Body (15), Arm (15), Leg (15), Wing (15)",0,-2,0,2,Body,1,,,0,Medium Armors
-a14,plate hauberk,Gold (18),"Eye (0), Head (0), Body (18), Arm (18), Leg (18), Wing (18)",0,-3,0,4,Body,1,,,0,Heavy Armors
-a15,full leather Armor,Gold (10),"Eye (0), Head (0), Body (9), Arm (9), Leg (9), Wing (9)",0,-1,0,1,Body,1,,,0,Light Armors
-a16,full ring mail,Gold (12),"Eye (0), Head (0), Body (12), Arm (12), Leg (12), Wing (12)",0,-2,0,2,Body,1,,,0,Medium Armors
-a17,full scale mail,Gold (13),"Eye (0), Head (0), Body (15), Arm (15), Leg (15), Wing (15)",0,-2,0,3,Body,1,,,0,Medium Armors
-a18,full chain mail,Gold (18),"Eye (0), Head (0), Body (18), Arm (18), Leg (18), Wing (18)",0,-3,0,3,Body,1,,,0,Medium Armors
-a19,full plate mail,Gold (25),"Eye (0), Head (0), Body (21), Arm (21), Leg (21), Wing (21)",0,-3,0,5,Body,1,,,0,Heavy Armors
-a20,iron cap,Gold (6.5),"Eye (16), Head (16), Body (0), Arm (0), Leg (0), Wing (0)",0,0,0,0,Head,1,,,0,Helmets
-a21,full helmet,Gold (5),"Eye (21), Head (21), Body (0), Arm (0), Leg (0), Wing (0)",0,-1,0,0,Head,1,,,0,Helmets
-a22,coral cuirass,"Gold (32), Emeralds (1)","Eye (0), Head (0), Body (10), Arm (10), Leg (10), Wing (10)",0,-1,0,2,Body,1,Poison Barbs (10),,0,Medium Armors
-a23,coral hauberk,"Gold (20), Emeralds (1)","Eye (0), Head (0), Body (12), Arm (12), Leg (12), Wing (12)",0,-2,0,3,Body,1,Poison Barbs (10),,0,Medium Armors
-a24,coral cap,Gold (6),"Eye (14), Head (14), Body (0), Arm (0), Leg (0), Wing (0)",0,0,0,0,Head,1,,,0,Helmets
-a25,turtle shell shield,Gold (4),"Eye (0), Head (0), Body (0), Arm (0), Leg (0), Wing (0)",15,-1,4,1,Hands,1,,,0,Shields
-a26,ice cuirass,Gold (18),"Eye (0), Head (0), Body (14), Arm (14), Leg (14), Wing (14)",0,-1,0,1,Body,1,Ice Protection (1),,1,Light Armors
-a27,ice hauberk,Gold (24),"Eye (0), Head (0), Body (17), Arm (17), Leg (17), Wing (17)",0,-2,0,2,Body,1,Ice Protection (1.3),,1,Medium Armors
-a28,ice aegis,Gold (15),"Eye (0), Head (0), Body (0), Arm (0), Leg (0), Wing (0), Wing (0)",18,-1,6,1,Hands,1,Ice Protection (0.8),,1,Shields
-a29,ice cap,Gold (7),"Eye (15), Head (15), Body (0), Arm (0), Leg (0), Wing (0)",0,0,0,0,Head,1,Ice Protection (0.3),,1,Helmets
-a44,furs,Gold (4.5),"Eye (0), Head (0), Body (7), Arm (7), Leg (7), Wing (7)",0,-1,0,1,Body,1,,,0,Light Armors
-a52,ice studded Armor,Gold (15),"Eye (0), Head (0), Body (10), Arm (10), Leg (10), Wing (10)",0,-1,0,0,Body,1,Ice Protection (0.7),,1,Light Armors
-a53,meteorite Armor,Gold (25),"Eye (0), Head (0), Body (18), Arm (18), Leg (18), Wing (18)",0,-2,0,4,Body,1,Magic Resistance Bonus (3),,1,Heavy Armors
-a84,amber hauberk,Gold (20),"Eye (0), Head (0), Body (16), Arm (16), Leg (16), Wing (16)",0,-2,0,3,Body,1,,,0,Medium Armors
-a85,amber shield,Gold (6),"Eye (0), Head (0), Body (0), Arm (0), Leg (0), Wing (0), Wing (0)",16,-1,4,1,Hands,1,,,0,Shields
-a86,amber helmet,Gold (6.5),"Eye (16), Head (16), Body (0), Arm (0), Leg (0), Wing (0)",0,0,0,0,Head,1,,,0,Helmets
-a91,full plate of ulm,Gold (25),"Eye (0), Head (0), Body (22), Arm (22), Leg (22), Wing (22)",0,-3,0,4,Body,1,,,1,Heavy Armors
-a99,lorica segmentata,Gold (14.5),"Eye (0), Head (0), Body (13), Arm (13), Leg (13), Wing (13)",0,-1,0,2,Body,1,,,0,Medium Armors
-a100,bronze cuirass,Gold (14),"Eye (0), Head (0), Body (13), Arm (13), Leg (13), Wing (13)",0,-1,0,3,Body,1,,,0,Medium Armors
-a101,bronze hauberk,Gold (18),"Eye (0), Head (0), Body (17), Arm (17), Leg (17), Wing (17)",0,-2,0,5,Body,1,,,0,Heavy Armors
-a104,mitclan Armor,Gold (12),"Eye (0), Head (0), Body (11), Arm (11), Leg (11), Wing (11)",0,-1,0,2,Body,1,,,0,Medium Armors
-a105,hide shield,Gold (2),"Eye (0), Head (0), Body (0), Arm (0), Leg (0), Wing (0)",11,-1,4,1,Hands,1,,,0,Shields
-a106,mitclan copper scale Armor,Gold (13),"Eye (0), Head (0), Body (13), Arm (13), Leg (13), Wing (13)",0,-1,0,3,Body,1,,,0,Medium Armors
-a111,spider Armor,Gold (22),"Eye (0), Head (0), Body (19), Arm (19), Leg (19), Wing (19)",0,-3,0,4,Body,1,,,1,Heavy Armors
-a112,great hide shield,Gold (4),"Eye (0), Head (0), Body (0), Arm (0), Leg (0), Wing (0), Wing (0)",11,-1,6,1,Hands,1,,,0,Shields
-a114,turtle shell hauberk,Gold (7),"Eye (0), Head (0), Body (9), Arm (9), Leg (9), Wing (9)",0,-2,0,1,Body,1,,,0,Light Armors
-a115,icarian Wings,Gold (10),"Eye (0), Head (0), Body (8), Arm (8), Leg (8), Wing (8)",0,-3,0,3,Body,1,,Flying,1,Medium Armors
-a116,lorica hamata,Gold (12),"Eye (0), Head (0), Body (10), Arm (10), Leg (10), Wing (10)",0,-1,0,1,Body,1,,,0,Light Armors
-a117,lorica squamata,Gold (14),"Eye (0), Head (0), Body (12), Arm (12), Leg (12), Wing (12)",0,-1,0,2,Body,1,,,0,Medium Armors
-a118,half helmet,Gold (7.5),"Eye (18), Head (18), Body (0), Arm (0), Leg (0), Wing (0)",0,0,0,0,Head,1,,,0,Helmets
-a119,reinforced leather cap,Gold (4),"Eye (9), Head (9), Body (0), Arm (0), Leg (0), Wing (0)",0,0,0,0,Head,1,,,0,Helmets
-a120,leather cap,Gold (3.5),"Eye (7), Head (7), Body (0), Arm (0), Leg (0), Wing (0)",0,0,0,0,Head,1,,,0,Helmets
-a121,leather hood,Gold (3),"Eye (6), Head (6), Body (0), Arm (0), Leg (0)",0,0,0,0,Head,1,,,0,Helmets
-a123,hoplite helm,Gold (5),"Eye (21), Head (21), Body (0), Arm (0), Leg (0), Wing (0)",0,-1,0,0,Head,1,,,0,Helmets
-a124,ice helmet,Gold (8),"Eye (8), Head (8), Body (0), Arm (0), Leg (0), Wing (0)",0,0,0,0,Head,1,,,1,Helmets
-a126,Legionary helmet,Gold (8),"Eye (19), Head (19), Body (0), Arm (0), Leg (0), Wing (0)",0,0,0,0,Head,1,,,0,Helmets
-a127,Legionary bronze helmet,Gold (7.5),"Eye (18), Head (18), Body (0), Arm (0), Leg (0), Wing (0)",0,0,0,0,Head,1,,,0,Helmets
-a128,ashigaru Armor,Gold (14),"Eye (0), Head (0), Body (12), Arm (12), Leg (12), Wing (12)",0,-1,0,2,Body,1,,,0,Medium Armors
-a129,samurai Armor,Gold (14),"Eye (0), Head (0), Body (15), Arm (15), Leg (15), Wing (15)",0,-2,0,3,Body,1,,,0,Medium Armors
-a130,heavy samurai Armor,Gold (18),"Eye (0), Head (0), Body (18), Arm (18), Leg (18), Wing (18)",0,-3,0,4,Body,1,,,0,Heavy Armors
-a131,jingasa,Gold (6),"Eye (13), Head (13), Body (0), Arm (0), Leg (0), Wing (0)",0,0,0,0,Head,1,,,0,Helmets
-a132,kabuto,Gold (7),"Eye (17), Head (17), Body (0), Arm (0), Leg (0), Wing (0)",0,0,0,0,Head,1,,,0,Helmets
-a133,icicle mail,Gold (13),"Eye (0), Head (0), Body (12), Arm (12), Leg (12), Wing (12)",0,-1,0,2,Body,1,,,1,Medium Armors
-a134,turtle cap,Gold (4.5),"Eye (10), Head (10), Body (0), Arm (0), Leg (0), Wing (0)",0,0,0,0,Head,1,,,0,Helmets
-a135,bronze cap,Gold (6.5),"Eye (15), Head (15), Body (0), Arm (0), Leg (0), Wing (0)",0,0,0,0,Head,1,,,0,Helmets
-a136,bronze scale hauberk,Gold (14),"Eye (0), Head (0), Body (12), Arm (12), Leg (12), Wing (12)",0,-1,0,2,Body,1,,,0,Medium Armors
-a140,shell Armor,Gold (12),"Eye (0), Head (0), Body (10), Arm (10), Leg (10), Wing (10)",0,-1,0,1,Body,1,,,0,Light Armors
-a141,Blind helmet,Gold (8),"Eye (23), Head (23), Body (0), Arm (0), Leg (0), Wing (0)",0,0,0,0,Head,1,,Blind,1,Helmets
-a142,bronze scale cuirass,Gold (10),"Eye (0), Head (0), Body (9), Arm (9), Leg (9), Wing (9)",0,-1,0,1,Body,1,,,0,Light Armors
-a145,mask,Gold (3),"Eye (7), Head (7), Body (0), Arm (0), Leg (0), Wing (0)",0,-1,0,0,Head,1,,,0,Helmets
-a146,ancestor Armor,Gold (15),"Eye (0), Head (0), Body (17), Arm (17), Leg (17), Wing (17)",0,-3,0,3,Body,1,,,0,Medium Armors
-a148,crown,Gold (4.5),"Eye (9), Head (9), Body (0), Arm (0), Leg (0), Wing (0)",0,0,0,0,Head,1,,,0,Helmets
-a149,bone cuirass,Gold (13),"Eye (0), Head (0), Body (11), Arm (11), Leg (11), Wing (11)",0,-1,0,1,Body,1,,,0,Light Armors
-a150,bone helmet,Gold (6),"Eye (14), Head (14), Body (0), Arm (0), Leg (0), Wing (0)",0,0,0,0,Head,1,,,0,Helmets
-a151,sharkskin Armor,Gold (5),"Eye (0), Head (0), Body (8), Arm (8), Leg (8), Wing (8)",0,-1,0,1,Body,1,,,0,Light Armors
-a152,sharkskin cap,Gold (4.5),"Eye (10), Head (10), Body (0), Arm (0), Leg (0), Wing (0)",0,0,0,0,Head,1,,,0,Helmets
-a153,basalt Armor,Gold (25),"Eye (0), Head (0), Body (19), Arm (19), Leg (19), Wing (19)",0,-4,0,6,Body,1,,,1,Heavy Armors
-a154,ancestor cuirass,Gold (16),"Eye (0), Head (0), Body (14), Arm (14), Leg (14), Wing (14)",0,-1,0,2,Body,1,,,0,Medium Armors
-a155,Golden shield,Gold (15),"Eye (0), Head (0), Body (0), Arm (0), Leg (0), Wing (0), Wing (0)",23,-1,5,1,Hands,1,,,1,Shields
-a156,spectral shield,Gold (1),"Eye (0), Head (0), Body (0), Arm (0), Leg (0), Wing (0), Wing (0)",15,0,3,0,Hands,1,,Ethereal,1,Shields
-a158,robes,Gold (2),"Eye (0), Head (0), Body (3), Arm (3), Leg (3), Wing (3)",0,0,0,0,Body,1,,,0,Light Armors
-a159,imperial robes,Gold (4),"Eye (0), Head (0), Body (4), Arm (4), Leg (4), Wing (4)",0,0,0,0,Body,1,,,0,Light Armors
-a161,jeweled breastplate,Gold (10),"Eye (0), Head (0), Body (7), Arm (7), Leg (7), Wing (7)",0,0,0,0,Body,1,,,0,Light Armors
-a162,crested helmet,Gold (6),"Eye (14), Head (14), Body (0), Arm (0), Leg (0), Wing (0)",0,0,0,0,Head,1,,,0,Helmets
-a163,anakite Armor,Gold (24),"Eye (0), Head (0), Body (17), Arm (17), Leg (17), Wing (17)",0,-1,0,2,Body,1,,,1,Medium Armors
-a164,anakite shield,Gold (10),"Eye (0), Head (0), Body (0), Arm (0), Leg (0), Wing (0), Wing (0)",20,-1,5,1,Hands,1,,,1,Shields
-a165,dawn Armor,Gold (27),"Eye (0), Head (0), Body (18), Arm (18), Leg (18), Wing (18)",0,-1,0,2,Body,1,,,1,Medium Armors
-a166,dawn shield,Gold (9),"Eye (0), Head (0), Body (0), Arm (0), Leg (0), Wing (0), Wing (0)",19,-1,5,1,Hands,1,,,1,Shields
-a171,full scale archer Armor,Gold (15),"Eye (0), Head (0), Body (17), Arm (17), Leg (17), Wing (17)",0,-4,0,4,Body,1,,,0,Heavy Armors
-a183,linen cuirass,Gold (9),"Eye (0), Head (0), Body (8), Arm (8), Leg (8), Wing (8)",0,0,0,0,Body,1,,,0,Light Armors
-a184,kithaironic lion pelt,,"Eye (15), Head (15), Body (15), Arm (0), Leg (0), Wing (0)",0,-1,0,1,Body,1,,,1,Light Armors
-a188,sharkskin cuirass,Gold (6),"Eye (0), Head (0), Body (7), Arm (7), Leg (7), Wing (7)",0,0,0,1,Body,1,,,0,Light Armors
-a189,pearl shield,Gold (6),"Eye (0), Head (0), Body (0), Arm (0), Leg (0), Wing (0)",16,-1,5,1,Hands,1,,,1,Shields
-a192,full chain of ulm,Gold (20),"Eye (0), Head (0), Body (19), Arm (19), Leg (19), Wing (19)",0,-3,0,3,Body,1,,,1,Medium Armors
-a196,Golden scale mail,Gold (25),"Eye (0), Head (0), Body (17), Arm (17), Leg (17), Wing (17)",0,-2,0,2,Body,1,,,1,Medium Armors
-a198,raptorian plate cuirass,Gold (16),"Eye (0), Head (0), Body (13), Arm (13), Leg (13), Wing (13)",0,-1,0,1,Body,1,,,1,Light Armors
-a199,turan plated mail,Gold (24),"Eye (0), Head (0), Body (20), Arm (20), Leg (20), Wing (20)",0,-3,0,4,Body,1,,,1,Heavy Armors
-a202,cloth Armor,Gold (5.5),"Eye (0), Head (0), Body (6), Arm (6), Leg (6), Wing (6)",0,0,0,0,Body,1,,,0,Light Armors
-a203,reinforced cloth Armor,Gold (7),"Eye (0), Head (0), Body (8), Arm (8), Leg (8), Wing (8)",0,0,0,1,Body,1,,,0,Light Armors
-a204,Armor of the sun,Gold (20),"Eye (0), Head (0), Body (16), Arm (16), Leg (16), Wing (16)",0,-2,0,3,Body,1,,,0,Medium Armors
-a205,sun cuirass,Gold (14.5),"Eye (0), Head (0), Body (13), Arm (13), Leg (13), Wing (13)",0,-1,0,2,Body,1,,,0,Medium Armors
-a206,obsidian cuirass,Gold (18),"Eye (0), Head (0), Body (15), Arm (15), Leg (15), Wing (15)",0,-1,0,2,Body,1,,,1,Medium Armors
-a207,wicker shield,Gold (3),"Eye (0), Head (0), Body (0), Arm (0), Leg (0), Wing (0)",13,-1,4,1,Hands,1,,,0,Shields
-a208,iron shield,Gold (7),"Eye (0), Head (0), Body (0), Arm (0), Leg (0), Wing (0)",19,-1,4,1,Hands,1,,,0,Shields
-a209,hoplon,Gold (7),"Eye (0), Head (0), Body (0), Arm (0), Leg (0), Wing (0)",19,-1,4,1,Hands,1,,,0,Shields
-a210,meteorite cuirass,Gold (18),"Eye (0), Head (0), Body (14), Arm (14), Leg (14), Wing (14)",0,-1,0,2,Body,1,Magic Resistance Bonus (1),,1,Medium Armors
-a211,meteorite cap,Gold (6.5),"Eye (16), Head (16), Body (0), Arm (0), Leg (0), Wing (0)",0,0,0,0,Head,1,,,1,Helmets
-a315,leather barding,Gold (14),"Eye (9), Head (9), Body (9), Leg (9), Wing (9)",0,-1,0,1,Body,1,,,0,Animal
-a316,ring mail barding,Gold (17),"Eye (12), Head (12), Body (12), Leg (12), Wing (12)",0,-2,0,2,Body,1,,,0,Animal
-a317,scale mail barding,Gold (18),"Eye (15), Head (15), Body (15), Leg (15), Wing (15)",0,-2,0,3,Body,1,,,0,Animal
-a318,chain mail barding,Gold (25.5),"Eye (18), Head (18), Body (18), Leg (18), Wing (18)",0,-3,0,3,Body,1,,,0,Animal
-a319,plate mail barding,Gold (35),"Eye (21), Head (21), Body (21), Leg (21), Wing (21)",0,-3,0,5,Body,1,,,0,Animal
-a323,coral barding,"Gold (24), Emeralds (1)","Eye (12), Head (12), Body (12), Leg (12), Wing (12)",0,-2,0,3,Body,1,Poison Barbs (10),,0,Animal
-a417,lorica dogmata,Gold (18),"Eye (12), Head (12), Body (12), Leg (12), Wing (12)",0,-1,0,2,Body,1,,,0,Animal
-a461,jeweled barding,Gold (14),"Eye (7), Head (7), Body (7), Leg (7), Wing (7), Wing (7)",0,0,0,0,Body,1,,,0,Animal
+id,name,cost,protection,shieldProtection,defence,parry,encumbrance,slotType,requiredSlots,abilities,properties,rarity,categories
+a1,buckler,gold (3.5),"eye (0), head (0), body (0), arm (0), leg (0), wing (0)",14,0,2,0,hands,1,,,0,Shields
+a2,shield,gold (5),"eye (0), head (0), body (0), arm (0), leg (0), wing (0)",16,-1,4,1,hands,1,,,0,Shields
+a3,kite shield,gold (8),"eye (0), head (0), body (0), arm (0), leg (0), wing (0)",19,-2,6,2,hands,1,,,0,Shields
+a4,tower shield,gold (8),"eye (0), head (0), body (0), arm (0), leg (0), wing (0)",16,-2,7,2,hands,1,,,0,Shields
+a5,leather cuirass,gold (5.5),"eye (0), head (0), body (6), arm (6), leg (6), wing (6)",0,0,0,0,body,1,,,0,Light armors
+a6,ring mail cuirass,gold (9),"eye (0), head (0), body (8), arm (8), leg (8), wing (8)",0,0,0,0,body,1,,,0,Light armors
+a7,scale mail cuirass,gold (9),"eye (0), head (0), body (10), arm (10), leg (10), wing (10)",0,-1,0,1,body,1,,,0,Light armors
+a8,chain mail cuirass,gold (12),"eye (0), head (0), body (12), arm (12), leg (12), wing (12)",0,-1,0,1,body,1,,,0,Light armors
+a9,plate cuirass,gold (16),"eye (0), head (0), body (14), arm (14), leg (14), wing (14)",0,-1,0,2,body,1,,,0,Medium armors
+a10,leather hauberk,gold (9),"eye (0), head (0), body (8), arm (8), leg (8), wing (8)",0,0,0,0,body,1,,,0,Light armors
+a11,ring mail hauberk,gold (12),"eye (0), head (0), body (10), arm (10), leg (10), wing (10)",0,-1,0,1,body,1,,,0,Light armors
+a12,scale mail hauberk,gold (14.5),"eye (0), head (0), body (13), arm (13), leg (13), wing (13)",0,-1,0,2,body,1,,,0,Medium armors
+a13,chain mail hauberk,gold (13),"eye (0), head (0), body (15), arm (15), leg (15), wing (15)",0,-2,0,2,body,1,,,0,Medium armors
+a14,plate hauberk,gold (18),"eye (0), head (0), body (18), arm (18), leg (18), wing (18)",0,-3,0,4,body,1,,,0,Heavy armors
+a15,full leather armor,gold (10),"eye (0), head (0), body (9), arm (9), leg (9), wing (9)",0,-1,0,1,body,1,,,0,Light armors
+a16,full ring mail,gold (12),"eye (0), head (0), body (12), arm (12), leg (12), wing (12)",0,-2,0,2,body,1,,,0,Medium armors
+a17,full scale mail,gold (13),"eye (0), head (0), body (15), arm (15), leg (15), wing (15)",0,-2,0,3,body,1,,,0,Medium armors
+a18,full chain mail,gold (18),"eye (0), head (0), body (18), arm (18), leg (18), wing (18)",0,-3,0,3,body,1,,,0,Medium armors
+a19,full plate mail,gold (25),"eye (0), head (0), body (21), arm (21), leg (21), wing (21)",0,-3,0,5,body,1,,,0,Heavy armors
+a20,iron cap,gold (6.5),"eye (16), head (16), body (0), arm (0), leg (0), wing (0)",0,0,0,0,head,1,,,0,Helmets
+a21,full helmet,gold (5),"eye (21), head (21), body (0), arm (0), leg (0), wing (0)",0,-1,0,0,head,1,,,0,Helmets
+a22,coral cuirass,"gold (32), emeralds (1)","eye (0), head (0), body (10), arm (10), leg (10), wing (10)",0,-1,0,2,body,1,poisonBarbs (10),,0,Medium armors
+a23,coral hauberk,"gold (20), emeralds (1)","eye (0), head (0), body (12), arm (12), leg (12), wing (12)",0,-2,0,3,body,1,poisonBarbs (10),,0,Medium armors
+a24,coral cap,gold (6),"eye (14), head (14), body (0), arm (0), leg (0), wing (0)",0,0,0,0,head,1,,,0,Helmets
+a25,turtle shell shield,gold (4),"eye (0), head (0), body (0), arm (0), leg (0), wing (0)",15,-1,4,1,hands,1,,,0,Shields
+a26,ice cuirass,gold (18),"eye (0), head (0), body (14), arm (14), leg (14), wing (14)",0,-1,0,1,body,1,iceProtection (1),,1,Light armors
+a27,ice hauberk,gold (24),"eye (0), head (0), body (17), arm (17), leg (17), wing (17)",0,-2,0,2,body,1,iceProtection (1.3),,1,Medium armors
+a28,ice aegis,gold (15),"eye (0), head (0), body (0), arm (0), leg (0), wing (0), wing (0)",18,-1,6,1,hands,1,iceProtection (0.8),,1,Shields
+a29,ice cap,gold (7),"eye (15), head (15), body (0), arm (0), leg (0), wing (0)",0,0,0,0,head,1,iceProtection (0.3),,1,Helmets
+a44,furs,gold (4.5),"eye (0), head (0), body (7), arm (7), leg (7), wing (7)",0,-1,0,1,body,1,,,0,Light armors
+a52,ice studded armor,gold (15),"eye (0), head (0), body (10), arm (10), leg (10), wing (10)",0,-1,0,0,body,1,iceProtection (0.7),,1,Light armors
+a53,meteorite armor,gold (25),"eye (0), head (0), body (18), arm (18), leg (18), wing (18)",0,-2,0,4,body,1,magicResistanceBonus (3),,1,Heavy armors
+a84,amber hauberk,gold (20),"eye (0), head (0), body (16), arm (16), leg (16), wing (16)",0,-2,0,3,body,1,,,0,Medium armors
+a85,amber shield,gold (6),"eye (0), head (0), body (0), arm (0), leg (0), wing (0), wing (0)",16,-1,4,1,hands,1,,,0,Shields
+a86,amber helmet,gold (6.5),"eye (16), head (16), body (0), arm (0), leg (0), wing (0)",0,0,0,0,head,1,,,0,Helmets
+a91,full plate of ulm,gold (25),"eye (0), head (0), body (22), arm (22), leg (22), wing (22)",0,-3,0,4,body,1,,,1,Heavy armors
+a99,lorica segmentata,gold (14.5),"eye (0), head (0), body (13), arm (13), leg (13), wing (13)",0,-1,0,2,body,1,,,0,Medium armors
+a100,bronze cuirass,gold (14),"eye (0), head (0), body (13), arm (13), leg (13), wing (13)",0,-1,0,3,body,1,,,0,Medium armors
+a101,bronze hauberk,gold (18),"eye (0), head (0), body (17), arm (17), leg (17), wing (17)",0,-2,0,5,body,1,,,0,Heavy armors
+a104,mitclan armor,gold (12),"eye (0), head (0), body (11), arm (11), leg (11), wing (11)",0,-1,0,2,body,1,,,0,Medium armors
+a105,hide shield,gold (2),"eye (0), head (0), body (0), arm (0), leg (0), wing (0)",11,-1,4,1,hands,1,,,0,Shields
+a106,mitclan copper scale armor,gold (13),"eye (0), head (0), body (13), arm (13), leg (13), wing (13)",0,-1,0,3,body,1,,,0,Medium armors
+a111,spider armor,gold (22),"eye (0), head (0), body (19), arm (19), leg (19), wing (19)",0,-3,0,4,body,1,,,1,Heavy armors
+a112,great hide shield,gold (4),"eye (0), head (0), body (0), arm (0), leg (0), wing (0), wing (0)",11,-1,6,1,hands,1,,,0,Shields
+a114,turtle shell hauberk,gold (7),"eye (0), head (0), body (9), arm (9), leg (9), wing (9)",0,-2,0,1,body,1,,,0,Light armors
+a115,icarian wings,gold (10),"eye (0), head (0), body (8), arm (8), leg (8), wing (8)",0,-3,0,3,body,1,,Flying,1,Medium armors
+a116,lorica hamata,gold (12),"eye (0), head (0), body (10), arm (10), leg (10), wing (10)",0,-1,0,1,body,1,,,0,Light armors
+a117,lorica squamata,gold (14),"eye (0), head (0), body (12), arm (12), leg (12), wing (12)",0,-1,0,2,body,1,,,0,Medium armors
+a118,half helmet,gold (7.5),"eye (18), head (18), body (0), arm (0), leg (0), wing (0)",0,0,0,0,head,1,,,0,Helmets
+a119,reinforced leather cap,gold (4),"eye (9), head (9), body (0), arm (0), leg (0), wing (0)",0,0,0,0,head,1,,,0,Helmets
+a120,leather cap,gold (3.5),"eye (7), head (7), body (0), arm (0), leg (0), wing (0)",0,0,0,0,head,1,,,0,Helmets
+a121,leather hood,gold (3),"eye (6), head (6), body (0), arm (0), leg (0)",0,0,0,0,head,1,,,0,Helmets
+a123,hoplite helm,gold (5),"eye (21), head (21), body (0), arm (0), leg (0), wing (0)",0,-1,0,0,head,1,,,0,Helmets
+a124,ice helmet,gold (8),"eye (8), head (8), body (0), arm (0), leg (0), wing (0)",0,0,0,0,head,1,,,1,Helmets
+a126,legionary helmet,gold (8),"eye (19), head (19), body (0), arm (0), leg (0), wing (0)",0,0,0,0,head,1,,,0,Helmets
+a127,legionary bronze helmet,gold (7.5),"eye (18), head (18), body (0), arm (0), leg (0), wing (0)",0,0,0,0,head,1,,,0,Helmets
+a128,ashigaru armor,gold (14),"eye (0), head (0), body (12), arm (12), leg (12), wing (12)",0,-1,0,2,body,1,,,0,Medium armors
+a129,samurai armor,gold (14),"eye (0), head (0), body (15), arm (15), leg (15), wing (15)",0,-2,0,3,body,1,,,0,Medium armors
+a130,heavy samurai armor,gold (18),"eye (0), head (0), body (18), arm (18), leg (18), wing (18)",0,-3,0,4,body,1,,,0,Heavy armors
+a131,jingasa,gold (6),"eye (13), head (13), body (0), arm (0), leg (0), wing (0)",0,0,0,0,head,1,,,0,Helmets
+a132,kabuto,gold (7),"eye (17), head (17), body (0), arm (0), leg (0), wing (0)",0,0,0,0,head,1,,,0,Helmets
+a133,icicle mail,gold (13),"eye (0), head (0), body (12), arm (12), leg (12), wing (12)",0,-1,0,2,body,1,,,1,Medium armors
+a134,turtle cap,gold (4.5),"eye (10), head (10), body (0), arm (0), leg (0), wing (0)",0,0,0,0,head,1,,,0,Helmets
+a135,bronze cap,gold (6.5),"eye (15), head (15), body (0), arm (0), leg (0), wing (0)",0,0,0,0,head,1,,,0,Helmets
+a136,bronze scale hauberk,gold (14),"eye (0), head (0), body (12), arm (12), leg (12), wing (12)",0,-1,0,2,body,1,,,0,Medium armors
+a140,shell armor,gold (12),"eye (0), head (0), body (10), arm (10), leg (10), wing (10)",0,-1,0,1,body,1,,,0,Light armors
+a141,blind helmet,gold (8),"eye (23), head (23), body (0), arm (0), leg (0), wing (0)",0,0,0,0,head,1,,blind,1,Helmets
+a142,bronze scale cuirass,gold (10),"eye (0), head (0), body (9), arm (9), leg (9), wing (9)",0,-1,0,1,body,1,,,0,Light armors
+a145,mask,gold (3),"eye (7), head (7), body (0), arm (0), leg (0), wing (0)",0,-1,0,0,head,1,,,0,Helmets
+a146,ancestor armor,gold (15),"eye (0), head (0), body (17), arm (17), leg (17), wing (17)",0,-3,0,3,body,1,,,0,Medium armors
+a148,crown,gold (4.5),"eye (9), head (9), body (0), arm (0), leg (0), wing (0)",0,0,0,0,head,1,,,0,Helmets
+a149,bone cuirass,gold (13),"eye (0), head (0), body (11), arm (11), leg (11), wing (11)",0,-1,0,1,body,1,,,0,Light armors
+a150,bone helmet,gold (6),"eye (14), head (14), body (0), arm (0), leg (0), wing (0)",0,0,0,0,head,1,,,0,Helmets
+a151,sharkskin armor,gold (5),"eye (0), head (0), body (8), arm (8), leg (8), wing (8)",0,-1,0,1,body,1,,,0,Light armors
+a152,sharkskin cap,gold (4.5),"eye (10), head (10), body (0), arm (0), leg (0), wing (0)",0,0,0,0,head,1,,,0,Helmets
+a153,basalt armor,gold (25),"eye (0), head (0), body (19), arm (19), leg (19), wing (19)",0,-4,0,6,body,1,,,1,Heavy armors
+a154,ancestor cuirass,gold (16),"eye (0), head (0), body (14), arm (14), leg (14), wing (14)",0,-1,0,2,body,1,,,0,Medium armors
+a155,golden shield,gold (15),"eye (0), head (0), body (0), arm (0), leg (0), wing (0), wing (0)",23,-1,5,1,hands,1,,,1,Shields
+a156,spectral shield,gold (1),"eye (0), head (0), body (0), arm (0), leg (0), wing (0), wing (0)",15,0,3,0,hands,1,,Ethereal,1,Shields
+a158,robes,gold (2),"eye (0), head (0), body (3), arm (3), leg (3), wing (3)",0,0,0,0,body,1,,,0,Light armors
+a159,imperial robes,gold (4),"eye (0), head (0), body (4), arm (4), leg (4), wing (4)",0,0,0,0,body,1,,,0,Light armors
+a161,jeweled breastplate,gold (10),"eye (0), head (0), body (7), arm (7), leg (7), wing (7)",0,0,0,0,body,1,,,0,Light armors
+a162,crested helmet,gold (6),"eye (14), head (14), body (0), arm (0), leg (0), wing (0)",0,0,0,0,head,1,,,0,Helmets
+a163,anakite armor,gold (24),"eye (0), head (0), body (17), arm (17), leg (17), wing (17)",0,-1,0,2,body,1,,,1,Medium armors
+a164,anakite shield,gold (10),"eye (0), head (0), body (0), arm (0), leg (0), wing (0), wing (0)",20,-1,5,1,hands,1,,,1,Shields
+a165,dawn armor,gold (27),"eye (0), head (0), body (18), arm (18), leg (18), wing (18)",0,-1,0,2,body,1,,,1,Medium armors
+a166,dawn shield,gold (9),"eye (0), head (0), body (0), arm (0), leg (0), wing (0), wing (0)",19,-1,5,1,hands,1,,,1,Shields
+a171,full scale archer armor,gold (15),"eye (0), head (0), body (17), arm (17), leg (17), wing (17)",0,-4,0,4,body,1,,,0,Heavy armors
+a183,linen cuirass,gold (9),"eye (0), head (0), body (8), arm (8), leg (8), wing (8)",0,0,0,0,body,1,,,0,Light armors
+a184,kithaironic lion pelt,,"eye (15), head (15), body (15), arm (0), leg (0), wing (0)",0,-1,0,1,body,1,,,1,Light armors
+a188,sharkskin cuirass,gold (6),"eye (0), head (0), body (7), arm (7), leg (7), wing (7)",0,0,0,1,body,1,,,0,Light armors
+a189,pearl shield,gold (6),"eye (0), head (0), body (0), arm (0), leg (0), wing (0)",16,-1,5,1,hands,1,,,1,Shields
+a192,full chain of ulm,gold (20),"eye (0), head (0), body (19), arm (19), leg (19), wing (19)",0,-3,0,3,body,1,,,1,Medium armors
+a196,golden scale mail,gold (25),"eye (0), head (0), body (17), arm (17), leg (17), wing (17)",0,-2,0,2,body,1,,,1,Medium armors
+a198,raptorian plate cuirass,gold (16),"eye (0), head (0), body (13), arm (13), leg (13), wing (13)",0,-1,0,1,body,1,,,1,Light armors
+a199,turan plated mail,gold (24),"eye (0), head (0), body (20), arm (20), leg (20), wing (20)",0,-3,0,4,body,1,,,1,Heavy armors
+a202,cloth armor,gold (5.5),"eye (0), head (0), body (6), arm (6), leg (6), wing (6)",0,0,0,0,body,1,,,0,Light armors
+a203,reinforced cloth armor,gold (7),"eye (0), head (0), body (8), arm (8), leg (8), wing (8)",0,0,0,1,body,1,,,0,Light armors
+a204,armor of the sun,gold (20),"eye (0), head (0), body (16), arm (16), leg (16), wing (16)",0,-2,0,3,body,1,,,0,Medium armors
+a205,sun cuirass,gold (14.5),"eye (0), head (0), body (13), arm (13), leg (13), wing (13)",0,-1,0,2,body,1,,,0,Medium armors
+a206,obsidian cuirass,gold (18),"eye (0), head (0), body (15), arm (15), leg (15), wing (15)",0,-1,0,2,body,1,,,1,Medium armors
+a207,wicker shield,gold (3),"eye (0), head (0), body (0), arm (0), leg (0), wing (0)",13,-1,4,1,hands,1,,,0,Shields
+a208,iron shield,gold (7),"eye (0), head (0), body (0), arm (0), leg (0), wing (0)",19,-1,4,1,hands,1,,,0,Shields
+a209,hoplon,gold (7),"eye (0), head (0), body (0), arm (0), leg (0), wing (0)",19,-1,4,1,hands,1,,,0,Shields
+a210,meteorite cuirass,gold (18),"eye (0), head (0), body (14), arm (14), leg (14), wing (14)",0,-1,0,2,body,1,magicResistanceBonus (1),,1,Medium armors
+a211,meteorite cap,gold (6.5),"eye (16), head (16), body (0), arm (0), leg (0), wing (0)",0,0,0,0,head,1,,,1,Helmets
+a315,leather barding,gold (14),"eye (9), head (9), body (9), leg (9), wing (9)",0,-1,0,1,body,1,,,0,Animal
+a316,ring mail barding,gold (17),"eye (12), head (12), body (12), leg (12), wing (12)",0,-2,0,2,body,1,,,0,Animal
+a317,scale mail barding,gold (18),"eye (15), head (15), body (15), leg (15), wing (15)",0,-2,0,3,body,1,,,0,Animal
+a318,chain mail barding,gold (25.5),"eye (18), head (18), body (18), leg (18), wing (18)",0,-3,0,3,body,1,,,0,Animal
+a319,plate mail barding,gold (35),"eye (21), head (21), body (21), leg (21), wing (21)",0,-3,0,5,body,1,,,0,Animal
+a323,coral barding,"gold (24), emeralds (1)","eye (12), head (12), body (12), leg (12), wing (12)",0,-2,0,3,body,1,poisonBarbs (10),,0,Animal
+a417,lorica dogmata,gold (18),"eye (12), head (12), body (12), leg (12), wing (12)",0,-1,0,2,body,1,,,0,Animal
+a461,jeweled barding,gold (14),"eye (7), head (7), body (7), leg (7), wing (7), wing (7)",0,0,0,0,body,1,,,0,Animal

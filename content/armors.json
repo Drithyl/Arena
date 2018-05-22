@@ -1,3098 +1,2637 @@
-[
-  {
-    "ID": "a1",
-    "Name": "buckler",
-    "Cost": {
-      "Gold": 3.5
+{
+  "a5": {
+    "id": "a5",
+    "name": "leather cuirass",
+    "cost": {
+      "gold": 5.5
     },
-    "Protection": {
-      "Eye": 0,
-      "Head": 0,
-      "Body": 0,
-      "Arm": 0,
-      "Leg": 0,
-      "Wing": 0
+    "protection": {
+      "eye": 0,
+      "head": 0,
+      "body": 6,
+      "arm": 6,
+      "leg": 6,
+      "wing": 6
     },
-    "Shield Protection": 14,
-    "Defence": 0,
-    "Parry": 2,
-    "Encumbrance": 0,
-    "Slot Type": "Hands",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 0,
-    "Categories": [
-      "Shields"
+    "shieldProtection": 0,
+    "defence": 0,
+    "parry": 0,
+    "encumbrance": 0,
+    "slotType": "body",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 0,
+    "categories": [
+      "Light armors"
     ]
   },
-  {
-    "ID": "a2",
-    "Name": "shield",
-    "Cost": {
-      "Gold": 5
+  "a6": {
+    "id": "a6",
+    "name": "ring mail cuirass",
+    "cost": {
+      "gold": 9
     },
-    "Protection": {
-      "Eye": 0,
-      "Head": 0,
-      "Body": 0,
-      "Arm": 0,
-      "Leg": 0,
-      "Wing": 0
+    "protection": {
+      "eye": 0,
+      "head": 0,
+      "body": 8,
+      "arm": 8,
+      "leg": 8,
+      "wing": 8
     },
-    "Shield Protection": 16,
-    "Defence": -1,
-    "Parry": 4,
-    "Encumbrance": 1,
-    "Slot Type": "Hands",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 0,
-    "Categories": [
-      "Shields"
+    "shieldProtection": 0,
+    "defence": 0,
+    "parry": 0,
+    "encumbrance": 0,
+    "slotType": "body",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 0,
+    "categories": [
+      "Light armors"
     ]
   },
-  {
-    "ID": "a3",
-    "Name": "kite shield",
-    "Cost": {
-      "Gold": 8
+  "a7": {
+    "id": "a7",
+    "name": "scale mail cuirass",
+    "cost": {
+      "gold": 9
     },
-    "Protection": {
-      "Eye": 0,
-      "Head": 0,
-      "Body": 0,
-      "Arm": 0,
-      "Leg": 0,
-      "Wing": 0
+    "protection": {
+      "eye": 0,
+      "head": 0,
+      "body": 10,
+      "arm": 10,
+      "leg": 10,
+      "wing": 10
     },
-    "Shield Protection": 19,
-    "Defence": -2,
-    "Parry": 6,
-    "Encumbrance": 2,
-    "Slot Type": "Hands",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 0,
-    "Categories": [
-      "Shields"
+    "shieldProtection": 0,
+    "defence": -1,
+    "parry": 0,
+    "encumbrance": 1,
+    "slotType": "body",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 0,
+    "categories": [
+      "Light armors"
     ]
   },
-  {
-    "ID": "a4",
-    "Name": "tower shield",
-    "Cost": {
-      "Gold": 8
+  "a8": {
+    "id": "a8",
+    "name": "chain mail cuirass",
+    "cost": {
+      "gold": 12
     },
-    "Protection": {
-      "Eye": 0,
-      "Head": 0,
-      "Body": 0,
-      "Arm": 0,
-      "Leg": 0,
-      "Wing": 0
+    "protection": {
+      "eye": 0,
+      "head": 0,
+      "body": 12,
+      "arm": 12,
+      "leg": 12,
+      "wing": 12
     },
-    "Shield Protection": 16,
-    "Defence": -2,
-    "Parry": 7,
-    "Encumbrance": 2,
-    "Slot Type": "Hands",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 0,
-    "Categories": [
-      "Shields"
+    "shieldProtection": 0,
+    "defence": -1,
+    "parry": 0,
+    "encumbrance": 1,
+    "slotType": "body",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 0,
+    "categories": [
+      "Light armors"
     ]
   },
-  {
-    "ID": "a5",
-    "Name": "leather cuirass",
-    "Cost": {
-      "Gold": 5.5
+  "a9": {
+    "id": "a9",
+    "name": "plate cuirass",
+    "cost": {
+      "gold": 16
     },
-    "Protection": {
-      "Eye": 0,
-      "Head": 0,
-      "Body": 6,
-      "Arm": 6,
-      "Leg": 6,
-      "Wing": 6
+    "protection": {
+      "eye": 0,
+      "head": 0,
+      "body": 14,
+      "arm": 14,
+      "leg": 14,
+      "wing": 14
     },
-    "Shield Protection": 0,
-    "Defence": 0,
-    "Parry": 0,
-    "Encumbrance": 0,
-    "Slot Type": "Body",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 0,
-    "Categories": [
-      "Light Armors"
+    "shieldProtection": 0,
+    "defence": -1,
+    "parry": 0,
+    "encumbrance": 2,
+    "slotType": "body",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 0,
+    "categories": [
+      "Medium armors"
     ]
   },
-  {
-    "ID": "a6",
-    "Name": "ring mail cuirass",
-    "Cost": {
-      "Gold": 9
+  "a10": {
+    "id": "a10",
+    "name": "leather hauberk",
+    "cost": {
+      "gold": 9
     },
-    "Protection": {
-      "Eye": 0,
-      "Head": 0,
-      "Body": 8,
-      "Arm": 8,
-      "Leg": 8,
-      "Wing": 8
+    "protection": {
+      "eye": 0,
+      "head": 0,
+      "body": 8,
+      "arm": 8,
+      "leg": 8,
+      "wing": 8
     },
-    "Shield Protection": 0,
-    "Defence": 0,
-    "Parry": 0,
-    "Encumbrance": 0,
-    "Slot Type": "Body",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 0,
-    "Categories": [
-      "Light Armors"
+    "shieldProtection": 0,
+    "defence": 0,
+    "parry": 0,
+    "encumbrance": 0,
+    "slotType": "body",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 0,
+    "categories": [
+      "Light armors"
     ]
   },
-  {
-    "ID": "a7",
-    "Name": "scale mail cuirass",
-    "Cost": {
-      "Gold": 9
+  "a11": {
+    "id": "a11",
+    "name": "ring mail hauberk",
+    "cost": {
+      "gold": 12
     },
-    "Protection": {
-      "Eye": 0,
-      "Head": 0,
-      "Body": 10,
-      "Arm": 10,
-      "Leg": 10,
-      "Wing": 10
+    "protection": {
+      "eye": 0,
+      "head": 0,
+      "body": 10,
+      "arm": 10,
+      "leg": 10,
+      "wing": 10
     },
-    "Shield Protection": 0,
-    "Defence": -1,
-    "Parry": 0,
-    "Encumbrance": 1,
-    "Slot Type": "Body",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 0,
-    "Categories": [
-      "Light Armors"
+    "shieldProtection": 0,
+    "defence": -1,
+    "parry": 0,
+    "encumbrance": 1,
+    "slotType": "body",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 0,
+    "categories": [
+      "Light armors"
     ]
   },
-  {
-    "ID": "a8",
-    "Name": "chain mail cuirass",
-    "Cost": {
-      "Gold": 12
+  "a12": {
+    "id": "a12",
+    "name": "scale mail hauberk",
+    "cost": {
+      "gold": 14.5
     },
-    "Protection": {
-      "Eye": 0,
-      "Head": 0,
-      "Body": 12,
-      "Arm": 12,
-      "Leg": 12,
-      "Wing": 12
+    "protection": {
+      "eye": 0,
+      "head": 0,
+      "body": 13,
+      "arm": 13,
+      "leg": 13,
+      "wing": 13
     },
-    "Shield Protection": 0,
-    "Defence": -1,
-    "Parry": 0,
-    "Encumbrance": 1,
-    "Slot Type": "Body",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 0,
-    "Categories": [
-      "Light Armors"
+    "shieldProtection": 0,
+    "defence": -1,
+    "parry": 0,
+    "encumbrance": 2,
+    "slotType": "body",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 0,
+    "categories": [
+      "Medium armors"
     ]
   },
-  {
-    "ID": "a9",
-    "Name": "plate cuirass",
-    "Cost": {
-      "Gold": 16
+  "a13": {
+    "id": "a13",
+    "name": "chain mail hauberk",
+    "cost": {
+      "gold": 13
     },
-    "Protection": {
-      "Eye": 0,
-      "Head": 0,
-      "Body": 14,
-      "Arm": 14,
-      "Leg": 14,
-      "Wing": 14
+    "protection": {
+      "eye": 0,
+      "head": 0,
+      "body": 15,
+      "arm": 15,
+      "leg": 15,
+      "wing": 15
     },
-    "Shield Protection": 0,
-    "Defence": -1,
-    "Parry": 0,
-    "Encumbrance": 2,
-    "Slot Type": "Body",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 0,
-    "Categories": [
-      "Medium Armors"
+    "shieldProtection": 0,
+    "defence": -2,
+    "parry": 0,
+    "encumbrance": 2,
+    "slotType": "body",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 0,
+    "categories": [
+      "Medium armors"
     ]
   },
-  {
-    "ID": "a10",
-    "Name": "leather hauberk",
-    "Cost": {
-      "Gold": 9
+  "a14": {
+    "id": "a14",
+    "name": "plate hauberk",
+    "cost": {
+      "gold": 18
     },
-    "Protection": {
-      "Eye": 0,
-      "Head": 0,
-      "Body": 8,
-      "Arm": 8,
-      "Leg": 8,
-      "Wing": 8
+    "protection": {
+      "eye": 0,
+      "head": 0,
+      "body": 18,
+      "arm": 18,
+      "leg": 18,
+      "wing": 18
     },
-    "Shield Protection": 0,
-    "Defence": 0,
-    "Parry": 0,
-    "Encumbrance": 0,
-    "Slot Type": "Body",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 0,
-    "Categories": [
-      "Light Armors"
+    "shieldProtection": 0,
+    "defence": -3,
+    "parry": 0,
+    "encumbrance": 4,
+    "slotType": "body",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 0,
+    "categories": [
+      "Heavy armors"
     ]
   },
-  {
-    "ID": "a11",
-    "Name": "ring mail hauberk",
-    "Cost": {
-      "Gold": 12
+  "a15": {
+    "id": "a15",
+    "name": "full leather armor",
+    "cost": {
+      "gold": 10
     },
-    "Protection": {
-      "Eye": 0,
-      "Head": 0,
-      "Body": 10,
-      "Arm": 10,
-      "Leg": 10,
-      "Wing": 10
+    "protection": {
+      "eye": 0,
+      "head": 0,
+      "body": 9,
+      "arm": 9,
+      "leg": 9,
+      "wing": 9
     },
-    "Shield Protection": 0,
-    "Defence": -1,
-    "Parry": 0,
-    "Encumbrance": 1,
-    "Slot Type": "Body",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 0,
-    "Categories": [
-      "Light Armors"
+    "shieldProtection": 0,
+    "defence": -1,
+    "parry": 0,
+    "encumbrance": 1,
+    "slotType": "body",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 0,
+    "categories": [
+      "Light armors"
     ]
   },
-  {
-    "ID": "a12",
-    "Name": "scale mail hauberk",
-    "Cost": {
-      "Gold": 14.5
+  "a16": {
+    "id": "a16",
+    "name": "full ring mail",
+    "cost": {
+      "gold": 12
     },
-    "Protection": {
-      "Eye": 0,
-      "Head": 0,
-      "Body": 13,
-      "Arm": 13,
-      "Leg": 13,
-      "Wing": 13
+    "protection": {
+      "eye": 0,
+      "head": 0,
+      "body": 12,
+      "arm": 12,
+      "leg": 12,
+      "wing": 12
     },
-    "Shield Protection": 0,
-    "Defence": -1,
-    "Parry": 0,
-    "Encumbrance": 2,
-    "Slot Type": "Body",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 0,
-    "Categories": [
-      "Medium Armors"
+    "shieldProtection": 0,
+    "defence": -2,
+    "parry": 0,
+    "encumbrance": 2,
+    "slotType": "body",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 0,
+    "categories": [
+      "Medium armors"
     ]
   },
-  {
-    "ID": "a13",
-    "Name": "chain mail hauberk",
-    "Cost": {
-      "Gold": 13
+  "a17": {
+    "id": "a17",
+    "name": "full scale mail",
+    "cost": {
+      "gold": 13
     },
-    "Protection": {
-      "Eye": 0,
-      "Head": 0,
-      "Body": 15,
-      "Arm": 15,
-      "Leg": 15,
-      "Wing": 15
+    "protection": {
+      "eye": 0,
+      "head": 0,
+      "body": 15,
+      "arm": 15,
+      "leg": 15,
+      "wing": 15
     },
-    "Shield Protection": 0,
-    "Defence": -2,
-    "Parry": 0,
-    "Encumbrance": 2,
-    "Slot Type": "Body",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 0,
-    "Categories": [
-      "Medium Armors"
+    "shieldProtection": 0,
+    "defence": -2,
+    "parry": 0,
+    "encumbrance": 3,
+    "slotType": "body",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 0,
+    "categories": [
+      "Medium armors"
     ]
   },
-  {
-    "ID": "a14",
-    "Name": "plate hauberk",
-    "Cost": {
-      "Gold": 18
+  "a18": {
+    "id": "a18",
+    "name": "full chain mail",
+    "cost": {
+      "gold": 18
     },
-    "Protection": {
-      "Eye": 0,
-      "Head": 0,
-      "Body": 18,
-      "Arm": 18,
-      "Leg": 18,
-      "Wing": 18
+    "protection": {
+      "eye": 0,
+      "head": 0,
+      "body": 18,
+      "arm": 18,
+      "leg": 18,
+      "wing": 18
     },
-    "Shield Protection": 0,
-    "Defence": -3,
-    "Parry": 0,
-    "Encumbrance": 4,
-    "Slot Type": "Body",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 0,
-    "Categories": [
-      "Heavy Armors"
+    "shieldProtection": 0,
+    "defence": -3,
+    "parry": 0,
+    "encumbrance": 3,
+    "slotType": "body",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 0,
+    "categories": [
+      "Medium armors"
     ]
   },
-  {
-    "ID": "a15",
-    "Name": "full leather Armor",
-    "Cost": {
-      "Gold": 10
+  "a19": {
+    "id": "a19",
+    "name": "full plate mail",
+    "cost": {
+      "gold": 25
     },
-    "Protection": {
-      "Eye": 0,
-      "Head": 0,
-      "Body": 9,
-      "Arm": 9,
-      "Leg": 9,
-      "Wing": 9
+    "protection": {
+      "eye": 0,
+      "head": 0,
+      "body": 21,
+      "arm": 21,
+      "leg": 21,
+      "wing": 21
     },
-    "Shield Protection": 0,
-    "Defence": -1,
-    "Parry": 0,
-    "Encumbrance": 1,
-    "Slot Type": "Body",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 0,
-    "Categories": [
-      "Light Armors"
+    "shieldProtection": 0,
+    "defence": -3,
+    "parry": 0,
+    "encumbrance": 5,
+    "slotType": "body",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 0,
+    "categories": [
+      "Heavy armors"
     ]
   },
-  {
-    "ID": "a16",
-    "Name": "full ring mail",
-    "Cost": {
-      "Gold": 12
+  "a20": {
+    "id": "a20",
+    "name": "iron cap",
+    "cost": {
+      "gold": 6.5
     },
-    "Protection": {
-      "Eye": 0,
-      "Head": 0,
-      "Body": 12,
-      "Arm": 12,
-      "Leg": 12,
-      "Wing": 12
+    "protection": {
+      "eye": 16,
+      "head": 16,
+      "body": 0,
+      "arm": 0,
+      "leg": 0,
+      "wing": 0
     },
-    "Shield Protection": 0,
-    "Defence": -2,
-    "Parry": 0,
-    "Encumbrance": 2,
-    "Slot Type": "Body",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 0,
-    "Categories": [
-      "Medium Armors"
-    ]
-  },
-  {
-    "ID": "a17",
-    "Name": "full scale mail",
-    "Cost": {
-      "Gold": 13
-    },
-    "Protection": {
-      "Eye": 0,
-      "Head": 0,
-      "Body": 15,
-      "Arm": 15,
-      "Leg": 15,
-      "Wing": 15
-    },
-    "Shield Protection": 0,
-    "Defence": -2,
-    "Parry": 0,
-    "Encumbrance": 3,
-    "Slot Type": "Body",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 0,
-    "Categories": [
-      "Medium Armors"
-    ]
-  },
-  {
-    "ID": "a18",
-    "Name": "full chain mail",
-    "Cost": {
-      "Gold": 18
-    },
-    "Protection": {
-      "Eye": 0,
-      "Head": 0,
-      "Body": 18,
-      "Arm": 18,
-      "Leg": 18,
-      "Wing": 18
-    },
-    "Shield Protection": 0,
-    "Defence": -3,
-    "Parry": 0,
-    "Encumbrance": 3,
-    "Slot Type": "Body",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 0,
-    "Categories": [
-      "Medium Armors"
-    ]
-  },
-  {
-    "ID": "a19",
-    "Name": "full plate mail",
-    "Cost": {
-      "Gold": 25
-    },
-    "Protection": {
-      "Eye": 0,
-      "Head": 0,
-      "Body": 21,
-      "Arm": 21,
-      "Leg": 21,
-      "Wing": 21
-    },
-    "Shield Protection": 0,
-    "Defence": -3,
-    "Parry": 0,
-    "Encumbrance": 5,
-    "Slot Type": "Body",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 0,
-    "Categories": [
-      "Heavy Armors"
-    ]
-  },
-  {
-    "ID": "a20",
-    "Name": "iron cap",
-    "Cost": {
-      "Gold": 6.5
-    },
-    "Protection": {
-      "Eye": 16,
-      "Head": 16,
-      "Body": 0,
-      "Arm": 0,
-      "Leg": 0,
-      "Wing": 0
-    },
-    "Shield Protection": 0,
-    "Defence": 0,
-    "Parry": 0,
-    "Encumbrance": 0,
-    "Slot Type": "Head",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 0,
-    "Categories": [
+    "shieldProtection": 0,
+    "defence": 0,
+    "parry": 0,
+    "encumbrance": 0,
+    "slotType": "head",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 0,
+    "categories": [
       "Helmets"
     ]
   },
-  {
-    "ID": "a21",
-    "Name": "full helmet",
-    "Cost": {
-      "Gold": 5
+  "a21": {
+    "id": "a21",
+    "name": "full helmet",
+    "cost": {
+      "gold": 5
     },
-    "Protection": {
-      "Eye": 21,
-      "Head": 21,
-      "Body": 0,
-      "Arm": 0,
-      "Leg": 0,
-      "Wing": 0
+    "protection": {
+      "eye": 21,
+      "head": 21,
+      "body": 0,
+      "arm": 0,
+      "leg": 0,
+      "wing": 0
     },
-    "Shield Protection": 0,
-    "Defence": -1,
-    "Parry": 0,
-    "Encumbrance": 0,
-    "Slot Type": "Head",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 0,
-    "Categories": [
+    "shieldProtection": 0,
+    "defence": -1,
+    "parry": 0,
+    "encumbrance": 0,
+    "slotType": "head",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 0,
+    "categories": [
       "Helmets"
     ]
   },
-  {
-    "ID": "a22",
-    "Name": "coral cuirass",
-    "Cost": {
-      "Gold": 32,
-      "Emeralds": 1
+  "a22": {
+    "id": "a22",
+    "name": "coral cuirass",
+    "cost": {
+      "gold": 32,
+      "emeralds": 1
     },
-    "Protection": {
-      "Eye": 0,
-      "Head": 0,
-      "Body": 10,
-      "Arm": 10,
-      "Leg": 10,
-      "Wing": 10
+    "protection": {
+      "eye": 0,
+      "head": 0,
+      "body": 10,
+      "arm": 10,
+      "leg": 10,
+      "wing": 10
     },
-    "Shield Protection": 0,
-    "Defence": -1,
-    "Parry": 0,
-    "Encumbrance": 2,
-    "Slot Type": "Body",
-    "Required Slots": 1,
-    "Effects": {
-      "Poison Barbs": 10
+    "shieldProtection": 0,
+    "defence": -1,
+    "parry": 0,
+    "encumbrance": 2,
+    "slotType": "body",
+    "requiredSlots": 1,
+    "abilities": {
+      "poisonBarbs": 10
     },
-    "Properties": null,
-    "Rarity": 0,
-    "Categories": [
-      "Medium Armors"
+    "properties": null,
+    "rarity": 0,
+    "categories": [
+      "Medium armors"
     ]
   },
-  {
-    "ID": "a23",
-    "Name": "coral hauberk",
-    "Cost": {
-      "Gold": 20,
-      "Emeralds": 1
+  "a23": {
+    "id": "a23",
+    "name": "coral hauberk",
+    "cost": {
+      "gold": 20,
+      "emeralds": 1
     },
-    "Protection": {
-      "Eye": 0,
-      "Head": 0,
-      "Body": 12,
-      "Arm": 12,
-      "Leg": 12,
-      "Wing": 12
+    "protection": {
+      "eye": 0,
+      "head": 0,
+      "body": 12,
+      "arm": 12,
+      "leg": 12,
+      "wing": 12
     },
-    "Shield Protection": 0,
-    "Defence": -2,
-    "Parry": 0,
-    "Encumbrance": 3,
-    "Slot Type": "Body",
-    "Required Slots": 1,
-    "Effects": {
-      "Poison Barbs": 10
+    "shieldProtection": 0,
+    "defence": -2,
+    "parry": 0,
+    "encumbrance": 3,
+    "slotType": "body",
+    "requiredSlots": 1,
+    "abilities": {
+      "poisonBarbs": 10
     },
-    "Properties": null,
-    "Rarity": 0,
-    "Categories": [
-      "Medium Armors"
+    "properties": null,
+    "rarity": 0,
+    "categories": [
+      "Medium armors"
     ]
   },
-  {
-    "ID": "a24",
-    "Name": "coral cap",
-    "Cost": {
-      "Gold": 6
+  "a24": {
+    "id": "a24",
+    "name": "coral cap",
+    "cost": {
+      "gold": 6
     },
-    "Protection": {
-      "Eye": 14,
-      "Head": 14,
-      "Body": 0,
-      "Arm": 0,
-      "Leg": 0,
-      "Wing": 0
+    "protection": {
+      "eye": 14,
+      "head": 14,
+      "body": 0,
+      "arm": 0,
+      "leg": 0,
+      "wing": 0
     },
-    "Shield Protection": 0,
-    "Defence": 0,
-    "Parry": 0,
-    "Encumbrance": 0,
-    "Slot Type": "Head",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 0,
-    "Categories": [
+    "shieldProtection": 0,
+    "defence": 0,
+    "parry": 0,
+    "encumbrance": 0,
+    "slotType": "head",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 0,
+    "categories": [
       "Helmets"
     ]
   },
-  {
-    "ID": "a25",
-    "Name": "turtle shell shield",
-    "Cost": {
-      "Gold": 4
+  "a26": {
+    "id": "a26",
+    "name": "ice cuirass",
+    "cost": {
+      "gold": 18
     },
-    "Protection": {
-      "Eye": 0,
-      "Head": 0,
-      "Body": 0,
-      "Arm": 0,
-      "Leg": 0,
-      "Wing": 0
+    "protection": {
+      "eye": 0,
+      "head": 0,
+      "body": 14,
+      "arm": 14,
+      "leg": 14,
+      "wing": 14
     },
-    "Shield Protection": 15,
-    "Defence": -1,
-    "Parry": 4,
-    "Encumbrance": 1,
-    "Slot Type": "Hands",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 0,
-    "Categories": [
-      "Shields"
+    "shieldProtection": 0,
+    "defence": -1,
+    "parry": 0,
+    "encumbrance": 1,
+    "slotType": "body",
+    "requiredSlots": 1,
+    "abilities": {
+      "iceProtection": 1
+    },
+    "properties": null,
+    "rarity": 1,
+    "categories": [
+      "Light armors"
     ]
   },
-  {
-    "ID": "a26",
-    "Name": "ice cuirass",
-    "Cost": {
-      "Gold": 18
+  "a27": {
+    "id": "a27",
+    "name": "ice hauberk",
+    "cost": {
+      "gold": 24
     },
-    "Protection": {
-      "Eye": 0,
-      "Head": 0,
-      "Body": 14,
-      "Arm": 14,
-      "Leg": 14,
-      "Wing": 14
+    "protection": {
+      "eye": 0,
+      "head": 0,
+      "body": 17,
+      "arm": 17,
+      "leg": 17,
+      "wing": 17
     },
-    "Shield Protection": 0,
-    "Defence": -1,
-    "Parry": 0,
-    "Encumbrance": 1,
-    "Slot Type": "Body",
-    "Required Slots": 1,
-    "Effects": {
-      "Ice Protection": 1
+    "shieldProtection": 0,
+    "defence": -2,
+    "parry": 0,
+    "encumbrance": 2,
+    "slotType": "body",
+    "requiredSlots": 1,
+    "abilities": {
+      "iceProtection": 1.3
     },
-    "Properties": null,
-    "Rarity": 1,
-    "Categories": [
-      "Light Armors"
+    "properties": null,
+    "rarity": 1,
+    "categories": [
+      "Medium armors"
     ]
   },
-  {
-    "ID": "a27",
-    "Name": "ice hauberk",
-    "Cost": {
-      "Gold": 24
+  "a29": {
+    "id": "a29",
+    "name": "ice cap",
+    "cost": {
+      "gold": 7
     },
-    "Protection": {
-      "Eye": 0,
-      "Head": 0,
-      "Body": 17,
-      "Arm": 17,
-      "Leg": 17,
-      "Wing": 17
+    "protection": {
+      "eye": 15,
+      "head": 15,
+      "body": 0,
+      "arm": 0,
+      "leg": 0,
+      "wing": 0
     },
-    "Shield Protection": 0,
-    "Defence": -2,
-    "Parry": 0,
-    "Encumbrance": 2,
-    "Slot Type": "Body",
-    "Required Slots": 1,
-    "Effects": {
-      "Ice Protection": 1.3
+    "shieldProtection": 0,
+    "defence": 0,
+    "parry": 0,
+    "encumbrance": 0,
+    "slotType": "head",
+    "requiredSlots": 1,
+    "abilities": {
+      "iceProtection": 0.3
     },
-    "Properties": null,
-    "Rarity": 1,
-    "Categories": [
-      "Medium Armors"
-    ]
-  },
-  {
-    "ID": "a28",
-    "Name": "ice aegis",
-    "Cost": {
-      "Gold": 15
-    },
-    "Protection": {
-      "Eye": 0,
-      "Head": 0,
-      "Body": 0,
-      "Arm": 0,
-      "Leg": 0,
-      "Wing": 0
-    },
-    "Shield Protection": 18,
-    "Defence": -1,
-    "Parry": 6,
-    "Encumbrance": 1,
-    "Slot Type": "Hands",
-    "Required Slots": 1,
-    "Effects": {
-      "Ice Protection": 0.8
-    },
-    "Properties": null,
-    "Rarity": 1,
-    "Categories": [
-      "Shields"
-    ]
-  },
-  {
-    "ID": "a29",
-    "Name": "ice cap",
-    "Cost": {
-      "Gold": 7
-    },
-    "Protection": {
-      "Eye": 15,
-      "Head": 15,
-      "Body": 0,
-      "Arm": 0,
-      "Leg": 0,
-      "Wing": 0
-    },
-    "Shield Protection": 0,
-    "Defence": 0,
-    "Parry": 0,
-    "Encumbrance": 0,
-    "Slot Type": "Head",
-    "Required Slots": 1,
-    "Effects": {
-      "Ice Protection": 0.3
-    },
-    "Properties": null,
-    "Rarity": 1,
-    "Categories": [
+    "properties": null,
+    "rarity": 1,
+    "categories": [
       "Helmets"
     ]
   },
-  {
-    "ID": "a44",
-    "Name": "furs",
-    "Cost": {
-      "Gold": 4.5
+  "a44": {
+    "id": "a44",
+    "name": "furs",
+    "cost": {
+      "gold": 4.5
     },
-    "Protection": {
-      "Eye": 0,
-      "Head": 0,
-      "Body": 7,
-      "Arm": 7,
-      "Leg": 7,
-      "Wing": 7
+    "protection": {
+      "eye": 0,
+      "head": 0,
+      "body": 7,
+      "arm": 7,
+      "leg": 7,
+      "wing": 7
     },
-    "Shield Protection": 0,
-    "Defence": -1,
-    "Parry": 0,
-    "Encumbrance": 1,
-    "Slot Type": "Body",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 0,
-    "Categories": [
-      "Light Armors"
+    "shieldProtection": 0,
+    "defence": -1,
+    "parry": 0,
+    "encumbrance": 1,
+    "slotType": "body",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 0,
+    "categories": [
+      "Light armors"
     ]
   },
-  {
-    "ID": "a52",
-    "Name": "ice studded Armor",
-    "Cost": {
-      "Gold": 15
+  "a52": {
+    "id": "a52",
+    "name": "ice studded armor",
+    "cost": {
+      "gold": 15
     },
-    "Protection": {
-      "Eye": 0,
-      "Head": 0,
-      "Body": 10,
-      "Arm": 10,
-      "Leg": 10,
-      "Wing": 10
+    "protection": {
+      "eye": 0,
+      "head": 0,
+      "body": 10,
+      "arm": 10,
+      "leg": 10,
+      "wing": 10
     },
-    "Shield Protection": 0,
-    "Defence": -1,
-    "Parry": 0,
-    "Encumbrance": 0,
-    "Slot Type": "Body",
-    "Required Slots": 1,
-    "Effects": {
-      "Ice Protection": 0.7
+    "shieldProtection": 0,
+    "defence": -1,
+    "parry": 0,
+    "encumbrance": 0,
+    "slotType": "body",
+    "requiredSlots": 1,
+    "abilities": {
+      "iceProtection": 0.7
     },
-    "Properties": null,
-    "Rarity": 1,
-    "Categories": [
-      "Light Armors"
+    "properties": null,
+    "rarity": 1,
+    "categories": [
+      "Light armors"
     ]
   },
-  {
-    "ID": "a53",
-    "Name": "meteorite Armor",
-    "Cost": {
-      "Gold": 25
+  "a53": {
+    "id": "a53",
+    "name": "meteorite armor",
+    "cost": {
+      "gold": 25
     },
-    "Protection": {
-      "Eye": 0,
-      "Head": 0,
-      "Body": 18,
-      "Arm": 18,
-      "Leg": 18,
-      "Wing": 18
+    "protection": {
+      "eye": 0,
+      "head": 0,
+      "body": 18,
+      "arm": 18,
+      "leg": 18,
+      "wing": 18
     },
-    "Shield Protection": 0,
-    "Defence": -2,
-    "Parry": 0,
-    "Encumbrance": 4,
-    "Slot Type": "Body",
-    "Required Slots": 1,
-    "Effects": {
-      "Magic Resistance Bonus": 3
+    "shieldProtection": 0,
+    "defence": -2,
+    "parry": 0,
+    "encumbrance": 4,
+    "slotType": "body",
+    "requiredSlots": 1,
+    "abilities": {
+      "magicResistanceBonus": 3
     },
-    "Properties": null,
-    "Rarity": 1,
-    "Categories": [
-      "Heavy Armors"
+    "properties": null,
+    "rarity": 1,
+    "categories": [
+      "Heavy armors"
     ]
   },
-  {
-    "ID": "a84",
-    "Name": "amber hauberk",
-    "Cost": {
-      "Gold": 20
+  "a84": {
+    "id": "a84",
+    "name": "amber hauberk",
+    "cost": {
+      "gold": 20
     },
-    "Protection": {
-      "Eye": 0,
-      "Head": 0,
-      "Body": 16,
-      "Arm": 16,
-      "Leg": 16,
-      "Wing": 16
+    "protection": {
+      "eye": 0,
+      "head": 0,
+      "body": 16,
+      "arm": 16,
+      "leg": 16,
+      "wing": 16
     },
-    "Shield Protection": 0,
-    "Defence": -2,
-    "Parry": 0,
-    "Encumbrance": 3,
-    "Slot Type": "Body",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 0,
-    "Categories": [
-      "Medium Armors"
+    "shieldProtection": 0,
+    "defence": -2,
+    "parry": 0,
+    "encumbrance": 3,
+    "slotType": "body",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 0,
+    "categories": [
+      "Medium armors"
     ]
   },
-  {
-    "ID": "a85",
-    "Name": "amber shield",
-    "Cost": {
-      "Gold": 6
+  "a86": {
+    "id": "a86",
+    "name": "amber helmet",
+    "cost": {
+      "gold": 6.5
     },
-    "Protection": {
-      "Eye": 0,
-      "Head": 0,
-      "Body": 0,
-      "Arm": 0,
-      "Leg": 0,
-      "Wing": 0
+    "protection": {
+      "eye": 16,
+      "head": 16,
+      "body": 0,
+      "arm": 0,
+      "leg": 0,
+      "wing": 0
     },
-    "Shield Protection": 16,
-    "Defence": -1,
-    "Parry": 4,
-    "Encumbrance": 1,
-    "Slot Type": "Hands",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 0,
-    "Categories": [
-      "Shields"
-    ]
-  },
-  {
-    "ID": "a86",
-    "Name": "amber helmet",
-    "Cost": {
-      "Gold": 6.5
-    },
-    "Protection": {
-      "Eye": 16,
-      "Head": 16,
-      "Body": 0,
-      "Arm": 0,
-      "Leg": 0,
-      "Wing": 0
-    },
-    "Shield Protection": 0,
-    "Defence": 0,
-    "Parry": 0,
-    "Encumbrance": 0,
-    "Slot Type": "Head",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 0,
-    "Categories": [
+    "shieldProtection": 0,
+    "defence": 0,
+    "parry": 0,
+    "encumbrance": 0,
+    "slotType": "head",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 0,
+    "categories": [
       "Helmets"
     ]
   },
-  {
-    "ID": "a91",
-    "Name": "full plate of ulm",
-    "Cost": {
-      "Gold": 25
+  "a91": {
+    "id": "a91",
+    "name": "full plate of ulm",
+    "cost": {
+      "gold": 25
     },
-    "Protection": {
-      "Eye": 0,
-      "Head": 0,
-      "Body": 22,
-      "Arm": 22,
-      "Leg": 22,
-      "Wing": 22
+    "protection": {
+      "eye": 0,
+      "head": 0,
+      "body": 22,
+      "arm": 22,
+      "leg": 22,
+      "wing": 22
     },
-    "Shield Protection": 0,
-    "Defence": -3,
-    "Parry": 0,
-    "Encumbrance": 4,
-    "Slot Type": "Body",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 1,
-    "Categories": [
-      "Heavy Armors"
+    "shieldProtection": 0,
+    "defence": -3,
+    "parry": 0,
+    "encumbrance": 4,
+    "slotType": "body",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 1,
+    "categories": [
+      "Heavy armors"
     ]
   },
-  {
-    "ID": "a99",
-    "Name": "lorica segmentata",
-    "Cost": {
-      "Gold": 14.5
+  "a99": {
+    "id": "a99",
+    "name": "lorica segmentata",
+    "cost": {
+      "gold": 14.5
     },
-    "Protection": {
-      "Eye": 0,
-      "Head": 0,
-      "Body": 13,
-      "Arm": 13,
-      "Leg": 13,
-      "Wing": 13
+    "protection": {
+      "eye": 0,
+      "head": 0,
+      "body": 13,
+      "arm": 13,
+      "leg": 13,
+      "wing": 13
     },
-    "Shield Protection": 0,
-    "Defence": -1,
-    "Parry": 0,
-    "Encumbrance": 2,
-    "Slot Type": "Body",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 0,
-    "Categories": [
-      "Medium Armors"
+    "shieldProtection": 0,
+    "defence": -1,
+    "parry": 0,
+    "encumbrance": 2,
+    "slotType": "body",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 0,
+    "categories": [
+      "Medium armors"
     ]
   },
-  {
-    "ID": "a100",
-    "Name": "bronze cuirass",
-    "Cost": {
-      "Gold": 14
+  "a100": {
+    "id": "a100",
+    "name": "bronze cuirass",
+    "cost": {
+      "gold": 14
     },
-    "Protection": {
-      "Eye": 0,
-      "Head": 0,
-      "Body": 13,
-      "Arm": 13,
-      "Leg": 13,
-      "Wing": 13
+    "protection": {
+      "eye": 0,
+      "head": 0,
+      "body": 13,
+      "arm": 13,
+      "leg": 13,
+      "wing": 13
     },
-    "Shield Protection": 0,
-    "Defence": -1,
-    "Parry": 0,
-    "Encumbrance": 3,
-    "Slot Type": "Body",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 0,
-    "Categories": [
-      "Medium Armors"
+    "shieldProtection": 0,
+    "defence": -1,
+    "parry": 0,
+    "encumbrance": 3,
+    "slotType": "body",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 0,
+    "categories": [
+      "Medium armors"
     ]
   },
-  {
-    "ID": "a101",
-    "Name": "bronze hauberk",
-    "Cost": {
-      "Gold": 18
+  "a101": {
+    "id": "a101",
+    "name": "bronze hauberk",
+    "cost": {
+      "gold": 18
     },
-    "Protection": {
-      "Eye": 0,
-      "Head": 0,
-      "Body": 17,
-      "Arm": 17,
-      "Leg": 17,
-      "Wing": 17
+    "protection": {
+      "eye": 0,
+      "head": 0,
+      "body": 17,
+      "arm": 17,
+      "leg": 17,
+      "wing": 17
     },
-    "Shield Protection": 0,
-    "Defence": -2,
-    "Parry": 0,
-    "Encumbrance": 5,
-    "Slot Type": "Body",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 0,
-    "Categories": [
-      "Heavy Armors"
+    "shieldProtection": 0,
+    "defence": -2,
+    "parry": 0,
+    "encumbrance": 5,
+    "slotType": "body",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 0,
+    "categories": [
+      "Heavy armors"
     ]
   },
-  {
-    "ID": "a104",
-    "Name": "mitclan Armor",
-    "Cost": {
-      "Gold": 12
+  "a104": {
+    "id": "a104",
+    "name": "mitclan armor",
+    "cost": {
+      "gold": 12
     },
-    "Protection": {
-      "Eye": 0,
-      "Head": 0,
-      "Body": 11,
-      "Arm": 11,
-      "Leg": 11,
-      "Wing": 11
+    "protection": {
+      "eye": 0,
+      "head": 0,
+      "body": 11,
+      "arm": 11,
+      "leg": 11,
+      "wing": 11
     },
-    "Shield Protection": 0,
-    "Defence": -1,
-    "Parry": 0,
-    "Encumbrance": 2,
-    "Slot Type": "Body",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 0,
-    "Categories": [
-      "Medium Armors"
+    "shieldProtection": 0,
+    "defence": -1,
+    "parry": 0,
+    "encumbrance": 2,
+    "slotType": "body",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 0,
+    "categories": [
+      "Medium armors"
     ]
   },
-  {
-    "ID": "a105",
-    "Name": "hide shield",
-    "Cost": {
-      "Gold": 2
+  "a106": {
+    "id": "a106",
+    "name": "mitclan copper scale armor",
+    "cost": {
+      "gold": 13
     },
-    "Protection": {
-      "Eye": 0,
-      "Head": 0,
-      "Body": 0,
-      "Arm": 0,
-      "Leg": 0,
-      "Wing": 0
+    "protection": {
+      "eye": 0,
+      "head": 0,
+      "body": 13,
+      "arm": 13,
+      "leg": 13,
+      "wing": 13
     },
-    "Shield Protection": 11,
-    "Defence": -1,
-    "Parry": 4,
-    "Encumbrance": 1,
-    "Slot Type": "Hands",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 0,
-    "Categories": [
-      "Shields"
+    "shieldProtection": 0,
+    "defence": -1,
+    "parry": 0,
+    "encumbrance": 3,
+    "slotType": "body",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 0,
+    "categories": [
+      "Medium armors"
     ]
   },
-  {
-    "ID": "a106",
-    "Name": "mitclan copper scale Armor",
-    "Cost": {
-      "Gold": 13
+  "a111": {
+    "id": "a111",
+    "name": "spider armor",
+    "cost": {
+      "gold": 22
     },
-    "Protection": {
-      "Eye": 0,
-      "Head": 0,
-      "Body": 13,
-      "Arm": 13,
-      "Leg": 13,
-      "Wing": 13
+    "protection": {
+      "eye": 0,
+      "head": 0,
+      "body": 19,
+      "arm": 19,
+      "leg": 19,
+      "wing": 19
     },
-    "Shield Protection": 0,
-    "Defence": -1,
-    "Parry": 0,
-    "Encumbrance": 3,
-    "Slot Type": "Body",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 0,
-    "Categories": [
-      "Medium Armors"
+    "shieldProtection": 0,
+    "defence": -3,
+    "parry": 0,
+    "encumbrance": 4,
+    "slotType": "body",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 1,
+    "categories": [
+      "Heavy armors"
     ]
   },
-  {
-    "ID": "a111",
-    "Name": "spider Armor",
-    "Cost": {
-      "Gold": 22
+  "a114": {
+    "id": "a114",
+    "name": "turtle shell hauberk",
+    "cost": {
+      "gold": 7
     },
-    "Protection": {
-      "Eye": 0,
-      "Head": 0,
-      "Body": 19,
-      "Arm": 19,
-      "Leg": 19,
-      "Wing": 19
+    "protection": {
+      "eye": 0,
+      "head": 0,
+      "body": 9,
+      "arm": 9,
+      "leg": 9,
+      "wing": 9
     },
-    "Shield Protection": 0,
-    "Defence": -3,
-    "Parry": 0,
-    "Encumbrance": 4,
-    "Slot Type": "Body",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 1,
-    "Categories": [
-      "Heavy Armors"
+    "shieldProtection": 0,
+    "defence": -2,
+    "parry": 0,
+    "encumbrance": 1,
+    "slotType": "body",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 0,
+    "categories": [
+      "Light armors"
     ]
   },
-  {
-    "ID": "a112",
-    "Name": "great hide shield",
-    "Cost": {
-      "Gold": 4
+  "a115": {
+    "id": "a115",
+    "name": "icarian wings",
+    "cost": {
+      "gold": 10
     },
-    "Protection": {
-      "Eye": 0,
-      "Head": 0,
-      "Body": 0,
-      "Arm": 0,
-      "Leg": 0,
-      "Wing": 0
+    "protection": {
+      "eye": 0,
+      "head": 0,
+      "body": 8,
+      "arm": 8,
+      "leg": 8,
+      "wing": 8
     },
-    "Shield Protection": 11,
-    "Defence": -1,
-    "Parry": 6,
-    "Encumbrance": 1,
-    "Slot Type": "Hands",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 0,
-    "Categories": [
-      "Shields"
-    ]
-  },
-  {
-    "ID": "a114",
-    "Name": "turtle shell hauberk",
-    "Cost": {
-      "Gold": 7
-    },
-    "Protection": {
-      "Eye": 0,
-      "Head": 0,
-      "Body": 9,
-      "Arm": 9,
-      "Leg": 9,
-      "Wing": 9
-    },
-    "Shield Protection": 0,
-    "Defence": -2,
-    "Parry": 0,
-    "Encumbrance": 1,
-    "Slot Type": "Body",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 0,
-    "Categories": [
-      "Light Armors"
-    ]
-  },
-  {
-    "ID": "a115",
-    "Name": "icarian Wings",
-    "Cost": {
-      "Gold": 10
-    },
-    "Protection": {
-      "Eye": 0,
-      "Head": 0,
-      "Body": 8,
-      "Arm": 8,
-      "Leg": 8,
-      "Wing": 8
-    },
-    "Shield Protection": 0,
-    "Defence": -3,
-    "Parry": 0,
-    "Encumbrance": 3,
-    "Slot Type": "Body",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": [
+    "shieldProtection": 0,
+    "defence": -3,
+    "parry": 0,
+    "encumbrance": 3,
+    "slotType": "body",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": [
       "Flying"
     ],
-    "Rarity": 1,
-    "Categories": [
-      "Medium Armors"
+    "rarity": 1,
+    "categories": [
+      "Medium armors"
     ]
   },
-  {
-    "ID": "a116",
-    "Name": "lorica hamata",
-    "Cost": {
-      "Gold": 12
+  "a116": {
+    "id": "a116",
+    "name": "lorica hamata",
+    "cost": {
+      "gold": 12
     },
-    "Protection": {
-      "Eye": 0,
-      "Head": 0,
-      "Body": 10,
-      "Arm": 10,
-      "Leg": 10,
-      "Wing": 10
+    "protection": {
+      "eye": 0,
+      "head": 0,
+      "body": 10,
+      "arm": 10,
+      "leg": 10,
+      "wing": 10
     },
-    "Shield Protection": 0,
-    "Defence": -1,
-    "Parry": 0,
-    "Encumbrance": 1,
-    "Slot Type": "Body",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 0,
-    "Categories": [
-      "Light Armors"
+    "shieldProtection": 0,
+    "defence": -1,
+    "parry": 0,
+    "encumbrance": 1,
+    "slotType": "body",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 0,
+    "categories": [
+      "Light armors"
     ]
   },
-  {
-    "ID": "a117",
-    "Name": "lorica squamata",
-    "Cost": {
-      "Gold": 14
+  "a117": {
+    "id": "a117",
+    "name": "lorica squamata",
+    "cost": {
+      "gold": 14
     },
-    "Protection": {
-      "Eye": 0,
-      "Head": 0,
-      "Body": 12,
-      "Arm": 12,
-      "Leg": 12,
-      "Wing": 12
+    "protection": {
+      "eye": 0,
+      "head": 0,
+      "body": 12,
+      "arm": 12,
+      "leg": 12,
+      "wing": 12
     },
-    "Shield Protection": 0,
-    "Defence": -1,
-    "Parry": 0,
-    "Encumbrance": 2,
-    "Slot Type": "Body",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 0,
-    "Categories": [
-      "Medium Armors"
+    "shieldProtection": 0,
+    "defence": -1,
+    "parry": 0,
+    "encumbrance": 2,
+    "slotType": "body",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 0,
+    "categories": [
+      "Medium armors"
     ]
   },
-  {
-    "ID": "a118",
-    "Name": "half helmet",
-    "Cost": {
-      "Gold": 7.5
+  "a118": {
+    "id": "a118",
+    "name": "half helmet",
+    "cost": {
+      "gold": 7.5
     },
-    "Protection": {
-      "Eye": 18,
-      "Head": 18,
-      "Body": 0,
-      "Arm": 0,
-      "Leg": 0,
-      "Wing": 0
+    "protection": {
+      "eye": 18,
+      "head": 18,
+      "body": 0,
+      "arm": 0,
+      "leg": 0,
+      "wing": 0
     },
-    "Shield Protection": 0,
-    "Defence": 0,
-    "Parry": 0,
-    "Encumbrance": 0,
-    "Slot Type": "Head",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 0,
-    "Categories": [
+    "shieldProtection": 0,
+    "defence": 0,
+    "parry": 0,
+    "encumbrance": 0,
+    "slotType": "head",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 0,
+    "categories": [
       "Helmets"
     ]
   },
-  {
-    "ID": "a119",
-    "Name": "reinforced leather cap",
-    "Cost": {
-      "Gold": 4
+  "a119": {
+    "id": "a119",
+    "name": "reinforced leather cap",
+    "cost": {
+      "gold": 4
     },
-    "Protection": {
-      "Eye": 9,
-      "Head": 9,
-      "Body": 0,
-      "Arm": 0,
-      "Leg": 0,
-      "Wing": 0
+    "protection": {
+      "eye": 9,
+      "head": 9,
+      "body": 0,
+      "arm": 0,
+      "leg": 0,
+      "wing": 0
     },
-    "Shield Protection": 0,
-    "Defence": 0,
-    "Parry": 0,
-    "Encumbrance": 0,
-    "Slot Type": "Head",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 0,
-    "Categories": [
+    "shieldProtection": 0,
+    "defence": 0,
+    "parry": 0,
+    "encumbrance": 0,
+    "slotType": "head",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 0,
+    "categories": [
       "Helmets"
     ]
   },
-  {
-    "ID": "a120",
-    "Name": "leather cap",
-    "Cost": {
-      "Gold": 3.5
+  "a120": {
+    "id": "a120",
+    "name": "leather cap",
+    "cost": {
+      "gold": 3.5
     },
-    "Protection": {
-      "Eye": 7,
-      "Head": 7,
-      "Body": 0,
-      "Arm": 0,
-      "Leg": 0,
-      "Wing": 0
+    "protection": {
+      "eye": 7,
+      "head": 7,
+      "body": 0,
+      "arm": 0,
+      "leg": 0,
+      "wing": 0
     },
-    "Shield Protection": 0,
-    "Defence": 0,
-    "Parry": 0,
-    "Encumbrance": 0,
-    "Slot Type": "Head",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 0,
-    "Categories": [
+    "shieldProtection": 0,
+    "defence": 0,
+    "parry": 0,
+    "encumbrance": 0,
+    "slotType": "head",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 0,
+    "categories": [
       "Helmets"
     ]
   },
-  {
-    "ID": "a121",
-    "Name": "leather hood",
-    "Cost": {
-      "Gold": 3
+  "a121": {
+    "id": "a121",
+    "name": "leather hood",
+    "cost": {
+      "gold": 3
     },
-    "Protection": {
-      "Eye": 6,
-      "Head": 6,
-      "Body": 0,
-      "Arm": 0,
-      "Leg": 0
+    "protection": {
+      "eye": 6,
+      "head": 6,
+      "body": 0,
+      "arm": 0,
+      "leg": 0
     },
-    "Shield Protection": 0,
-    "Defence": 0,
-    "Parry": 0,
-    "Encumbrance": 0,
-    "Slot Type": "Head",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 0,
-    "Categories": [
+    "shieldProtection": 0,
+    "defence": 0,
+    "parry": 0,
+    "encumbrance": 0,
+    "slotType": "head",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 0,
+    "categories": [
       "Helmets"
     ]
   },
-  {
-    "ID": "a123",
-    "Name": "hoplite helm",
-    "Cost": {
-      "Gold": 5
+  "a123": {
+    "id": "a123",
+    "name": "hoplite helm",
+    "cost": {
+      "gold": 5
     },
-    "Protection": {
-      "Eye": 21,
-      "Head": 21,
-      "Body": 0,
-      "Arm": 0,
-      "Leg": 0,
-      "Wing": 0
+    "protection": {
+      "eye": 21,
+      "head": 21,
+      "body": 0,
+      "arm": 0,
+      "leg": 0,
+      "wing": 0
     },
-    "Shield Protection": 0,
-    "Defence": -1,
-    "Parry": 0,
-    "Encumbrance": 0,
-    "Slot Type": "Head",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 0,
-    "Categories": [
+    "shieldProtection": 0,
+    "defence": -1,
+    "parry": 0,
+    "encumbrance": 0,
+    "slotType": "head",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 0,
+    "categories": [
       "Helmets"
     ]
   },
-  {
-    "ID": "a124",
-    "Name": "ice helmet",
-    "Cost": {
-      "Gold": 8
+  "a124": {
+    "id": "a124",
+    "name": "ice helmet",
+    "cost": {
+      "gold": 8
     },
-    "Protection": {
-      "Eye": 8,
-      "Head": 8,
-      "Body": 0,
-      "Arm": 0,
-      "Leg": 0,
-      "Wing": 0
+    "protection": {
+      "eye": 8,
+      "head": 8,
+      "body": 0,
+      "arm": 0,
+      "leg": 0,
+      "wing": 0
     },
-    "Shield Protection": 0,
-    "Defence": 0,
-    "Parry": 0,
-    "Encumbrance": 0,
-    "Slot Type": "Head",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 1,
-    "Categories": [
+    "shieldProtection": 0,
+    "defence": 0,
+    "parry": 0,
+    "encumbrance": 0,
+    "slotType": "head",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 1,
+    "categories": [
       "Helmets"
     ]
   },
-  {
-    "ID": "a126",
-    "Name": "Legionary helmet",
-    "Cost": {
-      "Gold": 8
+  "a126": {
+    "id": "a126",
+    "name": "legionary helmet",
+    "cost": {
+      "gold": 8
     },
-    "Protection": {
-      "Eye": 19,
-      "Head": 19,
-      "Body": 0,
-      "Arm": 0,
-      "Leg": 0,
-      "Wing": 0
+    "protection": {
+      "eye": 19,
+      "head": 19,
+      "body": 0,
+      "arm": 0,
+      "leg": 0,
+      "wing": 0
     },
-    "Shield Protection": 0,
-    "Defence": 0,
-    "Parry": 0,
-    "Encumbrance": 0,
-    "Slot Type": "Head",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 0,
-    "Categories": [
+    "shieldProtection": 0,
+    "defence": 0,
+    "parry": 0,
+    "encumbrance": 0,
+    "slotType": "head",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 0,
+    "categories": [
       "Helmets"
     ]
   },
-  {
-    "ID": "a127",
-    "Name": "Legionary bronze helmet",
-    "Cost": {
-      "Gold": 7.5
+  "a127": {
+    "id": "a127",
+    "name": "legionary bronze helmet",
+    "cost": {
+      "gold": 7.5
     },
-    "Protection": {
-      "Eye": 18,
-      "Head": 18,
-      "Body": 0,
-      "Arm": 0,
-      "Leg": 0,
-      "Wing": 0
+    "protection": {
+      "eye": 18,
+      "head": 18,
+      "body": 0,
+      "arm": 0,
+      "leg": 0,
+      "wing": 0
     },
-    "Shield Protection": 0,
-    "Defence": 0,
-    "Parry": 0,
-    "Encumbrance": 0,
-    "Slot Type": "Head",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 0,
-    "Categories": [
+    "shieldProtection": 0,
+    "defence": 0,
+    "parry": 0,
+    "encumbrance": 0,
+    "slotType": "head",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 0,
+    "categories": [
       "Helmets"
     ]
   },
-  {
-    "ID": "a128",
-    "Name": "ashigaru Armor",
-    "Cost": {
-      "Gold": 14
+  "a128": {
+    "id": "a128",
+    "name": "ashigaru armor",
+    "cost": {
+      "gold": 14
     },
-    "Protection": {
-      "Eye": 0,
-      "Head": 0,
-      "Body": 12,
-      "Arm": 12,
-      "Leg": 12,
-      "Wing": 12
+    "protection": {
+      "eye": 0,
+      "head": 0,
+      "body": 12,
+      "arm": 12,
+      "leg": 12,
+      "wing": 12
     },
-    "Shield Protection": 0,
-    "Defence": -1,
-    "Parry": 0,
-    "Encumbrance": 2,
-    "Slot Type": "Body",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 0,
-    "Categories": [
-      "Medium Armors"
+    "shieldProtection": 0,
+    "defence": -1,
+    "parry": 0,
+    "encumbrance": 2,
+    "slotType": "body",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 0,
+    "categories": [
+      "Medium armors"
     ]
   },
-  {
-    "ID": "a129",
-    "Name": "samurai Armor",
-    "Cost": {
-      "Gold": 14
+  "a129": {
+    "id": "a129",
+    "name": "samurai armor",
+    "cost": {
+      "gold": 14
     },
-    "Protection": {
-      "Eye": 0,
-      "Head": 0,
-      "Body": 15,
-      "Arm": 15,
-      "Leg": 15,
-      "Wing": 15
+    "protection": {
+      "eye": 0,
+      "head": 0,
+      "body": 15,
+      "arm": 15,
+      "leg": 15,
+      "wing": 15
     },
-    "Shield Protection": 0,
-    "Defence": -2,
-    "Parry": 0,
-    "Encumbrance": 3,
-    "Slot Type": "Body",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 0,
-    "Categories": [
-      "Medium Armors"
+    "shieldProtection": 0,
+    "defence": -2,
+    "parry": 0,
+    "encumbrance": 3,
+    "slotType": "body",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 0,
+    "categories": [
+      "Medium armors"
     ]
   },
-  {
-    "ID": "a130",
-    "Name": "heavy samurai Armor",
-    "Cost": {
-      "Gold": 18
+  "a130": {
+    "id": "a130",
+    "name": "heavy samurai armor",
+    "cost": {
+      "gold": 18
     },
-    "Protection": {
-      "Eye": 0,
-      "Head": 0,
-      "Body": 18,
-      "Arm": 18,
-      "Leg": 18,
-      "Wing": 18
+    "protection": {
+      "eye": 0,
+      "head": 0,
+      "body": 18,
+      "arm": 18,
+      "leg": 18,
+      "wing": 18
     },
-    "Shield Protection": 0,
-    "Defence": -3,
-    "Parry": 0,
-    "Encumbrance": 4,
-    "Slot Type": "Body",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 0,
-    "Categories": [
-      "Heavy Armors"
+    "shieldProtection": 0,
+    "defence": -3,
+    "parry": 0,
+    "encumbrance": 4,
+    "slotType": "body",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 0,
+    "categories": [
+      "Heavy armors"
     ]
   },
-  {
-    "ID": "a131",
-    "Name": "jingasa",
-    "Cost": {
-      "Gold": 6
+  "a131": {
+    "id": "a131",
+    "name": "jingasa",
+    "cost": {
+      "gold": 6
     },
-    "Protection": {
-      "Eye": 13,
-      "Head": 13,
-      "Body": 0,
-      "Arm": 0,
-      "Leg": 0,
-      "Wing": 0
+    "protection": {
+      "eye": 13,
+      "head": 13,
+      "body": 0,
+      "arm": 0,
+      "leg": 0,
+      "wing": 0
     },
-    "Shield Protection": 0,
-    "Defence": 0,
-    "Parry": 0,
-    "Encumbrance": 0,
-    "Slot Type": "Head",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 0,
-    "Categories": [
+    "shieldProtection": 0,
+    "defence": 0,
+    "parry": 0,
+    "encumbrance": 0,
+    "slotType": "head",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 0,
+    "categories": [
       "Helmets"
     ]
   },
-  {
-    "ID": "a132",
-    "Name": "kabuto",
-    "Cost": {
-      "Gold": 7
+  "a132": {
+    "id": "a132",
+    "name": "kabuto",
+    "cost": {
+      "gold": 7
     },
-    "Protection": {
-      "Eye": 17,
-      "Head": 17,
-      "Body": 0,
-      "Arm": 0,
-      "Leg": 0,
-      "Wing": 0
+    "protection": {
+      "eye": 17,
+      "head": 17,
+      "body": 0,
+      "arm": 0,
+      "leg": 0,
+      "wing": 0
     },
-    "Shield Protection": 0,
-    "Defence": 0,
-    "Parry": 0,
-    "Encumbrance": 0,
-    "Slot Type": "Head",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 0,
-    "Categories": [
+    "shieldProtection": 0,
+    "defence": 0,
+    "parry": 0,
+    "encumbrance": 0,
+    "slotType": "head",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 0,
+    "categories": [
       "Helmets"
     ]
   },
-  {
-    "ID": "a133",
-    "Name": "icicle mail",
-    "Cost": {
-      "Gold": 13
+  "a133": {
+    "id": "a133",
+    "name": "icicle mail",
+    "cost": {
+      "gold": 13
     },
-    "Protection": {
-      "Eye": 0,
-      "Head": 0,
-      "Body": 12,
-      "Arm": 12,
-      "Leg": 12,
-      "Wing": 12
+    "protection": {
+      "eye": 0,
+      "head": 0,
+      "body": 12,
+      "arm": 12,
+      "leg": 12,
+      "wing": 12
     },
-    "Shield Protection": 0,
-    "Defence": -1,
-    "Parry": 0,
-    "Encumbrance": 2,
-    "Slot Type": "Body",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 1,
-    "Categories": [
-      "Medium Armors"
+    "shieldProtection": 0,
+    "defence": -1,
+    "parry": 0,
+    "encumbrance": 2,
+    "slotType": "body",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 1,
+    "categories": [
+      "Medium armors"
     ]
   },
-  {
-    "ID": "a134",
-    "Name": "turtle cap",
-    "Cost": {
-      "Gold": 4.5
+  "a134": {
+    "id": "a134",
+    "name": "turtle cap",
+    "cost": {
+      "gold": 4.5
     },
-    "Protection": {
-      "Eye": 10,
-      "Head": 10,
-      "Body": 0,
-      "Arm": 0,
-      "Leg": 0,
-      "Wing": 0
+    "protection": {
+      "eye": 10,
+      "head": 10,
+      "body": 0,
+      "arm": 0,
+      "leg": 0,
+      "wing": 0
     },
-    "Shield Protection": 0,
-    "Defence": 0,
-    "Parry": 0,
-    "Encumbrance": 0,
-    "Slot Type": "Head",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 0,
-    "Categories": [
+    "shieldProtection": 0,
+    "defence": 0,
+    "parry": 0,
+    "encumbrance": 0,
+    "slotType": "head",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 0,
+    "categories": [
       "Helmets"
     ]
   },
-  {
-    "ID": "a135",
-    "Name": "bronze cap",
-    "Cost": {
-      "Gold": 6.5
+  "a135": {
+    "id": "a135",
+    "name": "bronze cap",
+    "cost": {
+      "gold": 6.5
     },
-    "Protection": {
-      "Eye": 15,
-      "Head": 15,
-      "Body": 0,
-      "Arm": 0,
-      "Leg": 0,
-      "Wing": 0
+    "protection": {
+      "eye": 15,
+      "head": 15,
+      "body": 0,
+      "arm": 0,
+      "leg": 0,
+      "wing": 0
     },
-    "Shield Protection": 0,
-    "Defence": 0,
-    "Parry": 0,
-    "Encumbrance": 0,
-    "Slot Type": "Head",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 0,
-    "Categories": [
+    "shieldProtection": 0,
+    "defence": 0,
+    "parry": 0,
+    "encumbrance": 0,
+    "slotType": "head",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 0,
+    "categories": [
       "Helmets"
     ]
   },
-  {
-    "ID": "a136",
-    "Name": "bronze scale hauberk",
-    "Cost": {
-      "Gold": 14
+  "a136": {
+    "id": "a136",
+    "name": "bronze scale hauberk",
+    "cost": {
+      "gold": 14
     },
-    "Protection": {
-      "Eye": 0,
-      "Head": 0,
-      "Body": 12,
-      "Arm": 12,
-      "Leg": 12,
-      "Wing": 12
+    "protection": {
+      "eye": 0,
+      "head": 0,
+      "body": 12,
+      "arm": 12,
+      "leg": 12,
+      "wing": 12
     },
-    "Shield Protection": 0,
-    "Defence": -1,
-    "Parry": 0,
-    "Encumbrance": 2,
-    "Slot Type": "Body",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 0,
-    "Categories": [
-      "Medium Armors"
+    "shieldProtection": 0,
+    "defence": -1,
+    "parry": 0,
+    "encumbrance": 2,
+    "slotType": "body",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 0,
+    "categories": [
+      "Medium armors"
     ]
   },
-  {
-    "ID": "a140",
-    "Name": "shell Armor",
-    "Cost": {
-      "Gold": 12
+  "a140": {
+    "id": "a140",
+    "name": "shell armor",
+    "cost": {
+      "gold": 12
     },
-    "Protection": {
-      "Eye": 0,
-      "Head": 0,
-      "Body": 10,
-      "Arm": 10,
-      "Leg": 10,
-      "Wing": 10
+    "protection": {
+      "eye": 0,
+      "head": 0,
+      "body": 10,
+      "arm": 10,
+      "leg": 10,
+      "wing": 10
     },
-    "Shield Protection": 0,
-    "Defence": -1,
-    "Parry": 0,
-    "Encumbrance": 1,
-    "Slot Type": "Body",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 0,
-    "Categories": [
-      "Light Armors"
+    "shieldProtection": 0,
+    "defence": -1,
+    "parry": 0,
+    "encumbrance": 1,
+    "slotType": "body",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 0,
+    "categories": [
+      "Light armors"
     ]
   },
-  {
-    "ID": "a141",
-    "Name": "Blind helmet",
-    "Cost": {
-      "Gold": 8
+  "a141": {
+    "id": "a141",
+    "name": "blind helmet",
+    "cost": {
+      "gold": 8
     },
-    "Protection": {
-      "Eye": 23,
-      "Head": 23,
-      "Body": 0,
-      "Arm": 0,
-      "Leg": 0,
-      "Wing": 0
+    "protection": {
+      "eye": 23,
+      "head": 23,
+      "body": 0,
+      "arm": 0,
+      "leg": 0,
+      "wing": 0
     },
-    "Shield Protection": 0,
-    "Defence": 0,
-    "Parry": 0,
-    "Encumbrance": 0,
-    "Slot Type": "Head",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": [
-      "Blind"
+    "shieldProtection": 0,
+    "defence": 0,
+    "parry": 0,
+    "encumbrance": 0,
+    "slotType": "head",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": [
+      "blind"
     ],
-    "Rarity": 1,
-    "Categories": [
+    "rarity": 1,
+    "categories": [
       "Helmets"
     ]
   },
-  {
-    "ID": "a142",
-    "Name": "bronze scale cuirass",
-    "Cost": {
-      "Gold": 10
+  "a142": {
+    "id": "a142",
+    "name": "bronze scale cuirass",
+    "cost": {
+      "gold": 10
     },
-    "Protection": {
-      "Eye": 0,
-      "Head": 0,
-      "Body": 9,
-      "Arm": 9,
-      "Leg": 9,
-      "Wing": 9
+    "protection": {
+      "eye": 0,
+      "head": 0,
+      "body": 9,
+      "arm": 9,
+      "leg": 9,
+      "wing": 9
     },
-    "Shield Protection": 0,
-    "Defence": -1,
-    "Parry": 0,
-    "Encumbrance": 1,
-    "Slot Type": "Body",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 0,
-    "Categories": [
-      "Light Armors"
+    "shieldProtection": 0,
+    "defence": -1,
+    "parry": 0,
+    "encumbrance": 1,
+    "slotType": "body",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 0,
+    "categories": [
+      "Light armors"
     ]
   },
-  {
-    "ID": "a145",
-    "Name": "mask",
-    "Cost": {
-      "Gold": 3
+  "a145": {
+    "id": "a145",
+    "name": "mask",
+    "cost": {
+      "gold": 3
     },
-    "Protection": {
-      "Eye": 7,
-      "Head": 7,
-      "Body": 0,
-      "Arm": 0,
-      "Leg": 0,
-      "Wing": 0
+    "protection": {
+      "eye": 7,
+      "head": 7,
+      "body": 0,
+      "arm": 0,
+      "leg": 0,
+      "wing": 0
     },
-    "Shield Protection": 0,
-    "Defence": -1,
-    "Parry": 0,
-    "Encumbrance": 0,
-    "Slot Type": "Head",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 0,
-    "Categories": [
+    "shieldProtection": 0,
+    "defence": -1,
+    "parry": 0,
+    "encumbrance": 0,
+    "slotType": "head",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 0,
+    "categories": [
       "Helmets"
     ]
   },
-  {
-    "ID": "a146",
-    "Name": "ancestor Armor",
-    "Cost": {
-      "Gold": 15
+  "a146": {
+    "id": "a146",
+    "name": "ancestor armor",
+    "cost": {
+      "gold": 15
     },
-    "Protection": {
-      "Eye": 0,
-      "Head": 0,
-      "Body": 17,
-      "Arm": 17,
-      "Leg": 17,
-      "Wing": 17
+    "protection": {
+      "eye": 0,
+      "head": 0,
+      "body": 17,
+      "arm": 17,
+      "leg": 17,
+      "wing": 17
     },
-    "Shield Protection": 0,
-    "Defence": -3,
-    "Parry": 0,
-    "Encumbrance": 3,
-    "Slot Type": "Body",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 0,
-    "Categories": [
-      "Medium Armors"
+    "shieldProtection": 0,
+    "defence": -3,
+    "parry": 0,
+    "encumbrance": 3,
+    "slotType": "body",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 0,
+    "categories": [
+      "Medium armors"
     ]
   },
-  {
-    "ID": "a148",
-    "Name": "crown",
-    "Cost": {
-      "Gold": 4.5
+  "a148": {
+    "id": "a148",
+    "name": "crown",
+    "cost": {
+      "gold": 4.5
     },
-    "Protection": {
-      "Eye": 9,
-      "Head": 9,
-      "Body": 0,
-      "Arm": 0,
-      "Leg": 0,
-      "Wing": 0
+    "protection": {
+      "eye": 9,
+      "head": 9,
+      "body": 0,
+      "arm": 0,
+      "leg": 0,
+      "wing": 0
     },
-    "Shield Protection": 0,
-    "Defence": 0,
-    "Parry": 0,
-    "Encumbrance": 0,
-    "Slot Type": "Head",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 0,
-    "Categories": [
+    "shieldProtection": 0,
+    "defence": 0,
+    "parry": 0,
+    "encumbrance": 0,
+    "slotType": "head",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 0,
+    "categories": [
       "Helmets"
     ]
   },
-  {
-    "ID": "a149",
-    "Name": "bone cuirass",
-    "Cost": {
-      "Gold": 13
+  "a149": {
+    "id": "a149",
+    "name": "bone cuirass",
+    "cost": {
+      "gold": 13
     },
-    "Protection": {
-      "Eye": 0,
-      "Head": 0,
-      "Body": 11,
-      "Arm": 11,
-      "Leg": 11,
-      "Wing": 11
+    "protection": {
+      "eye": 0,
+      "head": 0,
+      "body": 11,
+      "arm": 11,
+      "leg": 11,
+      "wing": 11
     },
-    "Shield Protection": 0,
-    "Defence": -1,
-    "Parry": 0,
-    "Encumbrance": 1,
-    "Slot Type": "Body",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 0,
-    "Categories": [
-      "Light Armors"
+    "shieldProtection": 0,
+    "defence": -1,
+    "parry": 0,
+    "encumbrance": 1,
+    "slotType": "body",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 0,
+    "categories": [
+      "Light armors"
     ]
   },
-  {
-    "ID": "a150",
-    "Name": "bone helmet",
-    "Cost": {
-      "Gold": 6
+  "a150": {
+    "id": "a150",
+    "name": "bone helmet",
+    "cost": {
+      "gold": 6
     },
-    "Protection": {
-      "Eye": 14,
-      "Head": 14,
-      "Body": 0,
-      "Arm": 0,
-      "Leg": 0,
-      "Wing": 0
+    "protection": {
+      "eye": 14,
+      "head": 14,
+      "body": 0,
+      "arm": 0,
+      "leg": 0,
+      "wing": 0
     },
-    "Shield Protection": 0,
-    "Defence": 0,
-    "Parry": 0,
-    "Encumbrance": 0,
-    "Slot Type": "Head",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 0,
-    "Categories": [
+    "shieldProtection": 0,
+    "defence": 0,
+    "parry": 0,
+    "encumbrance": 0,
+    "slotType": "head",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 0,
+    "categories": [
       "Helmets"
     ]
   },
-  {
-    "ID": "a151",
-    "Name": "sharkskin Armor",
-    "Cost": {
-      "Gold": 5
+  "a151": {
+    "id": "a151",
+    "name": "sharkskin armor",
+    "cost": {
+      "gold": 5
     },
-    "Protection": {
-      "Eye": 0,
-      "Head": 0,
-      "Body": 8,
-      "Arm": 8,
-      "Leg": 8,
-      "Wing": 8
+    "protection": {
+      "eye": 0,
+      "head": 0,
+      "body": 8,
+      "arm": 8,
+      "leg": 8,
+      "wing": 8
     },
-    "Shield Protection": 0,
-    "Defence": -1,
-    "Parry": 0,
-    "Encumbrance": 1,
-    "Slot Type": "Body",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 0,
-    "Categories": [
-      "Light Armors"
+    "shieldProtection": 0,
+    "defence": -1,
+    "parry": 0,
+    "encumbrance": 1,
+    "slotType": "body",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 0,
+    "categories": [
+      "Light armors"
     ]
   },
-  {
-    "ID": "a152",
-    "Name": "sharkskin cap",
-    "Cost": {
-      "Gold": 4.5
+  "a152": {
+    "id": "a152",
+    "name": "sharkskin cap",
+    "cost": {
+      "gold": 4.5
     },
-    "Protection": {
-      "Eye": 10,
-      "Head": 10,
-      "Body": 0,
-      "Arm": 0,
-      "Leg": 0,
-      "Wing": 0
+    "protection": {
+      "eye": 10,
+      "head": 10,
+      "body": 0,
+      "arm": 0,
+      "leg": 0,
+      "wing": 0
     },
-    "Shield Protection": 0,
-    "Defence": 0,
-    "Parry": 0,
-    "Encumbrance": 0,
-    "Slot Type": "Head",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 0,
-    "Categories": [
+    "shieldProtection": 0,
+    "defence": 0,
+    "parry": 0,
+    "encumbrance": 0,
+    "slotType": "head",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 0,
+    "categories": [
       "Helmets"
     ]
   },
-  {
-    "ID": "a153",
-    "Name": "basalt Armor",
-    "Cost": {
-      "Gold": 25
+  "a153": {
+    "id": "a153",
+    "name": "basalt armor",
+    "cost": {
+      "gold": 25
     },
-    "Protection": {
-      "Eye": 0,
-      "Head": 0,
-      "Body": 19,
-      "Arm": 19,
-      "Leg": 19,
-      "Wing": 19
+    "protection": {
+      "eye": 0,
+      "head": 0,
+      "body": 19,
+      "arm": 19,
+      "leg": 19,
+      "wing": 19
     },
-    "Shield Protection": 0,
-    "Defence": -4,
-    "Parry": 0,
-    "Encumbrance": 6,
-    "Slot Type": "Body",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 1,
-    "Categories": [
-      "Heavy Armors"
+    "shieldProtection": 0,
+    "defence": -4,
+    "parry": 0,
+    "encumbrance": 6,
+    "slotType": "body",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 1,
+    "categories": [
+      "Heavy armors"
     ]
   },
-  {
-    "ID": "a154",
-    "Name": "ancestor cuirass",
-    "Cost": {
-      "Gold": 16
+  "a154": {
+    "id": "a154",
+    "name": "ancestor cuirass",
+    "cost": {
+      "gold": 16
     },
-    "Protection": {
-      "Eye": 0,
-      "Head": 0,
-      "Body": 14,
-      "Arm": 14,
-      "Leg": 14,
-      "Wing": 14
+    "protection": {
+      "eye": 0,
+      "head": 0,
+      "body": 14,
+      "arm": 14,
+      "leg": 14,
+      "wing": 14
     },
-    "Shield Protection": 0,
-    "Defence": -1,
-    "Parry": 0,
-    "Encumbrance": 2,
-    "Slot Type": "Body",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 0,
-    "Categories": [
-      "Medium Armors"
+    "shieldProtection": 0,
+    "defence": -1,
+    "parry": 0,
+    "encumbrance": 2,
+    "slotType": "body",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 0,
+    "categories": [
+      "Medium armors"
     ]
   },
-  {
-    "ID": "a155",
-    "Name": "Golden shield",
-    "Cost": {
-      "Gold": 15
+  "a158": {
+    "id": "a158",
+    "name": "robes",
+    "cost": {
+      "gold": 2
     },
-    "Protection": {
-      "Eye": 0,
-      "Head": 0,
-      "Body": 0,
-      "Arm": 0,
-      "Leg": 0,
-      "Wing": 0
+    "protection": {
+      "eye": 0,
+      "head": 0,
+      "body": 3,
+      "arm": 3,
+      "leg": 3,
+      "wing": 3
     },
-    "Shield Protection": 23,
-    "Defence": -1,
-    "Parry": 5,
-    "Encumbrance": 1,
-    "Slot Type": "Hands",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 1,
-    "Categories": [
-      "Shields"
+    "shieldProtection": 0,
+    "defence": 0,
+    "parry": 0,
+    "encumbrance": 0,
+    "slotType": "body",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 0,
+    "categories": [
+      "Light armors"
     ]
   },
-  {
-    "ID": "a156",
-    "Name": "spectral shield",
-    "Cost": {
-      "Gold": 1
+  "a159": {
+    "id": "a159",
+    "name": "imperial robes",
+    "cost": {
+      "gold": 4
     },
-    "Protection": {
-      "Eye": 0,
-      "Head": 0,
-      "Body": 0,
-      "Arm": 0,
-      "Leg": 0,
-      "Wing": 0
+    "protection": {
+      "eye": 0,
+      "head": 0,
+      "body": 4,
+      "arm": 4,
+      "leg": 4,
+      "wing": 4
     },
-    "Shield Protection": 15,
-    "Defence": 0,
-    "Parry": 3,
-    "Encumbrance": 0,
-    "Slot Type": "Hands",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": [
-      "Ethereal"
-    ],
-    "Rarity": 1,
-    "Categories": [
-      "Shields"
+    "shieldProtection": 0,
+    "defence": 0,
+    "parry": 0,
+    "encumbrance": 0,
+    "slotType": "body",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 0,
+    "categories": [
+      "Light armors"
     ]
   },
-  {
-    "ID": "a158",
-    "Name": "robes",
-    "Cost": {
-      "Gold": 2
+  "a161": {
+    "id": "a161",
+    "name": "jeweled breastplate",
+    "cost": {
+      "gold": 10
     },
-    "Protection": {
-      "Eye": 0,
-      "Head": 0,
-      "Body": 3,
-      "Arm": 3,
-      "Leg": 3,
-      "Wing": 3
+    "protection": {
+      "eye": 0,
+      "head": 0,
+      "body": 7,
+      "arm": 7,
+      "leg": 7,
+      "wing": 7
     },
-    "Shield Protection": 0,
-    "Defence": 0,
-    "Parry": 0,
-    "Encumbrance": 0,
-    "Slot Type": "Body",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 0,
-    "Categories": [
-      "Light Armors"
+    "shieldProtection": 0,
+    "defence": 0,
+    "parry": 0,
+    "encumbrance": 0,
+    "slotType": "body",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 0,
+    "categories": [
+      "Light armors"
     ]
   },
-  {
-    "ID": "a159",
-    "Name": "imperial robes",
-    "Cost": {
-      "Gold": 4
+  "a162": {
+    "id": "a162",
+    "name": "crested helmet",
+    "cost": {
+      "gold": 6
     },
-    "Protection": {
-      "Eye": 0,
-      "Head": 0,
-      "Body": 4,
-      "Arm": 4,
-      "Leg": 4,
-      "Wing": 4
+    "protection": {
+      "eye": 14,
+      "head": 14,
+      "body": 0,
+      "arm": 0,
+      "leg": 0,
+      "wing": 0
     },
-    "Shield Protection": 0,
-    "Defence": 0,
-    "Parry": 0,
-    "Encumbrance": 0,
-    "Slot Type": "Body",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 0,
-    "Categories": [
-      "Light Armors"
-    ]
-  },
-  {
-    "ID": "a161",
-    "Name": "jeweled breastplate",
-    "Cost": {
-      "Gold": 10
-    },
-    "Protection": {
-      "Eye": 0,
-      "Head": 0,
-      "Body": 7,
-      "Arm": 7,
-      "Leg": 7,
-      "Wing": 7
-    },
-    "Shield Protection": 0,
-    "Defence": 0,
-    "Parry": 0,
-    "Encumbrance": 0,
-    "Slot Type": "Body",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 0,
-    "Categories": [
-      "Light Armors"
-    ]
-  },
-  {
-    "ID": "a162",
-    "Name": "crested helmet",
-    "Cost": {
-      "Gold": 6
-    },
-    "Protection": {
-      "Eye": 14,
-      "Head": 14,
-      "Body": 0,
-      "Arm": 0,
-      "Leg": 0,
-      "Wing": 0
-    },
-    "Shield Protection": 0,
-    "Defence": 0,
-    "Parry": 0,
-    "Encumbrance": 0,
-    "Slot Type": "Head",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 0,
-    "Categories": [
+    "shieldProtection": 0,
+    "defence": 0,
+    "parry": 0,
+    "encumbrance": 0,
+    "slotType": "head",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 0,
+    "categories": [
       "Helmets"
     ]
   },
-  {
-    "ID": "a163",
-    "Name": "anakite Armor",
-    "Cost": {
-      "Gold": 24
+  "a163": {
+    "id": "a163",
+    "name": "anakite armor",
+    "cost": {
+      "gold": 24
     },
-    "Protection": {
-      "Eye": 0,
-      "Head": 0,
-      "Body": 17,
-      "Arm": 17,
-      "Leg": 17,
-      "Wing": 17
+    "protection": {
+      "eye": 0,
+      "head": 0,
+      "body": 17,
+      "arm": 17,
+      "leg": 17,
+      "wing": 17
     },
-    "Shield Protection": 0,
-    "Defence": -1,
-    "Parry": 0,
-    "Encumbrance": 2,
-    "Slot Type": "Body",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 1,
-    "Categories": [
-      "Medium Armors"
+    "shieldProtection": 0,
+    "defence": -1,
+    "parry": 0,
+    "encumbrance": 2,
+    "slotType": "body",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 1,
+    "categories": [
+      "Medium armors"
     ]
   },
-  {
-    "ID": "a164",
-    "Name": "anakite shield",
-    "Cost": {
-      "Gold": 10
+  "a165": {
+    "id": "a165",
+    "name": "dawn armor",
+    "cost": {
+      "gold": 27
     },
-    "Protection": {
-      "Eye": 0,
-      "Head": 0,
-      "Body": 0,
-      "Arm": 0,
-      "Leg": 0,
-      "Wing": 0
+    "protection": {
+      "eye": 0,
+      "head": 0,
+      "body": 18,
+      "arm": 18,
+      "leg": 18,
+      "wing": 18
     },
-    "Shield Protection": 20,
-    "Defence": -1,
-    "Parry": 5,
-    "Encumbrance": 1,
-    "Slot Type": "Hands",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 1,
-    "Categories": [
-      "Shields"
+    "shieldProtection": 0,
+    "defence": -1,
+    "parry": 0,
+    "encumbrance": 2,
+    "slotType": "body",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 1,
+    "categories": [
+      "Medium armors"
     ]
   },
-  {
-    "ID": "a165",
-    "Name": "dawn Armor",
-    "Cost": {
-      "Gold": 27
+
+  "a171": {
+    "id": "a171",
+    "name": "full scale archer armor",
+    "cost": {
+      "gold": 15
     },
-    "Protection": {
-      "Eye": 0,
-      "Head": 0,
-      "Body": 18,
-      "Arm": 18,
-      "Leg": 18,
-      "Wing": 18
+    "protection": {
+      "eye": 0,
+      "head": 0,
+      "body": 17,
+      "arm": 17,
+      "leg": 17,
+      "wing": 17
     },
-    "Shield Protection": 0,
-    "Defence": -1,
-    "Parry": 0,
-    "Encumbrance": 2,
-    "Slot Type": "Body",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 1,
-    "Categories": [
-      "Medium Armors"
+    "shieldProtection": 0,
+    "defence": -4,
+    "parry": 0,
+    "encumbrance": 4,
+    "slotType": "body",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 0,
+    "categories": [
+      "Heavy armors"
     ]
   },
-  {
-    "ID": "a166",
-    "Name": "dawn shield",
-    "Cost": {
-      "Gold": 9
+  "a183": {
+    "id": "a183",
+    "name": "linen cuirass",
+    "cost": {
+      "gold": 9
     },
-    "Protection": {
-      "Eye": 0,
-      "Head": 0,
-      "Body": 0,
-      "Arm": 0,
-      "Leg": 0,
-      "Wing": 0
+    "protection": {
+      "eye": 0,
+      "head": 0,
+      "body": 8,
+      "arm": 8,
+      "leg": 8,
+      "wing": 8
     },
-    "Shield Protection": 19,
-    "Defence": -1,
-    "Parry": 5,
-    "Encumbrance": 1,
-    "Slot Type": "Hands",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 1,
-    "Categories": [
-      "Shields"
+    "shieldProtection": 0,
+    "defence": 0,
+    "parry": 0,
+    "encumbrance": 0,
+    "slotType": "body",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 0,
+    "categories": [
+      "Light armors"
     ]
   },
-  {
-    "ID": "a171",
-    "Name": "full scale archer Armor",
-    "Cost": {
-      "Gold": 15
+  "a184": {
+    "id": "a184",
+    "name": "kithaironic lion pelt",
+    "cost": null,
+    "protection": {
+      "eye": 15,
+      "head": 15,
+      "body": 15,
+      "arm": 0,
+      "leg": 0,
+      "wing": 0
     },
-    "Protection": {
-      "Eye": 0,
-      "Head": 0,
-      "Body": 17,
-      "Arm": 17,
-      "Leg": 17,
-      "Wing": 17
-    },
-    "Shield Protection": 0,
-    "Defence": -4,
-    "Parry": 0,
-    "Encumbrance": 4,
-    "Slot Type": "Body",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 0,
-    "Categories": [
-      "Heavy Armors"
+    "shieldProtection": 0,
+    "defence": -1,
+    "parry": 0,
+    "encumbrance": 1,
+    "slotType": "body",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 1,
+    "categories": [
+      "Light armors"
     ]
   },
-  {
-    "ID": "a183",
-    "Name": "linen cuirass",
-    "Cost": {
-      "Gold": 9
+  "a188": {
+    "id": "a188",
+    "name": "sharkskin cuirass",
+    "cost": {
+      "gold": 6
     },
-    "Protection": {
-      "Eye": 0,
-      "Head": 0,
-      "Body": 8,
-      "Arm": 8,
-      "Leg": 8,
-      "Wing": 8
+    "protection": {
+      "eye": 0,
+      "head": 0,
+      "body": 7,
+      "arm": 7,
+      "leg": 7,
+      "wing": 7
     },
-    "Shield Protection": 0,
-    "Defence": 0,
-    "Parry": 0,
-    "Encumbrance": 0,
-    "Slot Type": "Body",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 0,
-    "Categories": [
-      "Light Armors"
+    "shieldProtection": 0,
+    "defence": 0,
+    "parry": 0,
+    "encumbrance": 1,
+    "slotType": "body",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 0,
+    "categories": [
+      "Light armors"
     ]
   },
-  {
-    "ID": "a184",
-    "Name": "kithaironic lion pelt",
-    "Cost": null,
-    "Protection": {
-      "Eye": 15,
-      "Head": 15,
-      "Body": 15,
-      "Arm": 0,
-      "Leg": 0,
-      "Wing": 0
+
+  "a192": {
+    "id": "a192",
+    "name": "full chain of ulm",
+    "cost": {
+      "gold": 20
     },
-    "Shield Protection": 0,
-    "Defence": -1,
-    "Parry": 0,
-    "Encumbrance": 1,
-    "Slot Type": "Body",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 1,
-    "Categories": [
-      "Light Armors"
+    "protection": {
+      "eye": 0,
+      "head": 0,
+      "body": 19,
+      "arm": 19,
+      "leg": 19,
+      "wing": 19
+    },
+    "shieldProtection": 0,
+    "defence": -3,
+    "parry": 0,
+    "encumbrance": 3,
+    "slotType": "body",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 1,
+    "categories": [
+      "Medium armors"
     ]
   },
-  {
-    "ID": "a188",
-    "Name": "sharkskin cuirass",
-    "Cost": {
-      "Gold": 6
+  "a196": {
+    "id": "a196",
+    "name": "golden scale mail",
+    "cost": {
+      "gold": 25
     },
-    "Protection": {
-      "Eye": 0,
-      "Head": 0,
-      "Body": 7,
-      "Arm": 7,
-      "Leg": 7,
-      "Wing": 7
+    "protection": {
+      "eye": 0,
+      "head": 0,
+      "body": 17,
+      "arm": 17,
+      "leg": 17,
+      "wing": 17
     },
-    "Shield Protection": 0,
-    "Defence": 0,
-    "Parry": 0,
-    "Encumbrance": 1,
-    "Slot Type": "Body",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 0,
-    "Categories": [
-      "Light Armors"
+    "shieldProtection": 0,
+    "defence": -2,
+    "parry": 0,
+    "encumbrance": 2,
+    "slotType": "body",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 1,
+    "categories": [
+      "Medium armors"
     ]
   },
-  {
-    "ID": "a189",
-    "Name": "pearl shield",
-    "Cost": {
-      "Gold": 6
+  "a198": {
+    "id": "a198",
+    "name": "raptorian plate cuirass",
+    "cost": {
+      "gold": 16
     },
-    "Protection": {
-      "Eye": 0,
-      "Head": 0,
-      "Body": 0,
-      "Arm": 0,
-      "Leg": 0,
-      "Wing": 0
+    "protection": {
+      "eye": 0,
+      "head": 0,
+      "body": 13,
+      "arm": 13,
+      "leg": 13,
+      "wing": 13
     },
-    "Shield Protection": 16,
-    "Defence": -1,
-    "Parry": 5,
-    "Encumbrance": 1,
-    "Slot Type": "Hands",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 1,
-    "Categories": [
-      "Shields"
+    "shieldProtection": 0,
+    "defence": -1,
+    "parry": 0,
+    "encumbrance": 1,
+    "slotType": "body",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 1,
+    "categories": [
+      "Light armors"
     ]
   },
-  {
-    "ID": "a192",
-    "Name": "full chain of ulm",
-    "Cost": {
-      "Gold": 20
+  "a199": {
+    "id": "a199",
+    "name": "turan plated mail",
+    "cost": {
+      "gold": 24
     },
-    "Protection": {
-      "Eye": 0,
-      "Head": 0,
-      "Body": 19,
-      "Arm": 19,
-      "Leg": 19,
-      "Wing": 19
+    "protection": {
+      "eye": 0,
+      "head": 0,
+      "body": 20,
+      "arm": 20,
+      "leg": 20,
+      "wing": 20
     },
-    "Shield Protection": 0,
-    "Defence": -3,
-    "Parry": 0,
-    "Encumbrance": 3,
-    "Slot Type": "Body",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 1,
-    "Categories": [
-      "Medium Armors"
+    "shieldProtection": 0,
+    "defence": -3,
+    "parry": 0,
+    "encumbrance": 4,
+    "slotType": "body",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 1,
+    "categories": [
+      "Heavy armors"
     ]
   },
-  {
-    "ID": "a196",
-    "Name": "Golden scale mail",
-    "Cost": {
-      "Gold": 25
+  "a202": {
+    "id": "a202",
+    "name": "cloth armor",
+    "cost": {
+      "gold": 5.5
     },
-    "Protection": {
-      "Eye": 0,
-      "Head": 0,
-      "Body": 17,
-      "Arm": 17,
-      "Leg": 17,
-      "Wing": 17
+    "protection": {
+      "eye": 0,
+      "head": 0,
+      "body": 6,
+      "arm": 6,
+      "leg": 6,
+      "wing": 6
     },
-    "Shield Protection": 0,
-    "Defence": -2,
-    "Parry": 0,
-    "Encumbrance": 2,
-    "Slot Type": "Body",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 1,
-    "Categories": [
-      "Medium Armors"
+    "shieldProtection": 0,
+    "defence": 0,
+    "parry": 0,
+    "encumbrance": 0,
+    "slotType": "body",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 0,
+    "categories": [
+      "Light armors"
     ]
   },
-  {
-    "ID": "a198",
-    "Name": "raptorian plate cuirass",
-    "Cost": {
-      "Gold": 16
+  "a203": {
+    "id": "a203",
+    "name": "reinforced cloth armor",
+    "cost": {
+      "gold": 7
     },
-    "Protection": {
-      "Eye": 0,
-      "Head": 0,
-      "Body": 13,
-      "Arm": 13,
-      "Leg": 13,
-      "Wing": 13
+    "protection": {
+      "eye": 0,
+      "head": 0,
+      "body": 8,
+      "arm": 8,
+      "leg": 8,
+      "wing": 8
     },
-    "Shield Protection": 0,
-    "Defence": -1,
-    "Parry": 0,
-    "Encumbrance": 1,
-    "Slot Type": "Body",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 1,
-    "Categories": [
-      "Light Armors"
+    "shieldProtection": 0,
+    "defence": 0,
+    "parry": 0,
+    "encumbrance": 1,
+    "slotType": "body",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 0,
+    "categories": [
+      "Light armors"
     ]
   },
-  {
-    "ID": "a199",
-    "Name": "turan plated mail",
-    "Cost": {
-      "Gold": 24
+  "a204": {
+    "id": "a204",
+    "name": "armor of the sun",
+    "cost": {
+      "gold": 20
     },
-    "Protection": {
-      "Eye": 0,
-      "Head": 0,
-      "Body": 20,
-      "Arm": 20,
-      "Leg": 20,
-      "Wing": 20
+    "protection": {
+      "eye": 0,
+      "head": 0,
+      "body": 16,
+      "arm": 16,
+      "leg": 16,
+      "wing": 16
     },
-    "Shield Protection": 0,
-    "Defence": -3,
-    "Parry": 0,
-    "Encumbrance": 4,
-    "Slot Type": "Body",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 1,
-    "Categories": [
-      "Heavy Armors"
+    "shieldProtection": 0,
+    "defence": -2,
+    "parry": 0,
+    "encumbrance": 3,
+    "slotType": "body",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 0,
+    "categories": [
+      "Medium armors"
     ]
   },
-  {
-    "ID": "a202",
-    "Name": "cloth Armor",
-    "Cost": {
-      "Gold": 5.5
+  "a205": {
+    "id": "a205",
+    "name": "sun cuirass",
+    "cost": {
+      "gold": 14.5
     },
-    "Protection": {
-      "Eye": 0,
-      "Head": 0,
-      "Body": 6,
-      "Arm": 6,
-      "Leg": 6,
-      "Wing": 6
+    "protection": {
+      "eye": 0,
+      "head": 0,
+      "body": 13,
+      "arm": 13,
+      "leg": 13,
+      "wing": 13
     },
-    "Shield Protection": 0,
-    "Defence": 0,
-    "Parry": 0,
-    "Encumbrance": 0,
-    "Slot Type": "Body",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 0,
-    "Categories": [
-      "Light Armors"
+    "shieldProtection": 0,
+    "defence": -1,
+    "parry": 0,
+    "encumbrance": 2,
+    "slotType": "body",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 0,
+    "categories": [
+      "Medium armors"
     ]
   },
-  {
-    "ID": "a203",
-    "Name": "reinforced cloth Armor",
-    "Cost": {
-      "Gold": 7
+  "a206": {
+    "id": "a206",
+    "name": "obsidian cuirass",
+    "cost": {
+      "gold": 18
     },
-    "Protection": {
-      "Eye": 0,
-      "Head": 0,
-      "Body": 8,
-      "Arm": 8,
-      "Leg": 8,
-      "Wing": 8
+    "protection": {
+      "eye": 0,
+      "head": 0,
+      "body": 15,
+      "arm": 15,
+      "leg": 15,
+      "wing": 15
     },
-    "Shield Protection": 0,
-    "Defence": 0,
-    "Parry": 0,
-    "Encumbrance": 1,
-    "Slot Type": "Body",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 0,
-    "Categories": [
-      "Light Armors"
+    "shieldProtection": 0,
+    "defence": -1,
+    "parry": 0,
+    "encumbrance": 2,
+    "slotType": "body",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 1,
+    "categories": [
+      "Medium armors"
     ]
   },
-  {
-    "ID": "a204",
-    "Name": "Armor of the sun",
-    "Cost": {
-      "Gold": 20
+  "a210": {
+    "id": "a210",
+    "name": "meteorite cuirass",
+    "cost": {
+      "gold": 18
     },
-    "Protection": {
-      "Eye": 0,
-      "Head": 0,
-      "Body": 16,
-      "Arm": 16,
-      "Leg": 16,
-      "Wing": 16
+    "protection": {
+      "eye": 0,
+      "head": 0,
+      "body": 14,
+      "arm": 14,
+      "leg": 14,
+      "wing": 14
     },
-    "Shield Protection": 0,
-    "Defence": -2,
-    "Parry": 0,
-    "Encumbrance": 3,
-    "Slot Type": "Body",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 0,
-    "Categories": [
-      "Medium Armors"
+    "shieldProtection": 0,
+    "defence": -1,
+    "parry": 0,
+    "encumbrance": 2,
+    "slotType": "body",
+    "requiredSlots": 1,
+    "abilities": {
+      "magicResistanceBonus": 1
+    },
+    "properties": null,
+    "rarity": 1,
+    "categories": [
+      "Medium armors"
     ]
   },
-  {
-    "ID": "a205",
-    "Name": "sun cuirass",
-    "Cost": {
-      "Gold": 14.5
+  "a211": {
+    "id": "a211",
+    "name": "meteorite cap",
+    "cost": {
+      "gold": 6.5
     },
-    "Protection": {
-      "Eye": 0,
-      "Head": 0,
-      "Body": 13,
-      "Arm": 13,
-      "Leg": 13,
-      "Wing": 13
+    "protection": {
+      "eye": 16,
+      "head": 16,
+      "body": 0,
+      "arm": 0,
+      "leg": 0,
+      "wing": 0
     },
-    "Shield Protection": 0,
-    "Defence": -1,
-    "Parry": 0,
-    "Encumbrance": 2,
-    "Slot Type": "Body",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 0,
-    "Categories": [
-      "Medium Armors"
-    ]
-  },
-  {
-    "ID": "a206",
-    "Name": "obsidian cuirass",
-    "Cost": {
-      "Gold": 18
-    },
-    "Protection": {
-      "Eye": 0,
-      "Head": 0,
-      "Body": 15,
-      "Arm": 15,
-      "Leg": 15,
-      "Wing": 15
-    },
-    "Shield Protection": 0,
-    "Defence": -1,
-    "Parry": 0,
-    "Encumbrance": 2,
-    "Slot Type": "Body",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 1,
-    "Categories": [
-      "Medium Armors"
-    ]
-  },
-  {
-    "ID": "a207",
-    "Name": "wicker shield",
-    "Cost": {
-      "Gold": 3
-    },
-    "Protection": {
-      "Eye": 0,
-      "Head": 0,
-      "Body": 0,
-      "Arm": 0,
-      "Leg": 0,
-      "Wing": 0
-    },
-    "Shield Protection": 13,
-    "Defence": -1,
-    "Parry": 4,
-    "Encumbrance": 1,
-    "Slot Type": "Hands",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 0,
-    "Categories": [
-      "Shields"
-    ]
-  },
-  {
-    "ID": "a208",
-    "Name": "iron shield",
-    "Cost": {
-      "Gold": 7
-    },
-    "Protection": {
-      "Eye": 0,
-      "Head": 0,
-      "Body": 0,
-      "Arm": 0,
-      "Leg": 0,
-      "Wing": 0
-    },
-    "Shield Protection": 19,
-    "Defence": -1,
-    "Parry": 4,
-    "Encumbrance": 1,
-    "Slot Type": "Hands",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 0,
-    "Categories": [
-      "Shields"
-    ]
-  },
-  {
-    "ID": "a209",
-    "Name": "hoplon",
-    "Cost": {
-      "Gold": 7
-    },
-    "Protection": {
-      "Eye": 0,
-      "Head": 0,
-      "Body": 0,
-      "Arm": 0,
-      "Leg": 0,
-      "Wing": 0
-    },
-    "Shield Protection": 19,
-    "Defence": -1,
-    "Parry": 4,
-    "Encumbrance": 1,
-    "Slot Type": "Hands",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 0,
-    "Categories": [
-      "Shields"
-    ]
-  },
-  {
-    "ID": "a210",
-    "Name": "meteorite cuirass",
-    "Cost": {
-      "Gold": 18
-    },
-    "Protection": {
-      "Eye": 0,
-      "Head": 0,
-      "Body": 14,
-      "Arm": 14,
-      "Leg": 14,
-      "Wing": 14
-    },
-    "Shield Protection": 0,
-    "Defence": -1,
-    "Parry": 0,
-    "Encumbrance": 2,
-    "Slot Type": "Body",
-    "Required Slots": 1,
-    "Effects": {
-      "Magic Resistance Bonus": 1
-    },
-    "Properties": null,
-    "Rarity": 1,
-    "Categories": [
-      "Medium Armors"
-    ]
-  },
-  {
-    "ID": "a211",
-    "Name": "meteorite cap",
-    "Cost": {
-      "Gold": 6.5
-    },
-    "Protection": {
-      "Eye": 16,
-      "Head": 16,
-      "Body": 0,
-      "Arm": 0,
-      "Leg": 0,
-      "Wing": 0
-    },
-    "Shield Protection": 0,
-    "Defence": 0,
-    "Parry": 0,
-    "Encumbrance": 0,
-    "Slot Type": "Head",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 1,
-    "Categories": [
+    "shieldProtection": 0,
+    "defence": 0,
+    "parry": 0,
+    "encumbrance": 0,
+    "slotType": "head",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 1,
+    "categories": [
       "Helmets"
     ]
   },
-  {
-    "ID": "a315",
-    "Name": "leather barding",
-    "Cost": {
-      "Gold": 14
+  "a315": {
+    "id": "a315",
+    "name": "leather barding",
+    "cost": {
+      "gold": 14
     },
-    "Protection": {
-      "Eye": 9,
-      "Head": 9,
-      "Body": 9,
-      "Leg": 9,
-      "Wing": 9
+    "protection": {
+      "eye": 9,
+      "head": 9,
+      "body": 9,
+      "leg": 9,
+      "wing": 9
     },
-    "Shield Protection": 0,
-    "Defence": -1,
-    "Parry": 0,
-    "Encumbrance": 1,
-    "Slot Type": "Body",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 0,
-    "Categories": [
+    "shieldProtection": 0,
+    "defence": -1,
+    "parry": 0,
+    "encumbrance": 1,
+    "slotType": "body",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 0,
+    "categories": [
       "Animal"
     ]
   },
-  {
-    "ID": "a316",
-    "Name": "ring mail barding",
-    "Cost": {
-      "Gold": 17
+  "a316": {
+    "id": "a316",
+    "name": "ring mail barding",
+    "cost": {
+      "gold": 17
     },
-    "Protection": {
-      "Eye": 12,
-      "Head": 12,
-      "Body": 12,
-      "Leg": 12,
-      "Wing": 12
+    "protection": {
+      "eye": 12,
+      "head": 12,
+      "body": 12,
+      "leg": 12,
+      "wing": 12
     },
-    "Shield Protection": 0,
-    "Defence": -2,
-    "Parry": 0,
-    "Encumbrance": 2,
-    "Slot Type": "Body",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 0,
-    "Categories": [
+    "shieldProtection": 0,
+    "defence": -2,
+    "parry": 0,
+    "encumbrance": 2,
+    "slotType": "body",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 0,
+    "categories": [
       "Animal"
     ]
   },
-  {
-    "ID": "a317",
-    "Name": "scale mail barding",
-    "Cost": {
-      "Gold": 18
+  "a317": {
+    "id": "a317",
+    "name": "scale mail barding",
+    "cost": {
+      "gold": 18
     },
-    "Protection": {
-      "Eye": 15,
-      "Head": 15,
-      "Body": 15,
-      "Leg": 15,
-      "Wing": 15
+    "protection": {
+      "eye": 15,
+      "head": 15,
+      "body": 15,
+      "leg": 15,
+      "wing": 15
     },
-    "Shield Protection": 0,
-    "Defence": -2,
-    "Parry": 0,
-    "Encumbrance": 3,
-    "Slot Type": "Body",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 0,
-    "Categories": [
+    "shieldProtection": 0,
+    "defence": -2,
+    "parry": 0,
+    "encumbrance": 3,
+    "slotType": "body",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 0,
+    "categories": [
       "Animal"
     ]
   },
-  {
-    "ID": "a318",
-    "Name": "chain mail barding",
-    "Cost": {
-      "Gold": 25.5
+  "a318": {
+    "id": "a318",
+    "name": "chain mail barding",
+    "cost": {
+      "gold": 25.5
     },
-    "Protection": {
-      "Eye": 18,
-      "Head": 18,
-      "Body": 18,
-      "Leg": 18,
-      "Wing": 18
+    "protection": {
+      "eye": 18,
+      "head": 18,
+      "body": 18,
+      "leg": 18,
+      "wing": 18
     },
-    "Shield Protection": 0,
-    "Defence": -3,
-    "Parry": 0,
-    "Encumbrance": 3,
-    "Slot Type": "Body",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 0,
-    "Categories": [
+    "shieldProtection": 0,
+    "defence": -3,
+    "parry": 0,
+    "encumbrance": 3,
+    "slotType": "body",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 0,
+    "categories": [
       "Animal"
     ]
   },
-  {
-    "ID": "a319",
-    "Name": "plate mail barding",
-    "Cost": {
-      "Gold": 35
+  "a319": {
+    "id": "a319",
+    "name": "plate mail barding",
+    "cost": {
+      "gold": 35
     },
-    "Protection": {
-      "Eye": 21,
-      "Head": 21,
-      "Body": 21,
-      "Leg": 21,
-      "Wing": 21
+    "protection": {
+      "eye": 21,
+      "head": 21,
+      "body": 21,
+      "leg": 21,
+      "wing": 21
     },
-    "Shield Protection": 0,
-    "Defence": -3,
-    "Parry": 0,
-    "Encumbrance": 5,
-    "Slot Type": "Body",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 0,
-    "Categories": [
+    "shieldProtection": 0,
+    "defence": -3,
+    "parry": 0,
+    "encumbrance": 5,
+    "slotType": "body",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 0,
+    "categories": [
       "Animal"
     ]
   },
-  {
-    "ID": "a323",
-    "Name": "coral barding",
-    "Cost": {
-      "Gold": 24,
-      "Emeralds": 1
+  "a323": {
+    "id": "a323",
+    "name": "coral barding",
+    "cost": {
+      "gold": 24,
+      "emeralds": 1
     },
-    "Protection": {
-      "Eye": 12,
-      "Head": 12,
-      "Body": 12,
-      "Leg": 12,
-      "Wing": 12
+    "protection": {
+      "eye": 12,
+      "head": 12,
+      "body": 12,
+      "leg": 12,
+      "wing": 12
     },
-    "Shield Protection": 0,
-    "Defence": -2,
-    "Parry": 0,
-    "Encumbrance": 3,
-    "Slot Type": "Body",
-    "Required Slots": 1,
-    "Effects": {
-      "Poison Barbs": 10
+    "shieldProtection": 0,
+    "defence": -2,
+    "parry": 0,
+    "encumbrance": 3,
+    "slotType": "body",
+    "requiredSlots": 1,
+    "abilities": {
+      "poisonBarbs": 10
     },
-    "Properties": null,
-    "Rarity": 0,
-    "Categories": [
+    "properties": null,
+    "rarity": 0,
+    "categories": [
       "Animal"
     ]
   },
-  {
-    "ID": "a417",
-    "Name": "lorica dogmata",
-    "Cost": {
-      "Gold": 18
+  "a417": {
+    "id": "a417",
+    "name": "lorica dogmata",
+    "cost": {
+      "gold": 18
     },
-    "Protection": {
-      "Eye": 12,
-      "Head": 12,
-      "Body": 12,
-      "Leg": 12,
-      "Wing": 12
+    "protection": {
+      "eye": 12,
+      "head": 12,
+      "body": 12,
+      "leg": 12,
+      "wing": 12
     },
-    "Shield Protection": 0,
-    "Defence": -1,
-    "Parry": 0,
-    "Encumbrance": 2,
-    "Slot Type": "Body",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 0,
-    "Categories": [
+    "shieldProtection": 0,
+    "defence": -1,
+    "parry": 0,
+    "encumbrance": 2,
+    "slotType": "body",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 0,
+    "categories": [
       "Animal"
     ]
   },
-  {
-    "ID": "a461",
-    "Name": "jeweled barding",
-    "Cost": {
-      "Gold": 14
+  "a461": {
+    "id": "a461",
+    "name": "jeweled barding",
+    "cost": {
+      "gold": 14
     },
-    "Protection": {
-      "Eye": 7,
-      "Head": 7,
-      "Body": 7,
-      "Leg": 7,
-      "Wing": 14
+    "protection": {
+      "eye": 7,
+      "head": 7,
+      "body": 7,
+      "leg": 7,
+      "wing": 14
     },
-    "Shield Protection": 0,
-    "Defence": 0,
-    "Parry": 0,
-    "Encumbrance": 0,
-    "Slot Type": "Body",
-    "Required Slots": 1,
-    "Effects": null,
-    "Properties": null,
-    "Rarity": 0,
-    "Categories": [
+    "shieldProtection": 0,
+    "defence": 0,
+    "parry": 0,
+    "encumbrance": 0,
+    "slotType": "body",
+    "requiredSlots": 1,
+    "abilities": null,
+    "properties": null,
+    "rarity": 0,
+    "categories": [
       "Animal"
     ]
   }
-]
+}

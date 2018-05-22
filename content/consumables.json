@@ -1,50 +1,50 @@
-[
-  {
-    "ID": "c1",
-    "Name": "imbued bandages",
-    "Cost": {
-      "Gold": 5
+{
+  "c1": {
+    "id": "c1",
+    "name": "imbued bandages",
+    "cost": {
+      "gold": 5
     },
-    "Effects": {
-      "Duration": 8,
-      "Healing Bonus": 10
+    "effects": {
+      "duration": 8,
+      "healingBonus": 10
     },
-    "Properties": [
-      "Single-use"
+    "properties": [
+      "singleUse"
     ],
-    "Rarity": 0,
+    "rarity": 0,
     "Description": "these magically imbued bandages improve your natural Healing rate by 7.5% hp/h."
   },
-  {
-    "ID": "c2",
-    "Name": "elixir",
-    "Cost": {
-      "Gold": 5
+  "c2": {
+    "id": "c2",
+    "name": "elixir",
+    "cost": {
+      "gold": 5
     },
-    "Effects": {
-      "Healing": 5
+    "effects": {
+      "healing": 5
     },
-    "Properties": [
-      "Single-use"
+    "properties": [
+      "singleUse"
     ],
-    "Rarity": 0,
+    "rarity": 0,
     "Description": "this small elixir will instantly close most wounds."
   },
-  {
-    "ID": "c3",
-    "Name": "Recuperation balm",
-    "Cost": {
-      "Gold": 15
+  "c3": {
+    "id": "c3",
+    "name": "recuperation balm",
+    "cost": {
+      "gold": 15
     },
-    "Effects": {
-      "Duration": 8,
-      "Healing Bonus": 10
+    "effects": {
+      "duration": 8,
+      "healingBonus": 10
     },
-    "Properties": [
-      "Single-use",
-      "Recuperation"
+    "properties": [
+      "singleUse",
+      "recuperation"
     ],
-    "Rarity": 0,
-    "Description": "this balm can regenerate even the ugliest old scars over time. +7.5% hp/h and unlocks the Recuperation trait while it lasts."
+    "rarity": 0,
+    "Description": "this balm can regenerate even the ugliest old scars over time. +7.5% hp/h and unlocks the recuperation trait while it lasts."
   }
-]
+}

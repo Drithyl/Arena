@@ -1,75 +1,955 @@
 
-const dice = require("./dice.js");
-//const affliction = require("./affliction.js");
-const ruleset = require("./ruleset.js");
-const formModule = require("./form.js");
-const slotsModule = require("./slots.js");
-var circle = require("./math/circle.js");
+var slotsModule;
+var content;
 var prototype;
 
 module.exports =
 {
-  create: function(data)
+  Character: function(data, formList)
   {
+    /**************************
+    *   PRIVILEDGED METHODS   *
+    **************************/
+    /*must go first, since    *
+    * function hoisting does  *
+    * not work with a function*
+    * assignment**************/
+
+    this.toJSON = function()
+    {
+      var obj =
+      {
+        name: _name,
+        id: _id,
+        player: _player,
+        maxHP: _maxHP,
+        magicResistance: _magicResistance,
+        morale: _morale,
+        strength: _strength,
+        level: _level,
+        transitionPoints: _transitionPoints,
+        currentHP: _currentHP,
+        attack: _attack,
+        defence: _defence,
+        precision: _precision,
+        actionPoints: _actionPoints,
+        movementPoints: _movementPoints,
+        afflictions: _afflictions,
+        paths: _paths,
+        properties: _properties,
+        abilities: _abilities,
+        hands: _hands,
+        head: _head,
+        body: _body,
+        feet: _feet,
+        miscellaneous: _miscellaneous,
+        formIndex: _formIndex,
+        formList: _formList
+      };
+
+      obj.slotKeys = ["hands", "head", "body", "feet", "miscellaneous"];
+
+      return obj;
+    };
+
+    this.toDatabase = function()
+    {
+      //uses the toJSON method because the data to be saved in the database is the
+      //same one, and toJSON is required for when JSON.stringify() is called on
+      //this object
+      return this.toJSON();
+    };
+
+    this.setEquipment = function(equipment)
+    {
+      _equipment = equipment;
+    };
+
+    this.getStatusEffect = function(status)
+    {
+      return _statusEffects[status];
+    };
+
+    this.setStatusEffect = function(status, value)
+    {
+      //TODO verify if status is in list of existing ones
+      //TODO verify validity of value for existing status
+      _statusEffects[status] = value;
+      _changes.statusEffects[status] = value;
+    };
+
+    this.hasProperty = function(key)
+    {
+      if (_properties.includes(key) === true)
+      {
+        return true;
+      }
+
+      if (this.form.hasProperty(key) === true)
+      {
+        return true;
+      }
+
+      if (this.hasEquippedProperty(key) === true)
+      {
+        return true;
+      }
+
+      return false;
+    };
+
+    this.getAbility = function(key)
+    {
+      if (_abilities[key] == null || isNaN(_abilities[key]) === true)
+      {
+        return null;
+      }
+
+      else return _abilities[key];
+    }
+
+    this.getChanges = function()
+    {
+      var changes = Object.assign({}, _changes);
+      _changes = {};
+      return changes;
+    };
+
+    this.nextForm = function()
+    {
+      if (this.isInLastForm === false)
+      {
+        this.formIndex++;
+        this.form = _formList[_formIndex];
+        this.slots.update();
+      }
+    };
+
+    this.previousForm = function()
+    {
+      if (this.isInFirstForm === false)
+      {
+        this.formIndex--;
+        this.form = _formList[_formIndex];
+        this.slots.update();
+      }
+    };
+
+
+    /**********************************
+    *   EQUIPMENT-RELATED FUNCTIONS   *
+    **********************************/
+
+    //returns the free slots of this type,
+    //which are objects; meaning their properties can
+    //be altered by reference
+    this.getFreeSlots = function(slotType)
+    {
+      var freeSlots = [];
+
+      _slotList[slotType].forEach(function(slot)
+      {
+        if (slot.equipped == null)
+        {
+          freeSlots.push(slot);
+        }
+      });
+
+      return freeSlots;
+    };
+
+    this.getEquippedItem = function(slotType, index)
+    {
+      if (_slotList[slotType] == null || _slotList[slotType][index] == null || _slotList[slotType][index].equipped == null)
+      {
+        return null;
+      }
+
+      return _slotList[slotType][index].equipped;
+    }
+
+    this.hasSlot = function(type, index)
+    {
+      if (_slotList[type] == null)
+      {
+        return false;
+      }
+
+      if (_slotList[type][index] == null)
+      {
+        return false;
+      }
+
+      return true;
+    }
+
+    //slots is the number of slots in which to equip the item, it's an array of
+    //slot indexes, i.e. which specific slots were designated
+    this.equip = function(slots, item)
+    {
+      if (item.type === "weapon" && item.gripSpace < _character.size() * slots.length)
+      {
+        throw new Error("This weapon doesn't have enough grip space for this many hands of this size!");
+      }
+
+      else if (_slotList[item.slotType].length < item.requiredSlots || _slotList[item.slotType].length < slots.length)
+      {
+        throw new Error("There aren't enough slots to equip this item.");
+      }
+
+      for (var i = 0; i < slots.length; i++)
+      {
+        if (_slotList[item.slotType][slots[i]].equipped != null)
+        {
+          unequip(item.slotType, slots[i]);
+        }
+
+        _slotList[item.slotType][slots[i]].equipped = item;
+        _slotList[item.slotType][slots[i]].slotsTaken = slots;
+      }
+    };
+
+    //updates the number of slots available
+    //based on a new form adopted after a shapeshift
+    this.updateSlots = function()
+    {
+      for (var key in _character.form.slots)
+      {
+        var charTotal = _slotList[key].length;
+        var formTotal = _character.form.slots[key] || 0;
+
+        if (formTotal === charTotal)
+        {
+          continue;
+        }
+
+        else if (formTotal > charTotal)
+        {
+          createEmptySlots(key, formTotal - charTotal);
+        }
+
+        else if (formTotal < charTotal)
+        {
+          //start removing past the new total of slots, formTotal
+          removeSlots(key, formTotal, formTotal - charTotal);
+        }
+      }
+    };
+
+    //removes a given item. The slotsTaken property
+    //is used for items that take up more than one slot,
+    //like two-hander weapons, to properly clean up everything
+    this.unequipItem = function(id, slotType)
+    {
+      for (var i = 0; i < _slotList[slotType].length; i++)
+      {
+        var item = _slotList[slotType][i].equipped;
+
+        if (item.id === id)
+        {
+          unequip(slotType, i);
+          return;
+        }
+      }
+    };
+
+    //checks if a given item is equipped
+    this.hasEquipped = function(id)
+    {
+      for (var key in _slotList)
+      {
+        for (var i = 0; i < _slotList[key].length; i++)
+        {
+          var item = _slotList[key][i].equipped;
+
+          if (item.id === id)
+          {
+            return true;
+          }
+        }
+      }
+
+      return false;
+    };
+
+    //gets a specific item based on an id given
+    this.getItem = function(id)
+    {
+      for (var key in _slotList)
+      {
+        for (var i = 0; i < _slotList[key].length; i++)
+        {
+          var item = _slotList[key][i].equipped;
+
+          if (item.id === id)
+          {
+            return item;
+          }
+        }
+      }
+
+      return null;
+    };
+
+    //returns the amount of times that an item
+    //is equipped, i.e. if a character is wielding
+    //multiple weapons of the same kind.
+    //The slotsChecked array is used to prevent
+    //counting items that take up more than a single
+    //slot, like two-handed weapons, multiple times,
+    //instead of the one. It is reset for each new slot
+    //type, since an item can't occupy several slots of
+    //different kinds
+    this.timesEquipped = function(id)
+    {
+      var times = 0;
+      var slotsChecked;
+
+      for (var key in _slotList)
+      {
+        slotsChecked = [];
+
+        for (var i = 0; i < _slotList[key].length; i++)
+        {
+          var item = _slotList[key][i].equipped;
+
+          if (item == null || item.id !== id || slotsChecked.includes(i) === true)
+          {
+            continue;
+          }
+
+          times++;
+          slotsChecked.concat(_slotList[key][i].slotsTaken);
+        }
+      }
+
+      return times;
+    };
+
+    //The slotsChecked array is used to prevent
+    //counting items that take up more than a single
+    //slot, like two-handed weapons, multiple times,
+    //instead of the one. It is reset for each new slot
+    //type, since an item can't occupy several slots of
+    //different kinds
+    this.getAllEquippedItems = function()
+    {
+      var items = [];
+      var slotsChecked;
+
+      for (var key in _slotList)
+      {
+        slotsChecked = [];
+
+        for (var i = 0; i < _slotList[key].length; i++)
+        {
+          if (_slotList[key][i].equipped == null || slotsChecked.includes(i) === true)
+          {
+            continue;
+          }
+
+          items.push(equipped[i]);
+          slotsChecked.concat(_slotList[key][i].slotsTaken);
+        }
+      }
+
+      return items;
+    };
+
+    //The slotsChecked array is used to prevent
+    //counting items that take up more than a single
+    //slot, like two-handed weapons, multiple times,
+    //instead of the one. It is reset for each new slot
+    //type, since an item can't occupy several slots of
+    //different kinds
+    this.getAllEquippedWeapons = function()
+    {
+      var weapons = [];
+      var slotsChecked;
+
+      for (var key in _slotList)
+      {
+        slotsChecked = [];
+
+        for (var i = 0; i < _slotList[key].length; i++)
+        {
+          var item = _slotList[key][i].equipped;
+
+          if (item == null || item.type !== "weapon" || slotsChecked.includes(i) === true)
+          {
+            continue;
+          }
+
+          weapons.push(equipped[i]);
+          slotsChecked.concat(_slotList[key][i].slotsTaken);
+        }
+      }
+
+      return weapons;
+    };
+
+    //The slotsChecked array is used to prevent
+    //counting items that take up more than a single
+    //slot, like two-handed weapons, multiple times,
+    //instead of the one. It is reset for each new slot
+    //type, since an item can't occupy several slots of
+    //different kinds
+    this.getEquippedAbility = function(key)
+    {
+      var total;
+      var slotsChecked;
+
+      for (var key in _slotList)
+      {
+        slotsChecked = [];
+
+        for (var i = 0; i < _slotList[key].length; i++)
+        {
+          var item = _slotList[key][i].equipped;
+          var value;
+
+          if (item == null)
+          {
+            continue;
+          }
+
+          value = item.getAbility(key);
+
+          if (value == null)
+          {
+            continue;
+          }
+
+          if (total == null)
+          {
+            total = value;
+          }
+
+          total += value;
+        }
+      }
+
+      //can be undefined, in which case the item does not have the ability.
+      //This is because some abilities might have a zero value.
+      return total;
+    };
+
+
+    this.getDualPenalty = function()
+    {
+      var total = 0;
+
+      for (var key in _slotList)
+      {
+        var slotType = _slotList[key];
+
+        for (var i = 0; i < slotType.length; i++)
+        {
+          var item = slotType[i].equipped;
+
+          if (item.type !== "weapon")
+          {
+            //not a weapon
+            continue;
+          }
+
+          if (item.hasProperty("extra") === true)
+          {
+            //"Extra" weapons are bonus weapons that do not
+            //add penalty, like natural weapons
+            continue;
+          }
+
+          total += item.reach;
+        }
+      }
+
+      return total.lowerCap(0);
+    };
+
+    this.getTotalArmor = function(part)
+    {
+      var total = 0;
+
+      for (var i = 0; i < _slotList[part].length; i++)
+      {
+        var item = _slotList[part][i].equipped;
+
+        if (item != null)
+        {
+          total += item.getPartProtection(part);
+        }
+      }
+
+      return total;
+    };
+
+    this.hasEquippedProperty = function(key)
+    {
+      for (var key in _slotList)
+      {
+        for (var i = 0; i < _slotList[key].length; i++)
+        {
+          var item = _slotList[key][i].equipped;
+
+          if (item != null && item.hasProperty(key) === true)
+          {
+            return true;
+          }
+        }
+      }
+
+      return false;
+    };
+
+
+    //All private members are declared with "var". All public members
+    //are declared with this.
     //Required values, whether it's a new character or a revived one
-    this.name = data.name;
-    this.id = data.id;
-    this.player = data.username;
-    this.maxHP = data.maxHP;
-    this.mr = data.mr;
-    this.morale = data.morale;
-    this.strength = data.strength;
+    var _name = data.name;
+    var _id = data.id;
+    var _player = data.username;
+    var _maxHP = data.maxHP;
+    var _magicResistance = data.magicResistance;
+    var _morale = data.morale;
+    var _strength = data.strength;
+
+    //Revived forms list, injected directly here for decoupling
+    var _formIndex = data.formIndex || 0;
+    var _formList = formList;
+    this.form = _formList[_formIndex];
 
     //Optional values; new characters will only have the default values here,
     //whereas revived characters will load their own
-    this.level = data.level || 0;
-    this.transitionPoints = data.transitionPoints || 0;
-    this.currentHP = data.currentHP || this.getTotalAttribute("maxHP");
-    this.attack = data.attack || 0;
-    this.defence = data.defence || 0;
-    this.precision = data.precision || 0;
-    this.ap = data.ap || 0;
-    this.mp = data.mp || 0;
-    this.afflictions = data.afflictions || null;
-    this.paths = data.paths || null;
-    this.properties = data.properties || null;
-    this.abilities = data.abilities || null;
+    var _level = data.level || 0;
+    var _transitionPoints = data.transitionPoints || 0;
+    var _currentHP = data.currentHP || this.getTotalAttribute("maxHP");
+    var _attack = data.attack || 0;
+    var _defence = data.defence || 0;
+    var _precision = data.precision || 0;
+    var _actionPoints = data.actionPoints || 0;
+    var _movementPoints = data.movementPoints || 0;
+    var _afflictions = data.afflictions || null;
+    var _paths = data.paths || null;
+    var _properties = data.properties || null;
+    var _abilities = data.abilities || null;
 
     //Temporary values (battle-related values) that will always be at a default
     //state when the character is loaded up
-    this.fatigue = 0;
-    this.statusEffects = {harassment: 0};
-    this.apLeft = this.getTotalAttribute("ap");
-    this.mpLeft = this.getTotalAttribute("mp");
-    this.area = circle.create(0, 0, this.size());
+    var _fatigue = 0;
+    var _statusEffects = {harassment: 0};
+    var _actionPointsLeft = this.getTotalAttribute("actionPoints");
+    var _movementPointsLeft = this.getTotalAttribute("movementPoints");
+    var _changes = {statusEffects: {}};
 
-    //Form-related values. The form itself will always come with data from
-    //the character_creator.js or simply the loaded data, and will be
-    //revived with the appropriate functions in the formModule
-    this.formIndex = data.formIndex || 0;
-    this.form = formModule.create(data.form);
+    var _hands = [];
+    var _head = [];
+    var _body = [];
+    var _feet = [];
+    var _miscellaneous = [];
+    var _slotList = {hands: _hands, head: _head, body: _body, feet: _feet, miscellaneous: _miscellaneous};
 
-    for (var i = 0; i < data.formList.length; i++)
+    for (var key in _slotList)
     {
-      this.formList[i] = formModule.create(data.formList[i]);
+      if (data == null || data[key] == null)
+      {
+        createEmptySlots(key, this.form.slots[key]);
+      }
+
+      else _slotList[key] = data[key];
     }
 
-    //Slots object. A new character will come with a null data.slots,
-    //in which case the slotsModule will create a new object with
-    //the form's default values. Otherwise it will load up the data
-    //from data.slots
-    this.slots = slotsModule.create(this, data.slots);
+    /**************************
+    *   GETTERS AND SETTERS   *
+    **************************/
+
+    Object.defineProperty(this, "id",
+    {
+      get: function()
+      {
+        return _id;
+      },
+      enumerable: true
+    });
+
+    Object.defineProperty(this, "name",
+    {
+      get: function()
+      {
+        return _name;
+      },
+      enumerable: true
+    });
+
+    Object.defineProperty(this, "player",
+    {
+      get: function()
+      {
+        return _player;
+      },
+      enumerable: true
+    });
+
+    Object.defineProperty(this, "size",
+    {
+      get: function()
+      {
+        return this.form.size;
+      },
+      enumerable: true
+    });
+
+    Object.defineProperty(this, "sizeType",
+    {
+      get: function()
+      {
+        return this.form.sizeType;
+      },
+      enumerable: true
+    });
+
+    Object.defineProperty(this, "maxHP",
+    {
+      get: function()
+      {
+        return _maxHP;
+      },
+      set: function(value)
+      {
+        if (isNaN(value) === false)
+        {
+          _maxHP = Math.floor(value);
+          _changes["maxHP"] = _maxHP;
+        }
+      },
+      configurable: true,
+      enumerable: true
+    });
+
+    Object.defineProperty(this, "magicResistance",
+    {
+      get: function()
+      {
+        return _magicResistance;
+      },
+      set: function(value)
+      {
+        if (isNaN(value) === false)
+        {
+          _magicResistance = Math.floor(value);
+          _changes["magicResistance"] = _magicResistance;
+        }
+      },
+      configurable: true,
+      enumerable: true
+    });
+
+    Object.defineProperty(this, "morale",
+    {
+      get: function()
+      {
+        return _morale;
+      },
+      set: function(value)
+      {
+        if (isNaN(value) === false)
+        {
+          _morale = Math.floor(value);
+          _changes["morale"] = _morale;
+        }
+      },
+      configurable: true,
+      enumerable: true
+    });
+
+    Object.defineProperty(this, "strength",
+    {
+      get: function()
+      {
+        return _strength;
+      },
+      set: function(value)
+      {
+        if (isNaN(value) === false)
+        {
+          _strength = Math.floor(value);
+          _changes["strength"] = _strength;
+        }
+      },
+      configurable: true,
+      enumerable: true
+    });
+
+    Object.defineProperty(this, "level",
+    {
+      get: function()
+      {
+        return _level;
+      },
+      set: function(value)
+      {
+        if (isNaN(value) === false)
+        {
+          _level = Math.floor(value);
+          _changes["level"] = _level;
+        }
+      },
+      configurable: true,
+      enumerable: true
+    });
+
+    Object.defineProperty(this, "transitionPoints",
+    {
+      get: function()
+      {
+        return _transitionPoints;
+      },
+      set: function(value)
+      {
+        if (isNaN(value) === false)
+        {
+          _transitionPoints = Math.floor(value);
+          _changes["transitionPoints"] = _transitionPoints;
+        }
+      },
+      configurable: true,
+      enumerable: true
+    });
+
+    Object.defineProperty(this, "currentHP",
+    {
+      get: function()
+      {
+        return _currentHP;
+      },
+      set: function(value)
+      {
+        if (isNaN(value) === false)
+        {
+          _currentHP = Math.floor(value);
+          _changes["currentHP"] = _currentHP;
+        }
+      },
+      configurable: true,
+      enumerable: true
+    });
+
+    Object.defineProperty(this, "attack",
+    {
+      get: function()
+      {
+        return _attack;
+      },
+      set: function(value)
+      {
+        if (isNaN(value) === false)
+        {
+          _attack = Math.floor(value);
+          _changes["attack"] = _attack;
+        }
+      },
+      configurable: true,
+      enumerable: true
+    });
+
+    Object.defineProperty(this, "defence",
+    {
+      get: function()
+      {
+        return _defence;
+      },
+      set: function(value)
+      {
+        if (isNaN(value) === false)
+        {
+          _defence = Math.floor(value);
+          _changes["defence"] = _defence;
+        }
+      },
+      configurable: true,
+      enumerable: true
+    });
+
+    Object.defineProperty(this, "precision",
+    {
+      get: function()
+      {
+        return _precision;
+      },
+      set: function(value)
+      {
+        if (isNaN(value) === false)
+        {
+          _precision = Math.floor(value);
+          _changes["precision"] = _precision;
+        }
+      },
+      configurable: true,
+      enumerable: true
+    });
+
+    Object.defineProperty(this, "actionPoints",
+    {
+      get: function()
+      {
+        return _actionPoints;
+      },
+      set: function(value)
+      {
+        if (isNaN(value) === false)
+        {
+          _actionPoints = Math.floor(value);
+          _changes["actionPoints"] = _actionPoints;
+        }
+      },
+      configurable: true,
+      enumerable: true
+    });
+
+    Object.defineProperty(this, "movementPoints",
+    {
+      get: function()
+      {
+        return _movementPoints;
+      },
+      set: function(value)
+      {
+        if (isNaN(value) === false)
+        {
+          _movementPoints = Math.floor(value);
+          _changes["movementPoints"] = _movementPoints;
+        }
+      },
+      configurable: true,
+      enumerable: true
+    });
+
+    Object.defineProperty(this, "formIndex",
+    {
+      get: function()
+      {
+        return _formIndex;
+      },
+      set: function(value)
+      {
+        if (isNaN(value) === false && value > 0 && value < _formList.length)
+        {
+          _formIndex = Math.floor(value);
+          _changes["formIndex"] = _formIndex;
+        }
+      },
+      configurable: true,
+      enumerable: true
+    });
+
+    Object.defineProperty(this, "fatigue",
+    {
+      get: function()
+      {
+        return _fatigue;
+      },
+      set: function(value)
+      {
+        if (isNaN(value) === false && value > 0 && value < _formList.length)
+        {
+          _fatigue = Math.floor(value);
+          _changes["fatigue"] = _fatigue;
+        }
+      },
+      configurable: true,
+      enumerable: true
+    });
+
+    Object.defineProperty(this, "isInFirstForm",
+    {
+      get: function()
+      {
+        if (_formIndex === 0)
+        {
+          return true;
+        }
+
+        else return false;
+      },
+      enumerable: true
+    });
+
+    Object.defineProperty(this, "isInLastForm",
+    {
+      get: function()
+      {
+        if (_formIndex === _formList.length - 1)
+        {
+          return true;
+        }
+
+        else return false;
+      },
+      enumerable: true
+    });
+
+    /**********************
+    *   PRIVATE METHODS   *
+    **********************/
+
+    function createEmptySlots(type, amount)
+    {
+      if (_slotList[type] == null)
+      {
+        return;
+      }
+
+      for (var i = 0; i < amount; i++)
+      {
+        _slotList[key].push({equipped: null, slotsTaken: []});
+      }
+    }
+
+    function removeSlots(type, index, amountToRemove)
+    {
+      if (_slotList[type] != null)
+      {
+        _slotList[type].splice(index, amountToRemove);
+      }
+    }
+
+    function unequip(type, slot)
+    {
+      if (_slotList[type][slot] == null)
+      {
+        return;
+      }
+
+      for (var i = 0; i < _slotList[type][slot].slotsTaken.length; i++)
+      {
+        var slotToEmpty = _slotList[type][slot].slotsTaken[i];
+        _slotList[type][slotToEmpty].equipped = null;
+      }
+    }
+
+    module.exports.Character.list.push(this);
   }
 }
 
-prototype = module.exports.create.prototype;
+module.exports.Character.list = [];
 
-prototype.readyForBattle = function()
+module.exports.Character.fromJSON = function(data, revivedEquipment)
 {
-
+  var character = new module.exports.Character();
+  character.setEquipment();
+  return character;
 }
 
-prototype.giveEnemyData = function()
+prototype = module.exports.Character.prototype;
+
+/**********************
+*   PUBLIC METHODS    *
+**********************/
+
+//(no access to private variables directly other than through
+//the getters and setters defined within the constructor)
+
+prototype.getPublicData = function()
 {
   var data = {};
   data.id = this.id;
@@ -79,7 +959,6 @@ prototype.giveEnemyData = function()
   data.form = this.form.name;
   data.size = this.size();
   data.sizeType = this.sizeType();
-  data.position = {x: this.area.x, y: this.area.y};
   data.slots = {};
 
   for (var slot in this.slots)
@@ -96,61 +975,63 @@ prototype.giveEnemyData = function()
   return data;
 }
 
-prototype.postAttackData = function()
+//will set a property according to a key path (i.e. 'slots.hands.equipped' will
+//reach this.slots.hands.equipped and set the value there). Also registers the
+//change in the changes object so that the recent changes can easily be shipped
+//to the player client. If the value is "DELETE", it will delete the property.
+prototype.set = function(path, value)
 {
+  var property = this;  // a moving reference to internal objects within this character
+  var changedProperty = this.changes;
+  var pathList = path.split('.');
+  var len = pathList.length;
 
-}
+  for (var i = 0; i < len-1; i++)
+  {
+    var element = pathList[i];
 
-prototype.size = function()
+    if (property[element] == null)
+    {
+      property[element] = {};
+    }
+
+    if (changedProperty[element] == null)
+    {
+      changedProperty[element] = {};
+    }
+
+    property = property[element];
+    changedProperty = changedProperty[element];
+  }
+
+  if (value === "DELETE")
+  {
+    delete property[pathList[len-1]];
+  }
+
+  else property[pathList[len-1]] = value;
+  changedProperty[pathList[len-1]] = value;
+};
+
+prototype.getBodyparts = function()
 {
-  return this.form.size;
-}
-
-prototype.sizeType = function()
-{
-  return this.form.sizeType;
-}
-
-prototype.ignite = function(pack, result)
-{
-  var igniteChance = pack.data.damage * 5;
-	var roll = Math.floor((Math.random() * 100)) + 1;
-
-	if (roll > igniteChance)
-	{
-		return false;
-	}
-
-	if (pack.damageType === "fire")
-	{
-		this.statusEffects.fire = true;
-	}
-
-	else if (pack.damageType === "cold")
-	{
-		this.statusEffects.cold = true;
-	}
-
-  return true;
-}
+  return this.form.parts;
+};
 
 prototype.addFatigue = function(amount)
 {
-  var result = {fatigueAdded: amount, damage: 0};
-  this.fatigue += amount;
+  var result = {fatigueAdded: amount.cap(200), fatigueDamage: 0};
+  this.set("fatigue", this.fatigue + result.fatigueAdded);
 
-  if (this.fatigue > 200)
+  if (this.fatigue + result.fatigueAdded === 200 && amount > result.fatigueAdded)
   {
-    result.fatigueAdded -= this.fatigue - 200;
-    result.fatigueDamage = Math.floor((this.fatigue - 200) / 5);
-    this.fatigue = 200;
+    result.fatigueDamage = Math.floor((amount - result.fatigueAdded) / 5);
     this.reduceHP(result.fatigueDamage);
   }
 
   if (this.fatigue >= 100)
   {
-    delete this.statusEffects.berserk;
-    this.statusEffects.berserk = true;
+    this.setStatusEffect("berserk", "DELETE");
   }
 
   return result;
@@ -159,13 +1040,11 @@ prototype.addFatigue = function(amount)
 prototype.reduceHP = function(damage)
 {
   var damageInflicted = damage.cap(this.currentHP);
-  var changeShapeResult;
-
-  this.currentHP -= damageInflicted;
+  this.set("currentHP", damageInflicted);
 
   if (this.currentHP === 0 && this.formList.length > 0 && this.formIndex < this.formList.length - 1)
   {
-    damageInflicted += woundedShape(damage - damageInflicted);
+    damageInflicted += this.woundedShape(damage - damageInflicted);
   }
 
   return damageInflicted;
@@ -176,18 +1055,12 @@ prototype.woundedShape = function(damageCarried)
   var maxHP;
   var damageInflicted;
 
-  this.formIndex++;
-  this.form = this.formList[this.formIndex];
+  this.set("formIndex", this.formIndex + 1);
+  this.set("form", this.formList[this.formIndex]);
+
   maxHP = this.getTotalAttribute("maxHP");
   damageInflicted = damageCarried.cap(this.currentHP);
-
-  this.currentHP = (this.currentHP - damageCarried).lowerCap(0);
-
-  if (this.currentHP === 0 && this.formList.length > 0 && this.formIndex < this.formList.length - 1)
-  {
-    damageInflicted += this.woundedShape(damageCarried - damageInflicted);
-  }
-
+  this.reduceHP(damageInflicted);
   this.slots.update();
   return damageInflicted;
 }
@@ -195,16 +1068,12 @@ prototype.woundedShape = function(damageCarried)
 prototype.heal = function(amount)
 {
   var maxHP = this.getTotalAttribute("maxHP");
-  var result = {"damageHealed": (maxHP - this.currentHP).cap(amount), shiftedShapeName: null};
-  var revertShapeResult;
+  var damageHealed = (maxHP - this.currentHP).cap(amount);
+  this.set("currentHP", damageHealed);
 
-  this.currentHP += Math.floor(amount);
-
-	if (this.currentHP === maxHP && this.formList.length > 0 && this.formIndex > 0)
+	if (this.currentHP + damageHealed === maxHP && this.formList.length > 0 && this.formIndex > 0)
 	{
-		revertShapeResult = this.healedShape(this.currentHP - maxHP);
-    result.damageHealed += revertShapeResult.damageHealed;
-    result.shiftedShapeName = revertShapeResult.shiftedShapeName;
+    damageHealed += this.healedShape(amount - damageHealed);
 	}
 
   return damageHealed;
@@ -213,228 +1082,91 @@ prototype.heal = function(amount)
 prototype.healedShape = function(healingCarried)
 {
   var maxHP;
-  var result;
+  var damageHealed;
 
-  this.formIndex--;
-  this.form = this.formList[this.formIndex];
-  maxHP = this.getTotalAttribute("maxHP")
-  result = {"damageHealed": healingCarried.cap(maxHP - this.currentHP), shiftedShapeName: this.form.name};
+  this.set("formIndex", this.formIndex - 1);
+  this.set("form", this.formList[this.formIndex]);
 
-  this.currentHP += result.damageHealed;
-
-  if (this.currentHP === maxHP && this.formList.length > 0 && this.formIndex > 0)
-  {
-    var nextResult = this.healedShape(healingCarried - result.damageHealed);
-    result.damageHealed += nextResult.damageHealed;
-    result.shiftedShapeName = nextResult.shiftedShapeName;
-  }
-
+  maxHP = this.getTotalAttribute("maxHP");
+  damageHealed = healingCarried.cap(maxHP - this.currentHP);
+  this.heal(damageHealed);
   this.slots.update();
-  return result;
+  return damageHealed;
 }
 
 prototype.reduceFatigue = function(amount)
 {
   var originalFat;
-  var fatigueReduced = amount;
+  var fatigueReduced = amount.cap(this.fatigue);
 
-  if (this.fatigue == null || this.fatigue <= 0 || amount <= 0)
+	if (this.fatigue >= 100 && this.fatigue - fatigueReduced < 100)
 	{
-		this.fatigue = 0;
-		return 0;
+    this.setStatusEffect("unconscious", "DELETE");
 	}
 
-  if (amount > this.fatigue)
-  {
-    fatigueReduced -= amount - this.fatigue;
-  }
-
-  fatigueReduced = Math.abs(amount - (this.fatigue.lowerCap(0) - amount));
-	originalFat = this.fatigue;
-	this.fatigue = (this.fatigue - amount).lowerCap(0);
-
-	if (this.fatigue < 100 && originalFat >= 100)
-	{
-		delete this.statusEffects.unconscious;
-	}
-
+  this.set("fatigue", this.fatigue - fatigueReduced);
   return fatigueReduced;
 }
 
 prototype.reinvigorate = function(amount)
 {
-  var originalFat;
-
-  if (this.fatigue == null)
-	{
-		return 0;
-	}
-
-  amount += this.getTotalAbility("reinvigoration");
+  amount += this.getTotalAbility("reinvigoration") || 0;
 
 	if (this.fatigue >= 100)
 	{
 		amount += 5; //Reinvigorate 5 if it's unconscious
 	}
 
-	if (amount > 0)
-	{
-		return this.reduceFatigue(amount);
-	}
-
-  else return 0;
+	return this.reduceFatigue(amount);
 }
 
 prototype.getTotalProtection = function(hitLocation)
 {
-  return getTotalArmor(hitLocation) + getTotalNaturalArmor(hitLocation) + getTotalAbility("invulnerability");
-}
-
-prototype.getProtectionRoll = function(weapon, target, hitLocation, damageType)
-{
-	var armor = target.getTotalArmor(hitLocation);
-  var natural = target.getTotalNaturalArmor(hitLocation);
-  var invulnerability = target.getTotalAbility("invulnerability");
-
-	if (weapon.properties.includes("armorNegating") === true)
-	{
-		return 0;
-	}
-
-  if (weapon.properties.includes("magical") === true)
-  {
-    //loses invulnerability protection
-    invulnerability = 0;
-  }
-
-	if (damageType == "pierce")
-	{
-		armor = Math.floor(armor * 0.8);
-    natural = Math.floor(natural * 0.8);
-	}
-
-	if (weapon.properties.includes("armorPiercing") === true)
-	{
-		armor = Math.floor(armor * 0.5);
-    natural = Math.floor(natural * 0.5);
-	}
-
-	return dice.DRN() + armor + natural + invulnerability;
+  return getTotalArmor(hitLocation) + getTotalNaturalArmor(hitLocation) + (getTotalAbility("invulnerability") || 0);
 }
 
 prototype.getElementalResistance = function(type)
 {
-  return getTotalAbility(type + "Resistance");
-}
-
-prototype.getTotalArmor = function(part)
-{
-  var total = 0;
-
-  for (var key in this.slots)
-  {
-    var equipped = this.slots[key].equipped;
-
-    for (var i = 0; i < equipped.length; i++)
-    {
-      var item = equipped[i];
-
-      if (item.protection[part] == null || isNaN(item.protection[part]) === true)
-      {
-        continue;
-      }
-
-      total += item.protection[part];
-    }
-  }
-
-  return total;
+  return getTotalAbility(type + "Resistance") || 0;
 }
 
 prototype.getTotalNaturalArmor = function(part)
 {
-  return (this.form.protection[part] || 0) + this.getTotalAbility("naturalArmor");
-}
-
-prototype.hasProperty = function(key)
-{
-  if (this.properties.includes(key) === true)
-  {
-    return true;
-  }
-
-  if (this.form.hasProperty(key) === true)
-  {
-    return true;
-  }
-
-  if (this.slots.hasProperty(key) === true)
-  {
-    return true;
-  }
-
-  return false;
+  return (this.form.protection[part] || 0) + (this.getTotalAbility("naturalArmor") || 0);
 }
 
 prototype.getDualPenalty = function()
 {
-  var total = 0;
-
-  for (var key in this.slots)
-  {
-    var equipped = this.slots[key].equipped;
-
-    for (var i = 0; i < equipped.length; i++)
-    {
-      var item = equipped[i];
-
-      if (item.damage == null || item.reach == null)
-      {
-        //not a weapon
-        continue;
-      }
-
-      if (item.properties.includes("extra") === true)
-      {
-        //"Extra" weapons like
-        continue;
-      }
-
-      total += item.reach;
-    }
-  }
-
-  return (total - (this.abilities.ambidextrous || 0)).lowerCap(0);
-}
+  return (this.slots.getDualPenalty() - (this.getTotalAbility("ambidextrous") || 0)).lowerCap(0);
+};
 
 prototype.getTotalAttribute = function(key)
 {
-  return (this.form[key] || 0) + (this[key] || 0) + this.slots.getTotalAbility(key + "Bonus");
-}
+  return (this.form[key] || 0) + (this[key] || 0) + (this.getEquippedAbility(key + "Bonus") || 0);
+};
 
 prototype.getTotalAbility = function(key)
 {
-  var total = this.form.getTotalAbility(key) + this.slots.getTotalAbility(key);
+  var characterAbility = this.getAbility(key);
+  var formAbility = this.form.getAbility(key);
+  var equippedAbility = this.getEquippedAbility(key);
 
-  for (var ability in this.abilities)
+  if (characterAbility == null && formAbility == null && equippedAbility == null)
   {
-    if (key == ability && isNaN(this.abilities[ability]) === false)
-    {
-      total += this.abilities[ability];
-    }
+    return null;
   }
 
-  return total;
-}
+  else return (characterAbility || 0) + (formAbility || 0) + (equippedAbility || 0);
+};
 
 prototype.weaponTimesAvailable = function(id)
 {
-  return actor.slots.timesEquipped(id) + this.form.weaponTimesAvailable(id);
-}
+  return this.timesEquipped(id) + this.form.weaponTimesAvailable(id);
+};
 
 prototype.hasWeapon = function(id)
 {
-  if (this.slots.hasEquipped(id) === true)
+  if (this.hasEquipped(id) === true)
   {
     return true;
   }
@@ -449,5 +1181,5 @@ prototype.hasWeapon = function(id)
 
 prototype.getWeapon = function(id)
 {
-  return this.slots.getItem(id) || this.form.getNaturalWeapon(id);
+  return this.getItem(id) || this.form.getNaturalWeapon(id);
 }

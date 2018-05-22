@@ -1,58 +1,69 @@
 
-Object.defineProperty(Object.prototype, "getProperties",
+
+Object.filter = function(obj, fn)
 {
-  value: function(filter)
+  var result = [];
+  var key;
+
+  for (key in obj)
   {
-    var obj = {};
-
-    for (var key in filter)
+    if (fn(obj[key]) === true)
     {
-      if (this[filter[key]] == null)
-      {
-        continue;
-      }
+      result.push(obj[key]);
+    }
+  }
 
-      obj[filter[key]] = this[filter[key]];
+  return result;
+}
+
+Object.getProperties = function(filter)
+{
+  var obj = {};
+
+  for (var key in filter)
+  {
+    if (this[filter[key]] == null)
+    {
+      continue;
     }
 
-    return obj;
+    obj[filter[key]] = this[filter[key]];
   }
-});
 
-Object.defineProperty(Object.prototype, "toFlatArray",
+  return obj;
+};
+
+Object.toFlatArray = function()
 {
-  value: function()
+  var arr = [];
+
+  (function loop(obj)
   {
-    var arr = [];
-
-    (function loop(obj)
+    if (Array.isArray(obj) === true)
     {
-      if (Array.isArray(obj) === true)
+      for (var i = 0; i < obj.length; i++)
       {
-        for (var i = 0; i < obj.length; i++)
-        {
-          loop(obj[i]);
-        }
+        loop(obj[i]);
       }
+    }
 
-      else if (typeof obj == "object")
+    else if (typeof obj == "object")
+    {
+      for (var key in obj)
       {
-        for (var key in obj)
-        {
-          loop(obj[key]);
-        }
+        loop(obj[key]);
       }
+    }
 
-      else if (typeof obj != "function")
-      {
-        arr.push(obj);
-      }
+    else if (typeof obj != "function")
+    {
+      arr.push(obj);
+    }
 
-    })(this);
+  })(this);
 
-    return arr;
-  }
-});
+  return arr;
+};
 
 /*
 * Returns a cloned object without any function inside it.  Object prototype
@@ -67,51 +78,48 @@ Object.defineProperty(Object.prototype, "toFlatArray",
 *   be altered!
 */
 
-Object.defineProperty(Object.prototype, "functionless",
+Object.functionless = function()
 {
-  value: function()
+  var clone = Object.assign({}, this);
+
+  (function loop(obj)
   {
-    var clone = Object.assign({}, this);
-
-    (function loop(obj)
+    if (Array.isArray(obj) === true)
     {
-      if (Array.isArray(obj) === true)
+      var arrClone = [];
+
+      for (var i = 0; i < obj.length; i++)
       {
-      	var arrClone = [];
-
-        for (var i = 0; i < obj.length; i++)
-        {
-        	var result = loop(obj[i]);
-          if (result != null) arrClone.push(result);
-        }
-
-        return arrClone;
+        var result = loop(obj[i]);
+        if (result != null) arrClone.push(result);
       }
 
-      else if (typeof obj == "object")
-      {
-        for (var key in obj)
-        {
-          obj[key] = loop(obj[key]);
-          if (obj[key] == null) delete obj[key];
-        }
+      return arrClone;
+    }
 
-        return obj;
+    else if (typeof obj == "object")
+    {
+      for (var key in obj)
+      {
+        obj[key] = loop(obj[key]);
+        if (obj[key] == null) delete obj[key];
       }
 
-      else if (typeof obj != "function")
-      {
-      	console.log("Returning '" + obj + "'!");
-        return obj;
-      }
+      return obj;
+    }
 
-      else return null;
+    else if (typeof obj != "function")
+    {
+      console.log("Returning '" + obj + "'!");
+      return obj;
+    }
 
-    })(clone);
+    else return null;
 
-    return clone;
-  }
-});
+  })(clone);
+
+  return clone;
+};
 
 Array.prototype.toLowerCase = function()
 {
@@ -138,16 +146,6 @@ String.prototype.toJSON = function(key)
 Number.prototype.isFloat = function(n)
 {
 	return Number(n) === n && n % 1 !== 0;
-};
-
-Number.prototype.toRadians = function(decimals = 2)
-{
-	return ((this * Math.PI) / 180).round(decimals);
-};
-
-Number.prototype.toDegrees = function(decimals = 2)
-{
-	return ((this * 180) / Math.PI).round(decimals);
 };
 
 Number.prototype.cap = function(limit)

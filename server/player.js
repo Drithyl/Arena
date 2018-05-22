@@ -1,117 +1,99 @@
 
-var db;
-var characterCreator;
-var characterModule = require("./character.js");
+var characterList;
 
 module.exports =
 {
-  db: null,
-  playerList: {},
-  characterList: {},
-  online: {},
-
-  init: function(database, playersFetched, characterModule, characterCreator)
+  init: function(charList)
   {
-    db = database;
-    characterModule = characterModule;
-    characterCreator = characterCreator;
-
-    for (var i = 0; i < playersFetched.length; i++)
-    {
-      revivePlayerCharacters(playersFetched[i]);
-    }
-
+    characterList = charList;
     return this;
   },
 
-  addOnline: function(username)
+  Player: function(socket, name)
   {
-    this.online[username] = this.playerList[username];
+    var _socket = socket;
+    var _username = name;
+    var _battle;
+    var _challenges = {};
+    var _characters = characterList.filter(function(character)
+    {
+      return character.player === _username;
+    });
+
+    Object.defineProperty(this, "username",
+    {
+      get: function()
+      {
+        return _username;
+      },
+      enumerable: true
+    });
+
+    Object.defineProperty(this, "socket",
+    {
+      get: function()
+      {
+        return _socket;
+      },
+      enumerable: true
+    });
+
+    Object.defineProperty(this, "isBattling",
+    {
+      get: function()
+      {
+        if (_battle == null)
+        {
+          return false;
+        }
+
+        else return true;
+      },
+      enumerable: true
+    });
+
+    this.hasCharacters = function()
+    {
+      if (_characters.length > 0)
+      {
+        return true;
+      }
+
+      else return false;
+    };
+
+    this.addCharacter = function(character)
+    {
+      _characters.push(character);
+    }
+
+    module.exports.Player.list.push(this);
+    return this;
   },
 
-  disconnect: function(username)
+  disconnect: function(socketID)
   {
-    delete this.online[username];
+    module.exports.Player.list.forEach(function(player, index)
+    {
+      if (player.socket.id === socketID)
+      {
+        delete player;
+        module.exports.Player.list.splice(index, 1);
+      }
+    });
   },
 
   getClientPack: function()
   {
-    var obj = {};
+    var arr = [];
 
-    for (var key in this.online)
+    module.exports.Player.list.forEach(function(player)
     {
-      obj[key] = this.online[key].username;
-    }
-
-    return obj;
-  },
-
-  register: function(player, cb)
-  {
-    try
-    {
-      characterCreator.buildPlayerCharacters(player);
-      revivePlayerCharacters(player);
-    }
-
-    catch(err)
-    {
-      cb(err, null);
-    }
-
-    this.save(player, function(err, res)
-    {
-      if (err)
-      {
-        cb(err, null);
-      }
-
-      this.addOnline(player.username);
-      this.playerList[player.username] = player;
-      cb(null, true);
+      arr.push(player.username);
     });
-  },
 
-  /*
-  * Save the player's state in the database. This will also save the characters
-  * state. Arguments:
-  *
-  *   player         The player object to be saved. Its format is explicitly
-  *                  declared in the create() function of this module.
-  *
-  *   cb             The callback function called once the saving is done, or
-  *                  when an error occurs.
-  *
-  * This function may fail for several reasons:
-  *
-  *   ThrownError    The saveCharacters() function called in the character module
-  *                  throws an error, likely because it could not save a character
-  *                  into the database.
-  *
-  *   DBError        The attempt to save the player in the database
-  *                  threw an error, which is then passed into the callback.
-  */
-
-  save: function(player, cb)
-  {
-    db.save("players", clone, function(err, res)
-    {
-      if (err)
-      {
-        cb(err.name + ": in save(): " + err.message, null);
-        return;
-      }
-
-      cb(null, res);
-    });
+    return arr;
   }
 }
 
-function revivePlayerCharacters(player)
-{
-  for (var i = 0; i < player.characters.length; i++)
-  {
-    player.characters[i] = characterModule.create(player.characters[i]);
-    module.exports.characterList[player.characters[i].id] = player.characters[i];
-  }
-}
+module.exports.Player.list = [];

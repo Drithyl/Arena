@@ -1,13 +1,13 @@
-Name,Part Affected,Is Healable,Effects,Properties
-Battle Fright,Body,Yes,Morale Bonus (-5),
-Chest Wound,Body,Yes,"Encumbrance (5), Strength Bonus (-1)",
-Diseased,Body,Yes,Will not Heal Naturally (0),Priority
-Never Healing Wound,Body,No,Max HP Percentage (-20),
-Damaged arm,Arm,Yes,Hands Slot (-1),
-Lost arm,Arm,No,Hands Slot (-1),
-Weakened,Arm,Yes,Strength Bonus (-4),
-Limp,Leg,Yes,"Attack Bonus (-1), Defence Bonus (-1)",
-Crippled,Leg,No,"Attack Bonus (-4), Defence Bonus (-4)",
-Damaged eye,Eye,Yes,"Attack Bonus (-2), Defence Bonus (-2)",
-Lost eye,Eye,No,"Attack Bonus (-2), Defence Bonus (-2), Precision Bonus (-3)",
-Blind,Eye,No,"Attack Bonus (-9), Defence Bonus (-9), Precision Bonus (-9)",
+name,partAffected,isHealable,effects,properties
+Battle Fright,body,true,moraleBonus (-5),
+Chest Wound,body,true,"encumbrance (5), strengthBonus (-1)",
+Diseased,body,true,noHealNaturally (0),priority
+Never Healing Wound,body,false,maxHPPercentage (-20),
+Damaged arm,arm,true,handsBonus (-1),
+Lost arm,arm,false,handsBonus (-1),
+Weakened,arm,true,strengthBonus (-4),
+Limp,leg,true,"attackBonus (-1), defenceBonus (-1)",
+Crippled,leg,false,"attackBonus (-4), defenceBonus (-4)",
+Damaged eye,eye,true,"attackBonus (-2), defenceBonus (-2)",
+Lost eye,eye,false,"attackBonus (-2), defenceBonus (-2), precisionBonus (-3)",
+Blind,eye,false,"attackBonus (-9), defenceBonus (-9), precisionBonus (-9)",

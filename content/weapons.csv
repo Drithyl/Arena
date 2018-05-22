@@ -1,231 +1,231 @@
-ID,Name,Cost,Damage,Attack,Defence,Length,Number of Attacks,Damage Type,On Hit,On Damage,Can Repel,Slot Type,Required Slots,Effects,Properties,Rarity,Categories
-w1,spear,Gold (1),3,0,0,4,1,Pierce,,,true,Hands,1,,,0,Polearms
-w2,pike,Gold (2),5,0,-1,6,1,Pierce,,,true,Hands,2,,,0,Polearms
-w3,trident,Gold (3),7,0,0,4,1,Pierce,,,true,Hands,1,,,0,Polearms
-w5,halberd,Gold (4),10,-1,1,4,1,"Pierce, Slash",,,true,Hands,2,,,0,Polearms
-w6,short sword,Gold (2),5,0,2,1,1,"Pierce, Slash",,,true,Hands,1,,,0,Swords
-w7,quarterstaff,Gold (2),3,1,3,4,1,Blunt,,,true,Hands,2,,,0,Staves
-w8,broad sword,Gold (3),6,0,1,2,1,Slash,,,true,Hands,1,,,0,Swords
-w9,Dagger,Gold (1),2,1,0,0,1,Pierce,,,true,Hands,1,,,0,Daggers
-w10,falchion,Gold (4),7,0,0,2,1,Slash,,,true,Hands,1,,,0,Swords
-w11,great sword,Gold (5),9,1,2,3,1,Slash,,,true,Hands,2,,,0,Swords
-w12,mace,Gold (1),5,0,0,1,1,Blunt,,,true,Hands,1,,,0,Maces
-w13,hammer,Gold (2),7,0,-1,1,1,"Blunt, Pierce",,,true,Hands,1,,,0,Maces
-w14,maul,Gold (2),9,0,-1,3,1,Blunt,,,true,Hands,2,,,0,Maces
-w15,Flail,Gold (2),6,1,-2,2,1,"Blunt, Pierce",,,true,Hands,1,,Flail,0,Maces
-w16,long Flail,Gold (3),3,1,-2,3,2,Blunt,,,true,Hands,2,,Flail,0,Maces
-w17,axe,Gold (1),7,0,-1,1,1,Slash,,,true,Hands,1,,,0,Axes
-w18,battleaxe,Gold (3),9,1,0,3,1,Slash,,,true,Hands,2,,,0,Axes
-w28,long spear,Gold (2),3,0,-1,5,1,Pierce,,,true,Hands,1,,,0,Polearms
-w31,coral spear,Gold (4),2,0,0,4,1,Pierce,,e50,true,Hands,1,,,0,Polearms
-w32,coral knife,Gold (3),1,0,0,0,1,Pierce,,e50,true,Hands,1,,,0,Daggers
-w35,ice knife,Gold (2),1,2,0,0,1,Pierce,,,true,Hands,1,,"Magical, No Fire",1,Daggers
-w36,ice lance,Gold (2),3,1,0,4,1,Pierce,,,true,Hands,1,,"Charge Bonus, Magical, No Fire",1,Polearms
-w37,ice blade,Gold (4),5,1,1,2,1,Slash,,,true,Hands,1,,"Magical, No Fire",1,Swords
-w40,whip,Gold (0.5),-1,0,0,5,1,Slash,,,true,Hands,1,,Capped Damage,0,Whips
-w44,ice mace,Gold (7),5,2,0,1,1,Blunt,,,true,Hands,1,,"Magical, No Fire",1,Maces
-w45,coral club,Gold (4),4,0,0,1,1,Blunt,,e50,true,Hands,1,,,0,Maces
-w46,coral glaive,Gold (5),9,-1,1,4,1,"Slash, Pierce",,e50,true,Hands,2,,,0,Polearms
-w49,iron prod,Gold (3),8,-2,-1,3,1,Pierce,,,true,Hands,1,,,0,Polearms
-w57,sickle,Gold (2),5,0,0,1,1,Slash,,,true,Hands,1,,,0,Miscellaneous
-w66,jotun axe,Gold (2),7,0,-1,3,1,Slash,,,true,Hands,1,,,1,Axes
-w89,snake staff,Gold (10),5,3,5,4,1,"Pierce, Blunt",,e50,true,Hands,2,,Magical,1,Staves
-w126,Poison Dagger,Gold (5),2,1,0,0,1,Pierce,,e51,true,Hands,1,,,1,Daggers
-w153,stick,Gold (0.5),2,0,1,1,1,Blunt,,,true,Hands,2,,,0,Miscellaneous
-w165,great club,Gold (2),7,0,1,3,1,Blunt,,,true,Hands,2,,,0,Maces
-w234,jotun spear,Gold (1),3,0,0,5,1,Pierce,,,true,Hands,1,,,1,Polearms
-w252,club,Gold (0.5),3,0,0,1,1,Blunt,,,true,Hands,1,,,0,Maces
-w253,hatchet,Gold (1.5),5,1,0,1,1,Slash,,,true,Hands,1,,,0,Axes
-w256,kryss,Gold (1),3,0,0,1,1,Pierce,,,true,Hands,1,,,0,Daggers
-w257,bardiche,Gold (3),6,0,-1,5,1,Slash,,,true,Hands,2,,,0,Polearms
-w258,claymore,Gold (5),10,1,1,3,1,Slash,,,true,Hands,2,,,0,Swords
-w259,executioner's axe,Gold (4),10,1,-1,3,1,Slash,,,true,Hands,2,,,0,Axes
-w263,net,Gold (4),0,0,0,4,1,Web,,,false,Hands,1,,"Extra, Single-use, Size Resist, Strength not Added",0,Miscellaneous
-w265,spiked club,Gold (1),4,0,0,1,1,"Blunt, Pierce",,,true,Hands,1,,,0,Maces
-w267,pick axe,Gold (3),8,-2,-2,2,1,Pierce,,,true,Hands,2,Siege Bonus (5),,0,Axes
-w268,jotun longsword,Gold (3),9,0,1,3,1,Slash,,,true,Hands,1,,,1,Swords
-w288,obsidian club sword,Gold (2),7,0,1,3,1,"Slash, Blunt",,,true,Hands,2,,,0,"Maces, Swords"
-w307,jotun battleaxe,Gold (3),9,1,0,4,1,Slash,,,true,Hands,2,,,1,Axes
-w308,glaive,Gold (4),10,-1,1,4,1,"Slash, Pierce",,,true,Hands,2,,,0,Polearms
-w315,machaka spear,Gold (3),5,-1,-1,5,1,Pierce,,,true,Hands,1,,,0,Polearms
-w318,serpent staff,Gold (5),3,1,3,4,1,"Pierce, Blunt",,e50,true,Hands,2,,Magical,1,Staves
-w357,light lance,Gold (2),3,0,0,4,1,Pierce,,,true,Hands,1,,Charge Bonus,0,Polearms
-w363,iron cudgel,Gold (2),8,0,0,3,1,Blunt,,,true,Hands,2,,,0,Maces
-w373,stone spear,Gold (0.5),2,0,0,4,1,Pierce,,,true,Hands,1,,,0,Polearms
-w376,yari,Gold (1.5),4,1,0,5,1,Pierce,,,true,Hands,2,,,0,Polearms
-w377,wakizashi,Gold (4),5,2,1,1,1,"Slash, Pierce",,,true,Hands,1,,,0,Swords
-w378,katana,Gold (7),6,3,2,2,1,"Slash, Pierce",,,true,Hands,2,,,0,Swords
-w379,no-dachi,Gold (6),8,2,2,3,1,Slash,,,true,Hands,2,,,0,Swords
-w380,naginata,Gold (4),10,-1,1,4,1,Slash,,,true,Hands,2,,,0,Polearms
-w381,ninjato,Gold (3),5,2,0,1,1,Slash,,,true,Hands,1,,,0,Daggers
-w388,pearl spear,Gold (2),3,0,0,4,1,Pierce,,,true,Hands,1,,Magical,1,Polearms
-w389,pearl trident,Gold (4),7,0,0,4,1,Pierce,,,true,Hands,1,,Magical,1,Polearms
-w426,obsidian glaive,Gold (8),11,1,1,4,1,Slash,,,true,Hands,2,,Magical,1,Polearms
-w446,sceptre,Gold (1),2,0,0,1,1,Blunt,,,true,Hands,1,,,0,Maces
-w451,obsidian club sword,Gold (2),4,0,0,2,1,"Slash, Blunt",,,true,Hands,1,,,0,Maces
-w454,ice glaive,Gold (6),9,0,-1,4,1,"Slash, Pierce",,,true,Hands,2,,"Magical, No Fire",1,Polearms
-w455,bone glaive,Gold (5),10,0,-1,4,1,"Slash, Pierce",,e285,true,Hands,2,,"Magical, No Fire",1,Polearms
-w464,basalt spear,Gold (6),4,1,-1,4,1,Pierce,,,true,Hands,2,,Magical,1,Polearms
-w465,basalt club,Gold (6),9,-1,-1,3,1,Blunt,,,true,Hands,2,,Magical,1,Maces
-w473,Golden spear,Gold (6),5,1,0,4,1,Pierce,,,true,Hands,1,,Magical,1,Polearms
-w474,Golden sword,Gold (8),7,1,1,1,1,Slash,,,true,Hands,1,,Magical,1,Swords
-w475,Golden lance,Gold (7),5,1,0,4,1,Pierce,,,true,Hands,1,,"Charge Bonus, Magical",1,Polearms
-w485,fomorian bronze spear,Gold (1),3,0,0,5,1,Pierce,,,true,Hands,1,,,1,Polearms
-w498,twig,Gold (0.5),-3,0,0,1,1,Blunt,,,true,Hands,1,,Capped Damage,0,Miscellaneous
-w499,pestle,Gold (0.5),1,-1,0,0,1,Blunt,,,true,Hands,1,,,0,Miscellaneous
-w501,bamboo rod,Gold (1.5),1,1,2,2,1,Blunt,,,true,Hands,1,,,0,Miscellaneous
-w502,yak tail fly whisk,Gold (0.5),-2,0,0,1,1,Blunt,,,true,Hands,1,,Capped Damage,0,Miscellaneous
-w508,black halberd,Gold (9),11,0,-1,4,1,"Pierce, Slash",,e509,true,Hands,2,,Magical,1,Polearms
-w516,censer,Gold (3),1,-1,-1,2,1,Blunt,e517,,true,Hands,1,,Flail,0,Miscellaneous
-w518,anakite sword,Gold (6),8,1,2,3,1,Slash,,,true,Hands,1,,Magical,1,Swords
-w519,Poison tipped spear,Gold (6),3,0,0,4,1,Pierce,,e51,true,Hands,1,,,1,Polearms
-w520,dawn blade,Gold (8),9,2,2,3,1,Slash,,,true,Hands,1,,Magical,1,Swords
-w554,lictor axe,Gold (10),10,2,0,2,1,Slash,,e460,true,Hands,2,,Magical,1,Axes
-w563,spirit club,Gold (7),9,1,0,3,1,Blunt,,e564,true,Hands,2,,Magical,1,Maces
-w577,coral lance,Gold (5),2,0,0,4,1,Pierce,,e50,true,Hands,1,,Charge Bonus,0,Polearms
-w579,skull club,Gold (5),6,1,0,2,1,Blunt,,,true,Hands,1,,Magical,1,Maces
-w580,coral long spear,Gold (5),2,0,-1,5,1,Pierce,,e50,true,Hands,1,,,0,Polearms
-w590,short pike,Gold (1.5),5,0,-1,5,1,Pierce,,,true,Hands,2,,,0,Polearms
-w591,cod,Gold (0.5),-3,0,0,1,1,Blunt,,,true,Hands,1,,Capped Damage,0,Miscellaneous
-w598,shard glaive,Gold (8),10,1,0,4,1,Slash,,e118,true,Hands,2,,Magical,1,Polearms
-w611,ice spear,Gold (2),3,1,0,4,1,Pierce,,,true,Hands,1,,"Magical, No Fire",1,Polearms
-w617,sun mace,Gold (7),7,1,0,1,1,Blunt,,,true,Hands,1,"Demonbane (3), Undeadbane (3)",Magical,1,Maces
-w618,sun spear,Gold (7),11,2,0,4,1,"Slash, Pierce",,,true,Hands,2,"Demonbane (3), Undeadbane (3)",Magical,1,Polearms
-w621,obsidian shard blade,Gold (9),9,2,1,3,1,Slash,,,true,Hands,2,,,0,Swords
-w623,Poisoned obsidian blade,Gold (8),7,1,0,2,1,Slash,,e624,true,Hands,1,,,1,Swords
-w625,obsidian blade,Gold (7),7,1,0,2,1,Slash,,,true,Hands,1,,,0,Swords
-w637,tool,Gold (0.5),2,-1,0,1,1,"Blunt, Pierce",,,true,Hands,1,,,0,Miscellaneous
-w638,instrument,Gold (0.5),1,-1,0,1,1,Pierce,,,true,Hands,1,,,0,Miscellaneous
-w639,spetum,Gold (3),7,0,0,4,1,Pierce,,,true,Hands,1,,,0,Polearms
-w641,bronze trident,Gold (3),7,0,0,4,1,Pierce,,,true,Hands,1,,,0,Polearms
-w642,meteorite trident,Gold (5),7,0,0,4,1,Pierce,,,true,Hands,1,,Magical,1,Polearms
-w643,bronze spear,Gold (1),3,0,0,4,1,Pierce,,,true,Hands,1,,,0,Polearms
-w644,bronze long spear,Gold (2),3,0,-1,5,1,Pierce,,,true,Hands,1,,,0,Polearms
-w645,bronze sword,Gold (2),4,0,2,1,1,"Pierce, Slash",,,true,Hands,1,,,0,Swords
-w646,bronze hatchet,Gold (1.5),5,1,0,1,1,Slash,,,true,Hands,1,,,0,Axes
-w648,enchanted hammer,Gold (5),8,1,-1,1,1,"Blunt, Pierce",,,true,Hands,1,,Magical,1,Maces
-w651,bronze lance,Gold (2),3,0,0,4,1,Pierce,,,true,Hands,1,,Charge Bonus,0,Polearms
-w665,pearl blade,Gold (4),5,0,2,1,1,"Slash, Pierce",,,true,Hands,1,,Magical,1,Swords
-w666,torch,Gold (3),3,0,0,1,1,Blunt,,e216,true,Hands,1,,,0,Miscellaneous
-w668,metal glaive,Gold (4),10,-1,1,4,1,"Slash, Pierce",,,true,Hands,2,,,0,Polearms
-w669,metal yari,Gold (1.5),4,1,0,5,1,Pierce,,,true,Hands,2,,,0,Polearms
-w670,bone trident,Gold (2),5,0,0,4,1,Pierce,,,true,Hands,1,,,0,Polearms
-w671,stone Dagger,Gold (0.5),1,1,0,0,1,Pierce,,,true,Hands,1,,,0,Daggers
-w673,bronze glaive,Gold (3.5),9,-1,1,4,1,"Slash, Pierce",,,true,Hands,2,,,0,Polearms
-w674,bronze Dagger,Gold (1),2,1,0,0,1,Pierce,,,true,Hands,1,,,0,Daggers
-w675,bronze axe,Gold (2),6,0,-1,1,1,Slash,,,true,Hands,1,,,0,Axes
-e20,bite,Gold (10.5),2,0,-1,0,1,Slash,,,true,None,0,,Extra,0,Intrinsic
-e29,claw,Gold (2),0,0,0,0,1,Slash,,,true,Hands,1,,,0,Intrinsic
-e30,triple venomous bite,Gold (30),2,0,0,0,3,Pierce,,e51,true,None,0,,Extra,0,Intrinsic
-e38,snake hAir,Gold (0.5),-4,-2,0,0,5,Pierce,,e50,true,None,0,,"Extra, Magical",0,Intrinsic
-e43,Poisoned claw,Gold (1),0,0,0,0,1,Slash,,e54,true,Hands,1,,,0,Intrinsic
-e47,lobster claw,Gold (20),20,-4,0,0,1,Slash,,,true,None,0,,"Extra, Strength not Added",0,Intrinsic
-e48,Fire flare,Gold (25),20,0,0,3,1,Fire,,,true,None,0,,"Armor Piercing, Extra, Magical, Strength not Added",0,Intrinsic
-e50,weak Poison,Gold (4),5,0,0,0,1,Poison,,,true,None,0,,"Armor Negating, Magical, Strength not Added",0,Effects
-e51,strong Poison,Gold (8),10,0,0,0,1,Poison,,,true,None,0,,"Armor Negating, Magical, Strength not Added",0,Effects
-e52,Death Poison,Gold (16),20,0,0,0,1,Poison,,,true,None,0,,"Armor Negating, Magical, Strength not Added",0,Effects
-e53,debilitative Poison,Gold (10),20,0,0,0,1,Poison,,,true,None,0,,"Armor Negating, Magical, MR Negates, Strength not Added",0,Effects
-e54,paralyzing Poison,Gold (22),50,0,0,0,1,Poison,,,true,None,0,,"Armor Negating, Magical, MR Negates, Strength not Added, Stun",0,Effects
-e55,hoof,Gold (11),0,0,0,0,1,Blunt,,,true,None,0,,Extra,0,Intrinsic
-e56,hoof (unused),Gold (14),13,0,0,0,1,Blunt,,,true,None,0,,"Extra, Strength not Added",0,Intrinsic
-e58,wail,Gold (100),999,10,0,6,1,Untyped,e60,,false,None,0,Area of Effect (1),"Extra, Magical, MR Negates, Strength not Added",0,Intrinsic
-e60,Fear,Gold (8),2,0,0,0,1,Fear,,,false,None,0,Area of Effect (5),"Magical, Strength not Added",0,Effects
-e63,life Drain,Gold (30),0,0,0,0,1,Drain Life,,,true,Hands,1,,"Armor Piercing, Magical",0,"Effects, Intrinsic"
-e64,Decay,Gold (16),1,0,0,0,1,Decay,,,false,None,0,,"Magical, MR Negates, Ignores Shields, Strength not Added",0,Effects
-e65,deadly venomous fangs,Gold (10),2,0,0,0,1,Pierce,,e52,true,None,0,,Extra,0,Intrinsic
-e67,phantasmal weapon,Gold (0.5),0,0,0,0,1,Magic,,,true,Hands,1,,"Magical, MR Negates",0,Intrinsic
-e68,barbed tail,Gold (11),-2,-1,0,0,1,Pierce,,e54,true,None,0,,"Extra, Magical",0,Intrinsic
-e70,Astral claw,Gold (1),0,0,0,0,1,Slash,,e367,true,Hands,1,,"Armor Negating, Magical",0,Intrinsic
-e71,sleep vines,Gold (50),33,-1,0,4,3,Stun,,,true,None,0,,"Extra, Requires Life, Magical, MR Negates, Strength not Added",0,Intrinsic
-e85,tentacle,Gold (16),-5,0,0,0,1,Untyped,,,true,None,0,,"Armor Piercing, Extra",0,Intrinsic
-e90,crush,Gold (11),0,0,0,0,1,Blunt,,,true,None,0,,Armor Piercing,0,"Effects, Intrinsic"
-e91,Stun,Gold (8),0,0,0,0,1,Stun,,,true,None,0,,"Armor Piercing, Magical",0,Effects
-e92,fist,Gold (0),-2,-1,0,0,1,Blunt,,,false,None,0,,,0,Intrinsic
-e116,strangulation,Gold (0.5),-2,0,-1,0,1,Blunt,,e91,true,None,0,,Armor Piercing,0,Intrinsic
-e127,Magical venomous bite,Gold (10),2,0,0,0,1,Pierce,,e50,true,None,0,,"Extra, Magical",0,Intrinsic
-e142,touch of leprosy,Gold (1),0,0,0,0,1,Untyped,,e143,true,Hands,1,,,0,Intrinsic
-e143,Disease,Gold (20),1,0,0,0,1,Disease,,,false,None,0,,"Magical, Requires Life, Strength not Added",0,Effects
-e144,stinger,Gold (12),0,5,0,3,1,Pierce,,e52,true,None,0,,Extra,0,Intrinsic
-e146,venomous claw,Gold (1),0,0,0,0,1,Slash,,e52,true,Hands,1,,,0,Intrinsic
-e148,spider claw,Gold (1),0,0,0,3,1,Slash,,,true,None,0,,,0,Intrinsic
-e156,feeblemind,Gold (25),1,0,0,0,1,Enfeeble Mind,,,false,None,0,,"Magical, Requires Mind, Strength not Added",0,Effects
-e160,Cold,Gold (20),20,0,0,0,1,Cold,,,true,None,0,,"Armor Piercing, Extra, Magical, Strength not Added, Stun",0,"Effects, Intrinsic"
-e182,trunk,Gold (0.5),3,0,0,0,1,Blunt,,,true,None,0,,Extra,0,Intrinsic
-e185,lightning swArm,Gold (29),6,0,0,3,1,Shock,,,true,None,0,,"Armor Negating, Extra, Magical, Strength not Added",0,Intrinsic
-e190,phantasmal claw,Gold (0.5),0,0,0,0,1,Slash,,,true,Hands,1,,"Magical, MR Negates",0,Intrinsic
-e198,flame burst,Gold (15),10,0,0,1,1,Fire,,,true,None,0,,"Armor Piercing, Magical, Strength not Added",0,Intrinsic
-e200,bane burst,Gold (16),1,0,0,1,1,Decay,,,true,None,0,,"Magical, MR Negates, Strength not Added",0,Intrinsic
-e203,wyvern's tail,Gold (10.5),-2,0,0,0,1,Pierce,,e54,true,None,0,,"Extra, Magical",0,Intrinsic
-e207,venomous claw,Gold (15),0,0,0,0,1,Slash,,e50,true,Hands,1,,"Extra, Magical",0,Intrinsic
-e216,Fire,Gold (18),8,0,0,0,1,Fire,,,true,None,0,,"Armor Piercing, Magical, Strength not Added",0,Effects
-e221,greater Fire,Gold (20),12,0,0,0,1,Fire,,,true,None,0,,"Armor Piercing, Magical, Strength not Added",0,Effects
-e222,Cold,Gold (18),12,0,0,0,1,Cold,,,true,None,0,,"Armor Piercing, Magical, Strength not Added, Stun",0,Effects
-e223,venomous bite,Gold (10.5),2,0,0,0,1,Slash,,e50,true,None,0,,Extra,0,Intrinsic
-e229,flame strike,Gold (26),0,0,0,1,1,Fire,,,false,None,0,Area of Effect (1),"Armor Piercing, Extra, Magical",0,Intrinsic
-e231,thunder fist,Gold (0.5),-2,0,0,0,1,Blunt,e232,,true,Hands,1,,Magical,0,Intrinsic
-e232,Shock,Gold (30),10,0,0,0,1,Shock,,,true,None,0,,"Armor Negating, Magical, Strength not Added",0,Effects
-e235,pincer,Gold (0.5),1,0,0,0,1,Untyped,,,true,None,0,,,0,Intrinsic
-e239,venomous fangs,Gold (10.5),2,0,0,0,1,Pierce,,e51,true,None,0,,Extra,0,Intrinsic
-e248,venomous claw,Gold (11),0,0,0,0,1,Slash,,e50,true,Hands,1,,Extra,0,Intrinsic
-e249,strong venomous claw,Gold (11),0,0,0,0,1,Slash,,e51,true,Hands,1,,Extra,0,Intrinsic
-e250,Poisoned claw,Gold (11),0,0,0,0,1,Slash,,e53,true,Hands,1,,Extra,0,Intrinsic
-e251,paralyzing venomous fangs,Gold (10.5),2,0,0,0,1,Pierce,,e54,true,None,0,,Extra,0,Intrinsic
-e261,Web,Gold (21),0,0,0,0,1,Web,,,false,None,0,Reload (2),"Extra, Size Resist, Strength not Added",0,Intrinsic
-e269,soul leech,Gold (50),0,0,0,0,1,Drain Life,,,false,None,0,Area of Effect (1),"Armor Negating, Magical, MR Negates, Requires Life, Requires Mind",0,Intrinsic
-e269,life Drain tentacle,Gold (50),10,0,0,0,1,Drain Life,,,true,None,0,,"Armor Piercing, Extra, Magical, Strength not Added",0,Intrinsic
-e273,piercing pincer,Gold (21),1,0,0,0,1,Untyped,,,true,None,0,,"Armor Piercing, Extra",0,Intrinsic
-e282,Paralysis,Gold (8),5,0,0,0,1,Paralysis,,,true,Hands,1,,"Armor Negating, Magical, MR Negates, Strength not Added",0,Intrinsic
-e283,strong Paralysis,Gold (16),10,0,0,0,1,Paralysis,,,true,Hands,1,,"Armor Negating, Magical, MR Negates, Strength not Added",0,Intrinsic
-e284,steal Strength,Gold (14),0,0,0,0,1,Untyped,,e285,true,Hands,1,,"Armor Negating, Magical, MR Negates",0,Intrinsic
-e285,additional weakness,Gold (20),2,0,0,0,1,Weaken,,,true,None,0,,"Armor Negating, Magical, MR Negates, Strength not Added",0,Effects
-e286,Magical touch of leprosy,Gold (6),0,0,0,0,1,Untyped,,e143,true,Hands,1,,Magical,0,Intrinsic
-e293,psychic damage,Gold (20),1,0,0,0,1,Untyped,,,false,None,0,,"Armor Negating, Ignores Shields, Magical, MR Negates, Requires Mind, Strength not Added",0,Effects
-e300,Head butt,Gold (10.5),0,1,-1,0,1,Blunt,,,true,None,0,,Extra,0,Intrinsic
-e319,bite,Gold (22),2,0,0,0,1,Slash,,,true,None,0,,"Armor Piercing, Extra",0,Intrinsic
-e320,flaming fist,Gold (5.5),-2,0,0,0,1,Blunt,e221,,true,Hands,1,,Magical,0,Intrinsic
-e322,beast bite,Gold (12),4,0,0,0,1,Slash,,,true,None,0,,Extra,0,Intrinsic
-e323,beast venomous bite,Gold (11.5),2,0,0,0,1,Slash,,e50,true,None,0,,Extra,0,Intrinsic
-e325,serpent's fangs,Gold (10.5),2,0,0,0,1,Pierce,,e51,true,None,0,,Extra,0,Intrinsic
-e331,gore,Gold (10.5),0,-1,0,0,1,Slash,,,true,None,0,,Extra,0,Intrinsic
-e343,blade hand,Gold (2.5),4,0,0,1,1,Slash,,,true,Hands,1,,,0,Intrinsic
-e346,useless kick,Gold (0),-5,-4,-2,0,1,Blunt,,,true,None,0,,,0,Intrinsic
-e350,snake's Fire flare,Gold (31),12,0,0,3,1,Fire,,,true,None,0,Area of Effect (1),"Armor Piercing, Extra, Magical, Strength not Added",0,Intrinsic
-e354,antlers,Gold (12),16,-1,0,0,1,Slash,,,true,None,0,,"Extra, Strength not Added",0,Intrinsic
-e355,sting,Gold (20.5),0,0,0,0,1,Pierce,,e50,true,None,0,,"Armor Piercing, Extra",0,Intrinsic
-e367,horror mark,Gold (15),1,0,0,0,1,Horrormark,,,false,None,0,,"Magical, Strength not Added",0,Effects
-e387,sleep touch,Gold (10),30,0,0,0,1,Stun,,,true,Hands,1,,"Magical, MR Negates, Strength not Added",0,Intrinsic
-e397,kick,Gold (10.5),0,0,0,0,1,Blunt,,,true,None,0,,Extra,0,Intrinsic
-e398,sirrush' venomous fangs,Gold (10.5),-4,0,0,0,1,Pierce,,e52,true,None,0,,Extra,0,Intrinsic
-e399,sirrush' gore,Gold (11),2,1,0,0,1,Slash,,,true,None,0,,Extra,0,Intrinsic
-e400,soul devouring bite,Gold (21),4,0,0,0,1,Slash,e401,,true,None,0,,"Extra, Magical",0,Intrinsic
-e401,soul Death,Gold (100),999,0,0,0,1,Untyped,,,true,None,0,,"Magical, Strength not Added, Armor Negating, Requires Mind",0,Effects
-e404,beak,Gold (10.5),4,0,0,0,1,Slash,,,true,None,0,,Extra,0,Intrinsic
-e408,talons,Gold (10.5),0,0,0,0,1,Slash,,,true,None,0,,Extra,0,Intrinsic
-e420,koppo,Gold (8),-3,-3,0,0,1,Blunt,,e421,true,Hands,1,,Armor Piercing,0,Intrinsic
-e421,limp,Gold (25),1,0,0,0,1,Untyped,,,false,None,0,,"Limp, Magical, Strength not Added",0,Effects
-e423,scorpion tail,Gold (11),0,0,0,3,1,Pierce,,e52,true,None,0,,Extra,0,Intrinsic
-e460,stop the dead,Gold (14),5,0,0,0,1,Paralysis,,,true,None,0,,"Armor Negating, Magical, MR Negates, Strength not Added, Requires Undead",0,Intrinsic
-e481,touch of madness,Gold (4),-3,-3,0,0,1,Untyped,,e156,true,Hands,1,,"Magical, MR Negates",0,Intrinsic
-e488,great Head,Gold (11),0,1,0,0,1,Pierce,,e51,true,None,0,,Extra,0,Intrinsic
-e489,Immortal Head,Gold (12),3,1,0,0,1,Pierce,,e52,true,None,0,,Extra,0,Intrinsic
-e490,lesser Head,Gold (10.5),-3,0,0,0,1,Pierce,,e50,true,None,0,,Extra,0,Intrinsic
-e491,lesser Heads,Gold (21),-3,0,0,0,2,Pierce,,e50,true,None,0,,Extra,0,Intrinsic
-e495,serpent's bite,Gold (12),2,0,0,3,1,Slash,,e53,true,None,0,,Extra,0,Intrinsic
-e509,bane of heresy,Gold (10),15,0,0,0,1,Stun,,,true,None,0,Area of Effect (1),"Armor Piercing, Magical, Requires Sacred, Strength not Added, Stun",0,Effects
-e511,stump,Gold (0),-3,-2,-1,0,1,Blunt,,,true,None,0,,Extra,0,Intrinsic
-e517,incense,Gold (3),10,0,0,0,1,Poison,,,true,None,0,Area of Effect (1),"Armor Negating, Magical, Strength not Added, Stun",0,Effects
-e529,ghost rending claw,Gold (5),0,0,0,0,1,Slash,,e460,true,Hands,1,,Magical,0,Intrinsic
-e543,slap,Gold (0.5),1,0,0,0,1,Blunt,,,true,Hands,1,Area of Effect (1),"Armor Negating, Capped Damage, Magical, Strength not Added, Stun",0,Intrinsic
-e549,mantis claw,Gold (10.5),0,0,0,0,1,Pierce,,,true,Hands,1,,Magical,0,Intrinsic
-e564,Stunning blow,Gold (25),20,0,0,0,1,Poison,,,true,None,0,,"Armor Negating, Magical, Stun",0,Effects
-e572,Poisonous gore,Gold (10.5),2,-1,0,0,1,Slash,,e51,true,None,0,,Extra,0,Intrinsic
-e592,cockatrice stinger,Gold (10.5),2,2,0,0,1,Pierce,,e51,true,None,0,,Extra,0,Intrinsic
-e614,elephant tusk,Gold (12),2,0,0,2,1,Pierce,,,true,None,0,,Extra,0,Intrinsic
-e624,paralyzing Poison,Gold (15),25,0,0,0,1,Poison,,,true,None,0,,"Armor Negating, Strength not Added, Stun",0,Effects
-e629,myrmecoleon sting,Gold (15.5),0,-3,0,0,1,Pierce,,e51,true,None,0,,"Armor Piercing, Extra",0,Intrinsic
-e630,ghost rending bite,Gold (21),3,0,0,0,1,Slash,,e460,true,None,0,,"Magical, Extra",0,Intrinsic
-e631,serpent tail,Gold (17),15,0,0,0,1,Pierce,,e51,true,None,0,,"Extra, Strength not Added",0,Intrinsic
-e632,serpent mane,Gold (75),10,-2,0,0,5,Pierce,,e50,true,None,0,,"Extra, Strength not Added",0,Intrinsic
-e634,moose antlers,Gold (11),0,-1,0,2,1,Slash,,,true,None,0,,Extra,0,Intrinsic
-e700,phase spider fangs,Gold (14),2,0,0,0,1,Pierce,,e52,false,None,0,,"Extra, Cannot-be-repelled",0,Intrinsic
-e701,phase Web,Gold (31),0,0,0,0,1,Web,,,false,None,0,Reload (2),"Extra, Magical, Size Resist, Strength not Added",0,Intrinsic
+id,name,cost,damage,attack,defence,reach,actionPoints,damageTypes,damageEffect,onHit,onDamage,canRepel,canCleave,slotType,requiredSlots,abilities,properties,rarity,categories
+w1,spear,gold (1),3,0,0,4,1,pierce,damage,,,true,false,hands,1,,,0,Polearms
+w2,pike,gold (2),5,0,-1,6,1,pierce,damage,,,true,false,hands,2,,,0,Polearms
+w3,trident,gold (3),7,0,0,4,1,pierce,damage,,,true,false,hands,1,,,0,Polearms
+w5,halberd,gold (4),10,-1,1,4,1,"pierce, slash",damage,,,true,false,hands,2,,,0,Polearms
+w6,short sword,gold (2),5,0,2,1,1,"pierce, slash",damage,,,true,false,hands,1,,,0,Swords
+w7,quarterstaff,gold (2),3,1,3,4,1,blunt,damage,,,true,false,hands,2,,,0,Staves
+w8,broad sword,gold (3),6,0,1,2,1,slash,damage,,,true,false,hands,1,,,0,Swords
+w9,Dagger,gold (1),2,1,0,0,1,pierce,damage,,,true,false,hands,1,,,0,Daggers
+w10,falchion,gold (4),7,0,0,2,1,slash,damage,,,true,false,hands,1,,,0,Swords
+w11,great sword,gold (5),9,1,2,3,1,slash,damage,,,true,false,hands,2,,,0,Swords
+w12,mace,gold (1),5,0,0,1,1,blunt,damage,,,true,false,hands,1,,,0,Maces
+w13,hammer,gold (2),7,0,-1,1,1,"blunt, pierce",damage,,,true,false,hands,1,,,0,Maces
+w14,maul,gold (2),9,0,-1,3,1,blunt,damage,,,true,false,hands,2,,,0,Maces
+w15,flail,gold (2),6,1,-2,2,1,"blunt, pierce",damage,,,true,false,hands,1,,flail,0,Maces
+w16,long flail,gold (3),3,1,-2,3,2,blunt,damage,,,true,false,hands,2,,flail,0,Maces
+w17,axe,gold (1),7,0,-1,1,1,slash,damage,,,true,false,hands,1,,,0,Axes
+w18,battleaxe,gold (3),9,1,0,3,1,slash,damage,,,true,false,hands,2,,,0,Axes
+w28,long spear,gold (2),3,0,-1,5,1,pierce,damage,,,true,false,hands,1,,,0,Polearms
+w31,coral spear,gold (4),2,0,0,4,1,pierce,damage,,e50,true,false,hands,1,,,0,Polearms
+w32,coral knife,gold (3),1,0,0,0,1,pierce,damage,,e50,true,false,hands,1,,,0,Daggers
+w35,ice knife,gold (2),1,2,0,0,1,pierce,damage,,,true,false,hands,1,,"magical, noFire",1,Daggers
+w36,ice lance,gold (2),3,1,0,4,1,pierce,damage,,,true,false,hands,1,,"chargeBonus, magical, noFire",1,Polearms
+w37,ice blade,gold (4),5,1,1,2,1,slash,damage,,,true,false,hands,1,,"magical, noFire",1,Swords
+w40,whip,gold (0.5),-1,0,0,5,1,slash,damage,,,true,false,hands,1,,capped,0,Whips
+w44,ice mace,gold (7),5,2,0,1,1,blunt,damage,,,true,false,hands,1,,"magical, noFire",1,Maces
+w45,coral club,gold (4),4,0,0,1,1,blunt,damage,,e50,true,false,hands,1,,,0,Maces
+w46,coral glaive,gold (5),9,-1,1,4,1,"slash, pierce",damage,,e50,true,false,hands,2,,,0,Polearms
+w49,iron prod,gold (3),8,-2,-1,3,1,pierce,damage,,,true,false,hands,1,,,0,Polearms
+w57,sickle,gold (2),5,0,0,1,1,slash,damage,,,true,false,hands,1,,,0,Miscellaneous
+w66,jotun axe,gold (2),7,0,-1,3,1,slash,damage,,,true,false,hands,1,,,1,Axes
+w89,snake staff,gold (10),5,3,5,4,1,"pierce, blunt",damage,,e50,true,false,hands,2,,magical,1,Staves
+w126,poison Dagger,gold (5),2,1,0,0,1,pierce,damage,,e51,true,false,hands,1,,,1,Daggers
+w153,stick,gold (0.5),2,0,1,1,1,blunt,damage,,,true,false,hands,2,,,0,Miscellaneous
+w165,great club,gold (2),7,0,1,3,1,blunt,damage,,,true,false,hands,2,,,0,Maces
+w234,jotun spear,gold (1),3,0,0,5,1,pierce,damage,,,true,false,hands,1,,,1,Polearms
+w252,club,gold (0.5),3,0,0,1,1,blunt,damage,,,true,false,hands,1,,,0,Maces
+w253,hatchet,gold (1.5),5,1,0,1,1,slash,damage,,,true,false,hands,1,,,0,Axes
+w256,kryss,gold (1),3,0,0,1,1,pierce,damage,,,true,false,hands,1,,,0,Daggers
+w257,bardiche,gold (3),6,0,-1,5,1,slash,damage,,,true,false,hands,2,,,0,Polearms
+w258,claymore,gold (5),10,1,1,3,1,slash,damage,,,true,false,hands,2,,,0,Swords
+w259,executioner's axe,gold (4),10,1,-1,3,1,slash,damage,,,true,false,hands,2,,,0,Axes
+w263,net,gold (4),0,0,0,4,1,web,damage,,,false,hands,1,,"extra, singleUse, sizeResist, noStrength",0,Miscellaneous
+w265,spiked club,gold (1),4,0,0,1,1,"blunt, pierce",damage,,,true,false,hands,1,,,0,Maces
+w267,pick axe,gold (3),8,-2,-2,2,1,pierce,damage,,,true,false,hands,2,siegeBonus (5),,0,Axes
+w268,jotun longsword,gold (3),9,0,1,3,1,slash,damage,,,true,false,hands,1,,,1,Swords
+w288,obsidian club sword,gold (2),7,0,1,3,1,"slash, blunt",damage,,,true,false,hands,2,,,0,"Maces, Swords"
+w307,jotun battleaxe,gold (3),9,1,0,4,1,slash,damage,,,true,false,hands,2,,,1,Axes
+w308,glaive,gold (4),10,-1,1,4,1,"slash, pierce",damage,,,true,false,hands,2,,,0,Polearms
+w315,machaka spear,gold (3),5,-1,-1,5,1,pierce,damage,,,true,false,hands,1,,,0,Polearms
+w318,serpent staff,gold (5),3,1,3,4,1,"pierce, blunt",damage,,e50,true,false,hands,2,,magical,1,Staves
+w357,light lance,gold (2),3,0,0,4,1,pierce,damage,,,true,false,hands,1,,chargeBonus,0,Polearms
+w363,iron cudgel,gold (2),8,0,0,3,1,blunt,damage,,,true,false,hands,2,,,0,Maces
+w373,stone spear,gold (0.5),2,0,0,4,1,pierce,damage,,,true,false,hands,1,,,0,Polearms
+w376,yari,gold (1.5),4,1,0,5,1,pierce,damage,,,true,false,hands,2,,,0,Polearms
+w377,wakizashi,gold (4),5,2,1,1,1,"slash, pierce",damage,,,true,false,hands,1,,,0,Swords
+w378,katana,gold (7),6,3,2,2,1,"slash, pierce",damage,,,true,false,hands,2,,,0,Swords
+w379,no-dachi,gold (6),8,2,2,3,1,slash,damage,,,true,false,hands,2,,,0,Swords
+w380,naginata,gold (4),10,-1,1,4,1,slash,damage,,,true,false,hands,2,,,0,Polearms
+w381,ninjato,gold (3),5,2,0,1,1,slash,damage,,,true,false,hands,1,,,0,Daggers
+w388,pearl spear,gold (2),3,0,0,4,1,pierce,damage,,,true,false,hands,1,,magical,1,Polearms
+w389,pearl trident,gold (4),7,0,0,4,1,pierce,damage,,,true,false,hands,1,,magical,1,Polearms
+w426,obsidian glaive,gold (8),11,1,1,4,1,slash,damage,,,true,false,hands,2,,magical,1,Polearms
+w446,sceptre,gold (1),2,0,0,1,1,blunt,damage,,,true,false,hands,1,,,0,Maces
+w451,obsidian club sword,gold (2),4,0,0,2,1,"slash, blunt",damage,,,true,false,hands,1,,,0,Maces
+w454,ice glaive,gold (6),9,0,-1,4,1,"slash, pierce",damage,,,true,false,hands,2,,"magical, noFire",1,Polearms
+w455,bone glaive,gold (5),10,0,-1,4,1,"slash, pierce",damage,,e285,true,false,hands,2,,"magical, noFire",1,Polearms
+w464,basalt spear,gold (6),4,1,-1,4,1,pierce,damage,,,true,false,hands,2,,magical,1,Polearms
+w465,basalt club,gold (6),9,-1,-1,3,1,blunt,damage,,,true,false,hands,2,,magical,1,Maces
+w473,golden spear,gold (6),5,1,0,4,1,pierce,damage,,,true,false,hands,1,,magical,1,Polearms
+w474,golden sword,gold (8),7,1,1,1,1,slash,damage,,,true,false,hands,1,,magical,1,Swords
+w475,golden lance,gold (7),5,1,0,4,1,pierce,damage,,,true,false,hands,1,,"chargeBonus, magical",1,Polearms
+w485,fomorian bronze spear,gold (1),3,0,0,5,1,pierce,damage,,,true,false,hands,1,,,1,Polearms
+w498,twig,gold (0.5),-3,0,0,1,1,blunt,damage,,,true,false,hands,1,,capped,0,Miscellaneous
+w499,pestle,gold (0.5),1,-1,0,0,1,blunt,damage,,,true,false,hands,1,,,0,Miscellaneous
+w501,bamboo rod,gold (1.5),1,1,2,2,1,blunt,damage,,,true,false,hands,1,,,0,Miscellaneous
+w502,yak tail fly whisk,gold (0.5),-2,0,0,1,1,blunt,damage,,,true,false,hands,1,,capped,0,Miscellaneous
+w508,black halberd,gold (9),11,0,-1,4,1,"pierce, slash",damage,,e509,true,false,hands,2,,magical,1,Polearms
+w516,censer,gold (3),1,-1,-1,2,1,blunt,damage,e517,,true,false,hands,1,,flail,0,Miscellaneous
+w518,anakite sword,gold (6),8,1,2,3,1,slash,damage,,,true,false,hands,1,,magical,1,Swords
+w519,poison tipped spear,gold (6),3,0,0,4,1,pierce,damage,,e51,true,false,hands,1,,,1,Polearms
+w520,dawn blade,gold (8),9,2,2,3,1,slash,damage,,,true,false,hands,1,,magical,1,Swords
+w554,lictor axe,gold (10),10,2,0,2,1,slash,damage,,e460,true,false,hands,2,,magical,1,Axes
+w563,spirit club,gold (7),9,1,0,3,1,blunt,damage,,e564,true,false,hands,2,,magical,1,Maces
+w577,coral lance,gold (5),2,0,0,4,1,pierce,damage,,e50,true,false,hands,1,,chargeBonus,0,Polearms
+w579,skull club,gold (5),6,1,0,2,1,blunt,damage,,,true,false,hands,1,,magical,1,Maces
+w580,coral long spear,gold (5),2,0,-1,5,1,pierce,damage,,e50,true,false,hands,1,,,0,Polearms
+w590,short pike,gold (1.5),5,0,-1,5,1,pierce,damage,,,true,false,hands,2,,,0,Polearms
+w591,cod,gold (0.5),-3,0,0,1,1,blunt,damage,,,true,false,hands,1,,capped,0,Miscellaneous
+w598,shard glaive,gold (8),10,1,0,4,1,slash,damage,,e118,true,false,hands,2,,magical,1,Polearms
+w611,ice spear,gold (2),3,1,0,4,1,pierce,damage,,,true,false,hands,1,,"magical, noFire",1,Polearms
+w617,sun mace,gold (7),7,1,0,1,1,blunt,damage,,,true,false,hands,1,"demonBane (3), undeadBane (3)",magical,1,Maces
+w618,sun spear,gold (7),11,2,0,4,1,"slash, pierce",damage,,,true,false,hands,2,"demonBane (3), undeadBane (3)",magical,1,Polearms
+w621,obsidian shard blade,gold (9),9,2,1,3,1,slash,damage,,,true,false,hands,2,,,0,Swords
+w623,Poisoned obsidian blade,gold (8),7,1,0,2,1,slash,damage,,e624,true,false,hands,1,,,1,Swords
+w625,obsidian blade,gold (7),7,1,0,2,1,slash,damage,,,true,false,hands,1,,,0,Swords
+w637,tool,gold (0.5),2,-1,0,1,1,"blunt, pierce",damage,,,true,false,hands,1,,,0,Miscellaneous
+w638,instrument,gold (0.5),1,-1,0,1,1,pierce,damage,,,true,false,hands,1,,,0,Miscellaneous
+w639,spetum,gold (3),7,0,0,4,1,pierce,damage,,,true,false,hands,1,,,0,Polearms
+w641,bronze trident,gold (3),7,0,0,4,1,pierce,damage,,,true,false,hands,1,,,0,Polearms
+w642,meteorite trident,gold (5),7,0,0,4,1,pierce,damage,,,true,false,hands,1,,magical,1,Polearms
+w643,bronze spear,gold (1),3,0,0,4,1,pierce,damage,,,true,false,hands,1,,,0,Polearms
+w644,bronze long spear,gold (2),3,0,-1,5,1,pierce,damage,,,true,false,hands,1,,,0,Polearms
+w645,bronze sword,gold (2),4,0,2,1,1,"pierce, slash",damage,,,true,false,hands,1,,,0,Swords
+w646,bronze hatchet,gold (1.5),5,1,0,1,1,slash,damage,,,true,false,hands,1,,,0,Axes
+w648,enchanted hammer,gold (5),8,1,-1,1,1,"blunt, pierce",damage,,,true,false,hands,1,,magical,1,Maces
+w651,bronze lance,gold (2),3,0,0,4,1,pierce,damage,,,true,false,hands,1,,chargeBonus,0,Polearms
+w665,pearl blade,gold (4),5,0,2,1,1,"slash, pierce",damage,,,true,false,hands,1,,magical,1,Swords
+w666,torch,gold (3),3,0,0,1,1,blunt,damage,,e216,true,false,hands,1,,,0,Miscellaneous
+w668,metal glaive,gold (4),10,-1,1,4,1,"slash, pierce",damage,,,true,false,hands,2,,,0,Polearms
+w669,metal yari,gold (1.5),4,1,0,5,1,pierce,damage,,,true,false,hands,2,,,0,Polearms
+w670,bone trident,gold (2),5,0,0,4,1,pierce,damage,,,true,false,hands,1,,,0,Polearms
+w671,stone Dagger,gold (0.5),1,1,0,0,1,pierce,damage,,,true,false,hands,1,,,0,Daggers
+w673,bronze glaive,gold (3.5),9,-1,1,4,1,"slash, pierce",damage,,,true,false,hands,2,,,0,Polearms
+w674,bronze Dagger,gold (1),2,1,0,0,1,pierce,damage,,,true,false,hands,1,,,0,Daggers
+w675,bronze axe,gold (2),6,0,-1,1,1,slash,damage,,,true,false,hands,1,,,0,Axes
+e20,bite,gold (10.5),2,0,-1,0,1,slash,damage,,,true,false,none,0,,extra,0,Intrinsic
+e29,claw,gold (2),0,0,0,0,1,slash,damage,,,true,false,hands,1,,,0,Intrinsic
+e30,triple venomous bite,gold (30),2,0,0,0,3,pierce,damage,,e51,true,false,none,0,,extra,0,Intrinsic
+e38,snake hAir,gold (0.5),-4,-2,0,0,5,pierce,damage,,e50,true,false,none,0,,"extra, magical",0,Intrinsic
+e43,Poisoned claw,gold (1),0,0,0,0,1,slash,damage,,e54,true,false,hands,1,,,0,Intrinsic
+e47,lobster claw,gold (20),20,-4,0,0,1,slash,damage,,,true,false,none,0,,"extra, noStrength",0,Intrinsic
+e48,fire flare,gold (25),20,0,0,3,1,fire,damage,,,true,false,none,0,,"armorPiercing, extra, magical, noStrength",0,Intrinsic
+e50,weak poison,gold (4),5,0,0,0,1,poison,damage,,,true,false,none,0,,"armorNegating, magical, noStrength",0,Effects
+e51,strong poison,gold (8),10,0,0,0,1,poison,damage,,,true,false,none,0,,"armorNegating, magical, noStrength",0,Effects
+e52,death poison,gold (16),20,0,0,0,1,poison,damage,,,true,false,none,0,,"armorNegating, magical, noStrength",0,Effects
+e53,debilitative poison,gold (10),20,0,0,0,1,poison,damage,,,true,false,none,0,,"armorNegating, magical, magicResistanceNegates, noStrength",0,Effects
+e54,paralyzing poison,gold (22),50,0,0,0,1,poison,damage,,,true,false,none,0,,"armorNegating, magical, magicResistanceNegates, noStrength, stun",0,Effects
+e55,hoof,gold (11),0,0,0,0,1,blunt,damage,,,true,false,none,0,,extra,0,Intrinsic
+e56,hoof (unused),gold (14),13,0,0,0,1,blunt,damage,,,true,false,none,0,,"extra, noStrength",0,Intrinsic
+e58,wail,gold (100),999,10,0,6,1,untyped,damage,e60,,false,none,0,areaOfEffect (1),"extra, magical, magicResistanceNegates, noStrength",0,Intrinsic
+e60,fear,gold (8),2,0,0,0,1,fear,damage,,,false,none,0,areaOfEffect (5),"magical, noStrength",0,Effects
+e63,life Drain,gold (30),0,0,0,0,1,drainLife,damage,,,true,false,hands,1,,"armorPiercing, magical",0,"Effects, Intrinsic"
+e64,Decay,gold (16),1,0,0,0,1,decay,damage,,,false,none,0,,"magical, magicResistanceNegates, ignoresShields, noStrength",0,Effects
+e65,deadly venomous fangs,gold (10),2,0,0,0,1,pierce,damage,,e52,true,false,none,0,,extra,0,Intrinsic
+e67,phantasmal weapon,gold (0.5),0,0,0,0,1,magic,damage,,,true,false,hands,1,,"magical, magicResistanceNegates",0,Intrinsic
+e68,barbed tail,gold (11),-2,-1,0,0,1,pierce,damage,,e54,true,false,none,0,,"extra, magical",0,Intrinsic
+e70,astral claw,gold (1),0,0,0,0,1,slash,damage,,e367,true,false,hands,1,,"armorNegating, magical",0,Intrinsic
+e71,sleep vines,gold (50),33,-1,0,4,3,stun,damage,,,true,false,none,0,,"extra, requiresLife, magical, magicResistanceNegates, noStrength",0,Intrinsic
+e85,tentacle,gold (16),-5,0,0,0,1,untyped,damage,,,true,false,none,0,,"armorPiercing, extra",0,Intrinsic
+e90,crush,gold (11),0,0,0,0,1,blunt,damage,,,true,false,none,0,,armorPiercing,0,"Effects, Intrinsic"
+e91,stun,gold (8),0,0,0,0,1,stun,damage,,,true,false,none,0,,"armorPiercing, magical",0,Effects
+e92,fist,gold (0),-2,-1,0,0,1,blunt,damage,,,false,none,0,,,0,Intrinsic
+e116,strangulation,gold (0.5),-2,0,-1,0,1,blunt,damage,,e91,true,false,none,0,,armorPiercing,0,Intrinsic
+e127,magical venomous bite,gold (10),2,0,0,0,1,pierce,damage,,e50,true,false,none,0,,"extra, magical",0,Intrinsic
+e142,touch of leprosy,gold (1),0,0,0,0,1,untyped,damage,,e143,true,false,hands,1,,,0,Intrinsic
+e143,disease,gold (20),1,0,0,0,1,disease,damage,,,false,none,0,,"magical, requiresLife, noStrength",0,Effects
+e144,stinger,gold (12),0,5,0,3,1,pierce,damage,,e52,true,false,none,0,,extra,0,Intrinsic
+e146,venomous claw,gold (1),0,0,0,0,1,slash,damage,,e52,true,false,hands,1,,,0,Intrinsic
+e148,spider claw,gold (1),0,0,0,3,1,slash,damage,,,true,false,none,0,,,0,Intrinsic
+e156,feeblemind,gold (25),1,0,0,0,1,enfeeble,damage,,,false,none,0,,"magical, requiresMind, noStrength",0,Effects
+e160,cold,gold (20),20,0,0,0,1,cold,damage,,,true,false,none,0,,"armorPiercing, extra, magical, noStrength, stun",0,"Effects, Intrinsic"
+e182,trunk,gold (0.5),3,0,0,0,1,blunt,damage,,,true,false,none,0,,extra,0,Intrinsic
+e185,lightning swarm,gold (29),6,0,0,3,1,shock,damage,,,true,false,none,0,,"armorNegating, extra, magical, noStrength",0,Intrinsic
+e190,phantasmal claw,gold (0.5),0,0,0,0,1,slash,damage,,,true,false,hands,1,,"magical, magicResistanceNegates",0,Intrinsic
+e198,flame burst,gold (15),10,0,0,1,1,fire,damage,,,true,false,none,0,,"armorPiercing, magical, noStrength",0,Intrinsic
+e200,bane burst,gold (16),1,0,0,1,1,decay,damage,,,true,false,none,0,,"magical, magicResistanceNegates, noStrength",0,Intrinsic
+e203,wyvern's tail,gold (10.5),-2,0,0,0,1,pierce,damage,,e54,true,false,none,0,,"extra, magical",0,Intrinsic
+e207,venomous claw,gold (15),0,0,0,0,1,slash,damage,,e50,true,false,hands,1,,"extra, magical",0,Intrinsic
+e216,fire,gold (18),8,0,0,0,1,fire,damage,,,true,false,none,0,,"armorPiercing, magical, noStrength",0,Effects
+e221,greater fire,gold (20),12,0,0,0,1,fire,damage,,,true,false,none,0,,"armorPiercing, magical, noStrength",0,Effects
+e222,cold,gold (18),12,0,0,0,1,cold,damage,,,true,false,none,0,,"armorPiercing, magical, noStrength, stun",0,Effects
+e223,venomous bite,gold (10.5),2,0,0,0,1,slash,damage,,e50,true,false,none,0,,extra,0,Intrinsic
+e229,flame strike,gold (26),0,0,0,1,1,fire,damage,,,false,none,0,areaOfEffect (1),"armorPiercing, extra, magical",0,Intrinsic
+e231,thunder fist,gold (0.5),-2,0,0,0,1,blunt,damage,e232,,true,false,hands,1,,magical,0,Intrinsic
+e232,shock,gold (30),10,0,0,0,1,shock,damage,,,true,false,none,0,,"armorNegating, magical, noStrength",0,Effects
+e235,pincer,gold (0.5),1,0,0,0,1,untyped,damage,,,true,false,none,0,,,0,Intrinsic
+e239,venomous fangs,gold (10.5),2,0,0,0,1,pierce,damage,,e51,true,false,none,0,,extra,0,Intrinsic
+e248,venomous claw,gold (11),0,0,0,0,1,slash,damage,,e50,true,false,hands,1,,extra,0,Intrinsic
+e249,strong venomous claw,gold (11),0,0,0,0,1,slash,damage,,e51,true,false,hands,1,,extra,0,Intrinsic
+e250,Poisoned claw,gold (11),0,0,0,0,1,slash,damage,,e53,true,false,hands,1,,extra,0,Intrinsic
+e251,paralyzing venomous fangs,gold (10.5),2,0,0,0,1,pierce,damage,,e54,true,false,none,0,,extra,0,Intrinsic
+e261,web,gold (21),0,0,0,0,1,web,damage,,,false,none,0,Reload (2),"extra, sizeResist, noStrength",0,Intrinsic
+e269,soul leech,gold (50),0,0,0,0,1,drainLife,damage,,,false,none,0,areaOfEffect (1),"armorNegating, magical, magicResistanceNegates, requiresLife, requiresMind",0,Intrinsic
+e269,life Drain tentacle,gold (50),10,0,0,0,1,drainLife,damage,,,true,false,none,0,,"armorPiercing, extra, magical, noStrength",0,Intrinsic
+e273,piercing pincer,gold (21),1,0,0,0,1,untyped,damage,,,true,false,none,0,,"armorPiercing, extra",0,Intrinsic
+e282,paralysis,gold (8),5,0,0,0,1,paralysis,damage,,,true,false,hands,1,,"armorNegating, magical, magicResistanceNegates, noStrength",0,Intrinsic
+e283,strong paralysis,gold (16),10,0,0,0,1,paralysis,damage,,,true,false,hands,1,,"armorNegating, magical, magicResistanceNegates, noStrength",0,Intrinsic
+e284,steal strength,gold (14),0,0,0,0,1,untyped,damage,,e285,true,false,hands,1,,"armorNegating, magical, magicResistanceNegates",0,Intrinsic
+e285,additional weakness,gold (20),2,0,0,0,1,weaken,damage,,,true,false,none,0,,"armorNegating, magical, magicResistanceNegates, noStrength",0,Effects
+e286,magical touch of leprosy,gold (6),0,0,0,0,1,untyped,damage,,e143,true,false,hands,1,,magical,0,Intrinsic
+e293,psychic damage,gold (20),1,0,0,0,1,untyped,damage,,,false,none,0,,"armorNegating, ignoresShields, magical, magicResistanceNegates, requiresMind, noStrength",0,Effects
+e300,head butt,gold (10.5),0,1,-1,0,1,blunt,damage,,,true,false,none,0,,extra,0,Intrinsic
+e319,bite,gold (22),2,0,0,0,1,slash,damage,,,true,false,none,0,,"armorPiercing, extra",0,Intrinsic
+e320,flaming fist,gold (5.5),-2,0,0,0,1,blunt,damage,e221,,true,false,hands,1,,magical,0,Intrinsic
+e322,beast bite,gold (12),4,0,0,0,1,slash,damage,,,true,false,none,0,,extra,0,Intrinsic
+e323,beast venomous bite,gold (11.5),2,0,0,0,1,slash,damage,,e50,true,false,none,0,,extra,0,Intrinsic
+e325,serpent's fangs,gold (10.5),2,0,0,0,1,pierce,damage,,e51,true,false,none,0,,extra,0,Intrinsic
+e331,gore,gold (10.5),0,-1,0,0,1,slash,damage,,,true,false,none,0,,extra,0,Intrinsic
+e343,blade hand,gold (2.5),4,0,0,1,1,slash,damage,,,true,false,hands,1,,,0,Intrinsic
+e346,useless kick,gold (0),-5,-4,-2,0,1,blunt,damage,,,true,false,none,0,,,0,Intrinsic
+e350,snake's fire flare,gold (31),12,0,0,3,1,fire,damage,,,true,false,none,0,areaOfEffect (1),"armorPiercing, extra, magical, noStrength",0,Intrinsic
+e354,antlers,gold (12),16,-1,0,0,1,slash,damage,,,true,false,none,0,,"extra, noStrength",0,Intrinsic
+e355,sting,gold (20.5),0,0,0,0,1,pierce,damage,,e50,true,false,none,0,,"armorPiercing, extra",0,Intrinsic
+e367,horror mark,gold (15),1,0,0,0,1,horrormark,damage,,,false,none,0,,"magical, noStrength",0,Effects
+e387,sleep touch,gold (10),30,0,0,0,1,stun,damage,,,true,false,hands,1,,"magical, magicResistanceNegates, noStrength",0,Intrinsic
+e397,kick,gold (10.5),0,0,0,0,1,blunt,damage,,,true,false,none,0,,extra,0,Intrinsic
+e398,sirrush' venomous fangs,gold (10.5),-4,0,0,0,1,pierce,damage,,e52,true,false,none,0,,extra,0,Intrinsic
+e399,sirrush' gore,gold (11),2,1,0,0,1,slash,damage,,,true,false,none,0,,extra,0,Intrinsic
+e400,soul devouring bite,gold (21),4,0,0,0,1,slash,damage,e401,,true,false,none,0,,"extra, magical",0,Intrinsic
+e401,soul death,gold (100),999,0,0,0,1,untyped,damage,,,true,false,none,0,,"magical, noStrength, armorNegating, requiresMind",0,Effects
+e404,beak,gold (10.5),4,0,0,0,1,slash,damage,,,true,false,none,0,,extra,0,Intrinsic
+e408,talons,gold (10.5),0,0,0,0,1,slash,damage,,,true,false,none,0,,extra,0,Intrinsic
+e420,koppo,gold (8),-3,-3,0,0,1,blunt,damage,,e421,true,false,hands,1,,armorPiercing,0,Intrinsic
+e421,limp,gold (25),1,0,0,0,1,untyped,damage,,,false,none,0,,"limp, magical, noStrength",0,Effects
+e423,scorpion tail,gold (11),0,0,0,3,1,pierce,damage,,e52,true,false,none,0,,extra,0,Intrinsic
+e460,stop the dead,gold (14),5,0,0,0,1,paralysis,damage,,,true,false,none,0,,"armorNegating, magical, magicResistanceNegates, noStrength, Requires Undead",0,Intrinsic
+e481,touch of madness,gold (4),-3,-3,0,0,1,untyped,damage,,e156,true,false,hands,1,,"magical, magicResistanceNegates",0,Intrinsic
+e488,great head,gold (11),0,1,0,0,1,pierce,damage,,e51,true,false,none,0,,extra,0,Intrinsic
+e489,immortal head,gold (12),3,1,0,0,1,pierce,damage,,e52,true,false,none,0,,extra,0,Intrinsic
+e490,lesser head,gold (10.5),-3,0,0,0,1,pierce,damage,,e50,true,false,none,0,,extra,0,Intrinsic
+e491,lesser heads,gold (21),-3,0,0,0,2,pierce,damage,,e50,true,false,none,0,,extra,0,Intrinsic
+e495,serpent's bite,gold (12),2,0,0,3,1,slash,damage,,e53,true,false,none,0,,extra,0,Intrinsic
+e509,bane of heresy,gold (10),15,0,0,0,1,stun,damage,,,true,false,none,0,areaOfEffect (1),"armorPiercing, magical, requiresSacred, noStrength, stun",0,Effects
+e511,stump,gold (0),-3,-2,-1,0,1,blunt,damage,,,true,false,none,0,,extra,0,Intrinsic
+e517,incense,gold (3),10,0,0,0,1,poison,damage,,,true,false,none,0,areaOfEffect (1),"armorNegating, magical, noStrength, stun",0,Effects
+e529,ghost rending claw,gold (5),0,0,0,0,1,slash,damage,,e460,true,false,hands,1,,magical,0,Intrinsic
+e543,slap,gold (0.5),1,0,0,0,1,blunt,damage,,,true,false,hands,1,areaOfEffect (1),"armorNegating, capped, magical, noStrength, stun",0,Intrinsic
+e549,mantis claw,gold (10.5),0,0,0,0,1,pierce,damage,,,true,false,hands,1,,magical,0,Intrinsic
+e564,Stunning blow,gold (25),20,0,0,0,1,poison,damage,,,true,false,none,0,,"armorNegating, magical, stun",0,Effects
+e572,Poisonous gore,gold (10.5),2,-1,0,0,1,slash,damage,,e51,true,false,none,0,,extra,0,Intrinsic
+e592,cockatrice stinger,gold (10.5),2,2,0,0,1,pierce,damage,,e51,true,false,none,0,,extra,0,Intrinsic
+e614,elephant tusk,gold (12),2,0,0,2,1,pierce,damage,,,true,false,none,0,,extra,0,Intrinsic
+e624,paralyzing poison,gold (15),25,0,0,0,1,poison,damage,,,true,false,none,0,,"armorNegating, noStrength, stun",0,Effects
+e629,myrmecoleon sting,gold (15.5),0,-3,0,0,1,pierce,damage,,e51,true,false,none,0,,"armorPiercing, extra",0,Intrinsic
+e630,ghost rending bite,gold (21),3,0,0,0,1,slash,damage,,e460,true,false,none,0,,"magical, extra",0,Intrinsic
+e631,serpent tail,gold (17),15,0,0,0,1,pierce,damage,,e51,true,false,none,0,,"extra, noStrength",0,Intrinsic
+e632,serpent mane,gold (75),10,-2,0,0,5,pierce,damage,,e50,true,false,none,0,,"extra, noStrength",0,Intrinsic
+e634,moose antlers,gold (11),0,-1,0,2,1,slash,damage,,,true,false,none,0,,extra,0,Intrinsic
+e700,phase spider fangs,gold (14),2,0,0,0,1,pierce,damage,,e52,false,none,0,,"extra, cannotBeRepelled",0,Intrinsic
+e701,phase web,gold (31),0,0,0,0,1,web,damage,,,false,none,0,Reload (2),"extra, magical, sizeResist, noStrength",0,Intrinsic
