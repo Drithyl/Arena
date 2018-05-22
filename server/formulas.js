@@ -1,35 +1,35 @@
 
 module.exports =
 {
-  maxHP: function(points, hp)
+  maxHP: function(points, baseHP)
   {
     for (var i = 0; i < points; i++)
     {
-      var gain = Math.round((Math.log(hp) / Math.log(2)));
+      var gain = Math.round((Math.log(baseHP) / Math.log(2)));
 
       if (gain < 3)
       {
-        hp += 3;
+        baseHP += 3;
       }
 
-      else hp += gain;
+      else baseHP += gain;
     }
 
-    return hp;
+    return baseHP;
   },
 
-  strength: function(points, strength)
+  strength: function(points, baseStrength)
   {
-    return strength + points;
+    return baseStrength + points;
   },
 
-  magicResistance: function(points, magicResistance)
+  magicResistance: function(points, baseMagicResistance)
   {
-    return magicResistance + points;
+    return baseMagicResistance + points;
   },
 
-  morale: function(points, morale)
+  morale: function(points, baseMorale)
   {
-    return morale + (points * 2);
+    return baseMorale + (points * 2);
   }
 }
