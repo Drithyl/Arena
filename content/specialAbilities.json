@@ -11,7 +11,9 @@
     "damageEffect": "damage",
     "onHit": null,
     "onDamage": null,
-    "abilities": null,
+    "abilities": {
+	  "distanceLowersDamage": 1
+	},
     "properties": [
 	  "magical",
 	  "noStrength",
