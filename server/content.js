@@ -3,6 +3,7 @@ var database;
 const fs = require("fs");
 var constructors;
 var items;
+var specialAttacks;
 var forms;
 
 module.exports =
@@ -11,14 +12,15 @@ module.exports =
   {
     database = db;
     constructors = ctors;
-    items = loadJSONContent("./content/armors.json", "Armor").concat
+    items = loadJSONContent("./content/armors.json", "Item").concat
     (
-      loadJSONContent("./content/consumables.json", "Consumable"),
-      loadJSONContent("./content/shields.json", "Shield"),
-      loadJSONContent("./content/trinkets.json", "Trinket"),
-      loadJSONContent("./content/weapons.json", "Weapon")
+      loadJSONContent("./content/consumables.json", "Item"),
+      loadJSONContent("./content/shields.json", "Item"),
+      loadJSONContent("./content/trinkets.json", "Item"),
+      loadJSONContent("./content/weapons.json", "Item")
     );
 
+    specialAttacks = loadJSONContent("./content/specialAttacks.json", "Item");
     forms = loadJSONContent("./content/forms.json", "Form");
     return this;
   },
@@ -71,6 +73,11 @@ module.exports =
             }
           });
         });
+
+        for (var key in char.specialAttacks)
+        {
+          char.specialAttacks[key] = getOneSpecialAttack("id", char.specialAttacks[key].id);
+        }
 
         //revive the character using its constructor
         characters.push(new constructors.Character(char, char.formList));
@@ -140,6 +147,38 @@ module.exports =
       }
 
       else return filterFn(item, query);
+    });
+  },
+
+  getAllSpecialAttacks: function()
+  {
+    //clone to avoid tampering
+    return specialAttacks.slice(0);
+  },
+
+  getOneSpecialAttack: function(query)
+  {
+    return specialAttacks.find(function(specialAttack)
+    {
+      if (Object.keys(query).length < 1)
+      {
+        return true;
+      }
+
+      else return filterFn(specialAttack, query);
+    });
+  },
+
+  getSpecialAttacks: function(query)
+  {
+    return specialAttacks.filter(function(specialAttack)
+    {
+      if (Object.keys(query).length < 1)
+      {
+        return true;
+      }
+
+      else return filterFn(specialAttack, query);
     });
   }
 }

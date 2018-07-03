@@ -1,6 +1,5 @@
 
-const locale = require("./strings.json");
-const order = require("./resolution_orders.json");
+const stringLibrary = require("./strings.json");
 
 module.exports =
 {
@@ -9,23 +8,29 @@ module.exports =
     return this;
   },
 
-  //The outer i loop is for each attack, and the inner j loop
-  //is for each strategy within each attack.
-  translateMelee: function(pack)
+  translate: function(pack)
   {
-    var templates = {};
+    var sequences = pack.getSequences();
+    var translations = [];
 
-    for (var id in pack.results)
+    //each sequence represents a whole attack (melee, ranged, or even substrategies
+    //like the result of a fire shield effect)
+    sequences.forEach(function(seq, index)
     {
-      templates[id] = [];
+      translations.push([]);
 
-      for (var i = 0; i < pack.results[id].length; i++)
+      //within each sequence key are stored the results of each particular step,
+      //like the results of awe, of a hit check, or a damage check
+      for (var [key, value] of seq.results)
       {
-        templates[id].push(translateAttack(pack, pack.results[id][i]));
+        if (value != null || Object.keys(value).length > 0)
+        {
+          translations[index].push(translateResults(pack, key, value));
+        }
       }
-    }
+    });
 
-    return templates;
+    return translations;
   },
 
   translateTurnEnd: function(pack, results)
@@ -57,35 +62,7 @@ module.exports =
   }
 }
 
-function translateAttack(pack, results)
-{
-  var templates = [];
-
-  for (var i = 0; i < order.melee.length; i++)
-  {
-    var strategy = order.melee[i];
-
-    if (results[strategy] == null || Object.keys(results[strategy]).length < 1)
-    {
-      //the strategy did not run, probably because neither side
-      //had the ability in question.
-      continue;
-    }
-
-    var template = translateStrategy(pack, results[strategy], strategy);
-
-    if (template == null)
-    {
-      throw new Error("The strategy " + strategy + " could not be found in translate().");
-    }
-
-    templates.push(template);
-  }
-
-  return templates;
-}
-
-function translateStrategy(pack, result, strategy)
+function translateResults(pack, strategy, result)
 {
   switch(strategy)
   {
@@ -152,14 +129,14 @@ function awe(pack, result)
     target: pack.target.name
   }};
 
-  template.string = locale.awe.check + "\n";
+  template.string = stringLibrary.awe.check + "\n";
 
   if (result.failed === true)
   {
-    template.string += locale.awe.fail + "\n";
+    template.string += stringLibrary.awe.fail + "\n";
   }
 
-  else template.string += locale.awe.success + "\n";
+  else template.string += stringLibrary.awe.success + "\n";
   return template;
 }
 
@@ -173,14 +150,14 @@ function attack(pack, result)
     hitLocation: result.hitLocation
   }};
 
-  template.string = locale.attack.check + "\n";
+  template.string = stringLibrary.attack.check + "\n";
 
   if (result.failed === true)
   {
-    template.string += locale.attack.fail + "\n";
+    template.string += stringLibrary.attack.fail + "\n";
   }
 
-  else template.string += locale.attack.success + "\n";
+  else template.string += stringLibrary.attack.success + "\n";
   return template;
 }
 
@@ -190,10 +167,10 @@ function glamour(pack, result)
 
   if (result.failed === true)
   {
-    template.string = locale.glamour.fail + "\n";
+    template.string = stringLibrary.glamour.fail + "\n";
   }
 
-  else template.string = locale.glamour.success + "\n";
+  else template.string = stringLibrary.glamour.success + "\n";
   return template;
 }
 
@@ -203,10 +180,10 @@ function displacement(pack, result)
 
   if (result.failed === true)
   {
-    template.string = locale.displacement.fail + "\n";
+    template.string = stringLibrary.displacement.fail + "\n";
   }
 
-  else template.string = locale.displacement.success + "\n";
+  else template.string = stringLibrary.displacement.success + "\n";
   return template;
 }
 
@@ -214,7 +191,7 @@ function fireShield(pack, result)
 {
   var template = {"string": "", "vars": {}};
 
-  template.string = locale.fireShield.intro + "\n";
+  template.string = stringLibrary.fireShield.intro + "\n";
   applyDamageTemplate(template, result);
   return template;
 }
@@ -228,10 +205,10 @@ function ethereal(pack, result)
 
   if (result.failed === true)
   {
-    template.string += locale.ethereal.fail + "\n";
+    template.string += stringLibrary.ethereal.fail + "\n";
   }
 
-  else template.string += locale.ethereal.success + "\n";
+  else template.string += stringLibrary.ethereal.success + "\n";
   return template;
 }
 
@@ -243,14 +220,14 @@ function mrNegates(pack, result)
     mrRoll: result.mrRoll
   }};
 
-  template.string = locale.meNegates.check + "\n";
+  template.string = stringLibrary.meNegates.check + "\n";
 
   if (result.failed === true)
   {
-    template.string += locale.meNegates.fail + "\n";
+    template.string += stringLibrary.meNegates.fail + "\n";
   }
 
-  else template.string += locale.meNegates.success + "\n";
+  else template.string += stringLibrary.meNegates.success + "\n";
   return template;
 }
 
@@ -258,7 +235,7 @@ function poisonBarbs(pack, result)
 {
   var template = {"string": "", "vars": {}};
 
-  template.string = locale.poisonBarbs.intro + "\n";
+  template.string = stringLibrary.poisonBarbs.intro + "\n";
   applyDamageTemplate(template, result);
   return template;
 }
@@ -267,7 +244,7 @@ function poisonSkin(pack, result)
 {
   var template = {"string": "", "vars": {}};
 
-  template.string = locale.poisonSkin.intro + "\n";
+  template.string = stringLibrary.poisonSkin.intro + "\n";
   applyDamageTemplate(template, result);
   return template;
 }
@@ -289,14 +266,14 @@ function berserk(pack, result)
     actor: pack.actor.name
   }};
 
-  template.string = locale.berserk.check + "\n";
+  template.string = stringLibrary.berserk.check + "\n";
 
   if (result.triggered === false)
   {
-    template.string += locale.berserk.fail + "\n";
+    template.string += stringLibrary.berserk.fail + "\n";
   }
 
-  else template.string += locale.berserk.success + "\n";
+  else template.string += stringLibrary.berserk.success + "\n";
   return template;
 }
 
@@ -309,7 +286,7 @@ function drain(pack, result)
     actor: pack.actor.name
   }};
 
-  template.string = locale.drain + "\n";
+  template.string = stringLibrary.drain + "\n";
   return template;
 }
 
@@ -321,7 +298,7 @@ function fatigue(pack, result)
     actor: pack.actor.name
   }};
 
-  template.string = locale.fatigue + "\n";
+  template.string = stringLibrary.fatigue + "\n";
 }
 
 function heatAura(pack, result)
@@ -337,7 +314,7 @@ function heatAura(pack, result)
     shiftedShapeName: result.shiftedShapeName
   }};
 
-  template.string = locale.heatAura + "\n";
+  template.string = stringLibrary.heatAura + "\n";
   applyDamageTemplate(template, result);
   return template;
 }
@@ -349,7 +326,7 @@ function coldAura(pack, result)
     nbrOfAuras: result.nbrOfAuras
   }};
 
-  template.string = locale.coldAura + "\n";
+  template.string = stringLibrary.coldAura + "\n";
   applyDamageTemplate(template, result);
   return template;
 }
@@ -358,7 +335,7 @@ function poisonAura(pack, result)
 {
   var template = {"string": "", "vars": {}};
 
-  template.string = locale.poisonAura + "\n";
+  template.string = stringLibrary.poisonAura + "\n";
   applyDamageTemplate(template, result);
   return template;
 }
@@ -372,32 +349,32 @@ function applyDamageTemplate(template, result)
   template.vars.shiftedShapeName = result.shiftedShapeName;
   //template.vars.droppedItems = result.droppedItems;
   template.vars.target = pack.targer.name;
-  template.string = locale.damage.check + "\n";
+  template.string = stringLibrary.damage.check + "\n";
 
   if (result.failed === true)
   {
     if (result.twistFate === true)
     {
-      template.string += locale.twistFate + "\n";
+      template.string += stringLibrary.twistFate + "\n";
     }
 
-    else template.string += locale.damage.fail + "\n";
+    else template.string += stringLibrary.damage.fail + "\n";
   }
 
-  else template.string += locale.damage.success + "\n";
+  else template.string += stringLibrary.damage.success + "\n";
 
   if (result.shiftedShapeName != null)
   {
-    template.string += locale.damage.shapeshift + "\n";
+    template.string += stringLibrary.damage.shapeshift + "\n";
 
     /*if (result.droppedItems.length > 0)
     {
-      template.string += locale.damage.droppedItems + "\n";
+      template.string += stringLibrary.damage.droppedItems + "\n";
     }*/
   }
 
   if (result.targetKO === true)
   {
-    template.string += locale.damage.targetKO + "\n";
+    template.string += stringLibrary.damage.targetKO + "\n";
   }
 }

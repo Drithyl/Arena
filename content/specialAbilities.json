@@ -1,0 +1,24 @@
+{
+  "w1": {
+    "id": "sa1",
+    "name": "Fire Shield",
+    "damage": 5,
+    "attack": 0,
+    "reach": 5,
+    "damageTypes": [
+      "fire"
+    ],
+    "damageEffect": "damage",
+    "onHit": null,
+    "onDamage": null,
+    "abilities": null,
+    "properties": [
+	  "magical",
+	  "noStrength",
+	],
+    "rarity": 0,
+    "categories": [
+      "Weapon Abilities"
+    ]
+  },
+}

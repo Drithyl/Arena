@@ -24,7 +24,8 @@
     "rarity": 0,
     "categories": [
       "Light armors"
-    ]
+    ],
+		"type": "armor"
   },
   "a6": {
     "id": "a6",
@@ -51,7 +52,8 @@
     "rarity": 0,
     "categories": [
       "Light armors"
-    ]
+    ],
+		"type": "armor"
   },
   "a7": {
     "id": "a7",
@@ -78,7 +80,8 @@
     "rarity": 0,
     "categories": [
       "Light armors"
-    ]
+    ],
+		"type": "armor"
   },
   "a8": {
     "id": "a8",
@@ -105,7 +108,8 @@
     "rarity": 0,
     "categories": [
       "Light armors"
-    ]
+    ],
+		"type": "armor"
   },
   "a9": {
     "id": "a9",
@@ -132,7 +136,8 @@
     "rarity": 0,
     "categories": [
       "Medium armors"
-    ]
+    ],
+		"type": "armor"
   },
   "a10": {
     "id": "a10",
@@ -159,7 +164,8 @@
     "rarity": 0,
     "categories": [
       "Light armors"
-    ]
+    ],
+		"type": "armor"
   },
   "a11": {
     "id": "a11",
@@ -186,7 +192,8 @@
     "rarity": 0,
     "categories": [
       "Light armors"
-    ]
+    ],
+		"type": "armor"
   },
   "a12": {
     "id": "a12",
@@ -213,7 +220,8 @@
     "rarity": 0,
     "categories": [
       "Medium armors"
-    ]
+    ],
+		"type": "armor"
   },
   "a13": {
     "id": "a13",
@@ -240,7 +248,8 @@
     "rarity": 0,
     "categories": [
       "Medium armors"
-    ]
+    ],
+		"type": "armor"
   },
   "a14": {
     "id": "a14",
@@ -267,7 +276,8 @@
     "rarity": 0,
     "categories": [
       "Heavy armors"
-    ]
+    ],
+		"type": "armor"
   },
   "a15": {
     "id": "a15",
@@ -294,7 +304,8 @@
     "rarity": 0,
     "categories": [
       "Light armors"
-    ]
+    ],
+		"type": "armor"
   },
   "a16": {
     "id": "a16",
@@ -321,7 +332,8 @@
     "rarity": 0,
     "categories": [
       "Medium armors"
-    ]
+    ],
+		"type": "armor"
   },
   "a17": {
     "id": "a17",
@@ -348,7 +360,8 @@
     "rarity": 0,
     "categories": [
       "Medium armors"
-    ]
+    ],
+		"type": "armor"
   },
   "a18": {
     "id": "a18",
@@ -375,7 +388,8 @@
     "rarity": 0,
     "categories": [
       "Medium armors"
-    ]
+    ],
+		"type": "armor"
   },
   "a19": {
     "id": "a19",
@@ -402,7 +416,8 @@
     "rarity": 0,
     "categories": [
       "Heavy armors"
-    ]
+    ],
+		"type": "armor"
   },
   "a20": {
     "id": "a20",
@@ -429,7 +444,8 @@
     "rarity": 0,
     "categories": [
       "Helmets"
-    ]
+    ],
+		"type": "armor"
   },
   "a21": {
     "id": "a21",
@@ -456,7 +472,8 @@
     "rarity": 0,
     "categories": [
       "Helmets"
-    ]
+    ],
+		"type": "armor"
   },
   "a22": {
     "id": "a22",
@@ -486,7 +503,8 @@
     "rarity": 0,
     "categories": [
       "Medium armors"
-    ]
+    ],
+		"type": "armor"
   },
   "a23": {
     "id": "a23",
@@ -516,7 +534,8 @@
     "rarity": 0,
     "categories": [
       "Medium armors"
-    ]
+    ],
+		"type": "armor"
   },
   "a24": {
     "id": "a24",
@@ -543,7 +562,8 @@
     "rarity": 0,
     "categories": [
       "Helmets"
-    ]
+    ],
+		"type": "armor"
   },
   "a26": {
     "id": "a26",
@@ -572,7 +592,8 @@
     "rarity": 1,
     "categories": [
       "Light armors"
-    ]
+    ],
+		"type": "armor"
   },
   "a27": {
     "id": "a27",
@@ -601,7 +622,8 @@
     "rarity": 1,
     "categories": [
       "Medium armors"
-    ]
+    ],
+		"type": "armor"
   },
   "a29": {
     "id": "a29",
@@ -630,7 +652,8 @@
     "rarity": 1,
     "categories": [
       "Helmets"
-    ]
+    ],
+		"type": "armor"
   },
   "a44": {
     "id": "a44",
@@ -657,7 +680,8 @@
     "rarity": 0,
     "categories": [
       "Light armors"
-    ]
+    ],
+		"type": "armor"
   },
   "a52": {
     "id": "a52",
@@ -686,7 +710,8 @@
     "rarity": 1,
     "categories": [
       "Light armors"
-    ]
+    ],
+		"type": "armor"
   },
   "a53": {
     "id": "a53",
@@ -715,7 +740,8 @@
     "rarity": 1,
     "categories": [
       "Heavy armors"
-    ]
+    ],
+		"type": "armor"
   },
   "a84": {
     "id": "a84",
@@ -742,7 +768,8 @@
     "rarity": 0,
     "categories": [
       "Medium armors"
-    ]
+    ],
+		"type": "armor"
   },
   "a86": {
     "id": "a86",
@@ -769,7 +796,8 @@
     "rarity": 0,
     "categories": [
       "Helmets"
-    ]
+    ],
+		"type": "armor"
   },
   "a91": {
     "id": "a91",
@@ -796,7 +824,8 @@
     "rarity": 1,
     "categories": [
       "Heavy armors"
-    ]
+    ],
+		"type": "armor"
   },
   "a99": {
     "id": "a99",
@@ -823,7 +852,8 @@
     "rarity": 0,
     "categories": [
       "Medium armors"
-    ]
+    ],
+		"type": "armor"
   },
   "a100": {
     "id": "a100",
@@ -850,7 +880,8 @@
     "rarity": 0,
     "categories": [
       "Medium armors"
-    ]
+    ],
+		"type": "armor"
   },
   "a101": {
     "id": "a101",
@@ -877,7 +908,8 @@
     "rarity": 0,
     "categories": [
       "Heavy armors"
-    ]
+    ],
+		"type": "armor"
   },
   "a104": {
     "id": "a104",
@@ -904,7 +936,8 @@
     "rarity": 0,
     "categories": [
       "Medium armors"
-    ]
+    ],
+		"type": "armor"
   },
   "a106": {
     "id": "a106",
@@ -931,7 +964,8 @@
     "rarity": 0,
     "categories": [
       "Medium armors"
-    ]
+    ],
+		"type": "armor"
   },
   "a111": {
     "id": "a111",
@@ -958,7 +992,8 @@
     "rarity": 1,
     "categories": [
       "Heavy armors"
-    ]
+    ],
+		"type": "armor"
   },
   "a114": {
     "id": "a114",
@@ -985,7 +1020,8 @@
     "rarity": 0,
     "categories": [
       "Light armors"
-    ]
+    ],
+		"type": "armor"
   },
   "a115": {
     "id": "a115",
@@ -1014,7 +1050,8 @@
     "rarity": 1,
     "categories": [
       "Medium armors"
-    ]
+    ],
+		"type": "armor"
   },
   "a116": {
     "id": "a116",
@@ -1041,7 +1078,8 @@
     "rarity": 0,
     "categories": [
       "Light armors"
-    ]
+    ],
+		"type": "armor"
   },
   "a117": {
     "id": "a117",
@@ -1068,7 +1106,8 @@
     "rarity": 0,
     "categories": [
       "Medium armors"
-    ]
+    ],
+		"type": "armor"
   },
   "a118": {
     "id": "a118",
@@ -1095,7 +1134,8 @@
     "rarity": 0,
     "categories": [
       "Helmets"
-    ]
+    ],
+		"type": "armor"
   },
   "a119": {
     "id": "a119",
@@ -1122,7 +1162,8 @@
     "rarity": 0,
     "categories": [
       "Helmets"
-    ]
+    ],
+		"type": "armor"
   },
   "a120": {
     "id": "a120",
@@ -1149,7 +1190,8 @@
     "rarity": 0,
     "categories": [
       "Helmets"
-    ]
+    ],
+		"type": "armor"
   },
   "a121": {
     "id": "a121",
@@ -1175,7 +1217,8 @@
     "rarity": 0,
     "categories": [
       "Helmets"
-    ]
+    ],
+		"type": "armor"
   },
   "a123": {
     "id": "a123",
@@ -1202,7 +1245,8 @@
     "rarity": 0,
     "categories": [
       "Helmets"
-    ]
+    ],
+		"type": "armor"
   },
   "a124": {
     "id": "a124",
@@ -1229,7 +1273,8 @@
     "rarity": 1,
     "categories": [
       "Helmets"
-    ]
+    ],
+		"type": "armor"
   },
   "a126": {
     "id": "a126",
@@ -1256,7 +1301,8 @@
     "rarity": 0,
     "categories": [
       "Helmets"
-    ]
+    ],
+		"type": "armor"
   },
   "a127": {
     "id": "a127",
@@ -1283,7 +1329,8 @@
     "rarity": 0,
     "categories": [
       "Helmets"
-    ]
+    ],
+		"type": "armor"
   },
   "a128": {
     "id": "a128",
@@ -1310,7 +1357,8 @@
     "rarity": 0,
     "categories": [
       "Medium armors"
-    ]
+    ],
+		"type": "armor"
   },
   "a129": {
     "id": "a129",
@@ -1337,7 +1385,8 @@
     "rarity": 0,
     "categories": [
       "Medium armors"
-    ]
+    ],
+		"type": "armor"
   },
   "a130": {
     "id": "a130",
@@ -1364,7 +1413,8 @@
     "rarity": 0,
     "categories": [
       "Heavy armors"
-    ]
+    ],
+		"type": "armor"
   },
   "a131": {
     "id": "a131",
@@ -1391,7 +1441,8 @@
     "rarity": 0,
     "categories": [
       "Helmets"
-    ]
+    ],
+		"type": "armor"
   },
   "a132": {
     "id": "a132",
@@ -1418,7 +1469,8 @@
     "rarity": 0,
     "categories": [
       "Helmets"
-    ]
+    ],
+		"type": "armor"
   },
   "a133": {
     "id": "a133",
@@ -1445,7 +1497,8 @@
     "rarity": 1,
     "categories": [
       "Medium armors"
-    ]
+    ],
+		"type": "armor"
   },
   "a134": {
     "id": "a134",
@@ -1472,7 +1525,8 @@
     "rarity": 0,
     "categories": [
       "Helmets"
-    ]
+    ],
+		"type": "armor"
   },
   "a135": {
     "id": "a135",
@@ -1499,7 +1553,8 @@
     "rarity": 0,
     "categories": [
       "Helmets"
-    ]
+    ],
+		"type": "armor"
   },
   "a136": {
     "id": "a136",
@@ -1526,7 +1581,8 @@
     "rarity": 0,
     "categories": [
       "Medium armors"
-    ]
+    ],
+		"type": "armor"
   },
   "a140": {
     "id": "a140",
@@ -1553,7 +1609,8 @@
     "rarity": 0,
     "categories": [
       "Light armors"
-    ]
+    ],
+		"type": "armor"
   },
   "a141": {
     "id": "a141",
@@ -1582,7 +1639,8 @@
     "rarity": 1,
     "categories": [
       "Helmets"
-    ]
+    ],
+		"type": "armor"
   },
   "a142": {
     "id": "a142",
@@ -1609,7 +1667,8 @@
     "rarity": 0,
     "categories": [
       "Light armors"
-    ]
+    ],
+		"type": "armor"
   },
   "a145": {
     "id": "a145",
@@ -1636,7 +1695,8 @@
     "rarity": 0,
     "categories": [
       "Helmets"
-    ]
+    ],
+		"type": "armor"
   },
   "a146": {
     "id": "a146",
@@ -1663,7 +1723,8 @@
     "rarity": 0,
     "categories": [
       "Medium armors"
-    ]
+    ],
+		"type": "armor"
   },
   "a148": {
     "id": "a148",
@@ -1690,7 +1751,8 @@
     "rarity": 0,
     "categories": [
       "Helmets"
-    ]
+    ],
+		"type": "armor"
   },
   "a149": {
     "id": "a149",
@@ -1717,7 +1779,8 @@
     "rarity": 0,
     "categories": [
       "Light armors"
-    ]
+    ],
+		"type": "armor"
   },
   "a150": {
     "id": "a150",
@@ -1744,7 +1807,8 @@
     "rarity": 0,
     "categories": [
       "Helmets"
-    ]
+    ],
+		"type": "armor"
   },
   "a151": {
     "id": "a151",
@@ -1771,7 +1835,8 @@
     "rarity": 0,
     "categories": [
       "Light armors"
-    ]
+    ],
+		"type": "armor"
   },
   "a152": {
     "id": "a152",
@@ -1798,7 +1863,8 @@
     "rarity": 0,
     "categories": [
       "Helmets"
-    ]
+    ],
+		"type": "armor"
   },
   "a153": {
     "id": "a153",
@@ -1825,7 +1891,8 @@
     "rarity": 1,
     "categories": [
       "Heavy armors"
-    ]
+    ],
+		"type": "armor"
   },
   "a154": {
     "id": "a154",
@@ -1852,7 +1919,8 @@
     "rarity": 0,
     "categories": [
       "Medium armors"
-    ]
+    ],
+		"type": "armor"
   },
   "a158": {
     "id": "a158",
@@ -1879,7 +1947,8 @@
     "rarity": 0,
     "categories": [
       "Light armors"
-    ]
+    ],
+		"type": "armor"
   },
   "a159": {
     "id": "a159",
@@ -1906,7 +1975,8 @@
     "rarity": 0,
     "categories": [
       "Light armors"
-    ]
+    ],
+		"type": "armor"
   },
   "a161": {
     "id": "a161",
@@ -1933,7 +2003,8 @@
     "rarity": 0,
     "categories": [
       "Light armors"
-    ]
+    ],
+		"type": "armor"
   },
   "a162": {
     "id": "a162",
@@ -1960,7 +2031,8 @@
     "rarity": 0,
     "categories": [
       "Helmets"
-    ]
+    ],
+		"type": "armor"
   },
   "a163": {
     "id": "a163",
@@ -1987,7 +2059,8 @@
     "rarity": 1,
     "categories": [
       "Medium armors"
-    ]
+    ],
+		"type": "armor"
   },
   "a165": {
     "id": "a165",
@@ -2014,7 +2087,8 @@
     "rarity": 1,
     "categories": [
       "Medium armors"
-    ]
+    ],
+		"type": "armor"
   },
 
   "a171": {
@@ -2042,7 +2116,8 @@
     "rarity": 0,
     "categories": [
       "Heavy armors"
-    ]
+    ],
+		"type": "armor"
   },
   "a183": {
     "id": "a183",
@@ -2069,7 +2144,8 @@
     "rarity": 0,
     "categories": [
       "Light armors"
-    ]
+    ],
+		"type": "armor"
   },
   "a184": {
     "id": "a184",
@@ -2094,7 +2170,8 @@
     "rarity": 1,
     "categories": [
       "Light armors"
-    ]
+    ],
+		"type": "armor"
   },
   "a188": {
     "id": "a188",
@@ -2121,7 +2198,8 @@
     "rarity": 0,
     "categories": [
       "Light armors"
-    ]
+    ],
+		"type": "armor"
   },
 
   "a192": {
@@ -2149,7 +2227,8 @@
     "rarity": 1,
     "categories": [
       "Medium armors"
-    ]
+    ],
+		"type": "armor"
   },
   "a196": {
     "id": "a196",
@@ -2176,7 +2255,8 @@
     "rarity": 1,
     "categories": [
       "Medium armors"
-    ]
+    ],
+		"type": "armor"
   },
   "a198": {
     "id": "a198",
@@ -2203,7 +2283,8 @@
     "rarity": 1,
     "categories": [
       "Light armors"
-    ]
+    ],
+		"type": "armor"
   },
   "a199": {
     "id": "a199",
@@ -2230,7 +2311,8 @@
     "rarity": 1,
     "categories": [
       "Heavy armors"
-    ]
+    ],
+		"type": "armor"
   },
   "a202": {
     "id": "a202",
@@ -2257,7 +2339,8 @@
     "rarity": 0,
     "categories": [
       "Light armors"
-    ]
+    ],
+		"type": "armor"
   },
   "a203": {
     "id": "a203",
@@ -2284,7 +2367,8 @@
     "rarity": 0,
     "categories": [
       "Light armors"
-    ]
+    ],
+		"type": "armor"
   },
   "a204": {
     "id": "a204",
@@ -2311,7 +2395,8 @@
     "rarity": 0,
     "categories": [
       "Medium armors"
-    ]
+    ],
+		"type": "armor"
   },
   "a205": {
     "id": "a205",
@@ -2338,7 +2423,8 @@
     "rarity": 0,
     "categories": [
       "Medium armors"
-    ]
+    ],
+		"type": "armor"
   },
   "a206": {
     "id": "a206",
@@ -2365,7 +2451,8 @@
     "rarity": 1,
     "categories": [
       "Medium armors"
-    ]
+    ],
+		"type": "armor"
   },
   "a210": {
     "id": "a210",
@@ -2394,7 +2481,8 @@
     "rarity": 1,
     "categories": [
       "Medium armors"
-    ]
+    ],
+		"type": "armor"
   },
   "a211": {
     "id": "a211",
@@ -2421,7 +2509,8 @@
     "rarity": 1,
     "categories": [
       "Helmets"
-    ]
+    ],
+		"type": "armor"
   },
   "a315": {
     "id": "a315",
@@ -2447,7 +2536,8 @@
     "rarity": 0,
     "categories": [
       "Animal"
-    ]
+    ],
+		"type": "armor"
   },
   "a316": {
     "id": "a316",
@@ -2473,7 +2563,8 @@
     "rarity": 0,
     "categories": [
       "Animal"
-    ]
+    ],
+		"type": "armor"
   },
   "a317": {
     "id": "a317",
@@ -2499,7 +2590,8 @@
     "rarity": 0,
     "categories": [
       "Animal"
-    ]
+    ],
+		"type": "armor"
   },
   "a318": {
     "id": "a318",
@@ -2525,7 +2617,8 @@
     "rarity": 0,
     "categories": [
       "Animal"
-    ]
+    ],
+		"type": "armor"
   },
   "a319": {
     "id": "a319",
@@ -2551,7 +2644,8 @@
     "rarity": 0,
     "categories": [
       "Animal"
-    ]
+    ],
+		"type": "armor"
   },
   "a323": {
     "id": "a323",
@@ -2580,7 +2674,8 @@
     "rarity": 0,
     "categories": [
       "Animal"
-    ]
+    ],
+		"type": "armor"
   },
   "a417": {
     "id": "a417",
@@ -2606,7 +2701,8 @@
     "rarity": 0,
     "categories": [
       "Animal"
-    ]
+    ],
+		"type": "armor"
   },
   "a461": {
     "id": "a461",

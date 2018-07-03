@@ -30,7 +30,7 @@ module.exports =
         verifyName(characterData.name);
         verifyAttributes(chosenForm, characterData.attributes);
 
-        builtData = buildCharacterData(player.username, characterData);
+        builtData = buildCharacterData(player.username, chosenForm, characterData);
         constructedCharacter = new characterCtor(builtData, builtData.formList);
         player.addCharacter(constructedCharacter);
       }
@@ -71,7 +71,7 @@ module.exports =
   *                   case, no return object will be supplied.
   */
 
-function buildCharacterData(username, data)
+function buildCharacterData(username, form, data)
 {
   var obj = {};
 

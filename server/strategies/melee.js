@@ -1,139 +1,163 @@
 
+var ruleset;
 
-module.exports.resolve = function(actor, targetPosition, weapons, map, ruleset)
+module.exports.init = function(rules)
+{
+  ruleset = rules;
+  return this;
+};
+
+module.exports.resolve = function(context, map, events)
 {
   var results = [];
-  var currentWeapon;
+  var currentWeaponSlot;
   var targets;
 
   //TODO check AP requirement
 
-  while (weapons.length > 1)
+  while (context.weapons.length > 1)
   {
-    currentWeapon = weapons.shift();
-    targets = map.getCharactersWithin(targetPosition, weapon.getAbility("areaOfEffect"));
+    currentWeaponSlot = context.weapons.shift();
+    targets = map.getCharactersWithin(context.targetPosition, currentWeaponSlot.equipped.getAbility("areaOfEffect"));
 
     targets.forEach(function(target, index)
     {
-      results.push(apply(actor, target, currentWeapon, map, ruleset));
+      results.push(apply(context, target, currentWeaponSlot.equipped, currentWeaponSlot.slotsTaken.length, map, ruleset, events));
     });
   }
 
   return results;
 }
 
-function apply(actor, target, weapon, ruleset, map)
+function apply(context, target, weapon, wieldingHands, map, events)
 {
-  var result = {target: target};
-  var otherResults = [];
+  var results = context.createSequence(target, weapon, "melee");
+  var damageTypeUsed = weapon.chooseDamageType();
 
-  try
+  if (weapon.reach < context.actor.distanceToReach(target))
   {
-    ruleset.canAffect(actor, target, weapon);
+    results.addResult("error", "This weapon does not have enough range to hit this target.");
+    return;
   }
 
-  catch(error)
+  if (weaponRequiresLife === true && target.hasProperty("lifeless") === true)
   {
-    result.error = error;
-    return result;
+    results.addResult("error", "This weapon does not work against lifeless targets.");
+    return;
+  }
+
+  if (weaponRequiresMind === true && target.hasProperty("mindless") === true)
+  {
+    results.addResult("error", "This weapon does not work against mindless targets.");
+    return;
   }
 
   //TODO: actor.apLeft -= ;
 
   if (target.getTotalAbility("awe") != null)
   {
-    result.awe = ruleset.awe(actor, target);
+    results.addResult("awe", ruleset.awe(context.actor.getTotalAttribute("morale"), target.getTotalAbility("awe")));
 
-    if (result.awe.success === false)
+    if (results.awe.success === false)
     {
-      return result;
+      return;
     }
   }
 
-  result.hit = ruleset.hit(actor, target, weapon);
+  results.addResult("hit", ruleset.hit(context.actor.getTotalAttribute("attack", weapon),
+                                       context.actor.getWieldingPenalty(),
+                                       target.getTotalAttribute("defence"),
+                                       target.getStatusEffect("harassment"),
+                                       target.getTotalAttribute("parry"),
+                                       weapon.hasProperty("flail")));
 
-  if (result.hit.success === false)
+  //TODO add this attack to the consecutive attacks from the same attacker
+
+  if (results.hit.success === false)
   {
     return result;
   }
 
   if (target.hasProperty("glamour") === true)
   {
-    result.glamour = ruleset.glamour(target);
+    results.addResult("glamour", ruleset.glamour(target.getStatusEffect("glamour")));
 
-    if (result.glamour.success === false)
+    if (results.glamour.success === false)
     {
-      return result;
+      return;
     }
   }
 
   if (target.getTotalAbility("displacement") != null)
   {
-    result.displacement = ruleset.displacement(target);
+    results.addResult("displacement", ruleset.displacement(target.getTotalAbility("displacement")));
 
-    if (result.displacement.success === false)
+    if (results.displacement.success === false)
     {
-      return result;
+      return;
     }
   }
 
-  if (target.getTotalAbility("fireShield") != null && subStrategies["fireShield"] != null)
-  {
-    otherResults.push(subStrategies["fireShield"].resolve(target, actor, map, ruleset));
-  }
+  results.addResult("hitLocation", ruleset.hitLocation(weapon.reach, context.actor.size, target.bodyparts));
 
-  if (target.hasProperty("ethereal") === true && weapon.hasProperty("magical") === false)
-  {
-    result.ethereal = ruleset.ethereal(target);
+  //Hit (where the blow would land where the target is) happens here
+  events.onHit(results, actor, target, map);
+  events.onHitReceived(results, actor, target, map);
 
-    if (result.ethereal.success === false)
+  if (target.hasProperty("ethereal") === true)
+  {
+    results.addResult("ethereal", ruleset.ethereal(weapon.hasProperty("magical")));
+
+    if (results.ethereal.success === false)
     {
-      return result;
+      return;
     }
   }
 
-  if (target.getTotalAbility("poisonBarbs") != null && subStrategies["poisonBarbs"] != null)
-  {
-    otherResults.push(subStrategies["poisonBarbs"].resolve(target, actor, map, ruleset));
-  }
-
-  if (target.getTotalAbility("poisonSkin") != null && subStrategies["poisonSkin"] != null && weapon.hasCategory("Natural") === true)
-  {
-    otherResults.push(subStrategies["poisonSkin"].resolve(actor, ruleset));
-  }
+  //Impact happens here
+  events.onImpact(results, actor, target, map);
+  events.onImpactReceived(results, actor, target, map);
 
   if (weapon.hasProperty("magicResistanceNegates") === true)
   {
-    result.mrCheck = ruleset.mrCheck(target);
+    results.addResult("mrCheck", ruleset.mrCheck(target.getTotalAttribute("magicResistance")));
 
-    if (result.mrCheck.success === false)
+    if (results.mrCheck.success === false)
     {
-      return [result].concat(otherResults);
+      return;
     }
   }
 
-  result.damageCheck = ruleset.damageCheck(actor, target, weapon, result.hit.location, result.hit.isShieldHit);
-  result.damage = ruleset.applyDamage(target, result.damageCheck.damageType, result.damageCheck.damageEffect, result.damageCheck.finalDamage);
+  var damageScore = ruleset.totalDamageScore(weapon.damage, context.actor.getTotalAttribute("strength"), weapon.hasProperty("noStrength"), wieldingHands);
+  var shieldedDamageScore = ruleset.applyShieldReduction(damageScore, target.getShieldProtection(), weapon.hasProperty("armorPiercing"), weapon.hasProperty("ignoresShields"));
+  var resistedDamageScore = ruleset.applyElementalResistance(shieldedDamageScore, target.getElementalResistance(damageTypeUsed), weapon.damageEffect);
 
-  if (result.damageCheck.success === true && (actor.getTotalAbility("drain") > 0 || weapon.getAbility("drain") > 0))
-  {
-    result.drain = ruleset.drain(actor, weapon, ruleset.damage.damageInflicted);
-  }
+  var protection = ruleset.calculateProtection(damageTypeUsed,
+                                               target.getPartProtection(results.hitLocation),
+                                               target.getTotalNaturalArmor(),
+                                               target.getTotalAbility("invulnerability"),
+                                               weapon.hasProperty("armorNegating"),
+                                               weapon.hasProperty("armorPiercing"),
+                                               weapon.hasProperty("magical"));
 
-  if (result.damageCheck.success === true && result.damage.targetKO === false && target.getTotalAbility("berserk") > 0)
-  {
-    result.berserk = ruleset.berserk(target);
-  }
+  results.addResult("damageCheck", ruleset.damageRoll(resistedDamageScore, protection));
+  results.damageCheck.finalDamage = ruleset.damageResultModifiers(target.getStatusEffect("twistFate"),
+                                                                  results.hitLocation,
+                                                                  damageTypeUsed,
+                                                                  weapon.damageEffect,
+                                                                  results.damageCheck.difference,
+                                                                  target.getDamageImmunity(damageTypeUsed),
+                                                                  target.getTotalAttribute("maxHP"));
 
-  //TODO: ON HIT AND ON DAMAGE EFFECTS
 
-  if (weapon.canCleave === true && result.damage.damageLeft > 0 && subStrategies["cleave"] != null &&
-     (result.damage.damageType === "pierce" || result.damage.damageType === "blunt" || result.damage.damageType === "slash"))
-  {
-    otherResults.concat(subStrategies["cleave"].resolve(actor, target, weapon, result.damage.damageLeft, map, ruleset));
-  }
+  results.addResult("damage", target.applyDamage(results.damageCheck.finalDamage, weapon.damageEffect, damageTypeUsed));
 
-  result.fatigue = ruleset.fatigue(actor);
+  //Damage happens here (drain, berserk, etc.)
+  events.onDamage(results, actor, target, map);
+  events.onDamageReceived(results, actor, target, map);
 
-  return [result].concat(otherResults);
+  //attack ended, things such as a cleave happen here
+  events.onAttackEnd(context, results, actor, target, map);
+
+  results.addResult("fatigue", context.actor.applyFatigue(context.actor.getTotalAttribute("encumbrance")));
 }

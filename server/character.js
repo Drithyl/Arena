@@ -1,5 +1,4 @@
 
-var slotsModule;
 var content;
 var prototype;
 
@@ -74,7 +73,13 @@ module.exports =
     {
       //TODO verify if status is in list of existing ones
       //TODO verify validity of value for existing status
-      _statusEffects[status] = value;
+
+      if (value === "DELETE")
+      {
+        delete _statusEffects[status];
+      }
+
+      else _statusEffects[status] = value;
       _changes.statusEffects[status] = value;
     };
 
@@ -108,6 +113,16 @@ module.exports =
       else return _abilities[key];
     }
 
+    this.getSpecialAbility = function(key)
+    {
+      if (_specialAbilities[key] == null)
+      {
+        return null;
+      }
+
+      else return _specialAbilities[key];
+    }
+
     this.getChanges = function()
     {
       var changes = Object.assign({}, _changes);
@@ -135,6 +150,80 @@ module.exports =
       }
     };
 
+    this.applyDamage = function(damage, damageEffect, damageType)
+    {
+      var result = {};
+
+      if (damageEffect === "stun")
+      {
+        result = applyFatigue(finalDamage);
+      }
+
+      else if (damageEffect === "poison")
+      {
+        result.damageInflicted = applyPoison(damage);
+      }
+
+      else if (damageEffect === "paralysis")
+      {
+        result.damageInflicted = applyParalysis(damage);
+      }
+
+      else
+      {
+        result.damageInflicted = reduceHP(damage);
+      }
+
+      if (damageType === "cold" || damageType === "fire")
+      {
+        result.ignited = ignites(result.damageInflicted, damageType);
+      }
+
+      if (this.currentHP <= 0)
+      {
+        this.setStatusEffect("ko", true);
+        result.ko = true;
+      }
+
+      result.damageLeft = damage - result.damageInflicted;
+      return result;
+    };
+
+    this.applyFatigue = function(amount)
+    {
+      var totalFatigue = this.fatigue + fatigue;
+      var fatigueAdded = (totalFatigue - currentFatigue).cap(200);
+      var fatigueDamage = Math.floor((totalFatigue - 200) * 0.2);
+      var damageInflicted;
+
+      if (fatigueAdded > 0)
+      {
+        this.fatigue += fatigueAdded;
+      }
+
+      if (fatigueDamage > 0)
+      {
+        damageInflicted = reduceHP(actor, fatigueDamage);
+      }
+
+      if (actor.fatigue >= 100)
+      {
+        this.setStatusEffect("berserk", "DELETE");
+      }
+
+      return {fatigueAdded: fatigueAdded, damageInflicted: damageInflicted};
+    }
+
+
+    /**********************
+    *   EFFECT TRIGGERS   *
+    **********************/
+
+    this.persistent = function()
+    {
+      //stuff like weapons' onHit abilities trigger here
+      effectsModule.persistent(getTriggerAbilities("persistent"), this);
+    };
 
     /**********************************
     *   EQUIPMENT-RELATED FUNCTIONS   *
@@ -166,7 +255,17 @@ module.exports =
       }
 
       return _slotList[slotType][index].equipped;
-    }
+    };
+
+    this.getSlot = function(slotType, index)
+    {
+      if (_slotList[slotType] == null || _slotList[slotType][index] == null)
+      {
+        return null;
+      }
+
+      return _slotList[slotType][index];
+    };
 
     this.hasSlot = function(type, index)
     {
@@ -388,54 +487,151 @@ module.exports =
       return weapons;
     };
 
-    //The slotsChecked array is used to prevent
-    //counting items that take up more than a single
-    //slot, like two-handed weapons, multiple times,
-    //instead of the one. It is reset for each new slot
-    //type, since an item can't occupy several slots of
-    //different kinds
     this.getEquippedAbility = function(key)
     {
       var total;
-      var slotsChecked;
+      var items = this.getAllEquippedItems();
 
-      for (var key in _slotList)
+      items.forEach(function(item)
       {
-        slotsChecked = [];
-
-        for (var i = 0; i < _slotList[key].length; i++)
+        if (item == null)
         {
-          var item = _slotList[key][i].equipped;
-          var value;
-
-          if (item == null)
-          {
-            continue;
-          }
-
-          value = item.getAbility(key);
-
-          if (value == null)
-          {
-            continue;
-          }
-
-          if (total == null)
-          {
-            total = value;
-          }
-
-          total += value;
+          continue;
         }
-      }
+
+        value = item.getAbility(key);
+
+        if (value == null)
+        {
+          continue;
+        }
+
+        if (total == null)
+        {
+          total = value;
+        }
+
+        total += value;
+      });
 
       //can be undefined, in which case the item does not have the ability.
       //This is because some abilities might have a zero value.
       return total;
     };
 
+    this.getEquippedSpecialAbility = function(abilityKey)
+    {
+      var ability;
+      var items = this.getAllEquippedItems();
 
-    this.getDualPenalty = function()
+      items.forEach(function(item)
+      {
+        if (item == null)
+        {
+          continue;
+        }
+
+        var equippedAbility = item.getSpecialAbility(abilityKey);
+
+        if (equippedAbility == null)
+        {
+          continue;
+        }
+
+        if (ability == null)
+        {
+          ability = equippedAbility;
+        }
+
+        else if (typeof ability.add === "function")
+        {
+          ability = ability.add(equippedAbility);
+        }
+      }
+
+      return ability;
+    };
+
+    this.getAllEquippedSpecialAbilities = function()
+    {
+      var items = this.getAllEquippedItems();
+      var abilities = {};
+
+      items.forEach(function(item)
+      {
+        var itemAbilities = item.specialAbilities;
+
+        for (var key in itemAbilities)
+        {
+          abilities[key] = itemAbilities[key].add(abilities[key]);
+        }
+      });
+
+      return abilities;
+    };
+
+    this.getTotalSpecialAbility(key)
+    {
+      var ability = this.getSpecialAbility(key);
+      var equippedAbility = this.getEquippedSpecialAbility(key);
+
+      if (ability == null && equippedAbility == null)
+      {
+        return null;
+      }
+
+      else if (ability != null && equippedAbility != null)
+      {
+        return ability.add(equippedAbility);
+      }
+
+      else if (ability == null)
+      {
+        return ability;
+      }
+
+      else return equippedAbility;
+    };
+
+    this.getAllSpecialAbilities = function()
+    {
+      var keysChecked = [];
+      var finalAbilities = {};
+      var specialAbilities = this.specialAbilities;
+      var formSpecialAbilities = this.form.specialAbilities;
+      var equippedSpecialAbilities = this.getAllEquippedSpecialAbilities();
+
+      //Check the abilities in the character and add the same ones from the form
+      //and equipment
+      for (var key in specialAbilities)
+      {
+        keysChecked.push(key);
+        finalAbilities[key] = specialAbilities[key].add(formSpecialAbilities[key], equippedSpecialAbilities[key]);
+      }
+
+      //Check the abilities in the form, but only add the equipment ones since all
+      //of the character ones were already looped through
+      for (var key in formSpecialAbilities)
+      {
+        if (keysChecked.includes(key) === false)
+        {
+          keysChecked.push(key);
+          finalAbilities[key] = formSpecialAbilities[key].add(equippedSpecialAbilities[key]);
+        }
+      }
+
+      //Add the remaining unchecked equipped abilities
+      for (var key in equippedSpecialAbilities)
+      {
+        if (keysChecked.includes(key) === false)
+        {
+          keysChecked.push(key);
+          finalAbilities[key] = equippedSpecialAbilities[key];
+        }
+      }
+    }
+
+    this.getWieldingPenalty = function()
     {
       var total = 0;
 
@@ -530,9 +726,11 @@ module.exports =
     var _actionPoints = data.actionPoints || 0;
     var _movementPoints = data.movementPoints || 0;
     var _afflictions = data.afflictions || null;
-    var _paths = data.paths || null;
-    var _properties = data.properties || null;
-    var _abilities = data.abilities || null;
+    var _paths = data.paths || {};
+    var _properties = data.properties || [];
+    var _abilities = data.abilities || {};
+    var _specialAbilities = data.specialAbilities || {};
+    var _appliedSpecialAbilities = data.appliedSpecialAbilities || {};
 
     //Temporary values (battle-related values) that will always be at a default
     //state when the character is loaded up
@@ -604,6 +802,15 @@ module.exports =
       get: function()
       {
         return this.form.sizeType;
+      },
+      enumerable: true
+    });
+
+    Object.defineProperty(this, "bodyparts",
+    {
+      get: function()
+      {
+        return this.form.parts;
       },
       enumerable: true
     });
@@ -892,6 +1099,174 @@ module.exports =
     *   PRIVATE METHODS   *
     **********************/
 
+    function addSpecialAbility(ability)
+    {
+      if (_appliedSpecialAbilities[ability.name] == null)
+      {
+        _appliedSpecialAbilities[ability.name] = ability.name;
+      }
+
+      else _appliedSpecialAbilities[ability.name].add(ability);
+    }
+
+    function removeSpecialAbility(ability)
+    {
+      _appliedSpecialAbilities[ability.name].subtract(ability);
+
+      if (_appliedSpecialAbilities[ability.name] == null)
+      {
+        delete _appliedSpecialAbilities[ability.name];
+      }
+    }
+
+    function healHP(amount)
+    {
+      var maxHP = this.getTotalAttribute("maxHP");
+      var damageHealed = amount.cap(maxHP - this.currentHP);
+      var healRemaining = amount - damageHealed;
+
+      while (healRemaining > 0 && this.isInFirstForm === false)
+      {
+        this.previousForm();
+        maxHP = this.getTotalAttribute("maxHP");
+        damageHealed += healRemaining.cap(maxHP);
+
+        if (healRemaining <= maxHP)
+        {
+          //no more damage left, so set the final form's current hp
+          this.currentHP = healRemaining;
+        }
+
+        healRemaining = healRemaining - healRemaining.cap(maxHP);
+      }
+
+      return damageHealed;
+    }
+
+    function reduceHP(damage)
+    {
+      var damageInflicted = damage.cap(this.currentHP);
+      var damageRemaining = damage - damageInflicted;
+      var nextFormHP;
+
+      while (damageRemaining > 0 && this.isInLastForm === false)
+      {
+        this.nextForm();
+        nextFormHP = this.getTotalAttribute("maxHP");
+        damageInflicted += damageRemaining.cap(nextFormHP);
+
+        if (damageRemaining - nextFormHP <= 0)
+        {
+          //no more damage left, so set the final form's current hp
+          this.currentHP = nextFormHP - damageRemaining;
+        }
+
+        damageRemaining -= nextFormHP;
+      }
+
+      return damageInflicted;
+    }
+
+    function applyPoison(amount)
+    {
+      var currentPoison = this.getStatusEffect("poison") || 0;
+      var totalApplied = amount.cap(this.getTotalAttribute("maxHP") - currentPoison;
+      this.setStatusEffect("poison", currentPoison + totalApplied);
+      return totalApplied;
+    };
+
+    function applyParalysis(amount)
+    {
+      var total = Math.floor((amount - this.size) * 0.5);
+      var currentParalysis = this.getStatusEffect("paralysis") || 0;
+
+      if (currentParalysis > total)
+      {
+        total = Math.floor(currentParalysis * 0.5).cap(5);
+      }
+
+      else if (currentParalysis > 0)
+      {
+        total = Math.floor(total * 0.5).cap(5);
+      }
+
+      this.setStatusEffect("paralysis", total);
+      return total;
+    };
+
+    function ignites(damage, damageType)
+    {
+      if (damageType !== "cold" && damageType !== "fire")
+      {
+        return false;
+      }
+
+      var igniteChance = damage * 5;
+    	var roll = Math.floor((Math.random() * 100)) + 1;
+
+    	if (roll > igniteChance)
+    	{
+    		return false;
+    	}
+
+      this.setStatusEffect(damageType, true);
+      return true;
+    };
+
+    function getTriggerAbilities(trigger)
+    {
+      var triggerAbilities = [];
+      var formSpecialAbilities = this.form.specialAbilities;
+      var equippedSpecialAbilities = getAllEquippedSpecialAbilities();
+
+      var (for key in _specialAbilities)
+      {
+        if (_specialAbilities[key].trigger != null && _specialAbilities[key].trigger === trigger)
+        {
+          triggerAbilities.push(_specialAbilities[key].add(formSpecialAbilities[key], equippedSpecialAbilities[key]));
+        }
+      }
+
+      return triggerAbilities.concat(this.form.getTriggerAbilities(trigger), getEquippedTriggerAbilities(trigger));
+    }
+
+    //The slotsChecked array is used to prevent
+    //counting items that take up more than a single
+    //slot, like two-handed weapons, multiple times,
+    //instead of the one. It is reset for each new slot
+    //type, since an item can't occupy several slots of
+    //different kinds
+    function getEquippedTriggerAbilities(trigger)
+    {
+      var triggerAbilities;
+      var items = this.getAllEquippedItems();
+
+      items.forEach(function(item)
+      {
+        if (item == null)
+        {
+          continue;
+        }
+
+        var abilities = item.abilities;
+
+        if (abilities == null)
+        {
+          continue;
+        }
+
+        for (var key in abilities)
+        {
+          if (abilities[key].trigger != null || abilities[key].trigger === trigger)
+          {
+            triggerAbilities.push(abilities[key]);
+          }
+        }
+      });
+
+      return triggerAbilities;
+    };
+
     function createEmptySlots(type, amount)
     {
       if (_slotList[type] == null)
@@ -975,125 +1350,6 @@ prototype.getPublicData = function()
   return data;
 }
 
-//will set a property according to a key path (i.e. 'slots.hands.equipped' will
-//reach this.slots.hands.equipped and set the value there). Also registers the
-//change in the changes object so that the recent changes can easily be shipped
-//to the player client. If the value is "DELETE", it will delete the property.
-prototype.set = function(path, value)
-{
-  var property = this;  // a moving reference to internal objects within this character
-  var changedProperty = this.changes;
-  var pathList = path.split('.');
-  var len = pathList.length;
-
-  for (var i = 0; i < len-1; i++)
-  {
-    var element = pathList[i];
-
-    if (property[element] == null)
-    {
-      property[element] = {};
-    }
-
-    if (changedProperty[element] == null)
-    {
-      changedProperty[element] = {};
-    }
-
-    property = property[element];
-    changedProperty = changedProperty[element];
-  }
-
-  if (value === "DELETE")
-  {
-    delete property[pathList[len-1]];
-  }
-
-  else property[pathList[len-1]] = value;
-  changedProperty[pathList[len-1]] = value;
-};
-
-prototype.getBodyparts = function()
-{
-  return this.form.parts;
-};
-
-prototype.addFatigue = function(amount)
-{
-  var result = {fatigueAdded: amount.cap(200), fatigueDamage: 0};
-  this.set("fatigue", this.fatigue + result.fatigueAdded);
-
-  if (this.fatigue + result.fatigueAdded === 200 && amount > result.fatigueAdded)
-  {
-    result.fatigueDamage = Math.floor((amount - result.fatigueAdded) / 5);
-    this.reduceHP(result.fatigueDamage);
-  }
-
-  if (this.fatigue >= 100)
-  {
-    this.setStatusEffect("berserk", "DELETE");
-  }
-
-  return result;
-}
-
-prototype.reduceHP = function(damage)
-{
-  var damageInflicted = damage.cap(this.currentHP);
-  this.set("currentHP", damageInflicted);
-
-  if (this.currentHP === 0 && this.formList.length > 0 && this.formIndex < this.formList.length - 1)
-  {
-    damageInflicted += this.woundedShape(damage - damageInflicted);
-  }
-
-  return damageInflicted;
-}
-
-prototype.woundedShape = function(damageCarried)
-{
-  var maxHP;
-  var damageInflicted;
-
-  this.set("formIndex", this.formIndex + 1);
-  this.set("form", this.formList[this.formIndex]);
-
-  maxHP = this.getTotalAttribute("maxHP");
-  damageInflicted = damageCarried.cap(this.currentHP);
-  this.reduceHP(damageInflicted);
-  this.slots.update();
-  return damageInflicted;
-}
-
-prototype.heal = function(amount)
-{
-  var maxHP = this.getTotalAttribute("maxHP");
-  var damageHealed = (maxHP - this.currentHP).cap(amount);
-  this.set("currentHP", damageHealed);
-
-	if (this.currentHP + damageHealed === maxHP && this.formList.length > 0 && this.formIndex > 0)
-	{
-    damageHealed += this.healedShape(amount - damageHealed);
-	}
-
-  return damageHealed;
-}
-
-prototype.healedShape = function(healingCarried)
-{
-  var maxHP;
-  var damageHealed;
-
-  this.set("formIndex", this.formIndex - 1);
-  this.set("form", this.formList[this.formIndex]);
-
-  maxHP = this.getTotalAttribute("maxHP");
-  damageHealed = healingCarried.cap(maxHP - this.currentHP);
-  this.heal(damageHealed);
-  this.slots.update();
-  return damageHealed;
-}
-
 prototype.reduceFatigue = function(amount)
 {
   var originalFat;
@@ -1104,7 +1360,7 @@ prototype.reduceFatigue = function(amount)
     this.setStatusEffect("unconscious", "DELETE");
 	}
 
-  this.set("fatigue", this.fatigue - fatigueReduced);
+  this.fatigue -= fatigueReduced;
   return fatigueReduced;
 }
 
@@ -1128,6 +1384,11 @@ prototype.getTotalProtection = function(hitLocation)
 prototype.getElementalResistance = function(type)
 {
   return getTotalAbility(type + "Resistance") || 0;
+}
+
+prototype.getDamageImmunity = function(type)
+{
+  return getTotalAbility(type + "Immunity") || 0;
 }
 
 prototype.getTotalNaturalArmor = function(part)

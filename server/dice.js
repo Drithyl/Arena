@@ -39,6 +39,11 @@ module.exports =
   	return str + ".";
   },
 
+  RN: function()
+  {
+    return roll(1, 100, false, false);
+  };
+
   //The Dom4 DRN is a 2d6 roll in which a result of 6 is exploded, but substracting 1 from it.
   DRN: function()
   {

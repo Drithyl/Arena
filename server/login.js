@@ -11,7 +11,7 @@ module.exports =
     return this;
   },
 
-  whenSignedIn: function(socket, cb)
+  signIn: function(socket, cb)
   {
     socket.on("signIn", function(data, clientCb)
   	{
@@ -39,7 +39,7 @@ module.exports =
   	});
   },
 
-  whenSignedUp: function(socket, cb)
+  signUp: function(socket, cb)
   {
     socket.on("signUp", function(data, clientCb)
   	{

@@ -53,7 +53,6 @@ module.exports.Battle = function(players, map)
 
     //STORING THE BATTLE UNDER EACH PLAYER'S USERNAME
     list[username] = this;
-
     _characters.concat(player.characters);
   }
 
@@ -228,7 +227,7 @@ module.exports.Battle = function(players, map)
     try
     {
       verifyData(actor, data);
-      dispatchUpdatePack(strategyManager.move(actor, data.targetPosition, _map), buildUpdatePack());
+      dispatchUpdatePack(interpreter.translate(movement.resolve(actor, data.targetPosition, _map)), buildUpdatePack());
     }
 
     catch (err)
@@ -247,7 +246,7 @@ module.exports.Battle = function(players, map)
     try
     {
       verifyData(actor, data);
-      dispatchUpdatePack(attack.resolve(actor, data.targetPosition, actor.getEquippedItem(data.slotType, data.slotIndex), _map), buildUpdatePack());
+      dispatchUpdatePack(interpreter.translate(attack.resolve(actor, data.targetPosition, data.weapons, _map)), buildUpdatePack());
     }
 
     catch(err)
@@ -378,19 +377,32 @@ module.exports.Battle = function(players, map)
       throw new Error("The target position is out of bounds.");
     }
 
-    if (data.slotType != null && data.slotIndex == null)
+    if (data.weapons != null)
     {
-      throw new Error("The slot index chosen is null.");
-    }
+      if (Array.isArray(data.weapons) === false)
+      {
+        data.weapons = [data.weapons];
+      }
 
-    else if (data.slotType == null && data.slotIndex != null)
-    {
-      throw new Error("The slot type chosen is null.");
-    }
+      data.weapons.forEach(function(weaponSlot)
+      {
+        if (weaponSlot.slotIndex == null)
+        {
+          throw new Error("The slot index chosen is null.");
+        }
 
-    else if (actor.getEquippedItem(data.slotType, data.slotIndex) == null)
-    {
-      throw new Error("There is no equipped item at the given slot, or the slot does not exist in this character.");
+        else if (weaponSlot.slotType == null)
+        {
+          throw new Error("The slot type chosen is null.");
+        }
+
+        weaponSlot = actor.getSlot(weaponSlot.slotType, weaponSlot.slotIndex);
+
+        if (weaponSlot == null || weaponSlot.equipped == null || weaponSlot.equipped.type !== "weapon")
+        {
+          throw new Error("There is no equipped weapon at the given slot, or the slot does not exist in this character.");
+        }
+      });
     }
   }
 
