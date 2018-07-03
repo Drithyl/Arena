@@ -31,5 +31,4 @@ module.exports =
   morale: function(points, baseMorale)
   {
     return baseMorale + (points * 2);
-  }
 }
