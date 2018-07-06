@@ -3,7 +3,8 @@ var database;
 const fs = require("fs");
 var constructors;
 var items;
-var forms;
+var specialAttacks;
+var races;
 
 module.exports =
 {
@@ -11,15 +12,16 @@ module.exports =
   {
     database = db;
     constructors = ctors;
-    items = loadJSONContent("./content/armors.json", "Armor").concat
+    items = loadJSONContent("./content/armors.json", "Item").concat
     (
-      loadJSONContent("./content/consumables.json", "Consumable"),
-      loadJSONContent("./content/shields.json", "Shield"),
-      loadJSONContent("./content/trinkets.json", "Trinket"),
-      loadJSONContent("./content/weapons.json", "Weapon")
+      loadJSONContent("./content/consumables.json", "Item"),
+      loadJSONContent("./content/shields.json", "Item"),
+      loadJSONContent("./content/trinkets.json", "Item"),
+      loadJSONContent("./content/weapons.json", "Item")
     );
 
-    forms = loadJSONContent("./content/forms.json", "Form");
+    //specialAttacks = loadJSONContent("./content/specialAbilities.json", "Item");
+    races = loadJSONContent("./content/races.json", "Race");
     return this;
   },
 
@@ -51,29 +53,17 @@ module.exports =
 
       fetched.forEach(function(char)
       {
-        //Revive forms by pointing them to the proper loaded form
-        char.formList.forEach(function(form)
-        {
-          form = forms.find(function(revivedForm)
-          {
-            return form.id === revivedForm.id;
-          });
-        });
-
         //Revive equipped items by pointing them to the loaded items
-        char.slotKeys.forEach(function(key)
+        for (var slotKey in char.equipment)
         {
-          char[key].forEach(function(slot)
+          char.equipment[slotKey].forEach(function(slot)
           {
-            if (slot.equipped != null)
-            {
-              slot.equipped = getOneItem("id", slot.equipped.id);
-            }
-          });
-        });
+            slot.item = getOneItem("id", slot.item.id);
+          })
+        }
 
         //revive the character using its constructor
-        characters.push(new constructors.Character(char, char.formList));
+        characters.push(new constructors.Character(char));
       });
 
       cb(null, characters);
@@ -112,14 +102,14 @@ module.exports =
     });
   },
 
-  getAllForms: function()
+  getAllRaces: function()
   {
-    return forms.slice(0);
+    return races.slice(0);
   },
 
-  getForms: function(query)
+  getRaces: function(query)
   {
-    return forms.filter(function(item)
+    return races.filter(function(item)
     {
       if (Object.keys(query).length < 1)
       {
@@ -130,9 +120,9 @@ module.exports =
     });
   },
 
-  getOneForm: function(query)
+  getOneRace: function(query)
   {
-    return forms.find(function(item)
+    return races.find(function(item)
     {
       if (Object.keys(query).length < 1)
       {
@@ -140,6 +130,38 @@ module.exports =
       }
 
       else return filterFn(item, query);
+    });
+  },
+
+  getAllSpecialAttacks: function()
+  {
+    //clone to avoid tampering
+    return specialAttacks.slice(0);
+  },
+
+  getOneSpecialAttack: function(query)
+  {
+    return specialAttacks.find(function(specialAttack)
+    {
+      if (Object.keys(query).length < 1)
+      {
+        return true;
+      }
+
+      else return filterFn(specialAttack, query);
+    });
+  },
+
+  getSpecialAttacks: function(query)
+  {
+    return specialAttacks.filter(function(specialAttack)
+    {
+      if (Object.keys(query).length < 1)
+      {
+        return true;
+      }
+
+      else return filterFn(specialAttack, query);
     });
   }
 }

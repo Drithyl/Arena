@@ -16,8 +16,9 @@
     "rarity": 0,
     "categories": [
       "Shields"
-    ]
-  },
+    ],
+		"type": "shield"
+	},
   "s2": {
     "id": "s2",
     "name": "shield",
@@ -35,8 +36,9 @@
     "rarity": 0,
     "categories": [
       "Shields"
-    ]
-  },
+    ],
+		"type": "shield"
+	},
   "s3": {
     "id": "s3",
     "name": "kite shield",
@@ -54,8 +56,9 @@
     "rarity": 0,
     "categories": [
       "Shields"
-    ]
-  },
+    ],
+		"type": "shield"
+	},
   "s4": {
     "id": "s4",
     "name": "tower shield",
@@ -73,8 +76,9 @@
     "rarity": 0,
     "categories": [
       "Shields"
-    ]
-  },
+    ],
+		"type": "shield"
+	},
   "s25": {
     "id": "s25",
     "name": "turtle shell shield",
@@ -92,8 +96,9 @@
     "rarity": 0,
     "categories": [
       "Shields"
-    ]
-  },
+    ],
+		"type": "shield"
+	},
   "s28": {
     "id": "s28",
     "name": "ice aegis",
@@ -113,8 +118,9 @@
     "rarity": 1,
     "categories": [
       "Shields"
-    ]
-  },
+    ],
+		"type": "shield"
+	},
   "s85": {
     "id": "s85",
     "name": "amber shield",
@@ -132,8 +138,9 @@
     "rarity": 0,
     "categories": [
       "Shields"
-    ]
-  },
+    ],
+		"type": "shield"
+	},
   "s105": {
     "id": "s105",
     "name": "hide shield",
@@ -151,8 +158,9 @@
     "rarity": 0,
     "categories": [
       "Shields"
-    ]
-  },
+    ],
+		"type": "shield"
+	},
   "s112": {
     "id": "s112",
     "name": "great hide shield",
@@ -170,8 +178,9 @@
     "rarity": 0,
     "categories": [
       "Shields"
-    ]
-  },
+    ],
+		"type": "shield"
+	},
   "s155": {
     "id": "s155",
     "name": "golden shield",
@@ -189,8 +198,9 @@
     "rarity": 1,
     "categories": [
       "Shields"
-    ]
-  },
+    ],
+		"type": "shield"
+	},
   "s156": {
     "id": "s156",
     "name": "spectral shield",
@@ -210,8 +220,9 @@
     "rarity": 1,
     "categories": [
       "Shields"
-    ]
-  },
+    ],
+		"type": "shield"
+	},
   "s164": {
     "id": "s164",
     "name": "anakite shield",
@@ -229,8 +240,9 @@
     "rarity": 1,
     "categories": [
       "Shields"
-    ]
-  },
+    ],
+		"type": "shield"
+	},
   "s166": {
     "id": "s166",
     "name": "dawn shield",
@@ -248,8 +260,9 @@
     "rarity": 1,
     "categories": [
       "Shields"
-    ]
-  },
+    ],
+		"type": "shield"
+	},
   "s189": {
     "id": "s189",
     "name": "pearl shield",
@@ -267,8 +280,9 @@
     "rarity": 1,
     "categories": [
       "Shields"
-    ]
-  },
+    ],
+		"type": "shield"
+	},
   "s207": {
     "id": "s207",
     "name": "wicker shield",
@@ -286,8 +300,9 @@
     "rarity": 0,
     "categories": [
       "Shields"
-    ]
-  },
+    ],
+		"type": "shield"
+	},
   "s208": {
     "id": "s208",
     "name": "iron shield",
@@ -305,8 +320,9 @@
     "rarity": 0,
     "categories": [
       "Shields"
-    ]
-  },
+    ],
+		"type": "shield"
+	},
   "s209": {
     "id": "s209",
     "name": "hoplon",

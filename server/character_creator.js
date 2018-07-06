@@ -16,36 +16,36 @@ module.exports =
     return this;
   },
 
-  whenCharacterCreated(player, cb)
+  createCharacter(player, cb)
   {
     player.socket.on("characterCreated", function(characterData, clientCb)
   	{
-      var chosenForm;
+      var race;
       var builtData;
+      var attributes;
       var constructedCharacter;
 
       try
       {
-        chosenForm = verifyForm(characterData.form);
         verifyName(characterData.name);
-        verifyAttributes(chosenForm, characterData.attributes);
-
-        builtData = buildCharacterData(player.username, characterData);
-        constructedCharacter = new characterCtor(builtData, builtData.formList);
+        race = verifyRace(characterData.race);
+        attributes = calculateAttributes(race, characterData.attributes);
+        builtData = buildCharacterData(player.username, race, characterData.name, attributes);
+        constructedCharacter = new characterCtor(builtData);
         player.addCharacter(constructedCharacter);
       }
 
       catch(err)
       {
-        clientCb(err.message, null);
+        clientCb(err, null);
         return;
       }
 
-      database.save("characters", constructedCharacter.toDatabase(), function(err, res)
+      database.save("characters", constructedCharacter.toDatabase(), function(err, result)
       {
         if (err)
         {
-          clientCb(err.message, null);
+          clientCb(err, null);
           return;
         }
 
@@ -71,36 +71,36 @@ module.exports =
   *                   case, no return object will be supplied.
   */
 
-function buildCharacterData(username, data)
+function buildCharacterData(username, race, name, attributes)
 {
-  var obj = {};
+  var obj = Object.assign({}, race);
 
-  obj.name = data.name;
+  obj.name = name;
   obj.id = uuid();
   obj.player = username;
-  obj.maxHP = formulas.maxHP(data.maxHP, form.maxHP);
-  obj.magicResistance = formulas.magicResistance(data.magicResistance, form.magicResistance);
-  obj.morale = formulas.morale(data.morale, form.morale);
-  obj.strength = formulas.strength(data.strength, form.strength);
+  obj.attributes = attributes;
+  obj.equipment = {};
 
-  for (var i = 0; i < data.form.formList.length; i++)
+  for (var key in race.slotCount)
   {
-    obj.formList.push(contentModule.getOneForm({id: data.form.formList[i]}));
+    obj.equipment[key] = [];
   }
+
+  //The rest of the fields will use default values provided in the Character construtor
 
   return obj;
 }
 
-function verifyForm(formID)
+function verifyRace(raceID)
 {
-  var form = contentModule.getOneForm({id: formID});
+  var race = contentModule.getOneRace({id: raceID});
 
-  if (form == null)
+  if (race == null)
   {
-    throw "The chosen form is invalid. Please choose only from the given options.";
+    throw "The chosen race is invalid. Please choose only from the given options.";
   }
 
-  return form;
+  return race;
 }
 
 function verifyName(name)
@@ -126,35 +126,45 @@ function verifyName(name)
   }
 }
 
-function verifyAttributes(form, attributes)
+function calculateAttributes(race, attributes)
 {
-  var maxPoints = form.startingPoints;
   var pointsUsed = 0;
+  var maxPoints = race.startingPoints;
+  var finalAttributes = race.attributes;
 
   if (attributes == null)
   {
     throw "The character data must contain the attribute starting points assigned.";
   }
 
-  for (var key in attributes)
+  for (var key in finalAttributes)
   {
-    if (form[key] == null)
+    if (attributes[key] == null)
     {
-      throw "The attribute " + key + " is invalid. It does not exist.";
+      continue;
     }
 
-    if (isNaN(attributes[key]) === true)
+    if (isNaN(attributes[key]) === true || attributes[key].isFloat() === true)
     {
-      throw "The attribute " + key + " must be an integer.";
+      throw `The attribute ${key} must be an integer.`;
     }
 
     pointsUsed += attributes[key];
 
     if (pointsUsed > maxPoints)
     {
-      throw "You have invested more points than your form allows.";
+      throw "You have invested more points than your race allows.";
     }
+
+    if (typeof formulas[key] !== "function")
+    {
+      throw `The attribute ${key} is lacking a formula to calculate it,`;
+    }
+
+    finalAttributes[key] = formulas[key](attributes[key], finalAttributes[key]);
   }
+
+  return finalAttributes;
 }
 
 function generateID()

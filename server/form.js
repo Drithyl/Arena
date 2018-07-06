@@ -27,6 +27,7 @@ module.exports =
     var _paths = data.paths || null;
     var _properties = data.properties || [];
     var _abilities = data.abilities || {};
+    var _specialAbilities = data.specialAbilities || {};
     var _slots = data.slots || {miscellaneous: 2};
     var _naturalWeapons = data.naturalWeapons || null;
     var _categories = data.categories || [];
@@ -171,6 +172,33 @@ module.exports =
       enumerable: true
     });
 
+    Object.defineProperty(this, "properties",
+    {
+      get: function()
+      {
+        return _properties.slice();
+      },
+      enumerable: true
+    });
+
+    Object.defineProperty(this, "abilities",
+    {
+      get: function()
+      {
+        return Object.assign({}, _abilities);
+      },
+      enumerable: true
+    });
+
+    Object.defineProperty(this, "specialAbilities",
+    {
+      get: function()
+      {
+        return Object.assign({}, _specialAbilities);
+      },
+      enumerable: true
+    });
+
     Object.defineProperty(this, "categories",
     {
       get: function()
@@ -207,6 +235,7 @@ module.exports =
         paths: _paths,
         properties: _properties,
         abilities: _abilities,
+        specialAbilities: _specialAbilities,
         slots: _slots,
         parts: _parts,
         naturalWeapons: _naturalWeapons,
@@ -214,6 +243,16 @@ module.exports =
       };
 
       return obj;
+    };
+
+    this.getAttribute = function(key)
+    {
+      if (_abilities["shapeshift"] != null)
+      {
+        return this[key] * Math.round(_abilities["shapeshift"] / 100);
+      }
+
+      else return this[key];
     };
 
     this.hasProperty = function(key)
@@ -244,6 +283,21 @@ module.exports =
       }
 
       else return total;
+    };
+
+    this.getTriggerAbilities = function(trigger)
+    {
+      var triggerAbilities = [];
+
+      for (var key in _abilities)
+      {
+        if (_abilities[key].trigger != null || _abilities[key].trigger === trigger)
+        {
+          triggerAbilities.push(_abilities[key]);
+        }
+      }
+
+      return triggerAbilities;
     };
 
     this.weaponTimesAvailable = function(weaponID)

@@ -21,17 +21,14 @@ const logger = require("./server/logger.js");
 var characterModule = require("./server/character.js");
 var itemModule = require("./server/item.js");
 var formModule = require("./server/form.js");
-var mapModule = require("./map.js");
+var specialAbilityModule = require("./server/special_ability.js");
+var mapModule = require("./server/map.js");
 const contentCtors =
 {
   Character: characterModule.Character,
   Item: itemModule.Item,
-  Armor: itemModule.Armor,
   Form: formModule.Form,
-  Consumable: itemModule.Consumable,
-  Shield: itemModule.Shield,
-  Trinket: itemModule.Trinket,
-  Weapon: itemModule.Weapon
+  SpecialAbility: specialAbilityModule.SpecialAbility
 };
 
 //Modules that require later initialization
@@ -68,12 +65,14 @@ require("./server/database.js").connect(function(err, dbModule)
     return;
   }
 
+  loadContent(dbModule);
+  server.listen(port);
+  wasLaunchedCorrectly = true;
+  logger.add("Server initialized correctly, listening for incoming connections.");
+
   try
   {
-    loadContent(dbModule);
-    server.listen(port);
-    wasLaunchedCorrectly = true;
-    logger.add("Server initialized correctly, listening for incoming connections.");
+
   }
 
   catch(err)
@@ -92,9 +91,9 @@ function loadContent(dbModule)
   battleModule = require("./server/battle.js").init(socketManager);
   content = require("./server/content.js").init(dbModule, contentCtors);
   playerModule = require("./server/player.js").init(characterModule.Character.list);
-  challengeModule = require(".server/challenge.js").init(socketManager, playerModule.Player.list, battleModule);
+  challengeModule = require("./server/challenge.js").init(socketManager, playerModule.Player.list, battleModule);
   loginModule = require("./server/login.js").init(dbModule, playerModule);
-  characterCreator = require("./server/character_creator.js").init(content, uuid, dbModule);
+  characterCreator = require("./server/character_creator.js").init(content, characterModule.Character, uuid, dbModule);
 
   //database content (async), handled in separate cb functions for readability,
   //needs to be passed somewhere
@@ -127,10 +126,10 @@ function onSocketConnect(socket)
 		throw new Error("Server was not launched correctly. Ignoring connection from socket " + socket.id);
 	}
 
-  socket.emit("initPack", getInitPack());
+  socket.emit("connected", getInitPack());
   logger.add(socket.id + " connected.");
 
-  loginModule.whenSignedIn(socket, function(player)
+  loginModule.signIn(socket, function(player)
   {
     socketManager.addLoggedPlayer(player.username, socket);
     challengeModule.listenToChallenges(socket);
@@ -138,14 +137,14 @@ function onSocketConnect(socket)
 
     if (player.hasCharacters() === false)
     {
-      characterCreator.whenCharacterCreated(player, function(constructedCharacter)
+      characterCreator.createCharacter(player, function(constructedCharacter)
       {
         //player is ready to go
       });
     }
   });
 
-  loginModule.whenSignedUp(socket, function(username)
+  loginModule.signUp(socket, function(username)
   {
     //stuff to do (response event to client is handled by the login module directly)
   });
@@ -167,7 +166,7 @@ function getInitPack()
 {
   var obj =
 	{
-		forms: JSON.stringify(content.getForms({categories: "Starting Form"})),
+		forms: JSON.stringify(content.getRaces({categories: "Starting Race"})),
 		players: playerModule.getClientPack()
 	}
 

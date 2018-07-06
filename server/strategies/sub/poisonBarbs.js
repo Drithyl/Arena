@@ -1,6 +1,4 @@
 
-const weaponModule = require("./weapon.js");
-
 module.exports.resolve = function(actor, target, map, ruleset)
 {
   var result = {strategy: "poisonBarbs", target: target};

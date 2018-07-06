@@ -1,26 +1,35 @@
 
+var ruleset;
 
-module.exports.apply = function(actor, targetPosition, map, ruleset, subStrategies)
+module.exports.init = function(rules)
 {
-  var results = [{strategy: "trample", targetPosition: targetPosition, blocked: false}];
+  ruleset = rules;
+  return this;
+};
+
+
+module.exports.apply = function(context, map, subStrategies)
+{
+  var results = [];
   var currentPosition = map.getCharacterPosition(actor.id);
   var inTheWay = map.getCharactersInLine(currentPosition, targetPosition);
 
   for (var i = 0; i < inTheWay.length; i++)
   {
-    if (inTheWay[i].size >= actor.size)
+    results.push(context.createSequence(inTheWay[i], "trample"));
+
+    if (inTheWay[i].size >= context.actor.size)
     {
-      results[0].blocked = true;
-      results[0].obstacle = inTheWay[i];
-      map.separateMovingCharacter(currentPosition, blockedPosition, actor.id, inTheWay[i].id);
-      results[0].finalPosition = map.getCharacterPosition(actor.id);
-      return result;
+      results[i].addResult("blocked", true);
+      results[i].addResult("obstacle", inTheWay[i]);
+      map.separateMovingCharacter(currentPosition, blockedPosition, context.actor.id, inTheWay[i].id);
+      results[i].addResult("finalPosition", map.getCharacterPosition(context.actor.id));
+      return;
     }
 
     //TODO: hit the character in the way for trample damage and displace it. Call trampleAttack substrategy
-    results.push(sunStrategies.trampleAttack.resolve());
+    subStrategies.trampleAttack.resolve(context);
   }
 
-  results[0].finalPosition = map.setCharacterPosition(targetPosition, actor.id);
-  return result;
+  results[i].addResult("finalPosition", map.setCharacterPosition(targetPosition, context.actor.id));
 }

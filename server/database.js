@@ -131,18 +131,14 @@ module.exports =
 
     else
     {
-      console.log("Saving...");
       db.collection(collection).save(item, {}, function(err, res)
       {
-        console.log("Save result:");
         if (err)
         {
-          console.log(err);
           cb(err.name + ": from collection " + collection + ", could not grab item: " + err.message, null);
           return;
         }
 
-        console.log("Callback invoked.");
         cb(null, res);
       });
     }

@@ -25,8 +25,9 @@
     "rarity": 0,
     "categories": [
       "Polearms"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w2": {
     "id": "w2",
     "name": "pike",
@@ -53,8 +54,9 @@
     "rarity": 0,
     "categories": [
       "Polearms"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w3": {
     "id": "w3",
     "name": "trident",
@@ -81,8 +83,9 @@
     "rarity": 0,
     "categories": [
       "Polearms"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w5": {
     "id": "w5",
     "name": "halberd",
@@ -110,8 +113,9 @@
     "rarity": 0,
     "categories": [
       "Polearms"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w6": {
     "id": "w6",
     "name": "short sword",
@@ -139,8 +143,9 @@
     "rarity": 0,
     "categories": [
       "Swords"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w7": {
     "id": "w7",
     "name": "quarterstaff",
@@ -167,8 +172,9 @@
     "rarity": 0,
     "categories": [
       "Staves"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w8": {
     "id": "w8",
     "name": "broad sword",
@@ -195,8 +201,9 @@
     "rarity": 0,
     "categories": [
       "Swords"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w9": {
     "id": "w9",
     "name": "Dagger",
@@ -223,8 +230,9 @@
     "rarity": 0,
     "categories": [
       "Daggers"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w10": {
     "id": "w10",
     "name": "falchion",
@@ -251,8 +259,9 @@
     "rarity": 0,
     "categories": [
       "Swords"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w11": {
     "id": "w11",
     "name": "great sword",
@@ -279,8 +288,9 @@
     "rarity": 0,
     "categories": [
       "Swords"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w12": {
     "id": "w12",
     "name": "mace",
@@ -307,8 +317,9 @@
     "rarity": 0,
     "categories": [
       "Maces"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w13": {
     "id": "w13",
     "name": "hammer",
@@ -336,8 +347,9 @@
     "rarity": 0,
     "categories": [
       "Maces"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w14": {
     "id": "w14",
     "name": "maul",
@@ -364,8 +376,9 @@
     "rarity": 0,
     "categories": [
       "Maces"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w15": {
     "id": "w15",
     "name": "flail",
@@ -395,8 +408,9 @@
     "rarity": 0,
     "categories": [
       "Maces"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w16": {
     "id": "w16",
     "name": "long flail",
@@ -425,8 +439,9 @@
     "rarity": 0,
     "categories": [
       "Maces"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w17": {
     "id": "w17",
     "name": "axe",
@@ -453,8 +468,9 @@
     "rarity": 0,
     "categories": [
       "Axes"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w18": {
     "id": "w18",
     "name": "battleaxe",
@@ -481,8 +497,9 @@
     "rarity": 0,
     "categories": [
       "Axes"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w28": {
     "id": "w28",
     "name": "long spear",
@@ -509,8 +526,9 @@
     "rarity": 0,
     "categories": [
       "Polearms"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w31": {
     "id": "w31",
     "name": "coral spear",
@@ -539,8 +557,9 @@
     "rarity": 0,
     "categories": [
       "Polearms"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w32": {
     "id": "w32",
     "name": "coral knife",
@@ -569,8 +588,9 @@
     "rarity": 0,
     "categories": [
       "Daggers"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w35": {
     "id": "w35",
     "name": "ice knife",
@@ -600,8 +620,9 @@
     "rarity": 1,
     "categories": [
       "Daggers"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w36": {
     "id": "w36",
     "name": "ice lance",
@@ -632,8 +653,9 @@
     "rarity": 1,
     "categories": [
       "Polearms"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w37": {
     "id": "w37",
     "name": "ice blade",
@@ -663,8 +685,9 @@
     "rarity": 1,
     "categories": [
       "Swords"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w40": {
     "id": "w40",
     "name": "whip",
@@ -693,8 +716,9 @@
     "rarity": 0,
     "categories": [
       "Whips"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w44": {
     "id": "w44",
     "name": "ice mace",
@@ -724,8 +748,9 @@
     "rarity": 1,
     "categories": [
       "Maces"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w45": {
     "id": "w45",
     "name": "coral club",
@@ -754,8 +779,9 @@
     "rarity": 0,
     "categories": [
       "Maces"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w46": {
     "id": "w46",
     "name": "coral glaive",
@@ -785,8 +811,9 @@
     "rarity": 0,
     "categories": [
       "Polearms"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w49": {
     "id": "w49",
     "name": "iron prod",
@@ -813,8 +840,9 @@
     "rarity": 0,
     "categories": [
       "Polearms"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w57": {
     "id": "w57",
     "name": "sickle",
@@ -841,8 +869,9 @@
     "rarity": 0,
     "categories": [
       "Miscellaneous"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w66": {
     "id": "w66",
     "name": "jotun axe",
@@ -869,8 +898,9 @@
     "rarity": 1,
     "categories": [
       "Axes"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w89": {
     "id": "w89",
     "name": "snake staff",
@@ -902,8 +932,9 @@
     "rarity": 1,
     "categories": [
       "Staves"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w126": {
     "id": "w126",
     "name": "poison Dagger",
@@ -932,8 +963,9 @@
     "rarity": 1,
     "categories": [
       "Daggers"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w153": {
     "id": "w153",
     "name": "stick",
@@ -960,8 +992,9 @@
     "rarity": 0,
     "categories": [
       "Miscellaneous"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w165": {
     "id": "w165",
     "name": "great club",
@@ -988,8 +1021,9 @@
     "rarity": 0,
     "categories": [
       "Maces"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w234": {
     "id": "w234",
     "name": "jotun spear",
@@ -1016,8 +1050,9 @@
     "rarity": 1,
     "categories": [
       "Polearms"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w252": {
     "id": "w252",
     "name": "club",
@@ -1044,8 +1079,9 @@
     "rarity": 0,
     "categories": [
       "Maces"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w253": {
     "id": "w253",
     "name": "hatchet",
@@ -1072,8 +1108,9 @@
     "rarity": 0,
     "categories": [
       "Axes"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w256": {
     "id": "w256",
     "name": "kryss",
@@ -1100,8 +1137,9 @@
     "rarity": 0,
     "categories": [
       "Daggers"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w257": {
     "id": "w257",
     "name": "bardiche",
@@ -1128,8 +1166,9 @@
     "rarity": 0,
     "categories": [
       "Polearms"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w258": {
     "id": "w258",
     "name": "claymore",
@@ -1156,8 +1195,9 @@
     "rarity": 0,
     "categories": [
       "Swords"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w259": {
     "id": "w259",
     "name": "executioner's axe",
@@ -1184,8 +1224,9 @@
     "rarity": 0,
     "categories": [
       "Axes"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w263": {
     "id": "w263",
     "name": "net",
@@ -1246,8 +1287,9 @@
     "rarity": 0,
     "categories": [
       "Maces"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w267": {
     "id": "w267",
     "name": "pick axe",
@@ -1276,8 +1318,9 @@
     "rarity": 0,
     "categories": [
       "Axes"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w268": {
     "id": "w268",
     "name": "jotun longsword",
@@ -1304,8 +1347,9 @@
     "rarity": 1,
     "categories": [
       "Swords"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w288": {
     "id": "w288",
     "name": "obsidian club sword",
@@ -1334,8 +1378,9 @@
     "categories": [
       "Maces",
       "Swords"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w307": {
     "id": "w307",
     "name": "jotun battleaxe",
@@ -1362,8 +1407,9 @@
     "rarity": 1,
     "categories": [
       "Axes"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w308": {
     "id": "w308",
     "name": "glaive",
@@ -1391,8 +1437,9 @@
     "rarity": 0,
     "categories": [
       "Polearms"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w315": {
     "id": "w315",
     "name": "machaka spear",
@@ -1419,8 +1466,9 @@
     "rarity": 0,
     "categories": [
       "Polearms"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w318": {
     "id": "w318",
     "name": "serpent staff",
@@ -1452,8 +1500,9 @@
     "rarity": 1,
     "categories": [
       "Staves"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w357": {
     "id": "w357",
     "name": "light lance",
@@ -1482,8 +1531,9 @@
     "rarity": 0,
     "categories": [
       "Polearms"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w363": {
     "id": "w363",
     "name": "iron cudgel",
@@ -1510,8 +1560,9 @@
     "rarity": 0,
     "categories": [
       "Maces"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w373": {
     "id": "w373",
     "name": "stone spear",
@@ -1538,8 +1589,9 @@
     "rarity": 0,
     "categories": [
       "Polearms"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w376": {
     "id": "w376",
     "name": "yari",
@@ -1566,8 +1618,9 @@
     "rarity": 0,
     "categories": [
       "Polearms"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w377": {
     "id": "w377",
     "name": "wakizashi",
@@ -1595,8 +1648,9 @@
     "rarity": 0,
     "categories": [
       "Swords"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w378": {
     "id": "w378",
     "name": "katana",
@@ -1624,8 +1678,9 @@
     "rarity": 0,
     "categories": [
       "Swords"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w379": {
     "id": "w379",
     "name": "no-dachi",
@@ -1652,8 +1707,9 @@
     "rarity": 0,
     "categories": [
       "Swords"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w380": {
     "id": "w380",
     "name": "naginata",
@@ -1680,8 +1736,9 @@
     "rarity": 0,
     "categories": [
       "Polearms"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w381": {
     "id": "w381",
     "name": "ninjato",
@@ -1708,8 +1765,9 @@
     "rarity": 0,
     "categories": [
       "Daggers"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w388": {
     "id": "w388",
     "name": "pearl spear",
@@ -1738,8 +1796,9 @@
     "rarity": 1,
     "categories": [
       "Polearms"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w389": {
     "id": "w389",
     "name": "pearl trident",
@@ -1768,8 +1827,9 @@
     "rarity": 1,
     "categories": [
       "Polearms"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w426": {
     "id": "w426",
     "name": "obsidian glaive",
@@ -1798,8 +1858,9 @@
     "rarity": 1,
     "categories": [
       "Polearms"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w446": {
     "id": "w446",
     "name": "sceptre",
@@ -1826,8 +1887,9 @@
     "rarity": 0,
     "categories": [
       "Maces"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w451": {
     "id": "w451",
     "name": "obsidian club sword",
@@ -1855,8 +1917,9 @@
     "rarity": 0,
     "categories": [
       "Maces"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w454": {
     "id": "w454",
     "name": "ice glaive",
@@ -1887,8 +1950,9 @@
     "rarity": 1,
     "categories": [
       "Polearms"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w455": {
     "id": "w455",
     "name": "bone glaive",
@@ -1921,8 +1985,9 @@
     "rarity": 1,
     "categories": [
       "Polearms"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w464": {
     "id": "w464",
     "name": "basalt spear",
@@ -1951,8 +2016,9 @@
     "rarity": 1,
     "categories": [
       "Polearms"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w465": {
     "id": "w465",
     "name": "basalt club",
@@ -1981,8 +2047,9 @@
     "rarity": 1,
     "categories": [
       "Maces"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w473": {
     "id": "w473",
     "name": "golden spear",
@@ -2011,8 +2078,9 @@
     "rarity": 1,
     "categories": [
       "Polearms"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w474": {
     "id": "w474",
     "name": "golden sword",
@@ -2041,8 +2109,9 @@
     "rarity": 1,
     "categories": [
       "Swords"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w475": {
     "id": "w475",
     "name": "golden lance",
@@ -2072,8 +2141,9 @@
     "rarity": 1,
     "categories": [
       "Polearms"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w485": {
     "id": "w485",
     "name": "fomorian bronze spear",
@@ -2100,8 +2170,9 @@
     "rarity": 1,
     "categories": [
       "Polearms"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w498": {
     "id": "w498",
     "name": "twig",
@@ -2130,8 +2201,9 @@
     "rarity": 0,
     "categories": [
       "Miscellaneous"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w499": {
     "id": "w499",
     "name": "pestle",
@@ -2158,8 +2230,9 @@
     "rarity": 0,
     "categories": [
       "Miscellaneous"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w501": {
     "id": "w501",
     "name": "bamboo rod",
@@ -2186,8 +2259,9 @@
     "rarity": 0,
     "categories": [
       "Miscellaneous"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w502": {
     "id": "w502",
     "name": "yak tail fly whisk",
@@ -2216,8 +2290,9 @@
     "rarity": 0,
     "categories": [
       "Miscellaneous"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w508": {
     "id": "w508",
     "name": "black halberd",
@@ -2249,8 +2324,9 @@
     "rarity": 1,
     "categories": [
       "Polearms"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w516": {
     "id": "w516",
     "name": "censer",
@@ -2281,8 +2357,9 @@
     "rarity": 0,
     "categories": [
       "Miscellaneous"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w518": {
     "id": "w518",
     "name": "anakite sword",
@@ -2311,8 +2388,9 @@
     "rarity": 1,
     "categories": [
       "Swords"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w519": {
     "id": "w519",
     "name": "poison tipped spear",
@@ -2341,8 +2419,9 @@
     "rarity": 1,
     "categories": [
       "Polearms"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w520": {
     "id": "w520",
     "name": "dawn blade",
@@ -2371,8 +2450,9 @@
     "rarity": 1,
     "categories": [
       "Swords"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w554": {
     "id": "w554",
     "name": "lictor axe",
@@ -2403,8 +2483,9 @@
     "rarity": 1,
     "categories": [
       "Axes"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w563": {
     "id": "w563",
     "name": "spirit club",
@@ -2435,8 +2516,9 @@
     "rarity": 1,
     "categories": [
       "Maces"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w577": {
     "id": "w577",
     "name": "coral lance",
@@ -2467,8 +2549,9 @@
     "rarity": 0,
     "categories": [
       "Polearms"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w579": {
     "id": "w579",
     "name": "skull club",
@@ -2497,8 +2580,9 @@
     "rarity": 1,
     "categories": [
       "Maces"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w580": {
     "id": "w580",
     "name": "coral long spear",
@@ -2527,8 +2611,9 @@
     "rarity": 0,
     "categories": [
       "Polearms"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w590": {
     "id": "w590",
     "name": "short pike",
@@ -2555,8 +2640,9 @@
     "rarity": 0,
     "categories": [
       "Polearms"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w591": {
     "id": "w591",
     "name": "cod",
@@ -2585,8 +2671,9 @@
     "rarity": 0,
     "categories": [
       "Miscellaneous"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w598": {
     "id": "w598",
     "name": "shard glaive",
@@ -2617,8 +2704,9 @@
     "rarity": 1,
     "categories": [
       "Polearms"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w611": {
     "id": "w611",
     "name": "ice spear",
@@ -2648,8 +2736,9 @@
     "rarity": 1,
     "categories": [
       "Polearms"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w617": {
     "id": "w617",
     "name": "sun mace",
@@ -2681,8 +2770,9 @@
     "rarity": 1,
     "categories": [
       "Maces"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w618": {
     "id": "w618",
     "name": "sun spear",
@@ -2715,8 +2805,9 @@
     "rarity": 1,
     "categories": [
       "Polearms"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w621": {
     "id": "w621",
     "name": "obsidian shard blade",
@@ -2743,8 +2834,9 @@
     "rarity": 0,
     "categories": [
       "Swords"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w623": {
     "id": "w623",
     "name": "Poisoned obsidian blade",
@@ -2773,8 +2865,9 @@
     "rarity": 1,
     "categories": [
       "Swords"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w625": {
     "id": "w625",
     "name": "obsidian blade",
@@ -2801,8 +2894,9 @@
     "rarity": 0,
     "categories": [
       "Swords"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w637": {
     "id": "w637",
     "name": "tool",
@@ -2830,8 +2924,9 @@
     "rarity": 0,
     "categories": [
       "Miscellaneous"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w638": {
     "id": "w638",
     "name": "instrument",
@@ -2858,8 +2953,9 @@
     "rarity": 0,
     "categories": [
       "Miscellaneous"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w639": {
     "id": "w639",
     "name": "spetum",
@@ -2886,8 +2982,9 @@
     "rarity": 0,
     "categories": [
       "Polearms"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w641": {
     "id": "w641",
     "name": "bronze trident",
@@ -2914,8 +3011,9 @@
     "rarity": 0,
     "categories": [
       "Polearms"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w642": {
     "id": "w642",
     "name": "meteorite trident",
@@ -2944,8 +3042,9 @@
     "rarity": 1,
     "categories": [
       "Polearms"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w643": {
     "id": "w643",
     "name": "bronze spear",
@@ -2972,8 +3071,9 @@
     "rarity": 0,
     "categories": [
       "Polearms"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w644": {
     "id": "w644",
     "name": "bronze long spear",
@@ -3000,8 +3100,9 @@
     "rarity": 0,
     "categories": [
       "Polearms"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w645": {
     "id": "w645",
     "name": "bronze sword",
@@ -3029,8 +3130,9 @@
     "rarity": 0,
     "categories": [
       "Swords"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w646": {
     "id": "w646",
     "name": "bronze hatchet",
@@ -3057,8 +3159,9 @@
     "rarity": 0,
     "categories": [
       "Axes"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w648": {
     "id": "w648",
     "name": "enchanted hammer",
@@ -3088,8 +3191,9 @@
     "rarity": 1,
     "categories": [
       "Maces"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w651": {
     "id": "w651",
     "name": "bronze lance",
@@ -3118,8 +3222,9 @@
     "rarity": 0,
     "categories": [
       "Polearms"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w665": {
     "id": "w665",
     "name": "pearl blade",
@@ -3149,8 +3254,9 @@
     "rarity": 1,
     "categories": [
       "Swords"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w666": {
     "id": "w666",
     "name": "torch",
@@ -3179,8 +3285,9 @@
     "rarity": 0,
     "categories": [
       "Miscellaneous"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w668": {
     "id": "w668",
     "name": "metal glaive",
@@ -3208,8 +3315,9 @@
     "rarity": 0,
     "categories": [
       "Polearms"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w669": {
     "id": "w669",
     "name": "metal yari",
@@ -3236,8 +3344,9 @@
     "rarity": 0,
     "categories": [
       "Polearms"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w670": {
     "id": "w670",
     "name": "bone trident",
@@ -3264,8 +3373,9 @@
     "rarity": 0,
     "categories": [
       "Polearms"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w671": {
     "id": "w671",
     "name": "stone Dagger",
@@ -3292,8 +3402,9 @@
     "rarity": 0,
     "categories": [
       "Daggers"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w673": {
     "id": "w673",
     "name": "bronze glaive",
@@ -3321,8 +3432,9 @@
     "rarity": 0,
     "categories": [
       "Polearms"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w674": {
     "id": "w674",
     "name": "bronze Dagger",
@@ -3349,8 +3461,9 @@
     "rarity": 0,
     "categories": [
       "Daggers"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "w675": {
     "id": "w675",
     "name": "bronze axe",
@@ -3377,8 +3490,9 @@
     "rarity": 0,
     "categories": [
       "Axes"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e20": {
     "id": "e20",
     "name": "bite",
@@ -3407,8 +3521,9 @@
     "rarity": 0,
     "categories": [
       "Intrinsic"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e29": {
     "id": "e29",
     "name": "claw",
@@ -3435,8 +3550,9 @@
     "rarity": 0,
     "categories": [
       "Intrinsic"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e30": {
     "id": "e30",
     "name": "triple venomous bite",
@@ -3467,8 +3583,9 @@
     "rarity": 0,
     "categories": [
       "Intrinsic"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e38": {
     "id": "e38",
     "name": "snake hAir",
@@ -3500,8 +3617,9 @@
     "rarity": 0,
     "categories": [
       "Intrinsic"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e43": {
     "id": "e43",
     "name": "Poisoned claw",
@@ -3530,8 +3648,9 @@
     "rarity": 0,
     "categories": [
       "Intrinsic"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e47": {
     "id": "e47",
     "name": "lobster claw",
@@ -3561,8 +3680,9 @@
     "rarity": 0,
     "categories": [
       "Intrinsic"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e48": {
     "id": "e48",
     "name": "fire flare",
@@ -3594,8 +3714,9 @@
     "rarity": 0,
     "categories": [
       "Intrinsic"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e50": {
     "id": "e50",
     "name": "weak poison",
@@ -3626,8 +3747,9 @@
     "rarity": 0,
     "categories": [
       "Effects"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e51": {
     "id": "e51",
     "name": "strong poison",
@@ -3658,8 +3780,9 @@
     "rarity": 0,
     "categories": [
       "Effects"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e52": {
     "id": "e52",
     "name": "death poison",
@@ -3690,8 +3813,9 @@
     "rarity": 0,
     "categories": [
       "Effects"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e53": {
     "id": "e53",
     "name": "debilitative poison",
@@ -3723,8 +3847,9 @@
     "rarity": 0,
     "categories": [
       "Effects"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e54": {
     "id": "e54",
     "name": "paralyzing poison",
@@ -3757,8 +3882,9 @@
     "rarity": 0,
     "categories": [
       "Effects"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e55": {
     "id": "e55",
     "name": "hoof",
@@ -3787,8 +3913,9 @@
     "rarity": 0,
     "categories": [
       "Intrinsic"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e56": {
     "id": "e56",
     "name": "hoof (unused)",
@@ -3818,8 +3945,9 @@
     "rarity": 0,
     "categories": [
       "Intrinsic"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e58": {
     "id": "e58",
     "name": "wail",
@@ -3916,8 +4044,9 @@
     "categories": [
       "Effects",
       "Intrinsic"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e64": {
     "id": "e64",
     "name": "Decay",
@@ -3981,8 +4110,9 @@
     "rarity": 0,
     "categories": [
       "Intrinsic"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e67": {
     "id": "e67",
     "name": "phantasmal weapon",
@@ -4012,8 +4142,9 @@
     "rarity": 0,
     "categories": [
       "Intrinsic"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e68": {
     "id": "e68",
     "name": "barbed tail",
@@ -4045,8 +4176,9 @@
     "rarity": 0,
     "categories": [
       "Intrinsic"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e70": {
     "id": "e70",
     "name": "astral claw",
@@ -4078,8 +4210,9 @@
     "rarity": 0,
     "categories": [
       "Intrinsic"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e71": {
     "id": "e71",
     "name": "sleep vines",
@@ -4112,8 +4245,9 @@
     "rarity": 0,
     "categories": [
       "Intrinsic"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e85": {
     "id": "e85",
     "name": "tentacle",
@@ -4143,8 +4277,9 @@
     "rarity": 0,
     "categories": [
       "Intrinsic"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e90": {
     "id": "e90",
     "name": "crush",
@@ -4174,8 +4309,9 @@
     "categories": [
       "Effects",
       "Intrinsic"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e91": {
     "id": "e91",
     "name": "stun",
@@ -4205,8 +4341,9 @@
     "rarity": 0,
     "categories": [
       "Effects"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e92": {
     "id": "e92",
     "name": "fist",
@@ -4265,8 +4402,9 @@
     "rarity": 0,
     "categories": [
       "Intrinsic"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e127": {
     "id": "e127",
     "name": "magical venomous bite",
@@ -4298,8 +4436,9 @@
     "rarity": 0,
     "categories": [
       "Intrinsic"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e142": {
     "id": "e142",
     "name": "touch of leprosy",
@@ -4328,8 +4467,9 @@
     "rarity": 0,
     "categories": [
       "Intrinsic"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e143": {
     "id": "e143",
     "name": "disease",
@@ -4392,8 +4532,9 @@
     "rarity": 0,
     "categories": [
       "Intrinsic"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e146": {
     "id": "e146",
     "name": "venomous claw",
@@ -4422,8 +4563,9 @@
     "rarity": 0,
     "categories": [
       "Intrinsic"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e148": {
     "id": "e148",
     "name": "spider claw",
@@ -4450,8 +4592,9 @@
     "rarity": 0,
     "categories": [
       "Intrinsic"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e156": {
     "id": "e156",
     "name": "feeblemind",
@@ -4517,8 +4660,9 @@
     "categories": [
       "Effects",
       "Intrinsic"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e182": {
     "id": "e182",
     "name": "trunk",
@@ -4547,8 +4691,9 @@
     "rarity": 0,
     "categories": [
       "Intrinsic"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e185": {
     "id": "e185",
     "name": "lightning swarm",
@@ -4580,8 +4725,9 @@
     "rarity": 0,
     "categories": [
       "Intrinsic"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e190": {
     "id": "e190",
     "name": "phantasmal claw",
@@ -4611,8 +4757,9 @@
     "rarity": 0,
     "categories": [
       "Intrinsic"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e198": {
     "id": "e198",
     "name": "flame burst",
@@ -4643,8 +4790,9 @@
     "rarity": 0,
     "categories": [
       "Intrinsic"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e200": {
     "id": "e200",
     "name": "bane burst",
@@ -4675,8 +4823,9 @@
     "rarity": 0,
     "categories": [
       "Intrinsic"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e203": {
     "id": "e203",
     "name": "wyvern's tail",
@@ -4708,8 +4857,9 @@
     "rarity": 0,
     "categories": [
       "Intrinsic"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e207": {
     "id": "e207",
     "name": "venomous claw",
@@ -4741,8 +4891,9 @@
     "rarity": 0,
     "categories": [
       "Intrinsic"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e216": {
     "id": "e216",
     "name": "fire",
@@ -4773,8 +4924,9 @@
     "rarity": 0,
     "categories": [
       "Effects"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e221": {
     "id": "e221",
     "name": "greater fire",
@@ -4805,8 +4957,9 @@
     "rarity": 0,
     "categories": [
       "Effects"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e222": {
     "id": "e222",
     "name": "cold",
@@ -4838,8 +4991,9 @@
     "rarity": 0,
     "categories": [
       "Effects"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e223": {
     "id": "e223",
     "name": "venomous bite",
@@ -4870,8 +5024,9 @@
     "rarity": 0,
     "categories": [
       "Intrinsic"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e229": {
     "id": "e229",
     "name": "flame strike",
@@ -4934,8 +5089,9 @@
     "rarity": 0,
     "categories": [
       "Intrinsic"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e232": {
     "id": "e232",
     "name": "shock",
@@ -4966,8 +5122,9 @@
     "rarity": 0,
     "categories": [
       "Effects"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e235": {
     "id": "e235",
     "name": "pincer",
@@ -4994,8 +5151,9 @@
     "rarity": 0,
     "categories": [
       "Intrinsic"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e239": {
     "id": "e239",
     "name": "venomous fangs",
@@ -5026,8 +5184,9 @@
     "rarity": 0,
     "categories": [
       "Intrinsic"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e248": {
     "id": "e248",
     "name": "venomous claw",
@@ -5058,8 +5217,9 @@
     "rarity": 0,
     "categories": [
       "Intrinsic"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e249": {
     "id": "e249",
     "name": "strong venomous claw",
@@ -5090,8 +5250,9 @@
     "rarity": 0,
     "categories": [
       "Intrinsic"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e250": {
     "id": "e250",
     "name": "Poisoned claw",
@@ -5122,8 +5283,9 @@
     "rarity": 0,
     "categories": [
       "Intrinsic"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e251": {
     "id": "e251",
     "name": "paralyzing venomous fangs",
@@ -5154,8 +5316,9 @@
     "rarity": 0,
     "categories": [
       "Intrinsic"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e261": {
     "id": "e261",
     "name": "web",
@@ -5219,8 +5382,9 @@
     "rarity": 0,
     "categories": [
       "Intrinsic"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e273": {
     "id": "e273",
     "name": "piercing pincer",
@@ -5250,8 +5414,9 @@
     "rarity": 0,
     "categories": [
       "Intrinsic"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e282": {
     "id": "e282",
     "name": "paralysis",
@@ -5283,8 +5448,9 @@
     "rarity": 0,
     "categories": [
       "Intrinsic"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e283": {
     "id": "e283",
     "name": "strong paralysis",
@@ -5316,8 +5482,9 @@
     "rarity": 0,
     "categories": [
       "Intrinsic"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e284": {
     "id": "e284",
     "name": "steal strength",
@@ -5350,8 +5517,9 @@
     "rarity": 0,
     "categories": [
       "Intrinsic"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e285": {
     "id": "e285",
     "name": "additional weakness",
@@ -5383,8 +5551,9 @@
     "rarity": 0,
     "categories": [
       "Effects"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e286": {
     "id": "e286",
     "name": "magical touch of leprosy",
@@ -5415,8 +5584,9 @@
     "rarity": 0,
     "categories": [
       "Intrinsic"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e293": {
     "id": "e293",
     "name": "psychic damage",
@@ -5480,8 +5650,9 @@
     "rarity": 0,
     "categories": [
       "Intrinsic"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e319": {
     "id": "e319",
     "name": "bite",
@@ -5511,8 +5682,9 @@
     "rarity": 0,
     "categories": [
       "Intrinsic"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e320": {
     "id": "e320",
     "name": "flaming fist",
@@ -5543,8 +5715,9 @@
     "rarity": 0,
     "categories": [
       "Intrinsic"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e322": {
     "id": "e322",
     "name": "beast bite",
@@ -5573,8 +5746,9 @@
     "rarity": 0,
     "categories": [
       "Intrinsic"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e323": {
     "id": "e323",
     "name": "beast venomous bite",
@@ -5605,8 +5779,9 @@
     "rarity": 0,
     "categories": [
       "Intrinsic"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e325": {
     "id": "e325",
     "name": "serpent's fangs",
@@ -5637,8 +5812,9 @@
     "rarity": 0,
     "categories": [
       "Intrinsic"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e331": {
     "id": "e331",
     "name": "gore",
@@ -5667,8 +5843,9 @@
     "rarity": 0,
     "categories": [
       "Intrinsic"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e343": {
     "id": "e343",
     "name": "blade hand",
@@ -5695,8 +5872,9 @@
     "rarity": 0,
     "categories": [
       "Intrinsic"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e346": {
     "id": "e346",
     "name": "useless kick",
@@ -5723,8 +5901,9 @@
     "rarity": 0,
     "categories": [
       "Intrinsic"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e350": {
     "id": "e350",
     "name": "snake's fire flare",
@@ -5758,8 +5937,9 @@
     "rarity": 0,
     "categories": [
       "Intrinsic"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e354": {
     "id": "e354",
     "name": "antlers",
@@ -5789,8 +5969,9 @@
     "rarity": 0,
     "categories": [
       "Intrinsic"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e355": {
     "id": "e355",
     "name": "sting",
@@ -5822,8 +6003,9 @@
     "rarity": 0,
     "categories": [
       "Intrinsic"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e367": {
     "id": "e367",
     "name": "horror mark",
@@ -5885,8 +6067,9 @@
     "rarity": 0,
     "categories": [
       "Intrinsic"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e397": {
     "id": "e397",
     "name": "kick",
@@ -5915,8 +6098,9 @@
     "rarity": 0,
     "categories": [
       "Intrinsic"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e398": {
     "id": "e398",
     "name": "sirrush' venomous fangs",
@@ -5947,8 +6131,9 @@
     "rarity": 0,
     "categories": [
       "Intrinsic"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e399": {
     "id": "e399",
     "name": "sirrush' gore",
@@ -5977,8 +6162,9 @@
     "rarity": 0,
     "categories": [
       "Intrinsic"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e400": {
     "id": "e400",
     "name": "soul devouring bite",
@@ -6010,8 +6196,9 @@
     "rarity": 0,
     "categories": [
       "Intrinsic"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e401": {
     "id": "e401",
     "name": "soul death",
@@ -6043,8 +6230,9 @@
     "rarity": 0,
     "categories": [
       "Effects"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e404": {
     "id": "e404",
     "name": "beak",
@@ -6073,8 +6261,9 @@
     "rarity": 0,
     "categories": [
       "Intrinsic"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e408": {
     "id": "e408",
     "name": "talons",
@@ -6103,8 +6292,9 @@
     "rarity": 0,
     "categories": [
       "Intrinsic"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e420": {
     "id": "e420",
     "name": "koppo",
@@ -6135,8 +6325,9 @@
     "rarity": 0,
     "categories": [
       "Intrinsic"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e421": {
     "id": "e421",
     "name": "limp",
@@ -6199,8 +6390,9 @@
     "rarity": 0,
     "categories": [
       "Intrinsic"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e460": {
     "id": "e460",
     "name": "stop the dead",
@@ -6233,8 +6425,9 @@
     "rarity": 0,
     "categories": [
       "Intrinsic"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e481": {
     "id": "e481",
     "name": "touch of madness",
@@ -6266,8 +6459,9 @@
     "rarity": 0,
     "categories": [
       "Intrinsic"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e488": {
     "id": "e488",
     "name": "great head",
@@ -6298,8 +6492,9 @@
     "rarity": 0,
     "categories": [
       "Intrinsic"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e489": {
     "id": "e489",
     "name": "immortal head",
@@ -6330,8 +6525,9 @@
     "rarity": 0,
     "categories": [
       "Intrinsic"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e490": {
     "id": "e490",
     "name": "lesser head",
@@ -6362,8 +6558,9 @@
     "rarity": 0,
     "categories": [
       "Intrinsic"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e491": {
     "id": "e491",
     "name": "lesser heads",
@@ -6394,8 +6591,9 @@
     "rarity": 0,
     "categories": [
       "Intrinsic"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e495": {
     "id": "e495",
     "name": "serpent's bite",
@@ -6426,8 +6624,9 @@
     "rarity": 0,
     "categories": [
       "Intrinsic"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e509": {
     "id": "e509",
     "name": "bane of heresy",
@@ -6462,8 +6661,9 @@
     "rarity": 0,
     "categories": [
       "Effects"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e511": {
     "id": "e511",
     "name": "stump",
@@ -6492,8 +6692,9 @@
     "rarity": 0,
     "categories": [
       "Intrinsic"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e517": {
     "id": "e517",
     "name": "incense",
@@ -6527,8 +6728,9 @@
     "rarity": 0,
     "categories": [
       "Effects"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e529": {
     "id": "e529",
     "name": "ghost rending claw",
@@ -6559,8 +6761,9 @@
     "rarity": 0,
     "categories": [
       "Intrinsic"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e543": {
     "id": "e543",
     "name": "slap",
@@ -6595,8 +6798,9 @@
     "rarity": 0,
     "categories": [
       "Intrinsic"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e549": {
     "id": "e549",
     "name": "mantis claw",
@@ -6625,8 +6829,9 @@
     "rarity": 0,
     "categories": [
       "Intrinsic"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e564": {
     "id": "e564",
     "name": "Stunning blow",
@@ -6657,8 +6862,9 @@
     "rarity": 0,
     "categories": [
       "Effects"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e572": {
     "id": "e572",
     "name": "Poisonous gore",
@@ -6689,8 +6895,9 @@
     "rarity": 0,
     "categories": [
       "Intrinsic"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e592": {
     "id": "e592",
     "name": "cockatrice stinger",
@@ -6721,8 +6928,9 @@
     "rarity": 0,
     "categories": [
       "Intrinsic"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e614": {
     "id": "e614",
     "name": "elephant tusk",
@@ -6751,8 +6959,9 @@
     "rarity": 0,
     "categories": [
       "Intrinsic"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e624": {
     "id": "e624",
     "name": "paralyzing poison",
@@ -6783,8 +6992,9 @@
     "rarity": 0,
     "categories": [
       "Effects"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e629": {
     "id": "e629",
     "name": "myrmecoleon sting",
@@ -6816,8 +7026,9 @@
     "rarity": 0,
     "categories": [
       "Intrinsic"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e630": {
     "id": "e630",
     "name": "ghost rending bite",
@@ -6849,8 +7060,9 @@
     "rarity": 0,
     "categories": [
       "Intrinsic"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e631": {
     "id": "e631",
     "name": "serpent tail",
@@ -6882,8 +7094,9 @@
     "rarity": 0,
     "categories": [
       "Intrinsic"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e632": {
     "id": "e632",
     "name": "serpent mane",
@@ -6915,8 +7128,9 @@
     "rarity": 0,
     "categories": [
       "Intrinsic"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e634": {
     "id": "e634",
     "name": "moose antlers",
@@ -6945,8 +7159,9 @@
     "rarity": 0,
     "categories": [
       "Intrinsic"
-    ]
-  },
+    ],
+		"type": "weapon"
+	},
   "e700": {
     "id": "e700",
     "name": "phase spider fangs",

@@ -13,7 +13,8 @@
       "singleUse"
     ],
     "rarity": 0,
-    "Description": "these magically imbued bandages improve your natural Healing rate by 7.5% hp/h."
+    "Description": "these magically imbued bandages improve your natural Healing rate by 7.5% hp/h.",
+    "type": "consumable"
   },
   "c2": {
     "id": "c2",
@@ -28,7 +29,8 @@
       "singleUse"
     ],
     "rarity": 0,
-    "Description": "this small elixir will instantly close most wounds."
+    "Description": "this small elixir will instantly close most wounds.",
+    "type": "consumable"
   },
   "c3": {
     "id": "c3",
@@ -45,6 +47,7 @@
       "recuperation"
     ],
     "rarity": 0,
-    "Description": "this balm can regenerate even the ugliest old scars over time. +7.5% hp/h and unlocks the recuperation trait while it lasts."
+    "Description": "this balm can regenerate even the ugliest old scars over time. +7.5% hp/h and unlocks the recuperation trait while it lasts.",
+    "type": "consumable"
   }
 }

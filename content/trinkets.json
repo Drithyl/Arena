@@ -14,7 +14,8 @@
     "categories": [
       "Miscellaneous"
     ],
-    "description": "This trinket will make even the most docile dog appear ferocious. the basic bite -e322- of animals becomes piercing."
+    "description": "This trinket will make even the most docile dog appear ferocious. the basic bite -e322- of animals becomes piercing.",
+    "type": "trinket"
   },
   "t2": {
     "id": "t2",
@@ -34,7 +35,8 @@
     "categories": [
       "Miscellaneous"
     ],
-    "description": "A crucial piece of equipment for anyone insane enough to explore the highest peaks of this world."
+    "description": "A crucial piece of equipment for anyone insane enough to explore the highest peaks of this world.",
+    "type": "trinket"
   },
   "t3": {
     "id": "t3",
@@ -54,7 +56,8 @@
     "categories": [
       "Miscellaneous"
     ],
-    "description": "A crucial piece of equipment for anyone insane enough to explore the scorching deserts of this world."
+    "description": "A crucial piece of equipment for anyone insane enough to explore the scorching deserts of this world.",
+    "type": "trinket"
   },
   "t4": {
     "id": "t4",
@@ -74,7 +77,8 @@
     "categories": [
       "Miscellaneous"
     ],
-    "description": "A crucial piece of equipment for anyone insane enough to explore the noxious swamps of this world."
+    "description": "A crucial piece of equipment for anyone insane enough to explore the noxious swamps of this world.",
+    "type": "trinket"
   },
   "t5": {
     "id": "t5",
@@ -94,7 +98,8 @@
     "categories": [
       "Miscellaneous"
     ],
-    "description": "A crucial piece of equipment for anyone insane enough to explore the lightning storms of this world."
+    "description": "A crucial piece of equipment for anyone insane enough to explore the lightning storms of this world.",
+    "type": "trinket"
   },
   "t6": {
     "id": "t6",
@@ -115,7 +120,8 @@
     "categories": [
       "Miscellaneous"
     ],
-    "description": "You've been told that this gem is the crystalized blood of a great warrior of times past. as you hold it in your hand the thought itself seems to fill you with strength: +1 str and +1 attack."
+    "description": "You've been told that this gem is the crystalized blood of a great warrior of times past. as you hold it in your hand the thought itself seems to fill you with strength: +1 str and +1 attack.",
+    "type": "trinket"
   },
   "t7": {
     "id": "t7",
@@ -137,7 +143,8 @@
     "categories": [
       "Miscellaneous"
     ],
-    "description": "This magical amulet turns your flesh rough and barklike... which makes you a great target practice for those Fireballs (natural prot is set to 10 or +1 if already >= that, -5 fire Resistance)"
+    "description": "This magical amulet turns your flesh rough and barklike... which makes you a great target practice for those Fireballs (natural prot is set to 10 or +1 if already >= that, -5 fire Resistance)",
+    "type": "trinket"
   },
   "t8": {
     "id": "t8",
@@ -155,7 +162,8 @@
     "categories": [
       "Miscellaneous"
     ],
-    "description": "Apparently this is the skull of a legendary general. it is said that carrying it through training helps to gain insight and skill faster: +5% on each minute tick for task completion."
+    "description": "Apparently this is the skull of a legendary general. it is said that carrying it through training helps to gain insight and skill faster: +5% on each minute tick for task completion.",
+    "type": "trinket"
   },
   "t9": {
     "id": "t9",
@@ -175,7 +183,8 @@
     "categories": [
       "Miscellaneous"
     ],
-    "description": "This pendant will magically prevent some catastrophes from striking the wearer. not that its effectiveness could ever be verified."
+    "description": "This pendant will magically prevent some catastrophes from striking the wearer. not that its effectiveness could ever be verified.",
+    "type": "trinket"
   },
   "t10": {
     "id": "t10",
@@ -195,6 +204,7 @@
     "categories": [
       "Miscellaneous"
     ],
-    "description": "This belt is highly sought after by those who wear heavier armor. It will constantly reinvigorate the wearer, decreasing their fatigue."
+    "description": "This belt is highly sought after by those who wear heavier armor. It will constantly reinvigorate the wearer, decreasing their fatigue.",
+    "type": "trinket"
   }
 }
