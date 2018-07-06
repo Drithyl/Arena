@@ -21,14 +21,17 @@ const logger = require("./server/logger.js");
 var characterModule = require("./server/character.js");
 var itemModule = require("./server/item.js");
 var formModule = require("./server/form.js");
-var specialAbilityModule = require("./server/special_ability.js");
 var mapModule = require("./map.js");
 const contentCtors =
 {
   Character: characterModule.Character,
   Item: itemModule.Item,
+  Armor: itemModule.Armor,
   Form: formModule.Form,
-  SpecialAbility: specialAbilityModule.SpecialAbility
+  Consumable: itemModule.Consumable,
+  Shield: itemModule.Shield,
+  Trinket: itemModule.Trinket,
+  Weapon: itemModule.Weapon
 };
 
 //Modules that require later initialization
@@ -86,7 +89,6 @@ require("./server/database.js").connect(function(err, dbModule)
 
 function loadContent(dbModule)
 {
-  characterModule = characterModule.init(require("./server/effect.js"));
   battleModule = require("./server/battle.js").init(socketManager);
   content = require("./server/content.js").init(dbModule, contentCtors);
   playerModule = require("./server/player.js").init(characterModule.Character.list);
@@ -128,7 +130,7 @@ function onSocketConnect(socket)
   socket.emit("initPack", getInitPack());
   logger.add(socket.id + " connected.");
 
-  loginModule.signIn(socket, function(player)
+  loginModule.whenSignedIn(socket, function(player)
   {
     socketManager.addLoggedPlayer(player.username, socket);
     challengeModule.listenToChallenges(socket);
@@ -136,14 +138,14 @@ function onSocketConnect(socket)
 
     if (player.hasCharacters() === false)
     {
-      characterCreator.createCharacter(player, function(constructedCharacter)
+      characterCreator.whenCharacterCreated(player, function(constructedCharacter)
       {
         //player is ready to go
       });
     }
   });
 
-  loginModule.signUp(socket, function(username)
+  loginModule.whenSignedUp(socket, function(username)
   {
     //stuff to do (response event to client is handled by the login module directly)
   });
